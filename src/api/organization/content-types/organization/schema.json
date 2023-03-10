@@ -19,7 +19,7 @@
     "title": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",
@@ -36,7 +36,7 @@
     "phone": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string"
