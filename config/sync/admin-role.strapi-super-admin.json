@@ -65,7 +65,8 @@
         "fields": [
           "title",
           "promotion",
-          "user"
+          "user",
+          "uuid"
         ],
         "locales": [
           "en"
@@ -90,7 +91,8 @@
         "fields": [
           "title",
           "promotion",
-          "user"
+          "user",
+          "uuid"
         ],
         "locales": [
           "en"
@@ -105,7 +107,8 @@
         "fields": [
           "title",
           "promotion",
-          "user"
+          "user",
+          "uuid"
         ],
         "locales": [
           "en"

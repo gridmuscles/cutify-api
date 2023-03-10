@@ -64,6 +64,20 @@
           "sortable": true
         }
       },
+      "uuid": {
+        "edit": {
+          "label": "uuid",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "uuid",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -114,6 +128,10 @@
         [
           {
             "name": "user",
+            "size": 6
+          },
+          {
+            "name": "uuid",
             "size": 6
           }
         ]

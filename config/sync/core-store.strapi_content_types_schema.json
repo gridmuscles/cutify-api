@@ -2137,7 +2137,8 @@
       "info": {
         "singularName": "coupon",
         "pluralName": "coupons",
-        "displayName": "Coupon"
+        "displayName": "Coupon",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -2166,6 +2167,14 @@
           "type": "relation",
           "relation": "oneToOne",
           "target": "plugin::users-permissions.user"
+        },
+        "uuid": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "uid"
         },
         "createdAt": {
           "type": "datetime"
@@ -2215,7 +2224,8 @@
         "info": {
           "singularName": "coupon",
           "pluralName": "coupons",
-          "displayName": "Coupon"
+          "displayName": "Coupon",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
@@ -2244,6 +2254,14 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "plugin::users-permissions.user"
+          },
+          "uuid": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "uid"
           }
         },
         "kind": "collectionType"
