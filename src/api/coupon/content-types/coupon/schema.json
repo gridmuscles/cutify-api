@@ -42,6 +42,18 @@
     "uuid": {
       "pluginOptions": {},
       "type": "uid"
+    },
+    "terms": {
+      "type": "richtext"
+    },
+    "terms_pl": {
+      "type": "richtext"
+    },
+    "terms_ua": {
+      "type": "richtext"
+    },
+    "terms_ru": {
+      "type": "richtext"
     }
   }
 }
