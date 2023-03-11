@@ -73,6 +73,9 @@
     },
     "googleMapLink": {
       "type": "string"
+    },
+    "address": {
+      "type": "text"
     }
   }
 }
