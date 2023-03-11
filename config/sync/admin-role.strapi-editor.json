@@ -1,0 +1,403 @@
+{
+  "name": "Editor",
+  "code": "strapi-editor",
+  "description": "Editors can manage and publish contents including those of other users.",
+  "permissions": [
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::category.category",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::category.category",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::category.category",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::category.category",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::coupon.coupon",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "promotion",
+          "user",
+          "uuid",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "email"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::coupon.coupon",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::coupon.coupon",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "promotion",
+          "user",
+          "uuid",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "email"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::coupon.coupon",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "promotion",
+          "user",
+          "uuid",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "email"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::organization.organization",
+      "properties": {
+        "fields": [
+          "title",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "phone",
+          "categories",
+          "promotions",
+          "managers",
+          "images",
+          "telegramLink",
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "address"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::organization.organization",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::organization.organization",
+      "properties": {
+        "fields": [
+          "title",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "phone",
+          "categories",
+          "promotions",
+          "managers",
+          "images",
+          "telegramLink",
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "address"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::organization.organization",
+      "properties": {
+        "fields": [
+          "title",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "phone",
+          "categories",
+          "promotions",
+          "managers",
+          "images",
+          "telegramLink",
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "address"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::promotion.promotion",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "description",
+          "terms_pl",
+          "terms_ua",
+          "terms",
+          "terms_ru",
+          "slug",
+          "categories",
+          "discountTo",
+          "organization",
+          "images",
+          "dateUntil"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::promotion.promotion",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::promotion.promotion",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::promotion.promotion",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "description",
+          "terms_pl",
+          "terms_ua",
+          "terms",
+          "terms_ru",
+          "slug",
+          "categories",
+          "discountTo",
+          "organization",
+          "images",
+          "dateUntil"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::promotion.promotion",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "description",
+          "terms_pl",
+          "terms_ua",
+          "terms",
+          "terms_ru",
+          "slug",
+          "categories",
+          "discountTo",
+          "organization",
+          "images",
+          "dateUntil"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::review.review",
+      "properties": {
+        "fields": [
+          "message",
+          "message_pl",
+          "message_ua",
+          "message_ru",
+          "user",
+          "organization",
+          "rating"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::review.review",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::review.review",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::review.review",
+      "properties": {
+        "fields": [
+          "message",
+          "message_pl",
+          "message_ua",
+          "message_ru",
+          "user",
+          "organization",
+          "rating"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::review.review",
+      "properties": {
+        "fields": [
+          "message",
+          "message_pl",
+          "message_ua",
+          "message_ru",
+          "user",
+          "organization",
+          "rating"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.copy-link",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.create",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.download",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.update",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.configure-view",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.read",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    }
+  ]
+}

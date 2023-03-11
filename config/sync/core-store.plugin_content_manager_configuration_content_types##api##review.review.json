@@ -1,0 +1,202 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::review.review",
+  "value": {
+    "uid": "api::review.review",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "message",
+      "defaultSortBy": "message",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "message": {
+        "edit": {
+          "label": "message",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "message_pl": {
+        "edit": {
+          "label": "message_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "message_ua": {
+        "edit": {
+          "label": "message_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "message_ru": {
+        "edit": {
+          "label": "message_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "user": {
+        "edit": {
+          "label": "user",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "user",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "organization": {
+        "edit": {
+          "label": "organization",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "organization",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "rating": {
+        "edit": {
+          "label": "rating",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "rating",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "message",
+        "message_pl",
+        "message_ua"
+      ],
+      "edit": [
+        [
+          {
+            "name": "message",
+            "size": 6
+          },
+          {
+            "name": "message_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "message_ua",
+            "size": 6
+          },
+          {
+            "name": "message_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "user",
+            "size": 6
+          },
+          {
+            "name": "organization",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "rating",
+            "size": 4
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

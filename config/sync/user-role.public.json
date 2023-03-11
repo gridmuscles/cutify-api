@@ -1,0 +1,55 @@
+{
+  "name": "Public",
+  "description": "Default role given to unauthenticated user.",
+  "type": "public",
+  "permissions": [
+    {
+      "action": "api::category.category.find"
+    },
+    {
+      "action": "api::coupon.coupon.findOne"
+    },
+    {
+      "action": "api::organization.organization.find"
+    },
+    {
+      "action": "api::organization.organization.findOne"
+    },
+    {
+      "action": "api::promotion.promotion.find"
+    },
+    {
+      "action": "api::promotion.promotion.findOne"
+    },
+    {
+      "action": "api::promotion.promotion.requestCoupon"
+    },
+    {
+      "action": "api::review.review.find"
+    },
+    {
+      "action": "plugin::email.email.send"
+    },
+    {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.auth.emailConfirmation"
+    },
+    {
+      "action": "plugin::users-permissions.auth.forgotPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.register"
+    },
+    {
+      "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.sendEmailConfirmation"
+    }
+  ]
+}

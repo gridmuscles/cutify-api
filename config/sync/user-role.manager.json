@@ -1,0 +1,28 @@
+{
+  "name": "Manager",
+  "description": "Manages org and org promotions",
+  "type": "manager",
+  "permissions": [
+    {
+      "action": "api::category.category.find"
+    },
+    {
+      "action": "api::coupon.coupon.find"
+    },
+    {
+      "action": "api::coupon.coupon.findOne"
+    },
+    {
+      "action": "api::organization.organization.find"
+    },
+    {
+      "action": "api::organization.organization.findOne"
+    },
+    {
+      "action": "api::promotion.promotion.find"
+    },
+    {
+      "action": "api::promotion.promotion.findOne"
+    }
+  ]
+}
