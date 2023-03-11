@@ -53,6 +53,13 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "organizations"
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

@@ -80,6 +80,13 @@
       "relation": "manyToOne",
       "target": "api::organization.organization",
       "inversedBy": "promotions"
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
