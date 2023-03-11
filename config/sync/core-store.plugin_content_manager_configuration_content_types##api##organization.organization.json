@@ -48,6 +48,48 @@
           "sortable": true
         }
       },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "phone": {
         "edit": {
           "label": "phone",
@@ -90,6 +132,105 @@
           "label": "promotions",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "managers": {
+        "edit": {
+          "label": "managers",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "managers",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "images": {
+        "edit": {
+          "label": "images",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "images",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "telegramLink": {
+        "edit": {
+          "label": "telegramLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "telegramLink",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "facebookLink": {
+        "edit": {
+          "label": "facebookLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "facebookLink",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "instagramLink": {
+        "edit": {
+          "label": "instagramLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "instagramLink",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "googleMapLink": {
+        "edit": {
+          "label": "googleMapLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "googleMapLink",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "address": {
+        "edit": {
+          "label": "address",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -152,6 +293,56 @@
         [
           {
             "name": "promotions",
+            "size": 6
+          },
+          {
+            "name": "description_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "description_ua",
+            "size": 6
+          },
+          {
+            "name": "description_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "managers",
+            "size": 6
+          },
+          {
+            "name": "images",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "telegramLink",
+            "size": 6
+          },
+          {
+            "name": "facebookLink",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "instagramLink",
+            "size": 6
+          },
+          {
+            "name": "googleMapLink",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "address",
             "size": 6
           }
         ]

@@ -34,6 +34,90 @@
           "sortable": true
         }
       },
+      "title_pl": {
+        "edit": {
+          "label": "title_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_ua": {
+        "edit": {
+          "label": "title_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_ru": {
+        "edit": {
+          "label": "title_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "description": {
         "edit": {
           "label": "description",
@@ -48,6 +132,34 @@
           "sortable": false
         }
       },
+      "terms_pl": {
+        "edit": {
+          "label": "terms_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "terms_ua": {
+        "edit": {
+          "label": "terms_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "terms": {
         "edit": {
           "label": "terms",
@@ -58,6 +170,20 @@
         },
         "list": {
           "label": "terms",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "terms_ru": {
+        "edit": {
+          "label": "terms_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms_ru",
           "searchable": false,
           "sortable": false
         }
@@ -116,6 +242,34 @@
         },
         "list": {
           "label": "organization",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "images": {
+        "edit": {
+          "label": "images",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "images",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "dateUntil": {
+        "edit": {
+          "label": "dateUntil",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateUntil",
           "searchable": true,
           "sortable": true
         }
@@ -193,6 +347,68 @@
           {
             "name": "organization",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "title_pl",
+            "size": 6
+          },
+          {
+            "name": "title_ua",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "title_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "description_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "terms_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "terms_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "terms_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "images",
+            "size": 6
+          },
+          {
+            "name": "dateUntil",
+            "size": 4
           }
         ]
       ]

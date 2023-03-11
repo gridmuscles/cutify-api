@@ -9,14 +9,14 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "slug"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
         ]
       },
       "conditions": []
@@ -24,14 +24,7 @@
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::category.category",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
@@ -40,14 +33,14 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "slug"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
         ]
       },
       "conditions": []
@@ -58,14 +51,14 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "slug"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
         ]
       },
       "conditions": []
@@ -76,15 +69,17 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "promotion",
           "user",
-          "uuid"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "uuid",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "email"
         ]
       },
       "conditions": []
@@ -92,14 +87,7 @@
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::coupon.coupon",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
@@ -108,15 +96,17 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "promotion",
           "user",
-          "uuid"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "uuid",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "email"
         ]
       },
       "conditions": []
@@ -127,15 +117,17 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "promotion",
           "user",
-          "uuid"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "uuid",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "email"
         ]
       },
       "conditions": []
@@ -147,15 +139,19 @@
         "fields": [
           "title",
           "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "phone",
           "categories",
-          "promotions"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "promotions",
+          "managers",
+          "images",
+          "telegramLink",
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "address"
         ]
       },
       "conditions": []
@@ -163,14 +159,7 @@
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::organization.organization",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
@@ -180,15 +169,19 @@
         "fields": [
           "title",
           "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "phone",
           "categories",
-          "promotions"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "promotions",
+          "managers",
+          "images",
+          "telegramLink",
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "address"
         ]
       },
       "conditions": []
@@ -200,15 +193,19 @@
         "fields": [
           "title",
           "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "phone",
           "categories",
-          "promotions"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "promotions",
+          "managers",
+          "images",
+          "telegramLink",
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "address"
         ]
       },
       "conditions": []
@@ -219,18 +216,23 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "description",
+          "terms_pl",
+          "terms_ua",
           "terms",
+          "terms_ru",
           "slug",
           "categories",
           "discountTo",
-          "organization"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "organization",
+          "images",
+          "dateUntil"
         ]
       },
       "conditions": []
@@ -238,27 +240,13 @@
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::promotion.promotion",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.publish",
       "subject": "api::promotion.promotion",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
@@ -267,18 +255,23 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "description",
+          "terms_pl",
+          "terms_ua",
           "terms",
+          "terms_ru",
           "slug",
           "categories",
           "discountTo",
-          "organization"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "organization",
+          "images",
+          "dateUntil"
         ]
       },
       "conditions": []
@@ -289,18 +282,23 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "description",
+          "terms_pl",
+          "terms_ua",
           "terms",
+          "terms_ru",
           "slug",
           "categories",
           "discountTo",
-          "organization"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
+          "organization",
+          "images",
+          "dateUntil"
         ]
       },
       "conditions": []
@@ -311,15 +309,12 @@
       "properties": {
         "fields": [
           "message",
+          "message_pl",
+          "message_ua",
+          "message_ru",
           "user",
           "organization",
           "rating"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
         ]
       },
       "conditions": []
@@ -327,27 +322,13 @@
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::review.review",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.publish",
       "subject": "api::review.review",
-      "properties": {
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
@@ -356,15 +337,12 @@
       "properties": {
         "fields": [
           "message",
+          "message_pl",
+          "message_ua",
+          "message_ru",
           "user",
           "organization",
           "rating"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
         ]
       },
       "conditions": []
@@ -375,15 +353,12 @@
       "properties": {
         "fields": [
           "message",
+          "message_pl",
+          "message_ua",
+          "message_ru",
           "user",
           "organization",
           "rating"
-        ],
-        "locales": [
-          "en",
-          "ru",
-          "uk",
-          "pl"
         ]
       },
       "conditions": []
@@ -587,7 +562,8 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "organizations"
         ]
       },
       "conditions": []
@@ -611,7 +587,8 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "organizations"
         ]
       },
       "conditions": []
@@ -629,7 +606,8 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "organizations"
         ]
       },
       "conditions": []

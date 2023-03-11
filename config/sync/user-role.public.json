@@ -22,6 +22,9 @@
       "action": "api::promotion.promotion.findOne"
     },
     {
+      "action": "api::promotion.promotion.requestCoupon"
+    },
+    {
       "action": "api::review.review.create"
     },
     {

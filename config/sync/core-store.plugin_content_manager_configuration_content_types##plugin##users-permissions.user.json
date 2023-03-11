@@ -147,6 +147,21 @@
           "sortable": true
         }
       },
+      "organizations": {
+        "edit": {
+          "label": "organizations",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "organizations",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -211,6 +226,12 @@
           },
           {
             "name": "role",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "organizations",
             "size": 6
           }
         ]

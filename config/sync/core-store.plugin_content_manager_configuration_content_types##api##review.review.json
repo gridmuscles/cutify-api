@@ -34,6 +34,48 @@
           "sortable": true
         }
       },
+      "message_pl": {
+        "edit": {
+          "label": "message_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "message_ua": {
+        "edit": {
+          "label": "message_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "message_ru": {
+        "edit": {
+          "label": "message_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "message_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "user": {
         "edit": {
           "label": "user",
@@ -133,6 +175,22 @@
           {
             "name": "rating",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "message_pl",
+            "size": 6
+          },
+          {
+            "name": "message_ua",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "message_ru",
+            "size": 6
           }
         ]
       ]

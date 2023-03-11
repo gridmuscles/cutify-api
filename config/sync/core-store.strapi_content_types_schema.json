@@ -1872,6 +1872,12 @@
           "inversedBy": "users",
           "configurable": false
         },
+        "organizations": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::organization.organization",
+          "mappedBy": "managers"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1913,6 +1919,7 @@
         }
       },
       "kind": "collectionType",
+      "__filename__": "schema.json",
       "__schema__": {
         "collectionName": "up_users",
         "info": {
@@ -1976,6 +1983,12 @@
             "target": "plugin::users-permissions.role",
             "inversedBy": "users",
             "configurable": false
+          },
+          "organizations": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::organization.organization",
+            "mappedBy": "managers"
           }
         },
         "kind": "collectionType"
@@ -1999,36 +2012,43 @@
       "options": {
         "draftAndPublish": false
       },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "attributes": {
         "title": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string",
-          "required": true,
-          "unique": true
+          "required": true
+        },
+        "title_pl": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "title_ua": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "title_ru": {
+          "pluginOptions": {},
+          "type": "string"
         },
         "description": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "description_pl": {
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "description_ua": {
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "description_ru": {
+          "pluginOptions": {},
           "type": "text"
         },
         "slug": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "uid",
           "targetField": "title"
         },
@@ -2057,22 +2077,6 @@
           "visible": false,
           "useJoinTable": false,
           "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::category.category"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
         }
       },
       "__schema__": {
@@ -2086,36 +2090,43 @@
         "options": {
           "draftAndPublish": false
         },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
+        "pluginOptions": {},
         "attributes": {
           "title": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string",
-            "required": true,
-            "unique": true
+            "required": true
+          },
+          "title_pl": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "title_ua": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "title_ru": {
+            "pluginOptions": {},
+            "type": "string"
           },
           "description": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "description_pl": {
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "description_ua": {
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "description_ru": {
+            "pluginOptions": {},
             "type": "text"
           },
           "slug": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
           }
@@ -2143,20 +2154,24 @@
       "options": {
         "draftAndPublish": false
       },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "attributes": {
         "title": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string",
           "required": true
+        },
+        "title_pl": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "title_ua": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "title_ru": {
+          "pluginOptions": {},
+          "type": "string"
         },
         "promotion": {
           "type": "relation",
@@ -2169,12 +2184,24 @@
           "target": "plugin::users-permissions.user"
         },
         "uuid": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "uid"
+        },
+        "terms": {
+          "type": "richtext"
+        },
+        "terms_pl": {
+          "type": "richtext"
+        },
+        "terms_ua": {
+          "type": "richtext"
+        },
+        "terms_ru": {
+          "type": "richtext"
+        },
+        "email": {
+          "type": "email",
+          "required": true
         },
         "createdAt": {
           "type": "datetime"
@@ -2201,22 +2228,6 @@
           "visible": false,
           "useJoinTable": false,
           "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::coupon.coupon"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
         }
       },
       "__schema__": {
@@ -2230,20 +2241,24 @@
         "options": {
           "draftAndPublish": false
         },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
+        "pluginOptions": {},
         "attributes": {
           "title": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string",
             "required": true
+          },
+          "title_pl": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "title_ua": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "title_ru": {
+            "pluginOptions": {},
+            "type": "string"
           },
           "promotion": {
             "type": "relation",
@@ -2256,12 +2271,24 @@
             "target": "plugin::users-permissions.user"
           },
           "uuid": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "uid"
+          },
+          "terms": {
+            "type": "richtext"
+          },
+          "terms_pl": {
+            "type": "richtext"
+          },
+          "terms_ua": {
+            "type": "richtext"
+          },
+          "terms_ru": {
+            "type": "richtext"
+          },
+          "email": {
+            "type": "email",
+            "required": true
           }
         },
         "kind": "collectionType"
@@ -2287,35 +2314,31 @@
       "options": {
         "draftAndPublish": false
       },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "attributes": {
         "title": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string",
           "required": true
         },
         "description": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "description_pl": {
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "description_ua": {
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "description_ru": {
+          "pluginOptions": {},
           "type": "text"
         },
         "phone": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string"
         },
         "categories": {
@@ -2328,6 +2351,35 @@
           "relation": "oneToMany",
           "target": "api::promotion.promotion",
           "mappedBy": "organization"
+        },
+        "managers": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "organizations"
+        },
+        "images": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "telegramLink": {
+          "type": "string"
+        },
+        "facebookLink": {
+          "type": "string"
+        },
+        "instagramLink": {
+          "type": "string"
+        },
+        "googleMapLink": {
+          "type": "string"
+        },
+        "address": {
+          "type": "text"
         },
         "createdAt": {
           "type": "datetime"
@@ -2354,22 +2406,6 @@
           "visible": false,
           "useJoinTable": false,
           "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::organization.organization"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
         }
       },
       "__schema__": {
@@ -2383,35 +2419,31 @@
         "options": {
           "draftAndPublish": false
         },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
+        "pluginOptions": {},
         "attributes": {
           "title": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string",
             "required": true
           },
           "description": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "description_pl": {
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "description_ua": {
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "description_ru": {
+            "pluginOptions": {},
             "type": "text"
           },
           "phone": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string"
           },
           "categories": {
@@ -2424,6 +2456,35 @@
             "relation": "oneToMany",
             "target": "api::promotion.promotion",
             "mappedBy": "organization"
+          },
+          "managers": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "organizations"
+          },
+          "images": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "telegramLink": {
+            "type": "string"
+          },
+          "facebookLink": {
+            "type": "string"
+          },
+          "instagramLink": {
+            "type": "string"
+          },
+          "googleMapLink": {
+            "type": "string"
+          },
+          "address": {
+            "type": "text"
           }
         },
         "kind": "collectionType"
@@ -2449,44 +2510,59 @@
       "options": {
         "draftAndPublish": true
       },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "attributes": {
         "title": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string",
           "required": true
         },
+        "title_pl": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "title_ua": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "title_ru": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "description_pl": {
+          "pluginOptions": {},
+          "type": "richtext"
+        },
+        "description_ua": {
+          "pluginOptions": {},
+          "type": "richtext"
+        },
+        "description_ru": {
+          "pluginOptions": {},
+          "type": "richtext"
+        },
         "description": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
+          "type": "richtext"
+        },
+        "terms_pl": {
+          "pluginOptions": {},
+          "type": "richtext"
+        },
+        "terms_ua": {
+          "pluginOptions": {},
           "type": "richtext"
         },
         "terms": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "richtext",
-          "required": true
+          "pluginOptions": {},
+          "type": "richtext"
+        },
+        "terms_ru": {
+          "pluginOptions": {},
+          "type": "richtext"
         },
         "slug": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "uid",
           "targetField": "title"
         },
@@ -2496,11 +2572,7 @@
           "target": "api::category.category"
         },
         "discountTo": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "integer"
         },
         "organization": {
@@ -2508,6 +2580,17 @@
           "relation": "manyToOne",
           "target": "api::organization.organization",
           "inversedBy": "promotions"
+        },
+        "images": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "dateUntil": {
+          "type": "date"
         },
         "createdAt": {
           "type": "datetime"
@@ -2540,22 +2623,6 @@
           "visible": false,
           "useJoinTable": false,
           "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::promotion.promotion"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
         }
       },
       "__schema__": {
@@ -2569,44 +2636,59 @@
         "options": {
           "draftAndPublish": true
         },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
+        "pluginOptions": {},
         "attributes": {
           "title": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string",
             "required": true
           },
+          "title_pl": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "title_ua": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "title_ru": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "description_pl": {
+            "pluginOptions": {},
+            "type": "richtext"
+          },
+          "description_ua": {
+            "pluginOptions": {},
+            "type": "richtext"
+          },
+          "description_ru": {
+            "pluginOptions": {},
+            "type": "richtext"
+          },
           "description": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
+            "type": "richtext"
+          },
+          "terms_pl": {
+            "pluginOptions": {},
+            "type": "richtext"
+          },
+          "terms_ua": {
+            "pluginOptions": {},
             "type": "richtext"
           },
           "terms": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "richtext",
-            "required": true
+            "pluginOptions": {},
+            "type": "richtext"
+          },
+          "terms_ru": {
+            "pluginOptions": {},
+            "type": "richtext"
           },
           "slug": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
           },
@@ -2616,11 +2698,7 @@
             "target": "api::category.category"
           },
           "discountTo": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "integer"
           },
           "organization": {
@@ -2628,6 +2706,17 @@
             "relation": "manyToOne",
             "target": "api::organization.organization",
             "inversedBy": "promotions"
+          },
+          "images": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "dateUntil": {
+            "type": "date"
           }
         },
         "kind": "collectionType"
@@ -2653,18 +2742,22 @@
       "options": {
         "draftAndPublish": true
       },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "attributes": {
         "message": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          },
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "message_pl": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "message_ua": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "message_ru": {
+          "pluginOptions": {},
           "type": "string"
         },
         "user": {
@@ -2678,11 +2771,7 @@
           "target": "api::organization.organization"
         },
         "rating": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          },
+          "pluginOptions": {},
           "type": "integer",
           "default": 0,
           "max": 5,
@@ -2720,22 +2809,6 @@
           "visible": false,
           "useJoinTable": false,
           "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::review.review"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
         }
       },
       "__schema__": {
@@ -2749,18 +2822,22 @@
         "options": {
           "draftAndPublish": true
         },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
+        "pluginOptions": {},
         "attributes": {
           "message": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            },
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "message_pl": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "message_ua": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "message_ru": {
+            "pluginOptions": {},
             "type": "string"
           },
           "user": {
@@ -2774,11 +2851,7 @@
             "target": "api::organization.organization"
           },
           "rating": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            },
+            "pluginOptions": {},
             "type": "integer",
             "default": 0,
             "max": 5,
