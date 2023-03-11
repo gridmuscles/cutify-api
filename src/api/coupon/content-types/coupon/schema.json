@@ -54,6 +54,10 @@
     },
     "terms_ru": {
       "type": "richtext"
+    },
+    "email": {
+      "type": "email",
+      "required": true
     }
   }
 }
