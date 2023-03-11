@@ -47,23 +47,19 @@
     },
     "terms_pl": {
       "pluginOptions": {},
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "terms_ua": {
       "pluginOptions": {},
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "terms": {
       "pluginOptions": {},
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "terms_ru": {
       "pluginOptions": {},
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "slug": {
       "pluginOptions": {},
