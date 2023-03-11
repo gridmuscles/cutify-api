@@ -17,11 +17,50 @@
       "type": "string",
       "required": true
     },
+    "title_pl": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "title_ua": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "title_ru": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "description_pl": {
+      "pluginOptions": {},
+      "type": "richtext"
+    },
+    "description_ua": {
+      "pluginOptions": {},
+      "type": "richtext"
+    },
+    "description_ru": {
+      "pluginOptions": {},
+      "type": "richtext"
+    },
     "description": {
       "pluginOptions": {},
       "type": "richtext"
     },
+    "terms_pl": {
+      "pluginOptions": {},
+      "type": "richtext",
+      "required": true
+    },
+    "terms_ua": {
+      "pluginOptions": {},
+      "type": "richtext",
+      "required": true
+    },
     "terms": {
+      "pluginOptions": {},
+      "type": "richtext",
+      "required": true
+    },
+    "terms_ru": {
       "pluginOptions": {},
       "type": "richtext",
       "required": true

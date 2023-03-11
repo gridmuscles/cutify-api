@@ -17,6 +17,21 @@
       "type": "string",
       "required": true
     },
+    "title_pl": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "title_ua": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "title_ru": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
     "promotion": {
       "type": "relation",
       "relation": "oneToOne",

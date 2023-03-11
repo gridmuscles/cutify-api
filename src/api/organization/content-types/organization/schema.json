@@ -21,6 +21,18 @@
       "pluginOptions": {},
       "type": "text"
     },
+    "description_pl": {
+      "pluginOptions": {},
+      "type": "text"
+    },
+    "description_ua": {
+      "pluginOptions": {},
+      "type": "text"
+    },
+    "description_ru": {
+      "pluginOptions": {},
+      "type": "text"
+    },
     "phone": {
       "pluginOptions": {},
       "type": "string"
