@@ -11,5 +11,8 @@ module.exports = createCoreRouter('api::promotion.promotion', {
     find: {
       middlewares: [{ name: 'global::i18n' }],
     },
+    findOne: {
+      middlewares: [{ name: 'global::i18n' }],
+    },
   },
 })

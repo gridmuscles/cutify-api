@@ -11,5 +11,8 @@ module.exports = createCoreRouter('api::organization.organization', {
     find: {
       middlewares: [{ name: 'global::i18n' }],
     },
+    findOne: {
+      middlewares: [{ name: 'global::i18n' }],
+    },
   },
 })
