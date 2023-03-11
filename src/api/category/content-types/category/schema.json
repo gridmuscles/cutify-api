@@ -15,26 +15,19 @@
     "title": {
       "pluginOptions": {},
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "title_pl": {
       "pluginOptions": {},
-      "type": "string",
-      "required": true,
-      "unique": true
+      "type": "string"
     },
     "title_ua": {
       "pluginOptions": {},
-      "type": "string",
-      "required": true,
-      "unique": true
+      "type": "string"
     },
     "title_ru": {
       "pluginOptions": {},
-      "type": "string",
-      "required": true,
-      "unique": true
+      "type": "string"
     },
     "description": {
       "pluginOptions": {},

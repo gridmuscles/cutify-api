@@ -16,6 +16,18 @@
       "pluginOptions": {},
       "type": "string"
     },
+    "message_pl": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "message_ua": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "message_ru": {
+      "pluginOptions": {},
+      "type": "string"
+    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
