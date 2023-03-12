@@ -51,6 +51,9 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
           title_ru: promotion.data.attributes.title_ru,
           promotion: promotion.data.id,
           email: ctx.request.body.email,
+          uuid: `${Math.floor(100000000 + Math.random() * 900000000)}-${Math.floor(
+            200000000 + Math.random() * 800000000
+          )}`,
         },
         populate: '*',
       })
