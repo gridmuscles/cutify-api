@@ -60,7 +60,7 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
         templateId: 'd-c096941312084bdea8775e617e70e6b2',
         dynamicTemplateData: {
           ...TEMPLATE_DATA[locale],
-          link: `https://${ctx.request.origin}/${locale ?? 'en'}/coupons/${coupon.id}`,
+          link: `${ctx.request.header.origin}/${locale ?? 'en'}/coupons/${coupon.id}`,
         },
       })
 
