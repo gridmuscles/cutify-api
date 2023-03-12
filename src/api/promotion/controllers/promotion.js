@@ -8,28 +8,32 @@ const { createCoreController } = require('@strapi/strapi').factories
 
 const TEMPLATE_DATA = {
   en: {
-    title: 'Your coupon is activated!',
+    title: 'Your coupon has been activated!',
     greetings: 'Hello!',
-    description: 'To use the coupon, click on the "Open coupon" button',
-    linkText: 'Open coupon',
+    description: 'To use your coupon, click on the "Open Coupon" button below.',
+    linkText: 'Open Coupon',
+    subject: 'Trifle.com - Your Coupon Delivered!',
   },
   pl: {
     title: 'Twój kupon został aktywowany!',
     greetings: 'Witaj!',
-    description: 'Aby skorzystać z kuponu, kliknij przycisk "Otwórz kupon"',
+    description: 'Aby skorzystać z kuponu, kliknij przycisk "Otwórz kupon" poniżej.',
     linkText: 'Otwórz kupon',
+    subject: 'Trifle.com - Twój kupon dostarczony!',
   },
   ua: {
     title: 'Ваш купон активовано!',
-    greetings: 'Вітаю!',
-    description: 'Щоб скористатися купоном, натисніть кнопку "Відкрити купон"',
+    greetings: 'Вітаємо!',
+    description: 'Щоб скористатись купоном, натисніть на кнопку "Відкрити купон" нижче.',
     linkText: 'Відкрити купон',
+    subject: 'Trifle.com - Ваш купон доставлено!',
   },
   ru: {
     title: 'Ваш купон активирован!',
     greetings: 'Здравствуйте!',
     description: 'Чтобы воспользоваться купоном, нажмите на кнопку "Открыть купон"',
     linkText: 'Открыть купон',
+    subject: 'Trifle.com - Ваш купон доставлен!',
   },
 }
 
