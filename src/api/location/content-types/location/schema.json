@@ -31,6 +31,9 @@
       "relation": "manyToOne",
       "target": "api::organization.organization",
       "inversedBy": "locations"
+    },
+    "address": {
+      "type": "text"
     }
   }
 }
