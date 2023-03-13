@@ -72,7 +72,7 @@
       "type": "string"
     },
     "googleMapLink": {
-      "type": "string"
+      "type": "text"
     },
     "address": {
       "type": "text"
