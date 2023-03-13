@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cities",
+  "info": {
+    "singularName": "city",
+    "pluralName": "cities",
+    "displayName": "City"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title_en": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "title_pl": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title_ua": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title_ru": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

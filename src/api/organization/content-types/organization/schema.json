@@ -76,6 +76,11 @@
     },
     "address": {
       "type": "text"
+    },
+    "cities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::city.city"
     }
   }
 }
