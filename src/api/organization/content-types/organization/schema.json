@@ -74,13 +74,11 @@
     "googleMapLink": {
       "type": "text"
     },
-    "address": {
-      "type": "text"
-    },
-    "cities": {
+    "locations": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::city.city"
+      "target": "api::location.location",
+      "mappedBy": "organization"
     }
   }
 }

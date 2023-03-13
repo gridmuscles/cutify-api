@@ -11,25 +11,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title_en": {
+    "title": {
       "type": "string",
-      "unique": true,
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
       "required": true
-    },
-    "title_pl": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "title_ua": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "title_ru": {
-      "type": "string",
-      "required": true,
-      "unique": true
     }
   }
 }
