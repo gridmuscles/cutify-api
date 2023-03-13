@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::review.review",
+  "key": "plugin_content_manager_configuration_content_types::api::location.location",
   "value": {
-    "uid": "api::review.review",
+    "uid": "api::location.location",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "message",
-      "defaultSortBy": "message",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,31 +20,59 @@
           "sortable": true
         }
       },
-      "message": {
+      "city": {
         "edit": {
-          "label": "message",
+          "label": "city",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "city",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "latitude": {
+        "edit": {
+          "label": "latitude",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "message",
+          "label": "latitude",
           "searchable": true,
           "sortable": true
         }
       },
-      "user": {
+      "longitude": {
         "edit": {
-          "label": "user",
+          "label": "longitude",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "username"
+          "editable": true
         },
         "list": {
-          "label": "user",
+          "label": "longitude",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "phone": {
+        "edit": {
+          "label": "phone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "phone",
           "searchable": true,
           "sortable": true
         }
@@ -60,34 +88,6 @@
         },
         "list": {
           "label": "organization",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "rating": {
-        "edit": {
-          "label": "rating",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "rating",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "reply": {
-        "edit": {
-          "label": "reply",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "reply",
           "searchable": true,
           "sortable": true
         }
@@ -124,33 +124,34 @@
     "layouts": {
       "list": [
         "id",
-        "message",
-        "reply"
+        "createdAt",
+        "updatedAt",
+        "city"
       ],
       "edit": [
         [
           {
-            "name": "message",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "user",
+            "name": "city",
             "size": 6
           },
           {
-            "name": "organization",
-            "size": 6
+            "name": "latitude",
+            "size": 4
           }
         ],
         [
           {
-            "name": "rating",
+            "name": "longitude",
             "size": 4
           },
           {
-            "name": "reply",
+            "name": "phone",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "organization",
             "size": 6
           }
         ]

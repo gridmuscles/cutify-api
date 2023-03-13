@@ -190,6 +190,20 @@
           "sortable": true
         }
       },
+      "state": {
+        "edit": {
+          "label": "state",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "state",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -290,6 +304,10 @@
         [
           {
             "name": "email",
+            "size": 6
+          },
+          {
+            "name": "state",
             "size": 6
           }
         ]

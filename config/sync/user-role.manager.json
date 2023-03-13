@@ -7,10 +7,25 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::category.category.findOne"
+    },
+    {
+      "action": "api::city.city.find"
+    },
+    {
+      "action": "api::city.city.findOne"
+    },
+    {
       "action": "api::coupon.coupon.find"
     },
     {
       "action": "api::coupon.coupon.findOne"
+    },
+    {
+      "action": "api::location.location.find"
+    },
+    {
+      "action": "api::location.location.findOne"
     },
     {
       "action": "api::organization.organization.find"
@@ -23,6 +38,12 @@
     },
     {
       "action": "api::promotion.promotion.findOne"
+    },
+    {
+      "action": "api::review.review.find"
+    },
+    {
+      "action": "api::review.review.findOne"
     }
   ]
 }

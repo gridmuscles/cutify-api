@@ -79,7 +79,8 @@
           "terms_pl",
           "terms_ua",
           "terms_ru",
-          "email"
+          "email",
+          "state"
         ]
       },
       "conditions": []
@@ -106,7 +107,8 @@
           "terms_pl",
           "terms_ua",
           "terms_ru",
-          "email"
+          "email",
+          "state"
         ]
       },
       "conditions": []
@@ -127,7 +129,8 @@
           "terms_pl",
           "terms_ua",
           "terms_ru",
-          "email"
+          "email",
+          "state"
         ]
       },
       "conditions": []
@@ -150,8 +153,7 @@
           "telegramLink",
           "facebookLink",
           "instagramLink",
-          "googleMapLink",
-          "address"
+          "googleMapLink"
         ]
       },
       "conditions": []
@@ -180,8 +182,7 @@
           "telegramLink",
           "facebookLink",
           "instagramLink",
-          "googleMapLink",
-          "address"
+          "googleMapLink"
         ]
       },
       "conditions": []
@@ -204,8 +205,7 @@
           "telegramLink",
           "facebookLink",
           "instagramLink",
-          "googleMapLink",
-          "address"
+          "googleMapLink"
         ]
       },
       "conditions": []
@@ -309,9 +309,6 @@
       "properties": {
         "fields": [
           "message",
-          "message_pl",
-          "message_ua",
-          "message_ru",
           "user",
           "organization",
           "rating"
@@ -337,9 +334,6 @@
       "properties": {
         "fields": [
           "message",
-          "message_pl",
-          "message_ua",
-          "message_ru",
           "user",
           "organization",
           "rating"
@@ -353,9 +347,6 @@
       "properties": {
         "fields": [
           "message",
-          "message_pl",
-          "message_ua",
-          "message_ru",
           "user",
           "organization",
           "rating"

@@ -1,8 +1,38 @@
 {
-  "name": "Authenticated",
+  "name": "User",
   "description": "Default role given to authenticated user.",
   "type": "authenticated",
   "permissions": [
+    {
+      "action": "api::category.category.find"
+    },
+    {
+      "action": "api::city.city.find"
+    },
+    {
+      "action": "api::coupon.coupon.find"
+    },
+    {
+      "action": "api::coupon.coupon.findOne"
+    },
+    {
+      "action": "api::organization.organization.find"
+    },
+    {
+      "action": "api::organization.organization.findOne"
+    },
+    {
+      "action": "api::promotion.promotion.find"
+    },
+    {
+      "action": "api::promotion.promotion.findOne"
+    },
+    {
+      "action": "api::promotion.promotion.requestCoupon"
+    },
+    {
+      "action": "api::review.review.find"
+    },
     {
       "action": "plugin::users-permissions.auth.changePassword"
     },

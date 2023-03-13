@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::review.review",
+  "key": "plugin_content_manager_configuration_content_types::api::city.city",
   "value": {
-    "uid": "api::review.review",
+    "uid": "api::city.city",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "message",
-      "defaultSortBy": "message",
+      "mainField": "title",
+      "defaultSortBy": "title",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,74 +20,30 @@
           "sortable": true
         }
       },
-      "message": {
+      "title": {
         "edit": {
-          "label": "message",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "message",
+          "label": "title",
           "searchable": true,
           "sortable": true
         }
       },
-      "user": {
+      "slug": {
         "edit": {
-          "label": "user",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "username"
-        },
-        "list": {
-          "label": "user",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "organization": {
-        "edit": {
-          "label": "organization",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "organization",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "rating": {
-        "edit": {
-          "label": "rating",
+          "label": "slug",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "rating",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "reply": {
-        "edit": {
-          "label": "reply",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "reply",
+          "label": "slug",
           "searchable": true,
           "sortable": true
         }
@@ -124,33 +80,18 @@
     "layouts": {
       "list": [
         "id",
-        "message",
-        "reply"
+        "title",
+        "slug",
+        "createdAt"
       ],
       "edit": [
         [
           {
-            "name": "message",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "user",
+            "name": "title",
             "size": 6
           },
           {
-            "name": "organization",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "rating",
-            "size": 4
-          },
-          {
-            "name": "reply",
+            "name": "slug",
             "size": 6
           }
         ]

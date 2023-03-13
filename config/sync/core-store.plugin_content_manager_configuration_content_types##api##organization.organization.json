@@ -219,18 +219,19 @@
           "sortable": true
         }
       },
-      "address": {
+      "locations": {
         "edit": {
-          "label": "address",
+          "label": "locations",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "address",
-          "searchable": true,
-          "sortable": true
+          "label": "locations",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -342,7 +343,7 @@
         ],
         [
           {
-            "name": "address",
+            "name": "locations",
             "size": 6
           }
         ]

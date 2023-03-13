@@ -65,6 +65,45 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": [
+          "title",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::city.city",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": [
+          "title",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": [
+          "title",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
@@ -79,7 +118,8 @@
           "terms_pl",
           "terms_ua",
           "terms_ru",
-          "email"
+          "email",
+          "state"
         ]
       },
       "conditions": []
@@ -106,7 +146,8 @@
           "terms_pl",
           "terms_ua",
           "terms_ru",
-          "email"
+          "email",
+          "state"
         ]
       },
       "conditions": []
@@ -127,7 +168,56 @@
           "terms_pl",
           "terms_ua",
           "terms_ru",
-          "email"
+          "email",
+          "state"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::location.location",
+      "properties": {
+        "fields": [
+          "city",
+          "latitude",
+          "longitude",
+          "phone",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::location.location",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::location.location",
+      "properties": {
+        "fields": [
+          "city",
+          "latitude",
+          "longitude",
+          "phone",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::location.location",
+      "properties": {
+        "fields": [
+          "city",
+          "latitude",
+          "longitude",
+          "phone",
+          "organization"
         ]
       },
       "conditions": []
@@ -151,7 +241,7 @@
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "address"
+          "locations"
         ]
       },
       "conditions": []
@@ -181,7 +271,7 @@
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "address"
+          "locations"
         ]
       },
       "conditions": []
@@ -205,7 +295,7 @@
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "address"
+          "locations"
         ]
       },
       "conditions": []
@@ -309,12 +399,10 @@
       "properties": {
         "fields": [
           "message",
-          "message_pl",
-          "message_ua",
-          "message_ru",
           "user",
           "organization",
-          "rating"
+          "rating",
+          "reply"
         ]
       },
       "conditions": []
@@ -337,12 +425,10 @@
       "properties": {
         "fields": [
           "message",
-          "message_pl",
-          "message_ua",
-          "message_ru",
           "user",
           "organization",
-          "rating"
+          "rating",
+          "reply"
         ]
       },
       "conditions": []
@@ -353,12 +439,10 @@
       "properties": {
         "fields": [
           "message",
-          "message_pl",
-          "message_ua",
-          "message_ru",
           "user",
           "organization",
-          "rating"
+          "rating",
+          "reply"
         ]
       },
       "conditions": []
