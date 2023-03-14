@@ -183,7 +183,8 @@
           "latitude",
           "longitude",
           "phone",
-          "organization"
+          "organization",
+          "address"
         ]
       },
       "conditions": []
@@ -203,7 +204,8 @@
           "latitude",
           "longitude",
           "phone",
-          "organization"
+          "organization",
+          "address"
         ]
       },
       "conditions": []
@@ -217,7 +219,8 @@
           "latitude",
           "longitude",
           "phone",
-          "organization"
+          "organization",
+          "address"
         ]
       },
       "conditions": []

@@ -168,8 +168,7 @@
           "images",
           "telegramLink",
           "facebookLink",
-          "instagramLink",
-          "googleMapLink"
+          "instagramLink"
         ]
       },
       "conditions": [
@@ -201,8 +200,7 @@
           "images",
           "telegramLink",
           "facebookLink",
-          "instagramLink",
-          "googleMapLink"
+          "instagramLink"
         ]
       },
       "conditions": [
@@ -226,8 +224,7 @@
           "images",
           "telegramLink",
           "facebookLink",
-          "instagramLink",
-          "googleMapLink"
+          "instagramLink"
         ]
       },
       "conditions": [

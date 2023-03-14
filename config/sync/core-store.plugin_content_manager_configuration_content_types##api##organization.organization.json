@@ -335,15 +335,15 @@
           {
             "name": "instagramLink",
             "size": 6
-          },
-          {
-            "name": "googleMapLink",
-            "size": 6
           }
         ],
         [
           {
             "name": "locations",
+            "size": 6
+          },
+          {
+            "name": "googleMapLink",
             "size": 6
           }
         ]
