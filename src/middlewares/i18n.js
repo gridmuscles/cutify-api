@@ -7,6 +7,10 @@ module.exports = () => {
 }
 
 const translateObject = (data, locale) => {
+  if (!data) {
+    return data
+  }
+
   if (Array.isArray(data)) {
     return data.map((item) => translateObject(item, locale))
   }
