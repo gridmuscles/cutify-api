@@ -8,15 +8,15 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
           "description",
           "description_pl",
-          "description_ua",
           "description_ru",
-          "slug"
+          "description_ua",
+          "slug",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua"
         ]
       },
       "conditions": []
@@ -32,15 +32,15 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
           "description",
           "description_pl",
-          "description_ua",
           "description_ru",
-          "slug"
+          "description_ua",
+          "slug",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua"
         ]
       },
       "conditions": []
@@ -50,15 +50,54 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
           "description",
           "description_pl",
-          "description_ua",
           "description_ru",
-          "slug"
+          "description_ua",
+          "slug",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": [
+          "slug",
+          "title"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::city.city",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": [
+          "slug",
+          "title"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": [
+          "slug",
+          "title"
         ]
       },
       "conditions": []
@@ -68,19 +107,19 @@
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
+          "email",
           "promotion",
-          "user",
-          "uuid",
+          "state",
           "terms",
           "terms_pl",
-          "terms_ua",
           "terms_ru",
-          "email",
-          "state"
+          "terms_ua",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "user",
+          "uuid"
         ]
       },
       "conditions": []
@@ -96,19 +135,19 @@
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
+          "email",
           "promotion",
-          "user",
-          "uuid",
+          "state",
           "terms",
           "terms_pl",
-          "terms_ua",
           "terms_ru",
-          "email",
-          "state"
+          "terms_ua",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "user",
+          "uuid"
         ]
       },
       "conditions": []
@@ -118,19 +157,70 @@
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
+          "email",
           "promotion",
-          "user",
-          "uuid",
+          "state",
           "terms",
           "terms_pl",
-          "terms_ua",
           "terms_ru",
-          "email",
-          "state"
+          "terms_ua",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "user",
+          "uuid"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::location.location",
+      "properties": {
+        "fields": [
+          "address",
+          "city",
+          "latitude",
+          "longitude",
+          "organization",
+          "phone"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::location.location",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::location.location",
+      "properties": {
+        "fields": [
+          "address",
+          "city",
+          "latitude",
+          "longitude",
+          "organization",
+          "phone"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::location.location",
+      "properties": {
+        "fields": [
+          "address",
+          "city",
+          "latitude",
+          "longitude",
+          "organization",
+          "phone"
         ]
       },
       "conditions": []
@@ -140,19 +230,19 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "title",
+          "categories",
           "description",
           "description_pl",
-          "description_ua",
           "description_ru",
-          "phone",
-          "categories",
-          "promotions",
-          "managers",
-          "images",
-          "telegramLink",
+          "description_ua",
           "facebookLink",
-          "instagramLink"
+          "images",
+          "instagramLink",
+          "managers",
+          "phone",
+          "promotions",
+          "telegramLink",
+          "title"
         ]
       },
       "conditions": []
@@ -168,19 +258,19 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "title",
+          "categories",
           "description",
           "description_pl",
-          "description_ua",
           "description_ru",
-          "phone",
-          "categories",
-          "promotions",
-          "managers",
-          "images",
-          "telegramLink",
+          "description_ua",
           "facebookLink",
-          "instagramLink"
+          "images",
+          "instagramLink",
+          "managers",
+          "phone",
+          "promotions",
+          "telegramLink",
+          "title"
         ]
       },
       "conditions": []
@@ -190,19 +280,19 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "title",
+          "categories",
           "description",
           "description_pl",
-          "description_ua",
           "description_ru",
-          "phone",
-          "categories",
-          "promotions",
-          "managers",
-          "images",
-          "telegramLink",
+          "description_ua",
           "facebookLink",
-          "instagramLink"
+          "images",
+          "instagramLink",
+          "managers",
+          "phone",
+          "promotions",
+          "telegramLink",
+          "title"
         ]
       },
       "conditions": []
@@ -212,24 +302,24 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
+          "categories",
+          "dateUntil",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "discountTo",
+          "images",
+          "organization",
+          "slug",
+          "terms",
+          "terms_pl",
+          "terms_ru",
+          "terms_ua",
           "title",
           "title_pl",
-          "title_ua",
           "title_ru",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "description",
-          "terms_pl",
-          "terms_ua",
-          "terms",
-          "terms_ru",
-          "slug",
-          "categories",
-          "discountTo",
-          "organization",
-          "images",
-          "dateUntil"
+          "title_ua"
         ]
       },
       "conditions": []
@@ -251,24 +341,24 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
+          "categories",
+          "dateUntil",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "discountTo",
+          "images",
+          "organization",
+          "slug",
+          "terms",
+          "terms_pl",
+          "terms_ru",
+          "terms_ua",
           "title",
           "title_pl",
-          "title_ua",
           "title_ru",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "description",
-          "terms_pl",
-          "terms_ua",
-          "terms",
-          "terms_ru",
-          "slug",
-          "categories",
-          "discountTo",
-          "organization",
-          "images",
-          "dateUntil"
+          "title_ua"
         ]
       },
       "conditions": []
@@ -278,24 +368,24 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
+          "categories",
+          "dateUntil",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "discountTo",
+          "images",
+          "organization",
+          "slug",
+          "terms",
+          "terms_pl",
+          "terms_ru",
+          "terms_ua",
           "title",
           "title_pl",
-          "title_ua",
           "title_ru",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "description",
-          "terms_pl",
-          "terms_ua",
-          "terms",
-          "terms_ru",
-          "slug",
-          "categories",
-          "discountTo",
-          "organization",
-          "images",
-          "dateUntil"
+          "title_ua"
         ]
       },
       "conditions": []
@@ -306,9 +396,9 @@
       "properties": {
         "fields": [
           "message",
-          "user",
           "organization",
-          "rating"
+          "rating",
+          "user"
         ]
       },
       "conditions": []
@@ -331,9 +421,9 @@
       "properties": {
         "fields": [
           "message",
-          "user",
           "organization",
-          "rating"
+          "rating",
+          "user"
         ]
       },
       "conditions": []
@@ -344,9 +434,9 @@
       "properties": {
         "fields": [
           "message",
-          "user",
           "organization",
-          "rating"
+          "rating",
+          "user"
         ]
       },
       "conditions": []
