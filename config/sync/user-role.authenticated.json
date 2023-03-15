@@ -31,6 +31,9 @@
       "action": "api::promotion.promotion.requestCoupon"
     },
     {
+      "action": "api::review.review.create"
+    },
+    {
       "action": "api::review.review.find"
     },
     {

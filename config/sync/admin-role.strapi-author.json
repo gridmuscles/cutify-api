@@ -8,15 +8,18 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "slug",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": [
@@ -36,15 +39,18 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "slug",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": [
@@ -56,15 +62,18 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "slug",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": [
@@ -262,21 +271,17 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
+          "title",
           "categories",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "images",
-          "instagramLink",
-          "locations",
-          "managers",
-          "phone",
           "promotions",
+          "managers",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations",
+          "slug",
+          "description"
         ]
       },
       "conditions": [
@@ -296,21 +301,17 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
+          "title",
           "categories",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "images",
-          "instagramLink",
-          "locations",
-          "managers",
-          "phone",
           "promotions",
+          "managers",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations",
+          "slug",
+          "description"
         ]
       },
       "conditions": [
@@ -322,21 +323,17 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
+          "title",
           "categories",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "images",
-          "instagramLink",
-          "locations",
-          "managers",
-          "phone",
           "promotions",
+          "managers",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations",
+          "slug",
+          "description"
         ]
       },
       "conditions": [
@@ -348,24 +345,23 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "categories",
-          "dateUntil",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "discountTo",
-          "images",
-          "organization",
-          "slug",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "terms_pl",
+          "terms_ua",
+          "terms",
+          "terms_ru",
+          "slug",
+          "categories",
+          "discountTo",
+          "organization",
+          "images",
+          "dateUntil",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": [
@@ -385,24 +381,23 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "categories",
-          "dateUntil",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "discountTo",
-          "images",
-          "organization",
-          "slug",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "terms_pl",
+          "terms_ua",
+          "terms",
+          "terms_ru",
+          "slug",
+          "categories",
+          "discountTo",
+          "organization",
+          "images",
+          "dateUntil",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": [
@@ -414,24 +409,23 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "categories",
-          "dateUntil",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "discountTo",
-          "images",
-          "organization",
-          "slug",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "terms_pl",
+          "terms_ua",
+          "terms",
+          "terms_ru",
+          "slug",
+          "categories",
+          "discountTo",
+          "organization",
+          "images",
+          "dateUntil",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": [
@@ -444,10 +438,11 @@
       "properties": {
         "fields": [
           "message",
+          "user",
           "organization",
           "rating",
           "reply",
-          "user"
+          "email"
         ]
       },
       "conditions": [
@@ -468,10 +463,11 @@
       "properties": {
         "fields": [
           "message",
+          "user",
           "organization",
           "rating",
           "reply",
-          "user"
+          "email"
         ]
       },
       "conditions": [
@@ -484,10 +480,11 @@
       "properties": {
         "fields": [
           "message",
+          "user",
           "organization",
           "rating",
           "reply",
-          "user"
+          "email"
         ]
       },
       "conditions": [

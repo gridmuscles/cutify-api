@@ -34,76 +34,6 @@
           "sortable": true
         }
       },
-      "description": {
-        "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description_pl": {
-        "edit": {
-          "label": "description_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_pl",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description_ua": {
-        "edit": {
-          "label": "description_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_ua",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description_ru": {
-        "edit": {
-          "label": "description_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_ru",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "phone": {
-        "edit": {
-          "label": "phone",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "phone",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "categories": {
         "edit": {
           "label": "categories",
@@ -125,7 +55,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
+          "editable": false,
           "mainField": "title"
         },
         "list": {
@@ -145,20 +75,6 @@
         },
         "list": {
           "label": "managers",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "images": {
-        "edit": {
-          "label": "images",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "images",
           "searchable": false,
           "sortable": false
         }
@@ -225,11 +141,39 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
+          "editable": false,
           "mainField": "id"
         },
         "list": {
           "label": "locations",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "slug": {
+        "edit": {
+          "label": "slug",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slug",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
           "searchable": false,
           "sortable": false
         }
@@ -264,12 +208,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "description",
-        "description_pl"
-      ],
       "edit": [
         [
           {
@@ -277,37 +215,7 @@
             "size": 6
           },
           {
-            "name": "description",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "description_pl",
-            "size": 6
-          },
-          {
-            "name": "description_ua",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "description_ru",
-            "size": 6
-          },
-          {
-            "name": "phone",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "categories",
-            "size": 6
-          },
-          {
-            "name": "promotions",
+            "name": "slug",
             "size": 6
           }
         ],
@@ -317,7 +225,7 @@
             "size": 6
           },
           {
-            "name": "images",
+            "name": "categories",
             "size": 6
           }
         ],
@@ -335,18 +243,34 @@
           {
             "name": "instagramLink",
             "size": 6
+          },
+          {
+            "name": "googleMapLink",
+            "size": 6
           }
         ],
         [
           {
             "name": "locations",
             "size": 6
-          },
+          }
+        ],
+        [
           {
-            "name": "googleMapLink",
+            "name": "description",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "promotions",
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title"
       ]
     }
   },

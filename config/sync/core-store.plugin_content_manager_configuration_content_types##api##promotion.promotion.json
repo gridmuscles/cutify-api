@@ -76,62 +76,6 @@
           "sortable": true
         }
       },
-      "description_pl": {
-        "edit": {
-          "label": "description_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_pl",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "description_ua": {
-        "edit": {
-          "label": "description_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_ua",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "description_ru": {
-        "edit": {
-          "label": "description_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_ru",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "description": {
-        "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "terms_pl": {
         "edit": {
           "label": "terms_pl",
@@ -274,6 +218,146 @@
           "sortable": true
         }
       },
+      "likesNumber": {
+        "edit": {
+          "label": "likesNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": false
+        },
+        "list": {
+          "label": "likesNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "couponsNumber": {
+        "edit": {
+          "label": "couponsNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": false
+        },
+        "list": {
+          "label": "couponsNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "viewsCount": {
+        "edit": {
+          "label": "viewsCount",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": false
+        },
+        "list": {
+          "label": "viewsCount",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "slug_pl": {
+        "edit": {
+          "label": "slug_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slug_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "slug_ua": {
+        "edit": {
+          "label": "slug_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slug_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "slug_ru": {
+        "edit": {
+          "label": "slug_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slug_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subtitle": {
+        "edit": {
+          "label": "subtitle",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subtitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subtitle_pl": {
+        "edit": {
+          "label": "subtitle_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subtitle_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subtitle_ua": {
+        "edit": {
+          "label": "subtitle_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subtitle_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subtitle_ru": {
+        "edit": {
+          "label": "subtitle_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subtitle_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -304,12 +388,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "title_pl",
-        "title_ua"
-      ],
       "edit": [
         [
           {
@@ -333,25 +411,53 @@
         ],
         [
           {
-            "name": "description_pl",
-            "size": 12
+            "name": "slug",
+            "size": 6
+          },
+          {
+            "name": "slug_pl",
+            "size": 6
           }
         ],
         [
           {
-            "name": "description_ua",
-            "size": 12
+            "name": "slug_ua",
+            "size": 6
+          },
+          {
+            "name": "slug_ru",
+            "size": 6
           }
         ],
         [
           {
-            "name": "description_ru",
-            "size": 12
+            "name": "subtitle",
+            "size": 6
+          },
+          {
+            "name": "subtitle_pl",
+            "size": 6
           }
         ],
         [
           {
-            "name": "description",
+            "name": "subtitle_ua",
+            "size": 6
+          },
+          {
+            "name": "subtitle_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "images",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "terms",
             "size": 12
           }
         ],
@@ -369,30 +475,14 @@
         ],
         [
           {
-            "name": "terms",
-            "size": 12
-          }
-        ],
-        [
-          {
             "name": "terms_ru",
             "size": 12
           }
         ],
         [
           {
-            "name": "slug",
-            "size": 6
-          },
-          {
             "name": "categories",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "discountTo",
-            "size": 4
           },
           {
             "name": "organization",
@@ -401,14 +491,34 @@
         ],
         [
           {
-            "name": "images",
-            "size": 6
+            "name": "dateUntil",
+            "size": 4
           },
           {
-            "name": "dateUntil",
+            "name": "discountTo",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "likesNumber",
+            "size": 4
+          },
+          {
+            "name": "couponsNumber",
+            "size": 4
+          },
+          {
+            "name": "viewsCount",
             "size": 4
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "title_pl",
+        "title_ua"
       ]
     }
   },

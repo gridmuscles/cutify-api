@@ -36,6 +36,10 @@
     },
     "reply": {
       "type": "text"
+    },
+    "email": {
+      "type": "email",
+      "required": true
     }
   }
 }
