@@ -322,7 +322,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "likesCount",
@@ -336,7 +336,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "couponsCount",
@@ -350,7 +350,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "viewsCount",
@@ -388,12 +388,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "title_pl",
-        "title_ua"
-      ],
       "edit": [
         [
           {
@@ -521,6 +515,12 @@
             "size": 4
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "title_pl",
+        "title_ua"
       ]
     }
   },
