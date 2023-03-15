@@ -52,7 +52,7 @@
       "inversedBy": "organizations"
     },
     "siteLink": {
-      "type": "text"
+      "type": "string"
     },
     "telegramLink": {
       "type": "string"

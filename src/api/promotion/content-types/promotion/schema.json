@@ -103,11 +103,11 @@
       "type": "date",
       "required": true
     },
-    "likesNumber": {
+    "likesCount": {
       "type": "integer",
       "default": 0
     },
-    "couponsNumber": {
+    "couponsCount": {
       "type": "integer"
     },
     "viewsCount": {
