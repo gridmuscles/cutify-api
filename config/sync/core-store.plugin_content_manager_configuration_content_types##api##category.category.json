@@ -218,12 +218,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "title_pl",
-        "title_ua"
-      ],
       "edit": [
         [
           {
@@ -231,7 +225,17 @@
             "size": 6
           },
           {
+            "name": "slug",
+            "size": 6
+          }
+        ],
+        [
+          {
             "name": "title_pl",
+            "size": 6
+          },
+          {
+            "name": "slug_pl",
             "size": 6
           }
         ],
@@ -241,7 +245,17 @@
             "size": 6
           },
           {
+            "name": "slug_ua",
+            "size": 6
+          }
+        ],
+        [
+          {
             "name": "title_ru",
+            "size": 6
+          },
+          {
+            "name": "slug_ru",
             "size": 6
           }
         ],
@@ -264,27 +278,13 @@
             "name": "description_ru",
             "size": 6
           }
-        ],
-        [
-          {
-            "name": "slug",
-            "size": 6
-          },
-          {
-            "name": "slug_pl",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "slug_ua",
-            "size": 6
-          },
-          {
-            "name": "slug_ru",
-            "size": 6
-          }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "title_pl",
+        "title_ua"
       ]
     }
   },
