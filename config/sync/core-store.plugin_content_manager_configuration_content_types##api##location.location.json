@@ -136,28 +136,26 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "createdAt",
-        "updatedAt",
-        "city"
-      ],
       "edit": [
         [
           {
-            "name": "city",
+            "name": "organization",
             "size": 6
-          },
-          {
-            "name": "latitude",
-            "size": 4
           }
         ],
         [
           {
-            "name": "longitude",
-            "size": 4
-          },
+            "name": "city",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "address",
+            "size": 6
+          }
+        ],
+        [
           {
             "name": "phone",
             "size": 6
@@ -165,14 +163,20 @@
         ],
         [
           {
-            "name": "organization",
-            "size": 6
+            "name": "latitude",
+            "size": 4
           },
           {
-            "name": "address",
-            "size": 6
+            "name": "longitude",
+            "size": 4
           }
         ]
+      ],
+      "list": [
+        "id",
+        "createdAt",
+        "updatedAt",
+        "city"
       ]
     }
   },

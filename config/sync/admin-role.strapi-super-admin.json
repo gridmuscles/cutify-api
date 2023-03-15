@@ -16,7 +16,10 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug"
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": []
@@ -40,7 +43,10 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug"
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": []
@@ -58,7 +64,10 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug"
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru"
         ]
       },
       "conditions": []
@@ -231,20 +240,16 @@
       "properties": {
         "fields": [
           "title",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "phone",
           "categories",
           "promotions",
           "managers",
-          "images",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations"
+          "locations",
+          "slug",
+          "description"
         ]
       },
       "conditions": []
@@ -261,20 +266,16 @@
       "properties": {
         "fields": [
           "title",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "phone",
           "categories",
           "promotions",
           "managers",
-          "images",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations"
+          "locations",
+          "slug",
+          "description"
         ]
       },
       "conditions": []
@@ -285,20 +286,16 @@
       "properties": {
         "fields": [
           "title",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "phone",
           "categories",
           "promotions",
           "managers",
-          "images",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations"
+          "locations",
+          "slug",
+          "description"
         ]
       },
       "conditions": []
@@ -312,20 +309,26 @@
           "title_pl",
           "title_ua",
           "title_ru",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "description",
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ua",
+          "subtitle_ru",
+          "images",
+          "terms",
           "terms_pl",
           "terms_ua",
-          "terms",
           "terms_ru",
-          "slug",
           "categories",
-          "discountTo",
           "organization",
-          "images",
-          "dateUntil"
+          "discountTo",
+          "dateUntil",
+          "likesNumber",
+          "couponsNumber",
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -351,20 +354,26 @@
           "title_pl",
           "title_ua",
           "title_ru",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "description",
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ua",
+          "subtitle_ru",
+          "images",
+          "terms",
           "terms_pl",
           "terms_ua",
-          "terms",
           "terms_ru",
-          "slug",
           "categories",
-          "discountTo",
           "organization",
-          "images",
-          "dateUntil"
+          "discountTo",
+          "dateUntil",
+          "likesNumber",
+          "couponsNumber",
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -378,20 +387,26 @@
           "title_pl",
           "title_ua",
           "title_ru",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "description",
+          "slug",
+          "slug_pl",
+          "slug_ua",
+          "slug_ru",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ua",
+          "subtitle_ru",
+          "images",
+          "terms",
           "terms_pl",
           "terms_ua",
-          "terms",
           "terms_ru",
-          "slug",
           "categories",
-          "discountTo",
           "organization",
-          "images",
-          "dateUntil"
+          "discountTo",
+          "dateUntil",
+          "likesNumber",
+          "couponsNumber",
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -405,7 +420,8 @@
           "user",
           "organization",
           "rating",
-          "reply"
+          "reply",
+          "email"
         ]
       },
       "conditions": []
@@ -431,7 +447,8 @@
           "user",
           "organization",
           "rating",
-          "reply"
+          "reply",
+          "email"
         ]
       },
       "conditions": []
@@ -445,7 +462,8 @@
           "user",
           "organization",
           "rating",
-          "reply"
+          "reply",
+          "email"
         ]
       },
       "conditions": []

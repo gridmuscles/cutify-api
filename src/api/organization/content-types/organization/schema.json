@@ -17,26 +17,6 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "pluginOptions": {},
-      "type": "text"
-    },
-    "description_pl": {
-      "pluginOptions": {},
-      "type": "text"
-    },
-    "description_ua": {
-      "pluginOptions": {},
-      "type": "text"
-    },
-    "description_ru": {
-      "pluginOptions": {},
-      "type": "text"
-    },
-    "phone": {
-      "pluginOptions": {},
-      "type": "string"
-    },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
@@ -53,14 +33,6 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "organizations"
-    },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
     },
     "telegramLink": {
       "type": "string"
@@ -79,6 +51,14 @@
       "relation": "oneToMany",
       "target": "api::location.location",
       "mappedBy": "organization"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

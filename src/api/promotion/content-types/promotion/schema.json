@@ -29,19 +29,46 @@
       "pluginOptions": {},
       "type": "string"
     },
-    "description_pl": {
+    "slug": {
       "pluginOptions": {},
-      "type": "richtext"
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     },
-    "description_ua": {
-      "pluginOptions": {},
-      "type": "richtext"
+    "slug_pl": {
+      "type": "uid",
+      "targetField": "title_pl",
+      "required": true
     },
-    "description_ru": {
-      "pluginOptions": {},
-      "type": "richtext"
+    "slug_ua": {
+      "type": "uid",
+      "targetField": "title_ua",
+      "required": true
     },
-    "description": {
+    "slug_ru": {
+      "type": "uid",
+      "targetField": "title_ru",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "subtitle_pl": {
+      "type": "text"
+    },
+    "subtitle_ua": {
+      "type": "text"
+    },
+    "subtitle_ru": {
+      "type": "text"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "terms": {
       "pluginOptions": {},
       "type": "richtext"
     },
@@ -53,27 +80,14 @@
       "pluginOptions": {},
       "type": "richtext"
     },
-    "terms": {
-      "pluginOptions": {},
-      "type": "richtext"
-    },
     "terms_ru": {
       "pluginOptions": {},
       "type": "richtext"
-    },
-    "slug": {
-      "pluginOptions": {},
-      "type": "uid",
-      "targetField": "title"
     },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category"
-    },
-    "discountTo": {
-      "pluginOptions": {},
-      "type": "integer"
     },
     "organization": {
       "type": "relation",
@@ -81,17 +95,24 @@
       "target": "api::organization.organization",
       "inversedBy": "promotions"
     },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+    "discountTo": {
+      "pluginOptions": {},
+      "type": "integer"
     },
     "dateUntil": {
       "type": "date",
       "required": true
+    },
+    "likesNumber": {
+      "type": "integer",
+      "default": 0
+    },
+    "couponsNumber": {
+      "type": "integer"
+    },
+    "viewsCount": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

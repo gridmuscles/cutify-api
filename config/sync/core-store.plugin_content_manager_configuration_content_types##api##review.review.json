@@ -92,6 +92,20 @@
           "sortable": true
         }
       },
+      "email": {
+        "edit": {
+          "label": "email",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "email",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -125,7 +139,8 @@
       "list": [
         "id",
         "message",
-        "reply"
+        "reply",
+        "email"
       ],
       "edit": [
         [
@@ -151,6 +166,12 @@
           },
           {
             "name": "reply",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "email",
             "size": 6
           }
         ]
