@@ -413,6 +413,40 @@
           {
             "name": "slug",
             "size": 6
+          },
+          {
+            "name": "slug_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "slug_ua",
+            "size": 6
+          },
+          {
+            "name": "slug_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "subtitle",
+            "size": 6
+          },
+          {
+            "name": "subtitle_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "subtitle_ua",
+            "size": 6
+          },
+          {
+            "name": "subtitle_ru",
+            "size": 6
           }
         ],
         [
@@ -463,42 +497,6 @@
           {
             "name": "discountTo",
             "size": 4
-          }
-        ],
-        [
-          {
-            "name": "slug_pl",
-            "size": 6
-          },
-          {
-            "name": "slug_ua",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "slug_ru",
-            "size": 6
-          },
-          {
-            "name": "subtitle",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "subtitle_pl",
-            "size": 6
-          },
-          {
-            "name": "subtitle_ua",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "subtitle_ru",
-            "size": 6
           }
         ],
         [

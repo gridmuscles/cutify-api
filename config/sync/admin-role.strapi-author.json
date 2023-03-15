@@ -5,210 +5,6 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
-      "subject": "api::category.category",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::category.category",
-      "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::category.category",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "subject": "api::category.category",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
-      "subject": "api::city.city",
-      "properties": {
-        "fields": [
-          "slug",
-          "title"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::city.city",
-      "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::city.city",
-      "properties": {
-        "fields": [
-          "slug",
-          "title"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "subject": "api::city.city",
-      "properties": {
-        "fields": [
-          "slug",
-          "title"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
-      "subject": "api::coupon.coupon",
-      "properties": {
-        "fields": [
-          "email",
-          "promotion",
-          "state",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
-          "title",
-          "title_pl",
-          "title_ru",
-          "title_ua",
-          "user",
-          "uuid"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::coupon.coupon",
-      "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::coupon.coupon",
-      "properties": {
-        "fields": [
-          "email",
-          "promotion",
-          "state",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
-          "title",
-          "title_pl",
-          "title_ru",
-          "title_ua",
-          "user",
-          "uuid"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "subject": "api::coupon.coupon",
-      "properties": {
-        "fields": [
-          "email",
-          "promotion",
-          "state",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
-          "title",
-          "title_pl",
-          "title_ru",
-          "title_ua",
-          "user",
-          "uuid"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
       "subject": "api::location.location",
       "properties": {
         "fields": [
@@ -271,17 +67,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "title",
           "categories",
-          "promotions",
-          "managers",
-          "telegramLink",
-          "facebookLink",
-          "instagramLink",
-          "googleMapLink",
-          "locations",
           "description",
-          "slug"
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "facebookLink",
+          "googleMapLink",
+          "instagramLink",
+          "locations",
+          "managers",
+          "promotions",
+          "siteLink",
+          "slug",
+          "telegramLink",
+          "title"
         ]
       },
       "conditions": [
@@ -301,17 +101,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "title",
           "categories",
-          "promotions",
-          "managers",
-          "telegramLink",
-          "facebookLink",
-          "instagramLink",
-          "googleMapLink",
-          "locations",
           "description",
-          "slug"
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "facebookLink",
+          "googleMapLink",
+          "instagramLink",
+          "locations",
+          "managers",
+          "promotions",
+          "siteLink",
+          "slug",
+          "telegramLink",
+          "title"
         ]
       },
       "conditions": [
@@ -323,17 +127,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "title",
           "categories",
-          "promotions",
-          "managers",
-          "telegramLink",
-          "facebookLink",
-          "instagramLink",
-          "googleMapLink",
-          "locations",
           "description",
-          "slug"
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "facebookLink",
+          "googleMapLink",
+          "instagramLink",
+          "locations",
+          "managers",
+          "promotions",
+          "siteLink",
+          "slug",
+          "telegramLink",
+          "title"
         ]
       },
       "conditions": [
@@ -345,23 +153,30 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "slug",
+          "categories",
+          "couponsCount",
+          "dateUntil",
+          "discountTo",
           "images",
+          "likesCount",
+          "organization",
+          "slug",
+          "slug_pl",
+          "slug_ru",
+          "slug_ua",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ru",
+          "subtitle_ua",
           "terms",
           "terms_pl",
-          "terms_ua",
           "terms_ru",
-          "categories",
-          "organization",
-          "discountTo",
-          "dateUntil",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "terms_ua",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "viewsCount"
         ]
       },
       "conditions": [
@@ -381,23 +196,30 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "slug",
+          "categories",
+          "couponsCount",
+          "dateUntil",
+          "discountTo",
           "images",
+          "likesCount",
+          "organization",
+          "slug",
+          "slug_pl",
+          "slug_ru",
+          "slug_ua",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ru",
+          "subtitle_ua",
           "terms",
           "terms_pl",
-          "terms_ua",
           "terms_ru",
-          "categories",
-          "organization",
-          "discountTo",
-          "dateUntil",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "terms_ua",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "viewsCount"
         ]
       },
       "conditions": [
@@ -409,82 +231,30 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "slug",
+          "categories",
+          "couponsCount",
+          "dateUntil",
+          "discountTo",
           "images",
+          "likesCount",
+          "organization",
+          "slug",
+          "slug_pl",
+          "slug_ru",
+          "slug_ua",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ru",
+          "subtitle_ua",
           "terms",
           "terms_pl",
-          "terms_ua",
           "terms_ru",
-          "categories",
-          "organization",
-          "discountTo",
-          "dateUntil",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
-      "subject": "api::review.review",
-      "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "email"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::review.review",
-      "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::review.review",
-      "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "email"
-        ]
-      },
-      "conditions": [
-        "admin::is-creator"
-      ]
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "subject": "api::review.review",
-      "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "email"
+          "terms_ua",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "viewsCount"
         ]
       },
       "conditions": [
