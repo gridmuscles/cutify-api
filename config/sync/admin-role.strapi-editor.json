@@ -246,8 +246,8 @@
           "telegramLink",
           "facebookLink",
           "instagramLink",
-          "slug",
-          "description"
+          "description",
+          "slug"
         ]
       },
       "conditions": []
@@ -270,8 +270,8 @@
           "telegramLink",
           "facebookLink",
           "instagramLink",
-          "slug",
-          "description"
+          "description",
+          "slug"
         ]
       },
       "conditions": []
@@ -288,8 +288,8 @@
           "telegramLink",
           "facebookLink",
           "instagramLink",
-          "slug",
-          "description"
+          "description",
+          "slug"
         ]
       },
       "conditions": []
@@ -303,15 +303,15 @@
           "title_pl",
           "title_ua",
           "title_ru",
+          "slug",
+          "images",
+          "terms",
           "terms_pl",
           "terms_ua",
-          "terms",
           "terms_ru",
-          "slug",
           "categories",
-          "discountTo",
           "organization",
-          "images",
+          "discountTo",
           "dateUntil",
           "slug_pl",
           "slug_ua",
@@ -341,15 +341,15 @@
           "title_pl",
           "title_ua",
           "title_ru",
+          "slug",
+          "images",
+          "terms",
           "terms_pl",
           "terms_ua",
-          "terms",
           "terms_ru",
-          "slug",
           "categories",
-          "discountTo",
           "organization",
-          "images",
+          "discountTo",
           "dateUntil",
           "slug_pl",
           "slug_ua",
@@ -367,15 +367,15 @@
           "title_pl",
           "title_ua",
           "title_ru",
+          "slug",
+          "images",
+          "terms",
           "terms_pl",
           "terms_ua",
-          "terms",
           "terms_ru",
-          "slug",
           "categories",
-          "discountTo",
           "organization",
-          "images",
+          "discountTo",
           "dateUntil",
           "slug_pl",
           "slug_ua",

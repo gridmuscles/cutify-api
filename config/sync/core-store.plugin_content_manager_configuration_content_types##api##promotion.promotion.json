@@ -76,62 +76,6 @@
           "sortable": true
         }
       },
-      "terms_pl": {
-        "edit": {
-          "label": "terms_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "terms_pl",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "terms_ua": {
-        "edit": {
-          "label": "terms_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "terms_ua",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "terms": {
-        "edit": {
-          "label": "terms",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "terms",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "terms_ru": {
-        "edit": {
-          "label": "terms_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "terms_ru",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "slug": {
         "edit": {
           "label": "slug",
@@ -142,120 +86,6 @@
         },
         "list": {
           "label": "slug",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "categories": {
-        "edit": {
-          "label": "categories",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "categories",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "discountTo": {
-        "edit": {
-          "label": "discountTo",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "discountTo",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "organization": {
-        "edit": {
-          "label": "organization",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "organization",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "images": {
-        "edit": {
-          "label": "images",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "images",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "dateUntil": {
-        "edit": {
-          "label": "dateUntil",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "dateUntil",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "likesNumber": {
-        "edit": {
-          "label": "likesNumber",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": false
-        },
-        "list": {
-          "label": "likesNumber",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "couponsNumber": {
-        "edit": {
-          "label": "couponsNumber",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": false
-        },
-        "list": {
-          "label": "couponsNumber",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "viewsCount": {
-        "edit": {
-          "label": "viewsCount",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": false
-        },
-        "list": {
-          "label": "viewsCount",
           "searchable": true,
           "sortable": true
         }
@@ -358,6 +188,176 @@
           "sortable": true
         }
       },
+      "images": {
+        "edit": {
+          "label": "images",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "images",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "terms": {
+        "edit": {
+          "label": "terms",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "terms_pl": {
+        "edit": {
+          "label": "terms_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "terms_ua": {
+        "edit": {
+          "label": "terms_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "terms_ru": {
+        "edit": {
+          "label": "terms_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "terms_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "categories": {
+        "edit": {
+          "label": "categories",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "categories",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "organization": {
+        "edit": {
+          "label": "organization",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "organization",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "discountTo": {
+        "edit": {
+          "label": "discountTo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "discountTo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "dateUntil": {
+        "edit": {
+          "label": "dateUntil",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateUntil",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "likesNumber": {
+        "edit": {
+          "label": "likesNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "likesNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "couponsNumber": {
+        "edit": {
+          "label": "couponsNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponsNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "viewsCount": {
+        "edit": {
+          "label": "viewsCount",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "viewsCount",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -388,6 +388,12 @@
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "title",
+        "title_pl",
+        "title_ua"
+      ],
       "edit": [
         [
           {
@@ -412,40 +418,6 @@
         [
           {
             "name": "slug",
-            "size": 6
-          },
-          {
-            "name": "slug_pl",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "slug_ua",
-            "size": 6
-          },
-          {
-            "name": "slug_ru",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "subtitle",
-            "size": 6
-          },
-          {
-            "name": "subtitle_pl",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "subtitle_ua",
-            "size": 6
-          },
-          {
-            "name": "subtitle_ru",
             "size": 6
           }
         ],
@@ -501,9 +473,45 @@
         ],
         [
           {
+            "name": "slug_pl",
+            "size": 6
+          },
+          {
+            "name": "slug_ua",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "slug_ru",
+            "size": 6
+          },
+          {
+            "name": "subtitle",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "subtitle_pl",
+            "size": 6
+          },
+          {
+            "name": "subtitle_ua",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "subtitle_ru",
+            "size": 6
+          },
+          {
             "name": "likesNumber",
             "size": 4
-          },
+          }
+        ],
+        [
           {
             "name": "couponsNumber",
             "size": 4
@@ -513,12 +521,6 @@
             "size": 4
           }
         ]
-      ],
-      "list": [
-        "id",
-        "title",
-        "title_pl",
-        "title_ua"
       ]
     }
   },

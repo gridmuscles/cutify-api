@@ -240,16 +240,20 @@
       "properties": {
         "fields": [
           "title",
+          "slug",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "categories",
           "promotions",
           "managers",
+          "siteLink",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations",
-          "slug",
-          "description"
+          "locations"
         ]
       },
       "conditions": []
@@ -266,16 +270,20 @@
       "properties": {
         "fields": [
           "title",
+          "slug",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "categories",
           "promotions",
           "managers",
+          "siteLink",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations",
-          "slug",
-          "description"
+          "locations"
         ]
       },
       "conditions": []
@@ -286,16 +294,20 @@
       "properties": {
         "fields": [
           "title",
+          "slug",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "categories",
           "promotions",
           "managers",
+          "siteLink",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations",
-          "slug",
-          "description"
+          "locations"
         ]
       },
       "conditions": []
