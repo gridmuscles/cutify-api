@@ -2612,7 +2612,7 @@
           "inversedBy": "organizations"
         },
         "siteLink": {
-          "type": "text"
+          "type": "string"
         },
         "telegramLink": {
           "type": "string"
@@ -2712,7 +2712,7 @@
             "inversedBy": "organizations"
           },
           "siteLink": {
-            "type": "text"
+            "type": "string"
           },
           "telegramLink": {
             "type": "string"
@@ -2851,11 +2851,11 @@
           "type": "date",
           "required": true
         },
-        "likesNumber": {
+        "likesCount": {
           "type": "integer",
           "default": 0
         },
-        "couponsNumber": {
+        "couponsCount": {
           "type": "integer"
         },
         "viewsCount": {
@@ -3001,11 +3001,11 @@
             "type": "date",
             "required": true
           },
-          "likesNumber": {
+          "likesCount": {
             "type": "integer",
             "default": 0
           },
-          "couponsNumber": {
+          "couponsCount": {
             "type": "integer"
           },
           "viewsCount": {

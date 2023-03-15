@@ -338,8 +338,8 @@
           "organization",
           "discountTo",
           "dateUntil",
-          "likesNumber",
-          "couponsNumber",
+          "likesCount",
+          "couponsCount",
           "viewsCount"
         ]
       },
@@ -383,8 +383,8 @@
           "organization",
           "discountTo",
           "dateUntil",
-          "likesNumber",
-          "couponsNumber",
+          "likesCount",
+          "couponsCount",
           "viewsCount"
         ]
       },
@@ -416,8 +416,8 @@
           "organization",
           "discountTo",
           "dateUntil",
-          "likesNumber",
-          "couponsNumber",
+          "likesCount",
+          "couponsCount",
           "viewsCount"
         ]
       },

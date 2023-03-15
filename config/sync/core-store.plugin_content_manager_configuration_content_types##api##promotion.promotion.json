@@ -316,30 +316,30 @@
           "sortable": true
         }
       },
-      "likesNumber": {
+      "likesCount": {
         "edit": {
-          "label": "likesNumber",
+          "label": "likesCount",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "likesNumber",
+          "label": "likesCount",
           "searchable": true,
           "sortable": true
         }
       },
-      "couponsNumber": {
+      "couponsCount": {
         "edit": {
-          "label": "couponsNumber",
+          "label": "couponsCount",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "couponsNumber",
+          "label": "couponsCount",
           "searchable": true,
           "sortable": true
         }
@@ -505,19 +505,19 @@
           {
             "name": "subtitle_ru",
             "size": 6
-          },
-          {
-            "name": "likesNumber",
-            "size": 4
           }
         ],
         [
           {
-            "name": "couponsNumber",
+            "name": "viewsCount",
             "size": 4
           },
           {
-            "name": "viewsCount",
+            "name": "couponsCount",
+            "size": 4
+          },
+          {
+            "name": "likesCount",
             "size": 4
           }
         ]
