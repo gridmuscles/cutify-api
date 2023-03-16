@@ -130,11 +130,16 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
         return
       }
 
+      const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+        promotion: ctx.params.id,
+      })
+
       await strapi.entityService.update('api::promotion.promotion', ctx.params.id, {
         data: {
           viewsCount: promotion.data.attributes.viewsCount
             ? promotion.data.attributes.viewsCount + 1
             : 1,
+          couponsCount: coupons.length,
         },
       })
 
