@@ -64,10 +64,7 @@
     },
     "state": {
       "type": "enumeration",
-      "enum": [
-        "active",
-        "verified"
-      ],
+      "enum": ["active", "verified"],
       "required": true,
       "default": "active"
     }

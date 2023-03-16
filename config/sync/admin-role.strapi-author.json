@@ -16,17 +16,13 @@
           "phone"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::location.location",
       "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.read",
@@ -41,9 +37,7 @@
           "phone"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.update",
@@ -58,9 +52,7 @@
           "phone"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.create",
@@ -84,17 +76,13 @@
           "title"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::organization.organization",
       "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.read",
@@ -118,9 +106,7 @@
           "title"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.update",
@@ -144,9 +130,7 @@
           "title"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.create",
@@ -179,17 +163,13 @@
           "viewsCount"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::promotion.promotion",
       "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.read",
@@ -222,9 +202,7 @@
           "viewsCount"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.update",
@@ -257,9 +235,7 @@
           "viewsCount"
         ]
       },
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::upload.assets.copy-link",
@@ -283,9 +259,7 @@
       "action": "plugin::upload.assets.update",
       "subject": null,
       "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::upload.configure-view",
@@ -297,9 +271,7 @@
       "action": "plugin::upload.read",
       "subject": null,
       "properties": {},
-      "conditions": [
-        "admin::is-creator"
-      ]
+      "conditions": ["admin::is-creator"]
     }
   ]
 }

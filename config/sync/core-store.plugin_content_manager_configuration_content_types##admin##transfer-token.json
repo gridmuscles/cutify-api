@@ -149,12 +149,7 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "name",
-        "description",
-        "accessKey"
-      ],
+      "list": ["id", "name", "description", "accessKey"],
       "edit": [
         [
           {

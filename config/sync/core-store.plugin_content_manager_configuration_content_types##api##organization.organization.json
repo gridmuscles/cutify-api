@@ -350,12 +350,7 @@
           }
         ]
       ],
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "siteLink"
-      ]
+      "list": ["id", "title", "slug", "siteLink"]
     }
   },
   "type": "object",

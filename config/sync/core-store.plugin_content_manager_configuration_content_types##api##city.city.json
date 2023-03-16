@@ -78,12 +78,7 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "createdAt"
-      ],
+      "list": ["id", "title", "slug", "createdAt"],
       "edit": [
         [
           {
