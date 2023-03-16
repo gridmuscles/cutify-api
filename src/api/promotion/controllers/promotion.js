@@ -125,6 +125,7 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
 
   async findOne(ctx) {
     try {
+      const { views } = ctx.request.query
       const promotion = await super.findOne(ctx)
       if (!promotion) {
         return
@@ -136,9 +137,11 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
 
       await strapi.entityService.update('api::promotion.promotion', ctx.params.id, {
         data: {
-          viewsCount: promotion.data.attributes.viewsCount
-            ? promotion.data.attributes.viewsCount + 1
-            : 1,
+          viewsCount: views
+            ? promotion.data.attributes.viewsCount
+              ? promotion.data.attributes.viewsCount + 1
+              : 1
+            : promotion.data.attributes.viewsCount,
           couponsCount: coupons.length,
         },
       })
