@@ -97,4 +97,29 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
       ctx.badRequest()
     }
   },
+
+  async find(ctx) {
+    const { data, meta } = await super.find(ctx)
+
+    const coupons = await Promise.all(
+      data.map(async ({ id }) => {
+        const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+          promotion: id,
+        })
+        return coupons.length
+      })
+    )
+
+    return {
+      data: data.map((promotion, i) => ({
+        ...promotion,
+        attributes: {
+          ...promotion.attributes,
+          couponsCount: coupons[i],
+        },
+      })),
+
+      meta,
+    }
+  },
 }))
