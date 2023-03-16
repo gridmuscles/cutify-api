@@ -8,7 +8,8 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "cs": "config-sync"
+    "cs": "config-sync",
+    "lint:fix": "prettier --write ./src ./config"
   },
   "devDependencies": {},
   "dependencies": {
