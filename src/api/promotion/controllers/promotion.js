@@ -73,4 +73,28 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
       ctx.badRequest()
     }
   },
+
+  async like(ctx) {
+    try {
+      const promotion = await strapi.entityService.findOne(
+        'api::promotion.promotion',
+        ctx.params.id
+      )
+
+      if (!promotion) {
+        return
+      }
+
+      await strapi.entityService.update('api::promotion.promotion', promotion.id, {
+        data: {
+          likesCount: promotion.likesCount ? promotion.likesCount + 1 : 1,
+        },
+      })
+
+      return {}
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest()
+    }
+  },
 }))
