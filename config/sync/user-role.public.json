@@ -37,6 +37,9 @@
       "action": "api::promotion.promotion.findOne"
     },
     {
+      "action": "api::promotion.promotion.like"
+    },
+    {
       "action": "api::promotion.promotion.requestCoupon"
     },
     {
