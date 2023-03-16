@@ -122,4 +122,37 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
       meta,
     }
   },
+
+  async findOne(ctx) {
+    try {
+      const { locale } = ctx.request.query
+      ctx.request.query = {
+        ...ctx.request.query,
+        filters: {
+          [!locale || locale === 'en' ? 'slug' : `slug_${locale}`]: { $eq: ctx.params.id },
+        },
+      }
+      ctx.params.id = undefined
+
+      const promotions = await this.find(ctx)
+      if (promotions.data.length !== 1) {
+        return
+      }
+
+      await strapi.entityService.update('api::promotion.promotion', promotions.data[0].id, {
+        data: {
+          viewsCount: promotions.data[0].attributes.viewsCount
+            ? promotions.data[0].attributes.viewsCount + 1
+            : 1,
+        },
+      })
+
+      ctx.response.body = {
+        data: promotions.data[0],
+      }
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest()
+    }
+  },
 }))
