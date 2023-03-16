@@ -137,11 +137,10 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
 
       await strapi.entityService.update('api::promotion.promotion', ctx.params.id, {
         data: {
-          viewsCount: views
-            ? promotion.data.attributes.viewsCount
+          viewsCount:
+            views === 'true'
               ? promotion.data.attributes.viewsCount + 1
-              : 1
-            : promotion.data.attributes.viewsCount,
+              : promotion.data.attributes.viewsCount,
           couponsCount: coupons.length,
         },
       })

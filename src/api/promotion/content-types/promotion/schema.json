@@ -66,9 +66,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "terms": {
       "pluginOptions": {},
@@ -110,7 +108,8 @@
       "default": 0
     },
     "couponsCount": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "viewsCount": {
       "type": "integer",
