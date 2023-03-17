@@ -12,26 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "pluginOptions": {},
-      "type": "string",
-      "required": true
-    },
-    "title_pl": {
-      "pluginOptions": {},
-      "type": "string",
-      "required": true
-    },
-    "title_ua": {
-      "pluginOptions": {},
-      "type": "string",
-      "required": true
-    },
-    "title_ru": {
-      "pluginOptions": {},
-      "type": "string",
-      "required": true
-    },
     "promotion": {
       "type": "relation",
       "relation": "oneToOne",
@@ -45,18 +25,6 @@
     "uuid": {
       "pluginOptions": {},
       "type": "uid"
-    },
-    "terms": {
-      "type": "richtext"
-    },
-    "terms_pl": {
-      "type": "richtext"
-    },
-    "terms_ua": {
-      "type": "richtext"
-    },
-    "terms_ru": {
-      "type": "richtext"
     },
     "email": {
       "type": "email",

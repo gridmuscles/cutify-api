@@ -50,15 +50,12 @@ module.exports = createCoreController(
 
         const coupon = await strapi.service('api::coupon.coupon').create({
           data: {
-            title: promotion.data.attributes.title,
-            title_pl: promotion.data.attributes.title_pl,
-            title_ua: promotion.data.attributes.title_ua,
-            title_ru: promotion.data.attributes.title_ru,
             promotion: promotion.data.id,
             email: ctx.request.body.email,
             uuid: `${Math.floor(
               100000000 + Math.random() * 900000000
             )}-${Math.floor(200000000 + Math.random() * 800000000)}`,
+            state: 'active',
           },
           populate: '*',
         })
@@ -117,12 +114,17 @@ module.exports = createCoreController(
           const coupons = await strapi.entityService.findMany(
             'api::coupon.coupon',
             {
-              promotion: id,
+              fields: ['id'],
+              filters: { promotion: id },
+              populate: { organization: true },
             }
           )
+
           return coupons.length
         })
       )
+
+      console.log(coupons)
 
       return {
         data: data.map((promotion, i) => ({
@@ -148,7 +150,9 @@ module.exports = createCoreController(
         const coupons = await strapi.entityService.findMany(
           'api::coupon.coupon',
           {
-            promotion: ctx.params.id,
+            fields: ['id'],
+            filters: { promotion: ctx.params.id },
+            populate: { organization: true },
           }
         )
 
