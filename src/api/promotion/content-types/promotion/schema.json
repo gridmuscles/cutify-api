@@ -19,15 +19,18 @@
     },
     "title_pl": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "title_ua": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "title_ru": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "pluginOptions": {},
