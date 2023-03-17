@@ -116,15 +116,12 @@ module.exports = createCoreController(
             {
               fields: ['id'],
               filters: { promotion: id },
-              populate: { organization: true },
             }
           )
 
           return coupons.length
         })
       )
-
-      console.log(coupons)
 
       return {
         data: data.map((promotion, i) => ({
@@ -152,7 +149,6 @@ module.exports = createCoreController(
           {
             fields: ['id'],
             filters: { promotion: ctx.params.id },
-            populate: { organization: true },
           }
         )
 
