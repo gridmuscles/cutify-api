@@ -40,6 +40,9 @@
     "description_ua": {
       "type": "text"
     },
+    "durationMinutes": {
+      "type": "integer"
+    },
     "price": {
       "type": "decimal"
     },
