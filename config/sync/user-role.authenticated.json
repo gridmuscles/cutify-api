@@ -10,9 +10,6 @@
       "action": "api::city.city.find"
     },
     {
-      "action": "api::coupon.coupon.find"
-    },
-    {
       "action": "api::coupon.coupon.findOne"
     },
     {

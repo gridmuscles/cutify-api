@@ -37,8 +37,8 @@
     "reply": {
       "type": "text"
     },
-    "email": {
-      "type": "email",
+    "name": {
+      "type": "name",
       "required": true
     }
   }

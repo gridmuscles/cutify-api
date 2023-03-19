@@ -76,7 +76,10 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": [
+          "title",
+          "slug"
+        ]
       },
       "conditions": []
     },
@@ -90,7 +93,10 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": [
+          "title",
+          "slug"
+        ]
       },
       "conditions": []
     },
@@ -98,7 +104,10 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": [
+          "title",
+          "slug"
+        ]
       },
       "conditions": []
     },
@@ -107,17 +116,9 @@
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
           "promotion",
           "user",
           "uuid",
-          "terms",
-          "terms_pl",
-          "terms_ua",
-          "terms_ru",
           "email",
           "state"
         ]
@@ -135,17 +136,9 @@
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
           "promotion",
           "user",
           "uuid",
-          "terms",
-          "terms_pl",
-          "terms_ua",
-          "terms_ru",
           "email",
           "state"
         ]
@@ -157,17 +150,9 @@
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
           "promotion",
           "user",
           "uuid",
-          "terms",
-          "terms_pl",
-          "terms_ua",
-          "terms_ru",
           "email",
           "state"
         ]
