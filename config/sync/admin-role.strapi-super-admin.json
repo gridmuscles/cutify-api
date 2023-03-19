@@ -76,10 +76,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::city.city",
       "properties": {
-        "fields": [
-          "title",
-          "slug"
-        ]
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -93,10 +90,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": [
-          "title",
-          "slug"
-        ]
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -104,10 +98,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::city.city",
       "properties": {
-        "fields": [
-          "title",
-          "slug"
-        ]
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -415,14 +406,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "name"
-        ]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -442,14 +426,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::review.review",
       "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "name"
-        ]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -457,14 +434,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::review.review",
       "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "name"
-        ]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },

@@ -9,9 +9,12 @@
     "build": "strapi build",
     "strapi": "strapi",
     "cs": "config-sync",
-    "lint:fix": "prettier --write ./src ./config"
+    "lint:fix": "prettier --write ./src ./config",
+    "prepare": "husky install"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "husky": "^8.0.3"
+  },
   "dependencies": {
     "@strapi/plugin-i18n": "4.7.1",
     "@strapi/plugin-users-permissions": "4.7.1",

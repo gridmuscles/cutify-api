@@ -136,12 +136,7 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "message",
-        "reply",
-        "name"
-      ],
+      "list": ["id", "message", "reply", "name"],
       "edit": [
         [
           {

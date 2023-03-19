@@ -226,12 +226,7 @@
           }
         ]
       ],
-      "list": [
-        "id",
-        "title",
-        "title_pl",
-        "title_ua"
-      ]
+      "list": ["id", "title", "title_pl", "title_ua"]
     }
   },
   "type": "object",
