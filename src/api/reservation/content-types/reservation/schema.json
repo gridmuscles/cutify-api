@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservations",
+  "info": {
+    "singularName": "reservation",
+    "pluralName": "reservations",
+    "displayName": "Reservation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "organization": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::organization.organization"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "dateTimeFrom": {
+      "type": "datetime",
+      "required": true
+    },
+    "dateTimeTo": {
+      "type": "datetime",
+      "required": true
+    },
+    "comment": {
+      "type": "text"
+    },
+    "reservationService": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reservation-service.reservation-service"
+    },
+    "reservationTarget": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reservation-target.reservation-target"
+    }
+  }
+}

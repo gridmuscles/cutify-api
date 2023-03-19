@@ -1,0 +1,199 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::reservation.reservation",
+  "value": {
+    "uid": "api::reservation.reservation",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "organization": {
+        "edit": {
+          "label": "organization",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "organization",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "user": {
+        "edit": {
+          "label": "user",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "user",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "dateTimeFrom": {
+        "edit": {
+          "label": "dateTimeFrom",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateTimeFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "dateTimeTo": {
+        "edit": {
+          "label": "dateTimeTo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateTimeTo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "comment": {
+        "edit": {
+          "label": "comment",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "comment",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "reservationService": {
+        "edit": {
+          "label": "reservationService",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "reservationService",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "reservationTarget": {
+        "edit": {
+          "label": "reservationTarget",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "reservationTarget",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": ["id", "organization", "createdAt", "updatedAt"],
+      "edit": [
+        [
+          {
+            "name": "organization",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "dateTimeFrom",
+            "size": 6
+          },
+          {
+            "name": "dateTimeTo",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "comment",
+            "size": 6
+          },
+          {
+            "name": "reservationService",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "reservationTarget",
+            "size": 6
+          },
+          {
+            "name": "user",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

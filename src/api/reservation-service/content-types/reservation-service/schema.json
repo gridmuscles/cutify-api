@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservation_services",
+  "info": {
+    "singularName": "reservation-service",
+    "pluralName": "reservation-services",
+    "displayName": "ReservationService",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::organization.organization"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservation_targets",
+  "info": {
+    "singularName": "reservation-target",
+    "pluralName": "reservation-targets",
+    "displayName": "ReservationTarget",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "reservationServices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reservation-service.reservation-service"
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::organization.organization"
+    }
+  }
+}

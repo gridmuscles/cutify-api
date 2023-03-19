@@ -404,6 +404,135 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {
+        "fields": ["title", "description", "price", "organization"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {
+        "fields": ["title", "description", "price", "organization"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {
+        "fields": ["title", "description", "price", "organization"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {
+        "fields": [
+          "title",
+          "description",
+          "reservationServices",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {
+        "fields": [
+          "title",
+          "description",
+          "reservationServices",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {
+        "fields": [
+          "title",
+          "description",
+          "reservationServices",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::reservation.reservation",
+      "properties": {
+        "fields": [
+          "organization",
+          "user",
+          "dateTimeFrom",
+          "dateTimeTo",
+          "comment",
+          "reservationService",
+          "reservationTarget"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::reservation.reservation",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::reservation.reservation",
+      "properties": {
+        "fields": [
+          "organization",
+          "user",
+          "dateTimeFrom",
+          "dateTimeTo",
+          "comment",
+          "reservationService",
+          "reservationTarget"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::reservation.reservation",
+      "properties": {
+        "fields": [
+          "organization",
+          "user",
+          "dateTimeFrom",
+          "dateTimeTo",
+          "comment",
+          "reservationService",
+          "reservationTarget"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
         "fields": ["message", "user", "organization", "rating", "reply", "name"]
