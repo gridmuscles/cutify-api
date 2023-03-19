@@ -92,16 +92,16 @@
           "sortable": true
         }
       },
-      "email": {
+      "name": {
         "edit": {
-          "label": "email",
+          "label": "name",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "email",
+          "label": "name",
           "searchable": true,
           "sortable": true
         }
@@ -136,7 +136,12 @@
       }
     },
     "layouts": {
-      "list": ["id", "message", "reply", "email"],
+      "list": [
+        "id",
+        "message",
+        "reply",
+        "name"
+      ],
       "edit": [
         [
           {
@@ -166,7 +171,7 @@
         ],
         [
           {
-            "name": "email",
+            "name": "name",
             "size": 6
           }
         ]

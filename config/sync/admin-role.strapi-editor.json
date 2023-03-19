@@ -81,7 +81,11 @@
           "user",
           "uuid",
           "email",
-          "state"
+          "state",
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru"
         ]
       },
       "conditions": []
@@ -101,7 +105,11 @@
           "user",
           "uuid",
           "email",
-          "state"
+          "state",
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru"
         ]
       },
       "conditions": []
@@ -115,7 +123,11 @@
           "user",
           "uuid",
           "email",
-          "state"
+          "state",
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru"
         ]
       },
       "conditions": []
@@ -365,12 +377,12 @@
       "subject": "api::review.review",
       "properties": {
         "fields": [
-          "email",
           "message",
+          "user",
           "organization",
           "rating",
           "reply",
-          "user"
+          "name"
         ]
       },
       "conditions": []
@@ -392,12 +404,12 @@
       "subject": "api::review.review",
       "properties": {
         "fields": [
-          "email",
           "message",
+          "user",
           "organization",
           "rating",
           "reply",
-          "user"
+          "name"
         ]
       },
       "conditions": []
@@ -407,12 +419,12 @@
       "subject": "api::review.review",
       "properties": {
         "fields": [
-          "email",
           "message",
+          "user",
           "organization",
           "rating",
           "reply",
-          "user"
+          "name"
         ]
       },
       "conditions": []
