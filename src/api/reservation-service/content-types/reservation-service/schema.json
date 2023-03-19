@@ -16,7 +16,28 @@
       "type": "string",
       "required": true
     },
+    "title_pl": {
+      "type": "string",
+      "required": true
+    },
+    "title_ua": {
+      "type": "string",
+      "required": true
+    },
+    "title_ru": {
+      "type": "string",
+      "required": true
+    },
     "description": {
+      "type": "text"
+    },
+    "description_pl": {
+      "type": "text"
+    },
+    "description_ru": {
+      "type": "text"
+    },
+    "description_ua": {
       "type": "text"
     },
     "price": {
