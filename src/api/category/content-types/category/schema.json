@@ -52,21 +52,6 @@
       "pluginOptions": {},
       "type": "uid",
       "targetField": "title"
-    },
-    "slug_pl": {
-      "type": "uid",
-      "targetField": "title_pl",
-      "required": true
-    },
-    "slug_ua": {
-      "type": "uid",
-      "targetField": "title_ua",
-      "required": true
-    },
-    "slug_ru": {
-      "type": "uid",
-      "targetField": "title_ru",
-      "required": true
     }
   }
 }
