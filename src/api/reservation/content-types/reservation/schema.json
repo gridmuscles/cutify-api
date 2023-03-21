@@ -33,12 +33,12 @@
     "comment": {
       "type": "text"
     },
-    "reservationService": {
+    "service": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::reservation-service.reservation-service"
     },
-    "reservationTarget": {
+    "target": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::reservation-target.reservation-target"

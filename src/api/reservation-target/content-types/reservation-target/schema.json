@@ -40,10 +40,11 @@
     "description_ua": {
       "type": "text"
     },
-    "reservationServices": {
+    "services": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reservation-service.reservation-service"
+      "relation": "manyToMany",
+      "target": "api::reservation-service.reservation-service",
+      "inversedBy": "targets"
     },
     "organization": {
       "type": "relation",

@@ -50,6 +50,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::organization.organization"
+    },
+    "targets": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::reservation-target.reservation-target",
+      "mappedBy": "services"
     }
   }
 }
