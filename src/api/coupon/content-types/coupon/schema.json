@@ -32,25 +32,12 @@
     },
     "state": {
       "type": "enumeration",
-      "enum": ["active", "verified"],
+      "enum": [
+        "active",
+        "verified"
+      ],
       "required": true,
       "default": "active"
-    },
-    "title": {
-      "type": "text",
-      "required": true
-    },
-    "title_pl": {
-      "type": "text",
-      "required": true
-    },
-    "title_ua": {
-      "type": "text",
-      "required": true
-    },
-    "title_ru": {
-      "type": "text",
-      "required": true
     }
   }
 }
