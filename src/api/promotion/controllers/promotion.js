@@ -1,5 +1,8 @@
 'use strict'
 
+const { parseISO, isAfter } = require('date-fns')
+const { ERROR_CODES } = require('../../../utils/const')
+
 /**
  * promotion controller
  */
@@ -40,6 +43,7 @@ const TEMPLATE_DATA = {
   },
 }
 
+//TODO (Tests)
 module.exports = createCoreController(
   'api::promotion.promotion',
   ({ strapi }) => ({
@@ -47,6 +51,14 @@ module.exports = createCoreController(
       const { locale } = ctx.request.query
       try {
         const promotion = await super.findOne(ctx)
+
+        const { dateTimeUntil } = promotion.data.attributes
+        if (!dateTimeUntil) {
+          throw new Error(ERROR_CODES.DATE_TIME_UNTIL_IS_NOT_DEFINED)
+        }
+        if (isAfter(new Date(), parseISO(dateTimeUntil))) {
+          throw new Error(ERROR_CODES.PROMOTION_IS_FINISHED)
+        }
 
         const coupon = await strapi.service('api::coupon.coupon').create({
           data: {
