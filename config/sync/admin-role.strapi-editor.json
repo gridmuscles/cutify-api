@@ -8,18 +8,15 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "slug",
-          "slug_pl",
-          "slug_ru",
-          "slug_ua",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug"
         ]
       },
       "conditions": []
@@ -35,18 +32,15 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "slug",
-          "slug_pl",
-          "slug_ru",
-          "slug_ua",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug"
         ]
       },
       "conditions": []
@@ -56,18 +50,15 @@
       "subject": "api::category.category",
       "properties": {
         "fields": [
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "slug",
-          "slug_pl",
-          "slug_ru",
-          "slug_ua",
           "title",
           "title_pl",
+          "title_ua",
           "title_ru",
-          "title_ua"
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
+          "slug"
         ]
       },
       "conditions": []
@@ -76,17 +67,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "promotion",
-          "user",
-          "uuid",
-          "email",
-          "state",
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -100,17 +81,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "promotion",
-          "user",
-          "uuid",
-          "email",
-          "state",
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -118,17 +89,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "promotion",
-          "user",
-          "uuid",
-          "email",
-          "state",
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -266,30 +227,27 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "categories",
-          "couponsCount",
-          "dateUntil",
-          "discountTo",
-          "images",
-          "likesCount",
-          "organization",
-          "slug",
-          "slug_pl",
-          "slug_ru",
-          "slug_ua",
-          "subtitle",
-          "subtitle_pl",
-          "subtitle_ru",
-          "subtitle_ua",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
           "title",
           "title_pl",
-          "title_ru",
           "title_ua",
-          "viewsCount"
+          "title_ru",
+          "slug",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ua",
+          "subtitle_ru",
+          "images",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "categories",
+          "organization",
+          "discountTo",
+          "likesCount",
+          "couponsCount",
+          "viewsCount",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -311,30 +269,27 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "categories",
-          "couponsCount",
-          "dateUntil",
-          "discountTo",
-          "images",
-          "likesCount",
-          "organization",
-          "slug",
-          "slug_pl",
-          "slug_ru",
-          "slug_ua",
-          "subtitle",
-          "subtitle_pl",
-          "subtitle_ru",
-          "subtitle_ua",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
           "title",
           "title_pl",
-          "title_ru",
           "title_ua",
-          "viewsCount"
+          "title_ru",
+          "slug",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ua",
+          "subtitle_ru",
+          "images",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "categories",
+          "organization",
+          "discountTo",
+          "likesCount",
+          "couponsCount",
+          "viewsCount",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -344,30 +299,27 @@
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
-          "categories",
-          "couponsCount",
-          "dateUntil",
-          "discountTo",
-          "images",
-          "likesCount",
-          "organization",
-          "slug",
-          "slug_pl",
-          "slug_ru",
-          "slug_ua",
-          "subtitle",
-          "subtitle_pl",
-          "subtitle_ru",
-          "subtitle_ua",
-          "terms",
-          "terms_pl",
-          "terms_ru",
-          "terms_ua",
           "title",
           "title_pl",
-          "title_ru",
           "title_ua",
-          "viewsCount"
+          "title_ru",
+          "slug",
+          "subtitle",
+          "subtitle_pl",
+          "subtitle_ua",
+          "subtitle_ru",
+          "images",
+          "terms",
+          "terms_pl",
+          "terms_ua",
+          "terms_ru",
+          "categories",
+          "organization",
+          "discountTo",
+          "likesCount",
+          "couponsCount",
+          "viewsCount",
+          "dateTimeUntil"
         ]
       },
       "conditions": []

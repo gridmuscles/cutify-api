@@ -43,6 +43,12 @@
       "action": "api::promotion.promotion.requestCoupon"
     },
     {
+      "action": "api::reservation-service.reservation-service.find"
+    },
+    {
+      "action": "api::reservation-target.reservation-target.find"
+    },
+    {
       "action": "api::review.review.create"
     },
     {

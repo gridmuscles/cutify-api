@@ -2039,21 +2039,6 @@
           "type": "uid",
           "targetField": "title"
         },
-        "slug_pl": {
-          "type": "uid",
-          "targetField": "title_pl",
-          "required": true
-        },
-        "slug_ua": {
-          "type": "uid",
-          "targetField": "title_ua",
-          "required": true
-        },
-        "slug_ru": {
-          "type": "uid",
-          "targetField": "title_ru",
-          "required": true
-        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2134,21 +2119,6 @@
             "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
-          },
-          "slug_pl": {
-            "type": "uid",
-            "targetField": "title_pl",
-            "required": true
-          },
-          "slug_ua": {
-            "type": "uid",
-            "targetField": "title_ua",
-            "required": true
-          },
-          "slug_ru": {
-            "type": "uid",
-            "targetField": "title_ru",
-            "required": true
           }
         },
         "kind": "collectionType"
@@ -2284,22 +2254,6 @@
           "required": true,
           "default": "active"
         },
-        "title": {
-          "type": "text",
-          "required": true
-        },
-        "title_pl": {
-          "type": "text",
-          "required": true
-        },
-        "title_ua": {
-          "type": "text",
-          "required": true
-        },
-        "title_ru": {
-          "type": "text",
-          "required": true
-        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2363,22 +2317,6 @@
             "enum": ["active", "verified"],
             "required": true,
             "default": "active"
-          },
-          "title": {
-            "type": "text",
-            "required": true
-          },
-          "title_pl": {
-            "type": "text",
-            "required": true
-          },
-          "title_ua": {
-            "type": "text",
-            "required": true
-          },
-          "title_ru": {
-            "type": "text",
-            "required": true
           }
         },
         "kind": "collectionType"
@@ -2730,21 +2668,6 @@
           "targetField": "title",
           "required": true
         },
-        "slug_pl": {
-          "type": "uid",
-          "targetField": "title_pl",
-          "required": true
-        },
-        "slug_ua": {
-          "type": "uid",
-          "targetField": "title_ua",
-          "required": true
-        },
-        "slug_ru": {
-          "type": "uid",
-          "targetField": "title_ru",
-          "required": true
-        },
         "subtitle": {
           "type": "text"
         },
@@ -2794,8 +2717,8 @@
           "pluginOptions": {},
           "type": "integer"
         },
-        "dateUntil": {
-          "type": "date",
+        "dateTimeUntil": {
+          "type": "datetime",
           "required": true
         },
         "likesCount": {
@@ -2882,21 +2805,6 @@
             "targetField": "title",
             "required": true
           },
-          "slug_pl": {
-            "type": "uid",
-            "targetField": "title_pl",
-            "required": true
-          },
-          "slug_ua": {
-            "type": "uid",
-            "targetField": "title_ua",
-            "required": true
-          },
-          "slug_ru": {
-            "type": "uid",
-            "targetField": "title_ru",
-            "required": true
-          },
           "subtitle": {
             "type": "text"
           },
@@ -2946,8 +2854,8 @@
             "pluginOptions": {},
             "type": "integer"
           },
-          "dateUntil": {
-            "type": "date",
+          "dateTimeUntil": {
+            "type": "datetime",
             "required": true
           },
           "likesCount": {
@@ -3009,12 +2917,12 @@
         "comment": {
           "type": "text"
         },
-        "reservationService": {
+        "service": {
           "type": "relation",
           "relation": "oneToOne",
           "target": "api::reservation-service.reservation-service"
         },
-        "reservationTarget": {
+        "target": {
           "type": "relation",
           "relation": "oneToOne",
           "target": "api::reservation-target.reservation-target"
@@ -3080,12 +2988,12 @@
           "comment": {
             "type": "text"
           },
-          "reservationService": {
+          "service": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::reservation-service.reservation-service"
           },
-          "reservationTarget": {
+          "target": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::reservation-target.reservation-target"
@@ -3108,7 +3016,7 @@
       "info": {
         "singularName": "reservation-service",
         "pluralName": "reservation-services",
-        "displayName": "ReservationService",
+        "displayName": "Reservation Service",
         "description": ""
       },
       "options": {
@@ -3120,8 +3028,32 @@
           "type": "string",
           "required": true
         },
+        "title_pl": {
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "type": "string",
+          "required": true
+        },
         "description": {
           "type": "text"
+        },
+        "description_pl": {
+          "type": "text"
+        },
+        "description_ru": {
+          "type": "text"
+        },
+        "description_ua": {
+          "type": "text"
+        },
+        "durationMinutes": {
+          "type": "integer"
         },
         "price": {
           "type": "decimal"
@@ -3130,6 +3062,12 @@
           "type": "relation",
           "relation": "oneToOne",
           "target": "api::organization.organization"
+        },
+        "targets": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::reservation-target.reservation-target",
+          "mappedBy": "services"
         },
         "createdAt": {
           "type": "datetime"
@@ -3163,7 +3101,7 @@
         "info": {
           "singularName": "reservation-service",
           "pluralName": "reservation-services",
-          "displayName": "ReservationService",
+          "displayName": "Reservation Service",
           "description": ""
         },
         "options": {
@@ -3175,8 +3113,32 @@
             "type": "string",
             "required": true
           },
+          "title_pl": {
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "type": "string",
+            "required": true
+          },
           "description": {
             "type": "text"
+          },
+          "description_pl": {
+            "type": "text"
+          },
+          "description_ru": {
+            "type": "text"
+          },
+          "description_ua": {
+            "type": "text"
+          },
+          "durationMinutes": {
+            "type": "integer"
           },
           "price": {
             "type": "decimal"
@@ -3185,6 +3147,12 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::organization.organization"
+          },
+          "targets": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::reservation-target.reservation-target",
+            "mappedBy": "services"
           }
         },
         "kind": "collectionType"
@@ -3204,7 +3172,7 @@
       "info": {
         "singularName": "reservation-target",
         "pluralName": "reservation-targets",
-        "displayName": "ReservationTarget",
+        "displayName": "Reservation Target",
         "description": ""
       },
       "options": {
@@ -3216,13 +3184,35 @@
           "type": "string",
           "required": true
         },
+        "title_pl": {
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "type": "string",
+          "required": true
+        },
         "description": {
           "type": "text"
         },
-        "reservationServices": {
+        "description_pl": {
+          "type": "text"
+        },
+        "description_ru": {
+          "type": "text"
+        },
+        "description_ua": {
+          "type": "text"
+        },
+        "services": {
           "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::reservation-service.reservation-service"
+          "relation": "manyToMany",
+          "target": "api::reservation-service.reservation-service",
+          "inversedBy": "targets"
         },
         "organization": {
           "type": "relation",
@@ -3261,7 +3251,7 @@
         "info": {
           "singularName": "reservation-target",
           "pluralName": "reservation-targets",
-          "displayName": "ReservationTarget",
+          "displayName": "Reservation Target",
           "description": ""
         },
         "options": {
@@ -3273,13 +3263,35 @@
             "type": "string",
             "required": true
           },
+          "title_pl": {
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "type": "string",
+            "required": true
+          },
           "description": {
             "type": "text"
           },
-          "reservationServices": {
+          "description_pl": {
+            "type": "text"
+          },
+          "description_ru": {
+            "type": "text"
+          },
+          "description_ua": {
+            "type": "text"
+          },
+          "services": {
             "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::reservation-service.reservation-service"
+            "relation": "manyToMany",
+            "target": "api::reservation-service.reservation-service",
+            "inversedBy": "targets"
           },
           "organization": {
             "type": "relation",

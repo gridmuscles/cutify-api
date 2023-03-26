@@ -90,48 +90,6 @@
           "sortable": true
         }
       },
-      "slug_pl": {
-        "edit": {
-          "label": "slug_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug_pl",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug_ua": {
-        "edit": {
-          "label": "slug_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug_ua",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug_ru": {
-        "edit": {
-          "label": "slug_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug_ru",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "subtitle": {
         "edit": {
           "label": "subtitle",
@@ -302,16 +260,16 @@
           "sortable": true
         }
       },
-      "dateUntil": {
+      "dateTimeUntil": {
         "edit": {
-          "label": "dateUntil",
+          "label": "dateTimeUntil",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "dateUntil",
+          "label": "dateTimeUntil",
           "searchable": true,
           "sortable": true
         }
@@ -403,29 +361,17 @@
           {
             "name": "title_pl",
             "size": 6
-          },
-          {
-            "name": "slug_pl",
-            "size": 6
           }
         ],
         [
           {
             "name": "title_ua",
             "size": 6
-          },
-          {
-            "name": "slug_ua",
-            "size": 6
           }
         ],
         [
           {
             "name": "title_ru",
-            "size": 6
-          },
-          {
-            "name": "slug_ru",
             "size": 6
           }
         ],
@@ -453,6 +399,16 @@
           {
             "name": "images",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "dateTimeUntil",
+            "size": 6
+          },
+          {
+            "name": "discountTo",
+            "size": 4
           }
         ],
         [
@@ -487,16 +443,6 @@
           {
             "name": "organization",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "dateUntil",
-            "size": 4
-          },
-          {
-            "name": "discountTo",
-            "size": 4
           }
         ],
         [

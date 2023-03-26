@@ -92,9 +92,9 @@
           "sortable": true
         }
       },
-      "reservationService": {
+      "service": {
         "edit": {
-          "label": "reservationService",
+          "label": "service",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -102,14 +102,14 @@
           "mainField": "title"
         },
         "list": {
-          "label": "reservationService",
+          "label": "service",
           "searchable": true,
           "sortable": true
         }
       },
-      "reservationTarget": {
+      "target": {
         "edit": {
-          "label": "reservationTarget",
+          "label": "target",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -117,7 +117,7 @@
           "mainField": "title"
         },
         "list": {
-          "label": "reservationTarget",
+          "label": "target",
           "searchable": true,
           "sortable": true
         }
@@ -174,19 +174,21 @@
           {
             "name": "comment",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "user",
+            "size": 6
           },
           {
-            "name": "reservationService",
+            "name": "service",
             "size": 6
           }
         ],
         [
           {
-            "name": "reservationTarget",
-            "size": 6
-          },
-          {
-            "name": "user",
+            "name": "target",
             "size": 6
           }
         ]

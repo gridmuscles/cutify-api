@@ -16,10 +16,7 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "slug"
         ]
       },
       "conditions": []
@@ -43,10 +40,7 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "slug"
         ]
       },
       "conditions": []
@@ -64,10 +58,7 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "slug"
         ]
       },
       "conditions": []
@@ -106,17 +97,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "promotion",
-          "user",
-          "uuid",
-          "email",
-          "state",
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -130,17 +111,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "promotion",
-          "user",
-          "uuid",
-          "email",
-          "state",
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -148,17 +119,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "promotion",
-          "user",
-          "uuid",
-          "email",
-          "state",
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -301,9 +262,6 @@
           "title_ua",
           "title_ru",
           "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru",
           "subtitle",
           "subtitle_pl",
           "subtitle_ua",
@@ -316,7 +274,7 @@
           "categories",
           "organization",
           "discountTo",
-          "dateUntil",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
           "viewsCount"
@@ -346,9 +304,6 @@
           "title_ua",
           "title_ru",
           "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru",
           "subtitle",
           "subtitle_pl",
           "subtitle_ua",
@@ -361,7 +316,7 @@
           "categories",
           "organization",
           "discountTo",
-          "dateUntil",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
           "viewsCount"
@@ -379,9 +334,6 @@
           "title_ua",
           "title_ru",
           "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru",
           "subtitle",
           "subtitle_pl",
           "subtitle_ua",
@@ -394,7 +346,7 @@
           "categories",
           "organization",
           "discountTo",
-          "dateUntil",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
           "viewsCount"
@@ -406,7 +358,20 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::reservation-service.reservation-service",
       "properties": {
-        "fields": ["title", "description", "price", "organization"]
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "durationMinutes",
+          "price",
+          "organization",
+          "targets"
+        ]
       },
       "conditions": []
     },
@@ -420,7 +385,20 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::reservation-service.reservation-service",
       "properties": {
-        "fields": ["title", "description", "price", "organization"]
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "durationMinutes",
+          "price",
+          "organization",
+          "targets"
+        ]
       },
       "conditions": []
     },
@@ -428,7 +406,20 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::reservation-service.reservation-service",
       "properties": {
-        "fields": ["title", "description", "price", "organization"]
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "durationMinutes",
+          "price",
+          "organization",
+          "targets"
+        ]
       },
       "conditions": []
     },
@@ -438,8 +429,14 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "description",
-          "reservationServices",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "services",
           "organization"
         ]
       },
@@ -457,8 +454,14 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "description",
-          "reservationServices",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "services",
           "organization"
         ]
       },
@@ -470,8 +473,14 @@
       "properties": {
         "fields": [
           "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
           "description",
-          "reservationServices",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "services",
           "organization"
         ]
       },
@@ -487,8 +496,8 @@
           "dateTimeFrom",
           "dateTimeTo",
           "comment",
-          "reservationService",
-          "reservationTarget"
+          "service",
+          "target"
         ]
       },
       "conditions": []
@@ -509,8 +518,8 @@
           "dateTimeFrom",
           "dateTimeTo",
           "comment",
-          "reservationService",
-          "reservationTarget"
+          "service",
+          "target"
         ]
       },
       "conditions": []
@@ -525,8 +534,8 @@
           "dateTimeFrom",
           "dateTimeTo",
           "comment",
-          "reservationService",
-          "reservationTarget"
+          "service",
+          "target"
         ]
       },
       "conditions": []

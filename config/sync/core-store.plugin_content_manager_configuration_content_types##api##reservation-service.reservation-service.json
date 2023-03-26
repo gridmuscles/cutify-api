@@ -34,6 +34,48 @@
           "sortable": true
         }
       },
+      "title_pl": {
+        "edit": {
+          "label": "title_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_ua": {
+        "edit": {
+          "label": "title_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_ru": {
+        "edit": {
+          "label": "title_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "description": {
         "edit": {
           "label": "description",
@@ -44,6 +86,62 @@
         },
         "list": {
           "label": "description",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "durationMinutes": {
+        "edit": {
+          "label": "durationMinutes",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "durationMinutes",
           "searchable": true,
           "sortable": true
         }
@@ -75,6 +173,21 @@
           "label": "organization",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "targets": {
+        "edit": {
+          "label": "targets",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "targets",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -115,7 +228,37 @@
             "size": 6
           },
           {
+            "name": "title_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "title_ua",
+            "size": 6
+          },
+          {
+            "name": "title_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
             "name": "description",
+            "size": 6
+          },
+          {
+            "name": "description_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "description_ru",
+            "size": 6
+          },
+          {
+            "name": "description_ua",
             "size": 6
           }
         ],
@@ -123,9 +266,21 @@
           {
             "name": "price",
             "size": 4
-          },
+          }
+        ],
+        [
           {
             "name": "organization",
+            "size": 6
+          },
+          {
+            "name": "durationMinutes",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "targets",
             "size": 6
           }
         ]

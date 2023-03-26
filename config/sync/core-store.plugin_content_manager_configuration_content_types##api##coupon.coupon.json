@@ -92,62 +92,6 @@
           "sortable": true
         }
       },
-      "title": {
-        "edit": {
-          "label": "title",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "title",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "title_pl": {
-        "edit": {
-          "label": "title_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "title_pl",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "title_ua": {
-        "edit": {
-          "label": "title_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "title_ua",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "title_ru": {
-        "edit": {
-          "label": "title_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "title_ru",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -178,27 +122,8 @@
       }
     },
     "layouts": {
+      "list": ["id"],
       "edit": [
-        [
-          {
-            "name": "title",
-            "size": 6
-          },
-          {
-            "name": "title_pl",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "title_ua",
-            "size": 6
-          },
-          {
-            "name": "title_ru",
-            "size": 6
-          }
-        ],
         [
           {
             "name": "uuid",
@@ -225,8 +150,7 @@
             "size": 6
           }
         ]
-      ],
-      "list": ["id", "title", "title_pl", "title_ua"]
+      ]
     }
   },
   "type": "object",
