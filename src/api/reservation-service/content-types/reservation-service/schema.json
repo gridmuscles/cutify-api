@@ -41,10 +41,12 @@
       "type": "text"
     },
     "durationMinutes": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "price": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
     },
     "organization": {
       "type": "relation",
