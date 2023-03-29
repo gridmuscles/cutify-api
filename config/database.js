@@ -60,7 +60,7 @@ module.exports = ({ env }) => {
         filename: path.join(
           __dirname,
           '..',
-          env('DATABASE_FILENAME', 'data.db')
+          env('DATABASE_FILENAME', `${process.env.NODE_ENV ?? 'data'}.db`)
         ),
       },
       useNullAsDefault: true,
