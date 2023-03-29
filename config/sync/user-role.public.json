@@ -31,6 +31,9 @@
       "action": "api::organization.organization.findOne"
     },
     {
+      "action": "api::privacy-policy.privacy-policy.find"
+    },
+    {
       "action": "api::promotion.promotion.find"
     },
     {

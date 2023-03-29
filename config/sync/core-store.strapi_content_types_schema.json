@@ -530,7 +530,11 @@
         },
         "type": {
           "type": "enumeration",
-          "enum": ["read-only", "full-access", "custom"],
+          "enum": [
+            "read-only",
+            "full-access",
+            "custom"
+          ],
           "configurable": false,
           "required": true,
           "default": "read-only"
@@ -627,7 +631,11 @@
           },
           "type": {
             "type": "enumeration",
-            "enum": ["read-only", "full-access", "custom"],
+            "enum": [
+              "read-only",
+              "full-access",
+              "custom"
+            ],
             "configurable": false,
             "required": true,
             "default": "read-only"
@@ -1165,32 +1173,44 @@
       "indexes": [
         {
           "name": "upload_files_folder_path_index",
-          "columns": ["folder_path"],
+          "columns": [
+            "folder_path"
+          ],
           "type": null
         },
         {
           "name": "upload_files_created_at_index",
-          "columns": ["created_at"],
+          "columns": [
+            "created_at"
+          ],
           "type": null
         },
         {
           "name": "upload_files_updated_at_index",
-          "columns": ["updated_at"],
+          "columns": [
+            "updated_at"
+          ],
           "type": null
         },
         {
           "name": "upload_files_name_index",
-          "columns": ["name"],
+          "columns": [
+            "name"
+          ],
           "type": null
         },
         {
           "name": "upload_files_size_index",
-          "columns": ["size"],
+          "columns": [
+            "size"
+          ],
           "type": null
         },
         {
           "name": "upload_files_ext_index",
-          "columns": ["ext"],
+          "columns": [
+            "ext"
+          ],
           "type": null
         }
       ],
@@ -1383,12 +1403,16 @@
       "indexes": [
         {
           "name": "upload_folders_path_id_index",
-          "columns": ["path_id"],
+          "columns": [
+            "path_id"
+          ],
           "type": "unique"
         },
         {
           "name": "upload_folders_path_index",
-          "columns": ["path"],
+          "columns": [
+            "path"
+          ],
           "type": "unique"
         }
       ],
@@ -2250,7 +2274,10 @@
         },
         "state": {
           "type": "enumeration",
-          "enum": ["active", "verified"],
+          "enum": [
+            "active",
+            "verified"
+          ],
           "required": true,
           "default": "active"
         },
@@ -2314,7 +2341,10 @@
           },
           "state": {
             "type": "enumeration",
-            "enum": ["active", "verified"],
+            "enum": [
+              "active",
+              "verified"
+            ],
             "required": true,
             "default": "active"
           }
@@ -2628,6 +2658,142 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::privacy-policy.privacy-policy": {
+      "kind": "singleType",
+      "collectionName": "privacy_policies",
+      "info": {
+        "singularName": "privacy-policy",
+        "pluralName": "privacy-policies",
+        "displayName": "Privacy policy",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "title_pl": {
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "type": "string",
+          "required": true
+        },
+        "text": {
+          "type": "richtext",
+          "required": true
+        },
+        "text_pl": {
+          "type": "richtext",
+          "required": true
+        },
+        "text_ua": {
+          "type": "richtext",
+          "required": true
+        },
+        "text_ru": {
+          "type": "richtext",
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "privacy_policies",
+        "info": {
+          "singularName": "privacy-policy",
+          "pluralName": "privacy-policies",
+          "displayName": "Privacy policy",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "title_pl": {
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "type": "string",
+            "required": true
+          },
+          "text": {
+            "type": "richtext",
+            "required": true
+          },
+          "text_pl": {
+            "type": "richtext",
+            "required": true
+          },
+          "text_ua": {
+            "type": "richtext",
+            "required": true
+          },
+          "text_ru": {
+            "type": "richtext",
+            "required": true
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "privacy-policy",
+      "connection": "default",
+      "uid": "api::privacy-policy.privacy-policy",
+      "apiName": "privacy-policy",
+      "globalId": "PrivacyPolicy",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::promotion.promotion": {
       "kind": "collectionType",
       "collectionName": "promotions",
@@ -2684,7 +2850,9 @@
           "type": "media",
           "multiple": true,
           "required": false,
-          "allowedTypes": ["images"]
+          "allowedTypes": [
+            "images"
+          ]
         },
         "terms": {
           "pluginOptions": {},
@@ -2821,7 +2989,9 @@
             "type": "media",
             "multiple": true,
             "required": false,
-            "allowedTypes": ["images"]
+            "allowedTypes": [
+              "images"
+            ]
           },
           "terms": {
             "pluginOptions": {},
@@ -3053,10 +3223,12 @@
           "type": "text"
         },
         "durationMinutes": {
-          "type": "integer"
+          "type": "integer",
+          "required": true
         },
         "price": {
-          "type": "decimal"
+          "type": "decimal",
+          "required": true
         },
         "organization": {
           "type": "relation",
@@ -3138,10 +3310,12 @@
             "type": "text"
           },
           "durationMinutes": {
-            "type": "integer"
+            "type": "integer",
+            "required": true
           },
           "price": {
-            "type": "decimal"
+            "type": "decimal",
+            "required": true
           },
           "organization": {
             "type": "relation",

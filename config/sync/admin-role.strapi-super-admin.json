@@ -67,7 +67,10 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": [
+          "title",
+          "slug"
+        ]
       },
       "conditions": []
     },
@@ -81,7 +84,10 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": [
+          "title",
+          "slug"
+        ]
       },
       "conditions": []
     },
@@ -89,7 +95,10 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": [
+          "title",
+          "slug"
+        ]
       },
       "conditions": []
     },
@@ -97,7 +106,13 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state"
+        ]
       },
       "conditions": []
     },
@@ -111,7 +126,13 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state"
+        ]
       },
       "conditions": []
     },
@@ -119,7 +140,13 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state"
+        ]
       },
       "conditions": []
     },
@@ -248,6 +275,69 @@
           "instagramLink",
           "googleMapLink",
           "locations"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "text",
+          "text_pl",
+          "text_ua",
+          "text_ru"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "text",
+          "text_pl",
+          "text_ua",
+          "text_ru"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "text",
+          "text_pl",
+          "text_ua",
+          "text_ru"
         ]
       },
       "conditions": []
@@ -544,7 +634,14 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply", "name"]
+        "fields": [
+          "message",
+          "user",
+          "organization",
+          "rating",
+          "reply",
+          "name"
+        ]
       },
       "conditions": []
     },
@@ -564,7 +661,14 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply", "name"]
+        "fields": [
+          "message",
+          "user",
+          "organization",
+          "rating",
+          "reply",
+          "name"
+        ]
       },
       "conditions": []
     },
@@ -572,7 +676,14 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply", "name"]
+        "fields": [
+          "message",
+          "user",
+          "organization",
+          "rating",
+          "reply",
+          "name"
+        ]
       },
       "conditions": []
     },
