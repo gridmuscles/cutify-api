@@ -56,8 +56,23 @@ module.exports = createCoreController(
         if (!dateTimeUntil) {
           throw new Error(ERROR_CODES.DATE_TIME_UNTIL_IS_NOT_DEFINED)
         }
+
         if (isAfter(new Date(), parseISO(dateTimeUntil))) {
           throw new Error(ERROR_CODES.PROMOTION_IS_FINISHED)
+        }
+
+        const userCoupons = await strapi.entityService.findMany(
+          'api::coupon.coupon',
+          {
+            filters: {
+              email: ctx.request.body.email,
+              promotion: promotion.data.id,
+            },
+          }
+        )
+
+        if (userCoupons.length > 10) {
+          throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_SINGLE_USER)
         }
 
         const coupon = await strapi.service('api::coupon.coupon').create({
