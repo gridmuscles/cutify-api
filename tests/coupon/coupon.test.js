@@ -80,4 +80,16 @@ describe('Coupons', () => {
         expect(data[1].attributes.uuid).toBe('2')
       })
   })
+
+  it('should guest be able to get any coupons by slug list', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/coupons`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(0)
+      })
+  })
 })

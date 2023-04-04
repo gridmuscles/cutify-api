@@ -11,7 +11,7 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
     if (!ctx.request.query.filters?.uuid?.$in) {
       ctx.request.query.filters = {
         ...(ctx.request.query.filters ?? {}),
-        user: ctx.state.user.id,
+        user: ctx.state?.user?.id ?? 0,
       }
     }
 
