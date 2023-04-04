@@ -24,6 +24,8 @@ async function setupStrapi() {
     await waitForServer()
 
     instance = strapi // strapi is global now
+
+    await strapi.plugin('config-sync').service('main').importAllConfig()
   }
   return instance
 }
