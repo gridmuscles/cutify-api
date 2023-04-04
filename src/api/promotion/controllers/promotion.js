@@ -1,6 +1,8 @@
 'use strict'
 
 const { parseISO, isAfter } = require('date-fns')
+const qs = require('qs')
+
 const { ERROR_CODES } = require('../../../utils/const')
 
 /**
@@ -49,7 +51,13 @@ module.exports = createCoreController(
   ({ strapi }) => ({
     async requestCoupon(ctx) {
       const { locale } = ctx.request.query
+      const { email, count } = ctx.request.body
+
       try {
+        if (!email || !count) {
+          throw new Error(ERROR_CODES.REQUIRED_FIELDS_MISSING)
+        }
+
         const promotion = await super.findOne(ctx)
 
         const { dateTimeUntil } = promotion.data.attributes
@@ -71,34 +79,50 @@ module.exports = createCoreController(
           }
         )
 
-        if (userCoupons.length > 10) {
+        if (userCoupons.length + count > 10) {
           throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_SINGLE_USER)
         }
 
-        const coupon = await strapi.service('api::coupon.coupon').create({
-          data: {
-            promotion: promotion.data.id,
-            email: ctx.request.body.email,
-            uuid: `${Math.floor(
-              100000000 + Math.random() * 900000000
-            )}-${Math.floor(200000000 + Math.random() * 800000000)}`,
-            state: 'active',
+        const couponUUIDList = await Promise.all(
+          [...Array(count).keys()].map(() =>
+            strapi.entityService.create('api::coupon.coupon', {
+              data: {
+                promotion: promotion.data.id,
+                email,
+                uuid: `${Math.floor(
+                  100000000 + Math.random() * 900000000
+                )}-${Math.floor(200000000 + Math.random() * 800000000)}`,
+                state: 'active',
+              },
+            })
+          )
+        ).then((coupons) => coupons.map(({ uuid }) => uuid))
+
+        const couponsQuery = qs.stringify(
+          {
+            filters: {
+              uuid: {
+                $in: couponUUIDList,
+              },
+            },
           },
-          populate: '*',
-        })
+          {
+            encodeValuesOnly: true,
+          }
+        )
 
         await strapi.plugins['email'].services.email.send({
-          to: ctx.request.body.email,
+          to: email,
           templateId: 'd-c096941312084bdea8775e617e70e6b2',
           dynamicTemplateData: {
             ...TEMPLATE_DATA[locale],
-            link: `${ctx.request.header.origin}/${locale ?? 'en'}/coupons/${
-              coupon.id
-            }`,
+            link: `${ctx.request.header.origin}/${
+              locale ?? 'en'
+            }/coupons?${couponsQuery}`,
           },
         })
 
-        return coupon.id
+        return { data: couponUUIDList }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()
