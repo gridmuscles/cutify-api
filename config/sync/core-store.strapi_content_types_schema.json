@@ -3466,7 +3466,7 @@
       "attributes": {
         "message": {
           "pluginOptions": {},
-          "type": "string"
+          "type": "text"
         },
         "user": {
           "type": "relation",
@@ -3490,8 +3490,7 @@
           "type": "text"
         },
         "name": {
-          "type": "name",
-          "required": true
+          "type": "string"
         },
         "createdAt": {
           "type": "datetime"
@@ -3541,7 +3540,7 @@
         "attributes": {
           "message": {
             "pluginOptions": {},
-            "type": "string"
+            "type": "text"
           },
           "user": {
             "type": "relation",
@@ -3565,8 +3564,7 @@
             "type": "text"
           },
           "name": {
-            "type": "name",
-            "required": true
+            "type": "string"
           }
         },
         "kind": "collectionType"
