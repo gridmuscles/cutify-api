@@ -16,7 +16,7 @@
       "action": "api::city.city.findOne"
     },
     {
-      "action": "api::coupon.coupon.findOne"
+      "action": "api::coupon.coupon.find"
     },
     {
       "action": "api::location.location.find"
