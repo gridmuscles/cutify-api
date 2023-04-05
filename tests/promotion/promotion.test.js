@@ -73,4 +73,23 @@ describe('Promotions', () => {
       .expect('Content-Type', /json/)
       .expect(400)
   })
+
+  it('should be an error if coupon requested for a draft promotion', async () => {
+    const draftPromotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      publishedAt: null,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${draftPromotion.id}/request`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'user1@gmail.com',
+        count: 10,
+      })
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
 })

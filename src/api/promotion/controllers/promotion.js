@@ -59,8 +59,14 @@ module.exports = createCoreController(
         }
 
         const promotion = await super.findOne(ctx)
+        const { dateTimeUntil, publishedAt } = promotion.data.attributes
 
-        const { dateTimeUntil } = promotion.data.attributes
+        if (!publishedAt) {
+          throw new Error(
+            ERROR_CODES.UNABLE_TO_REQUEST_COUPON_FOR_DRAFT_PROMOTION
+          )
+        }
+
         if (!dateTimeUntil) {
           throw new Error(ERROR_CODES.DATE_TIME_UNTIL_IS_NOT_DEFINED)
         }
