@@ -460,7 +460,11 @@
           }
         ]
       ],
-      "list": ["id", "title", "title_pl", "title_ua"]
+      "list": [
+        "id",
+        "organization",
+        "title_ru"
+      ]
     }
   },
   "type": "object",
