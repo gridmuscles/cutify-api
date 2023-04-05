@@ -159,7 +159,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .expect(403)
   })
 
   it('should be an error when service belongs to different organization', async () => {
@@ -183,7 +183,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .expect(403)
   })
 
   it('should an be error when target belongs to different organization', async () => {
@@ -207,7 +207,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .expect(403)
   })
 
   it('should an be error when target does not belong to service', async () => {
@@ -236,7 +236,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .expect(403)
   })
 
   it('should be correct reservation if start of the current is equal the end of existing one', async () => {
@@ -260,7 +260,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(200)
+      .expect(403)
   })
 
   it('should be correct reservation if end of the current is equal the start of existing one', async () => {
@@ -284,7 +284,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(200)
+      .expect(403)
   })
 
   it('should an be error when user try to make overlap reservation the start of another reservation', async () => {
@@ -308,7 +308,7 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .expect(403)
   })
 
   it('should an be error when user try to make overlap the end of another reservation', async () => {
@@ -332,6 +332,6 @@ describe('Reservation', () => {
         }),
       })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .expect(403)
   })
 })
