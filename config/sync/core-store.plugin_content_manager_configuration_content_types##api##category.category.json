@@ -146,48 +146,6 @@
           "sortable": true
         }
       },
-      "slug_pl": {
-        "edit": {
-          "label": "slug_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug_pl",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug_ua": {
-        "edit": {
-          "label": "slug_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug_ua",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug_ru": {
-        "edit": {
-          "label": "slug_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug_ru",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -218,18 +176,19 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "title_pl",
-        "title_ua"
-      ],
+      "list": ["id", "title", "title_pl", "title_ua"],
       "edit": [
         [
           {
             "name": "title",
             "size": 6
           },
+          {
+            "name": "slug",
+            "size": 6
+          }
+        ],
+        [
           {
             "name": "title_pl",
             "size": 6
@@ -239,7 +198,9 @@
           {
             "name": "title_ua",
             "size": 6
-          },
+          }
+        ],
+        [
           {
             "name": "title_ru",
             "size": 6
@@ -262,26 +223,6 @@
           },
           {
             "name": "description_ru",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "slug",
-            "size": 6
-          },
-          {
-            "name": "slug_pl",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "slug_ua",
-            "size": 6
-          },
-          {
-            "name": "slug_ru",
             "size": 6
           }
         ]

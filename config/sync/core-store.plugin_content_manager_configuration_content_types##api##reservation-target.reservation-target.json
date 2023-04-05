@@ -1,0 +1,253 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::reservation-target.reservation-target",
+  "value": {
+    "uid": "api::reservation-target.reservation-target",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "title",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_pl": {
+        "edit": {
+          "label": "title_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_ua": {
+        "edit": {
+          "label": "title_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title_ru": {
+        "edit": {
+          "label": "title_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "services": {
+        "edit": {
+          "label": "services",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "services",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "organization": {
+        "edit": {
+          "label": "organization",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "organization",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": ["id", "title", "description", "services"],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 6
+          },
+          {
+            "name": "title_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "title_ua",
+            "size": 6
+          },
+          {
+            "name": "title_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "description",
+            "size": 6
+          },
+          {
+            "name": "description_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "description_ua",
+            "size": 6
+          },
+          {
+            "name": "description_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "organization",
+            "size": 6
+          },
+          {
+            "name": "services",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

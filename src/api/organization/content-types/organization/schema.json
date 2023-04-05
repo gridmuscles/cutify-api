@@ -17,6 +17,23 @@
       "type": "string",
       "required": true
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "description_pl": {
+      "type": "richtext"
+    },
+    "description_ua": {
+      "type": "richtext"
+    },
+    "description_ru": {
+      "type": "richtext"
+    },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
@@ -33,6 +50,9 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "organizations"
+    },
+    "siteLink": {
+      "type": "string"
     },
     "telegramLink": {
       "type": "string"
@@ -51,14 +71,6 @@
       "relation": "oneToMany",
       "target": "api::location.location",
       "mappedBy": "organization"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
-    },
-    "description": {
-      "type": "richtext"
     }
   }
 }

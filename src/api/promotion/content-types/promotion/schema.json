@@ -19,35 +19,23 @@
     },
     "title_pl": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "title_ua": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "title_ru": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "pluginOptions": {},
       "type": "uid",
       "targetField": "title",
-      "required": true
-    },
-    "slug_pl": {
-      "type": "uid",
-      "targetField": "title_pl",
-      "required": true
-    },
-    "slug_ua": {
-      "type": "uid",
-      "targetField": "title_ua",
-      "required": true
-    },
-    "slug_ru": {
-      "type": "uid",
-      "targetField": "title_ru",
       "required": true
     },
     "subtitle": {
@@ -99,16 +87,17 @@
       "pluginOptions": {},
       "type": "integer"
     },
-    "dateUntil": {
-      "type": "date",
+    "dateTimeUntil": {
+      "type": "datetime",
       "required": true
     },
-    "likesNumber": {
+    "likesCount": {
       "type": "integer",
       "default": 0
     },
-    "couponsNumber": {
-      "type": "integer"
+    "couponsCount": {
+      "type": "integer",
+      "default": 0
     },
     "viewsCount": {
       "type": "integer",

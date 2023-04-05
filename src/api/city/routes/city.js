@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * city router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
+const { createCoreRouter } = require('@strapi/strapi').factories
 
-module.exports = createCoreRouter('api::city.city');
+module.exports = createCoreRouter('api::city.city')

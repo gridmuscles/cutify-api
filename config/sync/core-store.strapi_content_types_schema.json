@@ -530,11 +530,7 @@
         },
         "type": {
           "type": "enumeration",
-          "enum": [
-            "read-only",
-            "full-access",
-            "custom"
-          ],
+          "enum": ["read-only", "full-access", "custom"],
           "configurable": false,
           "required": true,
           "default": "read-only"
@@ -631,11 +627,7 @@
           },
           "type": {
             "type": "enumeration",
-            "enum": [
-              "read-only",
-              "full-access",
-              "custom"
-            ],
+            "enum": ["read-only", "full-access", "custom"],
             "configurable": false,
             "required": true,
             "default": "read-only"
@@ -1173,44 +1165,32 @@
       "indexes": [
         {
           "name": "upload_files_folder_path_index",
-          "columns": [
-            "folder_path"
-          ],
+          "columns": ["folder_path"],
           "type": null
         },
         {
           "name": "upload_files_created_at_index",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "type": null
         },
         {
           "name": "upload_files_updated_at_index",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "type": null
         },
         {
           "name": "upload_files_name_index",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "type": null
         },
         {
           "name": "upload_files_size_index",
-          "columns": [
-            "size"
-          ],
+          "columns": ["size"],
           "type": null
         },
         {
           "name": "upload_files_ext_index",
-          "columns": [
-            "ext"
-          ],
+          "columns": ["ext"],
           "type": null
         }
       ],
@@ -1403,16 +1383,12 @@
       "indexes": [
         {
           "name": "upload_folders_path_id_index",
-          "columns": [
-            "path_id"
-          ],
+          "columns": ["path_id"],
           "type": "unique"
         },
         {
           "name": "upload_folders_path_index",
-          "columns": [
-            "path"
-          ],
+          "columns": ["path"],
           "type": "unique"
         }
       ],
@@ -1826,7 +1802,11 @@
           "type": "string",
           "minLength": 3,
           "unique": true,
-          "configurable": false,
+          "configurable": false
+        },
+        "name": {
+          "type": "string",
+          "minLength": 3,
           "required": true
         },
         "email": {
@@ -1938,7 +1918,11 @@
             "type": "string",
             "minLength": 3,
             "unique": true,
-            "configurable": false,
+            "configurable": false
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
             "required": true
           },
           "email": {
@@ -2055,21 +2039,6 @@
           "type": "uid",
           "targetField": "title"
         },
-        "slug_pl": {
-          "type": "uid",
-          "targetField": "title_pl",
-          "required": true
-        },
-        "slug_ua": {
-          "type": "uid",
-          "targetField": "title_ua",
-          "required": true
-        },
-        "slug_ru": {
-          "type": "uid",
-          "targetField": "title_ru",
-          "required": true
-        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2150,21 +2119,6 @@
             "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
-          },
-          "slug_pl": {
-            "type": "uid",
-            "targetField": "title_pl",
-            "required": true
-          },
-          "slug_ua": {
-            "type": "uid",
-            "targetField": "title_ua",
-            "required": true
-          },
-          "slug_ru": {
-            "type": "uid",
-            "targetField": "title_ru",
-            "required": true
           }
         },
         "kind": "collectionType"
@@ -2276,26 +2230,6 @@
       },
       "pluginOptions": {},
       "attributes": {
-        "title": {
-          "pluginOptions": {},
-          "type": "string",
-          "required": true
-        },
-        "title_pl": {
-          "pluginOptions": {},
-          "type": "string",
-          "required": true
-        },
-        "title_ua": {
-          "pluginOptions": {},
-          "type": "string",
-          "required": true
-        },
-        "title_ru": {
-          "pluginOptions": {},
-          "type": "string",
-          "required": true
-        },
         "promotion": {
           "type": "relation",
           "relation": "oneToOne",
@@ -2310,28 +2244,13 @@
           "pluginOptions": {},
           "type": "uid"
         },
-        "terms": {
-          "type": "richtext"
-        },
-        "terms_pl": {
-          "type": "richtext"
-        },
-        "terms_ua": {
-          "type": "richtext"
-        },
-        "terms_ru": {
-          "type": "richtext"
-        },
         "email": {
           "type": "email",
           "required": true
         },
         "state": {
           "type": "enumeration",
-          "enum": [
-            "active",
-            "verified"
-          ],
+          "enum": ["active", "verified"],
           "required": true,
           "default": "active"
         },
@@ -2375,26 +2294,6 @@
         },
         "pluginOptions": {},
         "attributes": {
-          "title": {
-            "pluginOptions": {},
-            "type": "string",
-            "required": true
-          },
-          "title_pl": {
-            "pluginOptions": {},
-            "type": "string",
-            "required": true
-          },
-          "title_ua": {
-            "pluginOptions": {},
-            "type": "string",
-            "required": true
-          },
-          "title_ru": {
-            "pluginOptions": {},
-            "type": "string",
-            "required": true
-          },
           "promotion": {
             "type": "relation",
             "relation": "oneToOne",
@@ -2409,28 +2308,13 @@
             "pluginOptions": {},
             "type": "uid"
           },
-          "terms": {
-            "type": "richtext"
-          },
-          "terms_pl": {
-            "type": "richtext"
-          },
-          "terms_ua": {
-            "type": "richtext"
-          },
-          "terms_ru": {
-            "type": "richtext"
-          },
           "email": {
             "type": "email",
             "required": true
           },
           "state": {
             "type": "enumeration",
-            "enum": [
-              "active",
-              "verified"
-            ],
+            "enum": ["active", "verified"],
             "required": true,
             "default": "active"
           }
@@ -2577,6 +2461,23 @@
           "type": "string",
           "required": true
         },
+        "slug": {
+          "type": "uid",
+          "targetField": "title",
+          "required": true
+        },
+        "description": {
+          "type": "richtext"
+        },
+        "description_pl": {
+          "type": "richtext"
+        },
+        "description_ua": {
+          "type": "richtext"
+        },
+        "description_ru": {
+          "type": "richtext"
+        },
         "categories": {
           "type": "relation",
           "relation": "oneToMany",
@@ -2593,6 +2494,9 @@
           "relation": "manyToMany",
           "target": "plugin::users-permissions.user",
           "inversedBy": "organizations"
+        },
+        "siteLink": {
+          "type": "string"
         },
         "telegramLink": {
           "type": "string"
@@ -2611,14 +2515,6 @@
           "relation": "oneToMany",
           "target": "api::location.location",
           "mappedBy": "organization"
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "title",
-          "required": true
-        },
-        "description": {
-          "type": "richtext"
         },
         "createdAt": {
           "type": "datetime"
@@ -2665,6 +2561,23 @@
             "type": "string",
             "required": true
           },
+          "slug": {
+            "type": "uid",
+            "targetField": "title",
+            "required": true
+          },
+          "description": {
+            "type": "richtext"
+          },
+          "description_pl": {
+            "type": "richtext"
+          },
+          "description_ua": {
+            "type": "richtext"
+          },
+          "description_ru": {
+            "type": "richtext"
+          },
           "categories": {
             "type": "relation",
             "relation": "oneToMany",
@@ -2681,6 +2594,9 @@
             "relation": "manyToMany",
             "target": "plugin::users-permissions.user",
             "inversedBy": "organizations"
+          },
+          "siteLink": {
+            "type": "string"
           },
           "telegramLink": {
             "type": "string"
@@ -2699,14 +2615,6 @@
             "relation": "oneToMany",
             "target": "api::location.location",
             "mappedBy": "organization"
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "title",
-            "required": true
-          },
-          "description": {
-            "type": "richtext"
           }
         },
         "kind": "collectionType"
@@ -2717,6 +2625,142 @@
       "uid": "api::organization.organization",
       "apiName": "organization",
       "globalId": "Organization",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::privacy-policy.privacy-policy": {
+      "kind": "singleType",
+      "collectionName": "privacy_policies",
+      "info": {
+        "singularName": "privacy-policy",
+        "pluralName": "privacy-policies",
+        "displayName": "Privacy policy",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "title_pl": {
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "type": "string",
+          "required": true
+        },
+        "text": {
+          "type": "richtext",
+          "required": true
+        },
+        "text_pl": {
+          "type": "richtext",
+          "required": true
+        },
+        "text_ua": {
+          "type": "richtext",
+          "required": true
+        },
+        "text_ru": {
+          "type": "richtext",
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "privacy_policies",
+        "info": {
+          "singularName": "privacy-policy",
+          "pluralName": "privacy-policies",
+          "displayName": "Privacy policy",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "title_pl": {
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "type": "string",
+            "required": true
+          },
+          "text": {
+            "type": "richtext",
+            "required": true
+          },
+          "text_pl": {
+            "type": "richtext",
+            "required": true
+          },
+          "text_ua": {
+            "type": "richtext",
+            "required": true
+          },
+          "text_ru": {
+            "type": "richtext",
+            "required": true
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "privacy-policy",
+      "connection": "default",
+      "uid": "api::privacy-policy.privacy-policy",
+      "apiName": "privacy-policy",
+      "globalId": "PrivacyPolicy",
       "actions": {},
       "lifecycles": {}
     },
@@ -2741,35 +2785,23 @@
         },
         "title_pl": {
           "pluginOptions": {},
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         "title_ua": {
           "pluginOptions": {},
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         "title_ru": {
           "pluginOptions": {},
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         "slug": {
           "pluginOptions": {},
           "type": "uid",
           "targetField": "title",
-          "required": true
-        },
-        "slug_pl": {
-          "type": "uid",
-          "targetField": "title_pl",
-          "required": true
-        },
-        "slug_ua": {
-          "type": "uid",
-          "targetField": "title_ua",
-          "required": true
-        },
-        "slug_ru": {
-          "type": "uid",
-          "targetField": "title_ru",
           "required": true
         },
         "subtitle": {
@@ -2788,9 +2820,7 @@
           "type": "media",
           "multiple": true,
           "required": false,
-          "allowedTypes": [
-            "images"
-          ]
+          "allowedTypes": ["images"]
         },
         "terms": {
           "pluginOptions": {},
@@ -2823,16 +2853,17 @@
           "pluginOptions": {},
           "type": "integer"
         },
-        "dateUntil": {
-          "type": "date",
+        "dateTimeUntil": {
+          "type": "datetime",
           "required": true
         },
-        "likesNumber": {
+        "likesCount": {
           "type": "integer",
           "default": 0
         },
-        "couponsNumber": {
-          "type": "integer"
+        "couponsCount": {
+          "type": "integer",
+          "default": 0
         },
         "viewsCount": {
           "type": "integer",
@@ -2891,35 +2922,23 @@
           },
           "title_pl": {
             "pluginOptions": {},
-            "type": "string"
+            "type": "string",
+            "required": true
           },
           "title_ua": {
             "pluginOptions": {},
-            "type": "string"
+            "type": "string",
+            "required": true
           },
           "title_ru": {
             "pluginOptions": {},
-            "type": "string"
+            "type": "string",
+            "required": true
           },
           "slug": {
             "pluginOptions": {},
             "type": "uid",
             "targetField": "title",
-            "required": true
-          },
-          "slug_pl": {
-            "type": "uid",
-            "targetField": "title_pl",
-            "required": true
-          },
-          "slug_ua": {
-            "type": "uid",
-            "targetField": "title_ua",
-            "required": true
-          },
-          "slug_ru": {
-            "type": "uid",
-            "targetField": "title_ru",
             "required": true
           },
           "subtitle": {
@@ -2938,9 +2957,7 @@
             "type": "media",
             "multiple": true,
             "required": false,
-            "allowedTypes": [
-              "images"
-            ]
+            "allowedTypes": ["images"]
           },
           "terms": {
             "pluginOptions": {},
@@ -2973,16 +2990,17 @@
             "pluginOptions": {},
             "type": "integer"
           },
-          "dateUntil": {
-            "type": "date",
+          "dateTimeUntil": {
+            "type": "datetime",
             "required": true
           },
-          "likesNumber": {
+          "likesCount": {
             "type": "integer",
             "default": 0
           },
-          "couponsNumber": {
-            "type": "integer"
+          "couponsCount": {
+            "type": "integer",
+            "default": 0
           },
           "viewsCount": {
             "type": "integer",
@@ -2997,6 +3015,438 @@
       "uid": "api::promotion.promotion",
       "apiName": "promotion",
       "globalId": "Promotion",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::reservation.reservation": {
+      "kind": "collectionType",
+      "collectionName": "reservations",
+      "info": {
+        "singularName": "reservation",
+        "pluralName": "reservations",
+        "displayName": "Reservation",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "organization": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::organization.organization"
+        },
+        "user": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
+        "dateTimeFrom": {
+          "type": "datetime",
+          "required": true
+        },
+        "dateTimeTo": {
+          "type": "datetime",
+          "required": true
+        },
+        "comment": {
+          "type": "text"
+        },
+        "service": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::reservation-service.reservation-service"
+        },
+        "target": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::reservation-target.reservation-target"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "reservations",
+        "info": {
+          "singularName": "reservation",
+          "pluralName": "reservations",
+          "displayName": "Reservation",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "organization": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::organization.organization"
+          },
+          "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          },
+          "dateTimeFrom": {
+            "type": "datetime",
+            "required": true
+          },
+          "dateTimeTo": {
+            "type": "datetime",
+            "required": true
+          },
+          "comment": {
+            "type": "text"
+          },
+          "service": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::reservation-service.reservation-service"
+          },
+          "target": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::reservation-target.reservation-target"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "reservation",
+      "connection": "default",
+      "uid": "api::reservation.reservation",
+      "apiName": "reservation",
+      "globalId": "Reservation",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::reservation-service.reservation-service": {
+      "kind": "collectionType",
+      "collectionName": "reservation_services",
+      "info": {
+        "singularName": "reservation-service",
+        "pluralName": "reservation-services",
+        "displayName": "Reservation Service",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "title_pl": {
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "text"
+        },
+        "description_pl": {
+          "type": "text"
+        },
+        "description_ru": {
+          "type": "text"
+        },
+        "description_ua": {
+          "type": "text"
+        },
+        "durationMinutes": {
+          "type": "integer",
+          "required": true
+        },
+        "price": {
+          "type": "decimal",
+          "required": true
+        },
+        "organization": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::organization.organization"
+        },
+        "targets": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::reservation-target.reservation-target",
+          "mappedBy": "services"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "reservation_services",
+        "info": {
+          "singularName": "reservation-service",
+          "pluralName": "reservation-services",
+          "displayName": "Reservation Service",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "title_pl": {
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "type": "string",
+            "required": true
+          },
+          "description": {
+            "type": "text"
+          },
+          "description_pl": {
+            "type": "text"
+          },
+          "description_ru": {
+            "type": "text"
+          },
+          "description_ua": {
+            "type": "text"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "required": true
+          },
+          "price": {
+            "type": "decimal",
+            "required": true
+          },
+          "organization": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::organization.organization"
+          },
+          "targets": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::reservation-target.reservation-target",
+            "mappedBy": "services"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "reservation-service",
+      "connection": "default",
+      "uid": "api::reservation-service.reservation-service",
+      "apiName": "reservation-service",
+      "globalId": "ReservationService",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::reservation-target.reservation-target": {
+      "kind": "collectionType",
+      "collectionName": "reservation_targets",
+      "info": {
+        "singularName": "reservation-target",
+        "pluralName": "reservation-targets",
+        "displayName": "Reservation Target",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "title_pl": {
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "text"
+        },
+        "description_pl": {
+          "type": "text"
+        },
+        "description_ru": {
+          "type": "text"
+        },
+        "description_ua": {
+          "type": "text"
+        },
+        "services": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::reservation-service.reservation-service",
+          "inversedBy": "targets"
+        },
+        "organization": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::organization.organization"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "reservation_targets",
+        "info": {
+          "singularName": "reservation-target",
+          "pluralName": "reservation-targets",
+          "displayName": "Reservation Target",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "title_pl": {
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "type": "string",
+            "required": true
+          },
+          "description": {
+            "type": "text"
+          },
+          "description_pl": {
+            "type": "text"
+          },
+          "description_ru": {
+            "type": "text"
+          },
+          "description_ua": {
+            "type": "text"
+          },
+          "services": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::reservation-service.reservation-service",
+            "inversedBy": "targets"
+          },
+          "organization": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::organization.organization"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "reservation-target",
+      "connection": "default",
+      "uid": "api::reservation-target.reservation-target",
+      "apiName": "reservation-target",
+      "globalId": "ReservationTarget",
       "actions": {},
       "lifecycles": {}
     },
@@ -3016,7 +3466,7 @@
       "attributes": {
         "message": {
           "pluginOptions": {},
-          "type": "string"
+          "type": "text"
         },
         "user": {
           "type": "relation",
@@ -3039,9 +3489,8 @@
         "reply": {
           "type": "text"
         },
-        "email": {
-          "type": "email",
-          "required": true
+        "name": {
+          "type": "string"
         },
         "createdAt": {
           "type": "datetime"
@@ -3091,7 +3540,7 @@
         "attributes": {
           "message": {
             "pluginOptions": {},
-            "type": "string"
+            "type": "text"
           },
           "user": {
             "type": "relation",
@@ -3114,9 +3563,8 @@
           "reply": {
             "type": "text"
           },
-          "email": {
-            "type": "email",
-            "required": true
+          "name": {
+            "type": "string"
           }
         },
         "kind": "collectionType"

@@ -34,6 +34,76 @@
           "sortable": true
         }
       },
+      "slug": {
+        "edit": {
+          "label": "slug",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slug",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "categories": {
         "edit": {
           "label": "categories",
@@ -77,6 +147,20 @@
           "label": "managers",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "siteLink": {
+        "edit": {
+          "label": "siteLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "siteLink",
+          "searchable": true,
+          "sortable": true
         }
       },
       "telegramLink": {
@@ -150,34 +234,6 @@
           "sortable": false
         }
       },
-      "slug": {
-        "edit": {
-          "label": "slug",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description": {
-        "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -221,6 +277,30 @@
         ],
         [
           {
+            "name": "description",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "managers",
             "size": 6
           },
@@ -231,11 +311,7 @@
         ],
         [
           {
-            "name": "telegramLink",
-            "size": 6
-          },
-          {
-            "name": "facebookLink",
+            "name": "siteLink",
             "size": 6
           }
         ],
@@ -243,7 +319,21 @@
           {
             "name": "instagramLink",
             "size": 6
-          },
+          }
+        ],
+        [
+          {
+            "name": "telegramLink",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "facebookLink",
+            "size": 6
+          }
+        ],
+        [
           {
             "name": "googleMapLink",
             "size": 6
@@ -253,25 +343,14 @@
           {
             "name": "locations",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "description",
-            "size": 12
-          }
-        ],
-        [
+          },
           {
             "name": "promotions",
             "size": 6
           }
         ]
       ],
-      "list": [
-        "id",
-        "title"
-      ]
+      "list": ["id", "title", "slug", "siteLink"]
     }
   },
   "type": "object",

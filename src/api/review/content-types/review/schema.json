@@ -14,7 +14,7 @@
   "attributes": {
     "message": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "text"
     },
     "user": {
       "type": "relation",
@@ -37,9 +37,8 @@
     "reply": {
       "type": "text"
     },
-    "email": {
-      "type": "email",
-      "required": true
+    "name": {
+      "type": "string"
     }
   }
 }

@@ -13,19 +13,22 @@
       "action": "api::coupon.coupon.find"
     },
     {
-      "action": "api::coupon.coupon.findOne"
-    },
-    {
       "action": "api::organization.organization.find"
     },
     {
       "action": "api::organization.organization.findOne"
     },
     {
+      "action": "api::privacy-policy.privacy-policy.find"
+    },
+    {
       "action": "api::promotion.promotion.find"
     },
     {
       "action": "api::promotion.promotion.findOne"
+    },
+    {
+      "action": "api::promotion.promotion.like"
     },
     {
       "action": "api::promotion.promotion.requestCoupon"

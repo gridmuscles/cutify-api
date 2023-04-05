@@ -7,5 +7,10 @@ module.exports = {
       path: '/promotions/:id/request',
       handler: 'promotion.requestCoupon',
     },
+    {
+      method: 'POST',
+      path: '/promotions/:id/like',
+      handler: 'promotion.like',
+    },
   ],
 }

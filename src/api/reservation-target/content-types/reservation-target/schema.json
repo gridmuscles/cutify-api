@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservation_targets",
+  "info": {
+    "singularName": "reservation-target",
+    "pluralName": "reservation-targets",
+    "displayName": "Reservation Target",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "title_pl": {
+      "type": "string",
+      "required": true
+    },
+    "title_ua": {
+      "type": "string",
+      "required": true
+    },
+    "title_ru": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "description_pl": {
+      "type": "text"
+    },
+    "description_ru": {
+      "type": "text"
+    },
+    "description_ua": {
+      "type": "text"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::reservation-service.reservation-service",
+      "inversedBy": "targets"
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::organization.organization"
+    }
+  }
+}

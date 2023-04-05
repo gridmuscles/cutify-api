@@ -20,7 +20,8 @@ const translateObject = (data, locale) => {
   for (const key in data?.attributes) {
     if (
       data.attributes[key] &&
-      (Array.isArray(data.attributes[key]) || typeof data.attributes[key] === 'object')
+      (Array.isArray(data.attributes[key]) ||
+        typeof data.attributes[key] === 'object')
     ) {
       attributes[key] = {}
       attributes[key].data = translateObject(data.attributes[key].data, locale)

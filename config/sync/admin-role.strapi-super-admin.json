@@ -16,10 +16,7 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "slug"
         ]
       },
       "conditions": []
@@ -43,10 +40,7 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "slug"
         ]
       },
       "conditions": []
@@ -64,10 +58,7 @@
           "description_pl",
           "description_ua",
           "description_ru",
-          "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru"
+          "slug"
         ]
       },
       "conditions": []
@@ -76,10 +67,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::city.city",
       "properties": {
-        "fields": [
-          "title",
-          "slug"
-        ]
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -93,10 +81,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": [
-          "title",
-          "slug"
-        ]
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -104,10 +89,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::city.city",
       "properties": {
-        "fields": [
-          "title",
-          "slug"
-        ]
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -115,21 +97,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "promotion",
-          "user",
-          "uuid",
-          "terms",
-          "terms_pl",
-          "terms_ua",
-          "terms_ru",
-          "email",
-          "state"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -143,21 +111,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "promotion",
-          "user",
-          "uuid",
-          "terms",
-          "terms_pl",
-          "terms_ua",
-          "terms_ru",
-          "email",
-          "state"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -165,21 +119,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "promotion",
-          "user",
-          "uuid",
-          "terms",
-          "terms_pl",
-          "terms_ua",
-          "terms_ru",
-          "email",
-          "state"
-        ]
+        "fields": ["promotion", "user", "uuid", "email", "state"]
       },
       "conditions": []
     },
@@ -240,16 +180,20 @@
       "properties": {
         "fields": [
           "title",
+          "slug",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "categories",
           "promotions",
           "managers",
+          "siteLink",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations",
-          "slug",
-          "description"
+          "locations"
         ]
       },
       "conditions": []
@@ -266,16 +210,20 @@
       "properties": {
         "fields": [
           "title",
+          "slug",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "categories",
           "promotions",
           "managers",
+          "siteLink",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations",
-          "slug",
-          "description"
+          "locations"
         ]
       },
       "conditions": []
@@ -286,16 +234,83 @@
       "properties": {
         "fields": [
           "title",
+          "slug",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru",
           "categories",
           "promotions",
           "managers",
+          "siteLink",
           "telegramLink",
           "facebookLink",
           "instagramLink",
           "googleMapLink",
-          "locations",
-          "slug",
-          "description"
+          "locations"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "text",
+          "text_pl",
+          "text_ua",
+          "text_ru"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "text",
+          "text_pl",
+          "text_ua",
+          "text_ru"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::privacy-policy.privacy-policy",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "text",
+          "text_pl",
+          "text_ua",
+          "text_ru"
         ]
       },
       "conditions": []
@@ -310,9 +325,6 @@
           "title_ua",
           "title_ru",
           "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru",
           "subtitle",
           "subtitle_pl",
           "subtitle_ua",
@@ -325,9 +337,9 @@
           "categories",
           "organization",
           "discountTo",
-          "dateUntil",
-          "likesNumber",
-          "couponsNumber",
+          "dateTimeUntil",
+          "likesCount",
+          "couponsCount",
           "viewsCount"
         ]
       },
@@ -355,9 +367,6 @@
           "title_ua",
           "title_ru",
           "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru",
           "subtitle",
           "subtitle_pl",
           "subtitle_ua",
@@ -370,9 +379,9 @@
           "categories",
           "organization",
           "discountTo",
-          "dateUntil",
-          "likesNumber",
-          "couponsNumber",
+          "dateTimeUntil",
+          "likesCount",
+          "couponsCount",
           "viewsCount"
         ]
       },
@@ -388,9 +397,6 @@
           "title_ua",
           "title_ru",
           "slug",
-          "slug_pl",
-          "slug_ua",
-          "slug_ru",
           "subtitle",
           "subtitle_pl",
           "subtitle_ua",
@@ -403,10 +409,196 @@
           "categories",
           "organization",
           "discountTo",
-          "dateUntil",
-          "likesNumber",
-          "couponsNumber",
+          "dateTimeUntil",
+          "likesCount",
+          "couponsCount",
           "viewsCount"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "durationMinutes",
+          "price",
+          "organization",
+          "targets"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "durationMinutes",
+          "price",
+          "organization",
+          "targets"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::reservation-service.reservation-service",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "durationMinutes",
+          "price",
+          "organization",
+          "targets"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "services",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "services",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::reservation-target.reservation-target",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "services",
+          "organization"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::reservation.reservation",
+      "properties": {
+        "fields": [
+          "organization",
+          "user",
+          "dateTimeFrom",
+          "dateTimeTo",
+          "comment",
+          "service",
+          "target"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::reservation.reservation",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::reservation.reservation",
+      "properties": {
+        "fields": [
+          "organization",
+          "user",
+          "dateTimeFrom",
+          "dateTimeTo",
+          "comment",
+          "service",
+          "target"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::reservation.reservation",
+      "properties": {
+        "fields": [
+          "organization",
+          "user",
+          "dateTimeFrom",
+          "dateTimeTo",
+          "comment",
+          "service",
+          "target"
         ]
       },
       "conditions": []
@@ -415,14 +607,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "email"
-        ]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -442,14 +627,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::review.review",
       "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "email"
-        ]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -457,14 +635,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::review.review",
       "properties": {
-        "fields": [
-          "message",
-          "user",
-          "organization",
-          "rating",
-          "reply",
-          "email"
-        ]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -660,6 +831,7 @@
       "properties": {
         "fields": [
           "username",
+          "name",
           "email",
           "provider",
           "password",
@@ -685,6 +857,7 @@
       "properties": {
         "fields": [
           "username",
+          "name",
           "email",
           "provider",
           "password",
@@ -704,6 +877,7 @@
       "properties": {
         "fields": [
           "username",
+          "name",
           "email",
           "provider",
           "password",

@@ -34,6 +34,20 @@
           "sortable": true
         }
       },
+      "name": {
+        "edit": {
+          "label": "name",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "name",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "email": {
         "edit": {
           "label": "email",
@@ -192,12 +206,7 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "username",
-        "email",
-        "confirmed"
-      ],
+      "list": ["id", "username", "email", "confirmed"],
       "edit": [
         [
           {
@@ -232,6 +241,10 @@
         [
           {
             "name": "organizations",
+            "size": 6
+          },
+          {
+            "name": "name",
             "size": 6
           }
         ]
