@@ -18,7 +18,7 @@ afterAll(async () => {
   await stopStrapi()
 })
 
-describe('Promotions', () => {
+describe.only('Promotions', () => {
   let primaryUser
   let primaryUserJwt
   let category
@@ -91,5 +91,59 @@ describe('Promotions', () => {
       })
       .expect('Content-Type', /json/)
       .expect(400)
+  })
+
+  it('should guest is able to request promotion by slug with updated views number', async () => {
+    const slug = 'promotion-1-slug'
+    await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      slug,
+    })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${slug}?views=true`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${slug}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toBeDefined()
+        expect(data.attributes.viewsCount).toBe(1)
+      })
+  })
+
+  it('should guest is able to request promotion by slug with the original views number', async () => {
+    const slug = 'promotion-2-slug'
+    await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      slug,
+    })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${slug}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${slug}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toBeDefined()
+        expect(data.attributes.viewsCount).toBe(0)
+      })
   })
 })

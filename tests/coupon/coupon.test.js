@@ -81,7 +81,7 @@ describe('Coupons', () => {
       })
   })
 
-  it('should guest be able to get any coupons by slug list', async () => {
+  it('should guest not be able to get any coupons by slug list', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/coupons`)
       .set('accept', 'application/json')
