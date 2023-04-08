@@ -21,11 +21,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    using: 'node16'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Use Node v16
-        run: nvm use 16
       - name: Install Dependencies
         run: yarn install
       - name: Build Project
