@@ -203,19 +203,11 @@ module.exports = createCoreController(
 
         const {
           data: [promotion],
-        } = await super.find(ctx)
+        } = await this.find(ctx)
 
         if (!promotion) {
           throw new Error(ERROR_CODES.PROMOTION_NOT_FOUND)
         }
-
-        const coupons = await strapi.entityService.findMany(
-          'api::coupon.coupon',
-          {
-            fields: ['id'],
-            filters: { promotion: promotion.id },
-          }
-        )
 
         const { views } = ctx.request.query
         await strapi.entityService.update(
@@ -227,7 +219,6 @@ module.exports = createCoreController(
                 views === 'true'
                   ? promotion.attributes.viewsCount + 1
                   : promotion.attributes.viewsCount,
-              couponsCount: coupons.length,
             },
           }
         )
@@ -238,38 +229,5 @@ module.exports = createCoreController(
         ctx.badRequest()
       }
     },
-
-    // async findOne(ctx) {
-    //   try {
-    //     const { locale } = ctx.request.query
-    //     ctx.request.query = {
-    //       ...ctx.request.query,
-    //       filters: {
-    //         [!locale || locale === 'en' ? 'slug' : `slug_${locale}`]: { $eq: ctx.params.id },
-    //       },
-    //     }
-    //     ctx.params.id = undefined
-
-    //     const promotions = await this.find(ctx)
-    //     if (promotions.data.length !== 1) {
-    //       return
-    //     }
-
-    //     await strapi.entityService.update('api::promotion.promotion', promotions.data[0].id, {
-    //       data: {
-    //         viewsCount: promotions.data[0].attributes.viewsCount
-    //           ? promotions.data[0].attributes.viewsCount + 1
-    //           : 1,
-    //       },
-    //     })
-
-    //     ctx.response.body = {
-    //       data: promotions.data[0],
-    //     }
-    //   } catch (err) {
-    //     strapi.log.error(err)
-    //     ctx.badRequest()
-    //   }
-    // },
   })
 )

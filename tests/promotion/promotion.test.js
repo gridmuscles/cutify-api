@@ -18,7 +18,7 @@ afterAll(async () => {
   await stopStrapi()
 })
 
-describe.only('Promotions', () => {
+describe('Promotions', () => {
   let primaryUser
   let primaryUserJwt
   let category
@@ -144,6 +144,21 @@ describe.only('Promotions', () => {
       .then(({ body: { data } }) => {
         expect(data).toBeDefined()
         expect(data.attributes.viewsCount).toBe(0)
+      })
+  })
+
+  it('should guest is able to request promotion and see coupons number', async () => {
+    await createCoupon({ promotion: primaryPromotion.id })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.slug}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toBeDefined()
+        expect(data.attributes.couponsCount).toBe(1)
       })
   })
 })
