@@ -1,6 +1,5 @@
 'use strict'
 
-const { sanitizeEntity } = require('strapi-utils/lib')
 const { parseISO, isAfter } = require('date-fns')
 const qs = require('qs')
 
