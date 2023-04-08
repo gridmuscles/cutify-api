@@ -195,35 +195,44 @@ module.exports = createCoreController(
 
     async findOne(ctx) {
       try {
-        const { views } = ctx.request.query
-        const promotion = await super.findOne(ctx)
+        ctx.request.query.filters = {
+          slug: {
+            $eq: ctx.params.id,
+          },
+        }
+
+        const {
+          data: [promotion],
+        } = await super.find(ctx)
+
         if (!promotion) {
-          return
+          throw new Error(ERROR_CODES.PROMOTION_NOT_FOUND)
         }
 
         const coupons = await strapi.entityService.findMany(
           'api::coupon.coupon',
           {
             fields: ['id'],
-            filters: { promotion: ctx.params.id },
+            filters: { promotion: promotion.id },
           }
         )
 
+        const { views } = ctx.request.query
         await strapi.entityService.update(
           'api::promotion.promotion',
-          ctx.params.id,
+          promotion.id,
           {
             data: {
               viewsCount:
                 views === 'true'
-                  ? promotion.data.attributes.viewsCount + 1
-                  : promotion.data.attributes.viewsCount,
+                  ? promotion.attributes.viewsCount + 1
+                  : promotion.attributes.viewsCount,
               couponsCount: coupons.length,
             },
           }
         )
 
-        return promotion
+        return { data: promotion }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()
