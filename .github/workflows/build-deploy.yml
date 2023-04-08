@@ -21,7 +21,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    using: 'node16'
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
