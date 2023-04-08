@@ -43,6 +43,12 @@
       "action": "plugin::users-permissions.auth.changePassword"
     },
     {
+      "action": "plugin::users-permissions.auth.forgotPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
       "action": "plugin::users-permissions.user.me"
     }
   ]
