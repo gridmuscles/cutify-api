@@ -23,7 +23,12 @@ const createCoupon = async (data = {}) => {
   })
 }
 
+const clearCoupons = () => {
+  return strapi.db.query('api::coupon.coupon').deleteMany()
+}
+
 module.exports = {
   mockCouponData,
   createCoupon,
+  clearCoupons,
 }

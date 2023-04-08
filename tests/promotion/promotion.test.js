@@ -6,7 +6,7 @@ const { createCategory } = require('../category/category.factory')
 const { createOrganization } = require('../organization/organization.factory')
 const { createUser } = require('../user/user.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
-const { createCoupon } = require('../coupon/coupon.factory')
+const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -40,6 +40,29 @@ describe('Promotions', () => {
     })
   })
 
+  it('should guest is able to get all the promotion fields', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.slug}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.categories).toBeDefined()
+        expect(data.attributes.organization).toBeDefined()
+        expect(
+          data.attributes.organization.data.attributes.promotions
+        ).toBeDefined()
+        expect(
+          data.attributes.organization.data.attributes.locations
+        ).toBeDefined()
+        expect(
+          data.attributes.organization.data.attributes.promotions.data[0]
+            .attributes.organization
+        ).toBeUndefined()
+      })
+  })
+
   it('should guest is able to request up to 10 coupons', async () => {
     await request(strapi.server.httpServer)
       .post(`/api/promotions/${primaryPromotion.id}/request`)
@@ -54,6 +77,8 @@ describe('Promotions', () => {
       .then(({ body: { data } }) => {
         expect(data).toHaveLength(10)
       })
+
+    await clearCoupons()
   })
 
   it('should be an error if guest exceed the total limit of coupons', async () => {
@@ -72,6 +97,8 @@ describe('Promotions', () => {
       })
       .expect('Content-Type', /json/)
       .expect(400)
+
+    await clearCoupons()
   })
 
   it('should be an error if coupon requested for a draft promotion', async () => {
@@ -91,6 +118,8 @@ describe('Promotions', () => {
       })
       .expect('Content-Type', /json/)
       .expect(400)
+
+    await clearCoupons()
   })
 
   it('should guest is able to request promotion by slug with updated views number', async () => {
