@@ -1,0 +1,3 @@
+{
+  "*.js, *.json": ["yarn lint:fix", "git add"]
+}

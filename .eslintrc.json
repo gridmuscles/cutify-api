@@ -1,0 +1,29 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["prettier", "no-only-tests"],
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "browser": false,
+    "jest": true
+  },
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": false
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "strapi": true
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "linebreak-style": ["error", "unix"],
+    "no-console": 0,
+    "no-only-tests/no-only-tests": "error"
+  }
+}
