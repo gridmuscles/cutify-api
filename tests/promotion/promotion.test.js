@@ -24,6 +24,7 @@ describe('Promotions', () => {
   let category
   let primaryOrganization
   let primaryPromotion
+  let draftPromotion
 
   beforeAll(async () => {
     primaryUser = await createUser()
@@ -38,6 +39,15 @@ describe('Promotions', () => {
       categories: [category.id],
       organization: primaryOrganization.id,
     })
+    draftPromotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      publishedAt: null,
+    })
+  })
+
+  beforeEach(async () => {
+    await clearCoupons()
   })
 
   it('should guest is able to get all the promotion fields', async () => {
@@ -77,8 +87,6 @@ describe('Promotions', () => {
       .then(({ body: { data } }) => {
         expect(data).toHaveLength(10)
       })
-
-    await clearCoupons()
   })
 
   it('should be an error if guest exceed the total limit of coupons', async () => {
@@ -97,17 +105,9 @@ describe('Promotions', () => {
       })
       .expect('Content-Type', /json/)
       .expect(400)
-
-    await clearCoupons()
   })
 
   it('should be an error if coupon requested for a draft promotion', async () => {
-    const draftPromotion = await createPromotion({
-      categories: [category.id],
-      organization: primaryOrganization.id,
-      publishedAt: null,
-    })
-
     await request(strapi.server.httpServer)
       .post(`/api/promotions/${draftPromotion.id}/request`)
       .set('accept', 'application/json')
@@ -118,8 +118,6 @@ describe('Promotions', () => {
       })
       .expect('Content-Type', /json/)
       .expect(400)
-
-    await clearCoupons()
   })
 
   it('should guest is able to request promotion by slug with updated views number', async () => {
@@ -189,5 +187,30 @@ describe('Promotions', () => {
         expect(data).toBeDefined()
         expect(data.attributes.couponsCount).toBe(1)
       })
+  })
+
+  it('should guest is able to see a single draft promotion', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${draftPromotion.id}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toBeDefined()
+      })
+  })
+
+  it('should guest not be able to request a coupon for the draft promotion', async () => {
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${draftPromotion.id}/request`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: primaryUser.email,
+        count: 1,
+      })
+      .expect('Content-Type', /json/)
+      .expect(400)
   })
 })

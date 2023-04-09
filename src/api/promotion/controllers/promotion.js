@@ -211,9 +211,12 @@ module.exports = createCoreController(
           },
         }
 
-        const {
-          data: [promotion],
-        } = await this.find(ctx)
+        let promotion
+        if (Number(ctx.params.id) != ctx.params.id) {
+          promotion = (await this.find(ctx)).data[0]
+        } else {
+          promotion = (await super.findOne(ctx)).data
+        }
 
         if (!promotion) {
           throw new Error(ERROR_CODES.PROMOTION_NOT_FOUND)
