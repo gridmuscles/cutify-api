@@ -36,6 +36,7 @@ describe('Reservation', () => {
   let primaryReservationService
   let primaryReservationTarget
   let primaryReservationData
+  let primaryRequestReservationData
 
   beforeAll(async () => {
     primaryUser = await createUser()
@@ -76,10 +77,10 @@ describe('Reservation', () => {
     const userJwt = strapi.plugins['users-permissions'].services.jwt.issue({
       id: user.id,
     })
-    const reservation1 = await createReservation({
+    await createReservation({
       ...primaryReservationData,
     })
-    const reservation2 = await createReservation({
+    await createReservation({
       ...primaryReservationData,
       user: user.id,
     })

@@ -27,7 +27,10 @@ const translateObject = (data, locale) => {
       attributes[key].data = translateObject(data.attributes[key].data, locale)
     } else if (key.includes('_')) {
       const [field, fieldLocale] = key.split('_')
-      if (fieldLocale === locale && data?.attributes.hasOwnProperty(field)) {
+      if (
+        fieldLocale === locale &&
+        Object.prototype.hasOwnProperty.call(data?.attributes, field)
+      ) {
         attributes[field] = data?.attributes[key]
       }
     } else {

@@ -1,3 +1,3 @@
-module.exports.ERROR_CODES = ERROR_CODES = {
+module.exports.ERROR_CODES = {
   NO_REQUIRED_DYNAMIC_DATA: 'NO_REQUIRED_DYNAMIC_DATA',
 }

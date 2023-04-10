@@ -1,3 +1,5 @@
+const { ERROR_CODES } = require('../../src/utils/const')
+
 const mockReservationData = (data = {}) => {
   return {
     dateTimeFrom: '2023-04-10 14:00:00',

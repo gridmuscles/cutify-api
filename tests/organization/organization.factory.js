@@ -1,3 +1,5 @@
+const { ERROR_CODES } = require('../../src/utils/const')
+
 const mockOrganizationData = (data = {}) => {
   const slugSuffix = Math.round(Math.random() * 10000).toString()
   return {

@@ -9,7 +9,7 @@ const sleep = (milliseconds) => {
 }
 
 const waitForServer = () =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     const { host, port } = strapi.config.get('server')
     resolve(strapi.server.listen(port, host))
   })
