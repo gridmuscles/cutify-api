@@ -1,3 +1,4 @@
 {
-  "*.js, *.json": ["yarn lint:fix", "git add"]
+  "*.js": ["yarn lint:fix", "git add"],
+  "*.json": ["prettier --write", "git add"]
 }
