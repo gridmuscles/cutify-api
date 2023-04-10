@@ -27,7 +27,7 @@ const createUser = async (data = {}) => {
     .plugin('users-permissions')
     .service('user')
     .add({
-      ...mockUserData(),
+      ...mockUserData(data),
       provider: 'local',
       confirmed: true,
       role: defaultRole ? defaultRole.id : null,
@@ -35,5 +35,6 @@ const createUser = async (data = {}) => {
 }
 
 module.exports = {
+  mockUserData,
   createUser,
 }
