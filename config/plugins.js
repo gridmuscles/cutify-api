@@ -25,9 +25,21 @@ module.exports = ({ env }) => ({
         apiKey: env('SENDGRID_API_KEY'),
       },
       settings: {
-        defaultFrom: env('SENDGRID_EMAIL_FROM'),
-        defaultReplyTo: env('SENDGRID_EMAIL_REPLY_TO'),
+        defaultFrom: env('EMAIL_FROM'),
+        defaultReplyTo: env('EMAIL_REPLY_TO'),
       },
+    },
+  },
+  'config-sync': {
+    enabled: true,
+    config: {
+      syncDir: 'config/sync/',
+      minify: false,
+      soft: false,
+      importOnBootstrap: false,
+      customTypes: [],
+      excludedTypes: [],
+      excludedConfig: ['core-store.plugin_users-permissions_email'],
     },
   },
 })

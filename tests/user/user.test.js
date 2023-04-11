@@ -4,6 +4,7 @@ const {
   updatePluginStore,
   setupStrapi,
   stopStrapi,
+  responseHasError,
 } = require('../helpers/strapi')
 const { createUser, mockUserData } = require('./user.factory')
 
@@ -102,90 +103,102 @@ describe('Users', () => {
       email_confirmation: false,
     })
   })
+
+  it('should user be able to recover the password', async () => {
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue(true))
+
+    const user = await createUser({ confirmed: false })
+
+    await request(strapi.server.httpServer)
+      .post('/api/auth/forgot-password')
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({ email: user.email })
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(emailSendMock).toBeCalledTimes(1)
+    expect(emailSendMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        html: expect.stringContaining('http://localhost:3000'),
+      })
+    )
+  })
+
+  it('should register, send email with confirmation link, link should confirm account', async () => {
+    await updatePluginStore('users-permissions', 'advanced', {
+      email_confirmation: true,
+    })
+
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue(true))
+
+    const userData = mockUserData()
+
+    const newUser = await request(strapi.server.httpServer)
+      .post('/api/auth/local/register')
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({ ...userData }) // passing confirmed should not work
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body.user.username).toBe(userData.username)
+        expect(response.body.user.email).toBe(userData.email)
+        return response.body.user
+      })
+
+    let user = await strapi.plugins['users-permissions'].services.user.fetch(
+      newUser.id
+    )
+
+    expect(user.username).toBe(userData.username)
+    expect(user.email).toBe(userData.email)
+
+    expect(user.confirmed).toBe(false)
+
+    await request(strapi.server.httpServer)
+      .post('/api/auth/local')
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({ identifier: user.email, password: userData.password })
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .then((data) => {
+        expect(responseHasError('ApplicationError', data.body)).toBe(true)
+      })
+
+    expect(emailSendMock).toBeCalledTimes(1)
+    const confirmRegEx = /A?confirmation=[^&|\s<"]+&*/g
+    const confirmationLink =
+      emailSendMock.mock.calls[0][0].text?.match(confirmRegEx)?.[0]
+
+    await request(strapi.server.httpServer)
+      .get(`/api/auth/email-confirmation?${confirmationLink}`)
+      .expect(302)
+
+    user = await strapi.plugins['users-permissions'].services.user.fetch(
+      newUser.id
+    )
+
+    expect(user.confirmed).toBe(true)
+
+    await request(strapi.server.httpServer)
+      .post('/api/auth/local')
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({ identifier: user.email, password: userData.password })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((data) => {
+        expect(data.body.jwt).toBeDefined()
+      })
+
+    await updatePluginStore('users-permissions', 'advanced', {
+      email_confirmation: false,
+    })
+  })
 })
-
-// describe('Users: Email confirmation', () => {
-//   beforeAll(async () => {
-//     await updatePluginStore('users-permissions', 'advanced', {
-//       email_confirmation: true,
-//     })
-//     await grantPrivilege(
-//       2,
-//       'plugin::users-permissions.controllers.auth.emailConfirmation'
-//     )
-//   })
-
-//   afterAll(async () => {
-//     await updatePluginStore('users-permissions', 'advanced', {
-//       email_confirmation: false,
-//     })
-//   })
-
-//   it('should register, send email with confirmation link, link should confirm account', async () => {
-//     const newUser = await request(strapi.server.httpServer)
-//       .post('/api/auth/local/register')
-//       .set('accept', 'application/json')
-//       .set('Content-Type', 'application/json')
-//       .send({ ...userData }) // passing confirmed should not work
-//       .expect('Content-Type', /json/)
-//       .expect(200)
-//       .then((response) => {
-//         expect(response.body.user.username).toBe(userData.username)
-//         expect(response.body.user.email).toBe(userData.email)
-//         return response.body.user
-//       })
-
-//     let user = await strapi.plugins['users-permissions'].services.user.fetch(
-//       newUser.id
-//     )
-
-//     expect(user.username).toBe(userData.username)
-//     expect(user.email).toBe(userData.email)
-
-//     expect(user.confirmed).toBe(false)
-
-//     await request(strapi.server.httpServer)
-//       .post('/api/auth/local')
-//       .set('accept', 'application/json')
-//       .set('Content-Type', 'application/json')
-//       .send({ identifier: user.email, password: userData.password })
-//       .expect('Content-Type', /json/)
-//       .expect(400)
-//       .then((data) => {
-//         expect(responseHasError('ApplicationError', data.body)).toBe(true)
-//       })
-
-//     const emailsSent = nodemailerMock.mock.getSentMail()
-//     expect(emailsSent.length).toBeGreaterThan(0)
-
-//     const confirmRegEx = /\A?confirmation=[^&|\s<"]+&*/g
-
-//     const confirmationLink = emailsSent.reduce((acc, curr) => {
-//       return curr.text?.match(confirmRegEx)?.[0] ?? acc
-//     }, '')
-
-//     expect(confirmationLink).toBeDefined()
-//     expect(confirmationLink).not.toBe('')
-
-//     await request(strapi.server.httpServer)
-//       .get(`/api/auth/email-confirmation?${confirmationLink}`)
-//       .expect(302)
-
-//     user = await strapi.plugins['users-permissions'].services.user.fetch(
-//       newUser.id
-//     )
-
-//     expect(user.confirmed).toBe(true)
-
-//     await request(strapi.server.httpServer)
-//       .post('/api/auth/local')
-//       .set('accept', 'application/json')
-//       .set('Content-Type', 'application/json')
-//       .send({ identifier: user.email, password: mockUserData().password })
-//       .expect('Content-Type', /json/)
-//       .expect(200)
-//       .then((data) => {
-//         expect(data.body.jwt).toBeDefined()
-//       })
-//   })
-// })

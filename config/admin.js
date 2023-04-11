@@ -11,4 +11,10 @@ module.exports = ({ env }) => ({
     },
   },
   watchIgnoreFiles: ['**/config/sync/**'],
+  forgotPassword: {
+    title: env('EMAIL_APP_TITLE'),
+    from: env('EMAIL_FROM'),
+    replyTo: env('EMAIL_REPLY_TO'),
+    resetPasswordUrl: env('RESET_PASSWORD_URL'),
+  },
 })
