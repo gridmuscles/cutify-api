@@ -27,7 +27,7 @@ describe('Promotions', () => {
   let draftPromotion
 
   beforeAll(async () => {
-    const [user] = await createUser()
+    const [user] = await createUser({ type: 'authenticated' })
     primaryUser = user
 
     category = await createCategory()
