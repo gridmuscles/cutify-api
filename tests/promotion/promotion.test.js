@@ -74,6 +74,10 @@ describe('Promotions', () => {
   })
 
   it('should guest is able to request up to 10 coupons', async () => {
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue(true))
+
     await request(strapi.server.httpServer)
       .post(`/api/promotions/${primaryPromotion.id}/request`)
       .set('accept', 'application/json')
@@ -87,6 +91,15 @@ describe('Promotions', () => {
       .then(({ body: { data } }) => {
         expect(data).toHaveLength(10)
       })
+
+    expect(emailSendMock).toBeCalledTimes(1)
+
+    const {
+      to,
+      dynamicTemplateData: { link },
+    } = emailSendMock.mock.calls[0][0]
+    expect(to).toBe(primaryUser.email)
+    expect(link.split('[uuid][$in]')).toHaveLength(11)
   })
 
   it('should be an error if guest exceed the total limit of coupons', async () => {
