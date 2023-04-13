@@ -10,27 +10,22 @@ const mockUserData = (data = {}) => {
 }
 
 const createUser = async (data = {}) => {
-  const pluginStore = await strapi.store({
-    type: 'plugin',
-    name: 'users-permissions',
-  })
+  if (!data.type || data.type === 'public') {
+    return [null, null]
+  }
 
-  const settings = await pluginStore.get({
-    key: 'advanced',
+  const role = await strapi.query('plugin::users-permissions.role').findOne({
+    where: { type: data?.type ?? 'authenticated' },
   })
-
-  const defaultRole = await strapi
-    .query('plugin::users-permissions.role')
-    .findOne({ where: { type: settings.default_role } })
 
   const user = await strapi
     .plugin('users-permissions')
     .service('user')
     .add({
       ...mockUserData(data),
+      role: role?.id ?? null,
       provider: 'local',
       confirmed: true,
-      role: defaultRole ? defaultRole.id : null,
     })
 
   const jwt = await strapi.plugins['users-permissions'].services.jwt.issue({

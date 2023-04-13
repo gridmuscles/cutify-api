@@ -22,7 +22,7 @@ describe('Users', () => {
   let primaryUser
 
   beforeAll(async () => {
-    const [user] = await createUser()
+    const [user] = await createUser({ type: 'authenticated' })
     primaryUser = user
   })
 
@@ -89,7 +89,7 @@ describe('Users', () => {
       email_confirmation: true,
     })
 
-    const [user] = await createUser({ confirmed: false })
+    const [user] = await createUser({ type: 'authenticated', confirmed: false })
 
     await request(strapi.server.httpServer)
       .post('/api/auth/local')
@@ -113,7 +113,7 @@ describe('Users', () => {
       .fn()
       .mockReturnValue(true))
 
-    const [user] = await createUser({ confirmed: false })
+    const [user] = await createUser({ type: 'authenticated', confirmed: false })
 
     await request(strapi.server.httpServer)
       .post('/api/auth/forgot-password')

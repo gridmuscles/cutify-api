@@ -23,7 +23,7 @@ describe('Reviews', () => {
   let organization
 
   beforeAll(async () => {
-    const [, jwt] = await createUser()
+    const [, jwt] = await createUser({ type: 'authenticated' })
     primaryUserJwt = jwt
 
     category = await createCategory()
@@ -59,7 +59,7 @@ describe('Reviews', () => {
       })
   })
 
-  it('should authentificated user be able to get organization reviews', async () => {
+  it('should authenticated user be able to get organization reviews', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/reviews?filters[organization][id][$eq]=${organization.id}`)
       .set('accept', 'application/json')

@@ -16,37 +16,34 @@ afterAll(async () => {
 })
 
 describe('Cities', () => {
-  let primaryUserJwt
-
   beforeAll(async () => {
-    const [, jwt] = await createUser()
-    primaryUserJwt = jwt
-
     await createCity()
   })
 
-  it('should guest be able to get only own coupons', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/cities`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toHaveLength(1)
-      })
-  })
+  it.each([
+    { type: 'public', expectedLength: 1 },
+    { type: 'authenticated', expectedLength: 1 },
+    { type: 'manager', expectedLength: 1 },
+  ])(
+    'should $type user be able to get cities',
+    async ({ type, expectedLength }) => {
+      const [, jwt] = await createUser({ type })
 
-  it('should authentificated user be able to get cities', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/cities`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toHaveLength(1)
-      })
-  })
+      const req = request(strapi.server.httpServer)
+        .get(`/api/cities`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(expectedLength)
+        })
+    }
+  )
 })

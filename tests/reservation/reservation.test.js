@@ -39,7 +39,7 @@ describe('Reservation', () => {
   let primaryRequestReservationData
 
   beforeAll(async () => {
-    const [user, jwt] = await createUser()
+    const [user, jwt] = await createUser({ type: 'authenticated' })
     primaryUser = user
     primaryUserJwt = jwt
 
@@ -72,7 +72,7 @@ describe('Reservation', () => {
   })
 
   it('should user is able to see all reservations, but only own should be populated', async () => {
-    const [user, userJwt] = await createUser()
+    const [user, userJwt] = await createUser({ type: 'authenticated' })
     await createReservation({
       ...primaryReservationData,
     })
@@ -103,7 +103,7 @@ describe('Reservation', () => {
   })
 
   it('should an be error when user try to open someone else reservation', async () => {
-    const [, userJwt] = await createUser()
+    const [, userJwt] = await createUser({ type: 'authenticated' })
     const reservation = await createReservation({
       ...primaryReservationData,
     })

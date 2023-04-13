@@ -26,7 +26,7 @@ describe('Coupons', () => {
   let primaryPromotion
 
   beforeAll(async () => {
-    const [user, jwt] = await createUser()
+    const [user, jwt] = await createUser({ type: 'authenticated' })
     primaryUser = user
     primaryUserJwt = jwt
 
@@ -53,7 +53,7 @@ describe('Coupons', () => {
     })
   })
 
-  it('should authentificated user be able to get only own coupons', async () => {
+  it('should authenticated user be able to get only own coupons', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/coupons`)
       .set('accept', 'application/json')
@@ -90,7 +90,7 @@ describe('Coupons', () => {
       })
   })
 
-  it('should guest not be able to get any coupons by slug list', async () => {
+  it('should guest not be able to get all coupons', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/coupons`)
       .set('accept', 'application/json')
