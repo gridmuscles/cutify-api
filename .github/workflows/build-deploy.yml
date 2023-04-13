@@ -28,8 +28,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
-      - name: check env
-        run: echo $DATABASE_USERNAME
       - name: Install Dependencies
         run: yarn install
       - name: Build Project
@@ -40,5 +38,5 @@ jobs:
           host: ${{ secrets.DEV_API_HOST_IP }}
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./build,./config,./public,"
+          source: "./build,./config,./public,./src"
           target: /home/ubuntu/cappybara
