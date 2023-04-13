@@ -86,7 +86,7 @@ describe('Reservation', () => {
     })
 
     await request(strapi.server.httpServer)
-      .get(`/api/reservations?populate=deep`)
+      .get(`/api/reservations`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${userJwt}`)
@@ -116,7 +116,7 @@ describe('Reservation', () => {
     })
 
     await request(strapi.server.httpServer)
-      .get(`/api/reservations/${reservation.id}?populate=deep`)
+      .get(`/api/reservations/${reservation.id}`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${userJwt}`)
@@ -126,7 +126,7 @@ describe('Reservation', () => {
 
   it('should reservation be created with full population for current user', async () => {
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -149,7 +149,7 @@ describe('Reservation', () => {
 
   it('should be an error if pass a user to the reservation', async () => {
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -173,7 +173,7 @@ describe('Reservation', () => {
     })
 
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -197,7 +197,7 @@ describe('Reservation', () => {
     })
 
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -225,7 +225,7 @@ describe('Reservation', () => {
     })
 
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -249,7 +249,7 @@ describe('Reservation', () => {
 
     await request(strapi.server.httpServer)
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -273,7 +273,7 @@ describe('Reservation', () => {
 
     await request(strapi.server.httpServer)
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -297,7 +297,7 @@ describe('Reservation', () => {
 
     await request(strapi.server.httpServer)
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
@@ -321,7 +321,7 @@ describe('Reservation', () => {
 
     await request(strapi.server.httpServer)
     await request(strapi.server.httpServer)
-      .post('/api/reservations?populate=deep')
+      .post('/api/reservations')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${primaryUserJwt}`)
