@@ -26,10 +26,10 @@ describe('Coupons', () => {
   let primaryPromotion
 
   beforeAll(async () => {
-    primaryUser = await createUser()
-    primaryUserJwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: primaryUser.id,
-    })
+    const [user, jwt] = await createUser()
+    primaryUser = user
+    primaryUserJwt = jwt
+
     category = await createCategory()
     primaryOrganization = await createOrganization({
       categories: [category.id],

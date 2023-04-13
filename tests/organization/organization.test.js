@@ -17,15 +17,12 @@ afterAll(async () => {
 })
 
 describe('Organizations', () => {
-  let primaryUser
   let primaryUserJwt
   let category
 
   beforeAll(async () => {
-    primaryUser = await createUser()
-    primaryUserJwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: primaryUser.id,
-    })
+    const [, jwt] = await createUser()
+    primaryUserJwt = jwt
 
     category = await createCategory()
     await createOrganization({

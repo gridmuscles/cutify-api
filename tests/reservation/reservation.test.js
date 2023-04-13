@@ -39,10 +39,9 @@ describe('Reservation', () => {
   let primaryRequestReservationData
 
   beforeAll(async () => {
-    primaryUser = await createUser()
-    primaryUserJwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: primaryUser.id,
-    })
+    const [user, jwt] = await createUser()
+    primaryUser = user
+    primaryUserJwt = jwt
 
     category = await createCategory()
     primaryOrganization = await createOrganization({
@@ -73,10 +72,7 @@ describe('Reservation', () => {
   })
 
   it('should user is able to see all reservations, but only own should be populated', async () => {
-    const user = await createUser()
-    const userJwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: user.id,
-    })
+    const [user, userJwt] = await createUser()
     await createReservation({
       ...primaryReservationData,
     })
@@ -107,10 +103,7 @@ describe('Reservation', () => {
   })
 
   it('should an be error when user try to open someone else reservation', async () => {
-    const user = await createUser()
-    const userJwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: user.id,
-    })
+    const [, userJwt] = await createUser()
     const reservation = await createReservation({
       ...primaryReservationData,
     })

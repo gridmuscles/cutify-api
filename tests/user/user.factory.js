@@ -23,7 +23,7 @@ const createUser = async (data = {}) => {
     .query('plugin::users-permissions.role')
     .findOne({ where: { type: settings.default_role } })
 
-  return strapi
+  const user = await strapi
     .plugin('users-permissions')
     .service('user')
     .add({
@@ -32,6 +32,12 @@ const createUser = async (data = {}) => {
       confirmed: true,
       role: defaultRole ? defaultRole.id : null,
     })
+
+  const jwt = await strapi.plugins['users-permissions'].services.jwt.issue({
+    id: user.id,
+  })
+
+  return [user, jwt]
 }
 
 module.exports = {

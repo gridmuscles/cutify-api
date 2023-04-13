@@ -19,22 +19,26 @@ afterAll(async () => {
 })
 
 describe('Users', () => {
-  let user
+  let primaryUser
 
   beforeAll(async () => {
-    user = await createUser()
+    const [user] = await createUser()
+    primaryUser = user
   })
 
   it('should login user and return jwt token', async () => {
     const jwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: user.id,
+      id: primaryUser.id,
     })
 
     await request(strapi.server.httpServer)
       .post('/api/auth/local')
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
-      .send({ identifier: user.email, password: mockUserData().password })
+      .send({
+        identifier: primaryUser.email,
+        password: mockUserData().password,
+      })
       .expect('Content-Type', /json/)
       .expect(200)
       .then(async (data) => {
@@ -48,7 +52,7 @@ describe('Users', () => {
 
   it('should return authenticated user', async () => {
     const jwt = strapi.plugins['users-permissions'].services.jwt.issue({
-      id: user.id,
+      id: primaryUser.id,
     })
 
     await request(strapi.server.httpServer)
@@ -60,9 +64,9 @@ describe('Users', () => {
       .expect(200)
       .then((data) => {
         expect(data.body).toBeDefined()
-        expect(data.body.id).toBe(user.id)
-        expect(data.body.username).toBe(user.username)
-        expect(data.body.email).toBe(user.email)
+        expect(data.body.id).toBe(primaryUser.id)
+        expect(data.body.username).toBe(primaryUser.username)
+        expect(data.body.email).toBe(primaryUser.email)
       })
   })
 
@@ -85,7 +89,7 @@ describe('Users', () => {
       email_confirmation: true,
     })
 
-    const user = await createUser({ confirmed: false })
+    const [user] = await createUser({ confirmed: false })
 
     await request(strapi.server.httpServer)
       .post('/api/auth/local')
@@ -109,7 +113,7 @@ describe('Users', () => {
       .fn()
       .mockReturnValue(true))
 
-    const user = await createUser({ confirmed: false })
+    const [user] = await createUser({ confirmed: false })
 
     await request(strapi.server.httpServer)
       .post('/api/auth/forgot-password')
