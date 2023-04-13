@@ -6,7 +6,6 @@ on:
       - develop
 
 env:
-  NODE_ENV: ${{ secrets.NODE_ENV }}
   DATABASE_CLIENT: postgres
   DATABASE_URL: ${{ secrets.DEV_DATABASE_URL }}
   DATABASE_HOST: ${{ secrets.DEV_DATABASE_HOST }}
