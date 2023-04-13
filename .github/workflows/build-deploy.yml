@@ -1,0 +1,42 @@
+name: Build and Deploy Develop Cappybara API
+
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  DATABASE_CLIENT: postgres
+  DATABASE_URL: ${{ secrets.DEV_DATABASE_URL }}
+  DATABASE_HOST: ${{ secrets.DEV_DATABASE_HOST }}
+  DATABASE_PORT: ${{ secrets.DEV_DATABASE_PORT }}
+  DATABASE_NAME: ${{ secrets.DEV_DATABASE_NAME }}
+  DATABASE_USERNAME: ${{ secrets.DEV_DATABASE_USERNAME }}
+  DATABASE_PASSWORD: ${{ secrets.DEV_DATABASE_PASSWORD }}
+  ADMIN_JWT_SECRET: ${{ secrets.DEV_ADMIN_JWT_SECRET }}
+  JWT_SECRET: ${{ secrets.DEV_JWT_SECRET }}
+  API_TOKEN_SALT: ${{ secrets.DEV_API_TOKEN_SALT }}
+  APP_KEYS: ${{ secrets.DEV_APP_KEYS }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build Project
+        run: yarn build
+      - name: Deploy to EC2Instance
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DEV_API_HOST_IP }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "./build,./config,./public,"
+          target: /home/ubuntu/cappybara
