@@ -166,11 +166,6 @@ module.exports = createCoreController(
     async find(ctx) {
       const { data, meta } = await super.find(ctx)
 
-      ctx.request.query = {
-        ...ctx.request.query,
-        populate: 'deep,3',
-      }
-
       const coupons = await Promise.all(
         data.map(async ({ id }) => {
           const coupons = await strapi.entityService.findMany(
@@ -200,11 +195,6 @@ module.exports = createCoreController(
 
     async findOne(ctx) {
       try {
-        ctx.request.query = {
-          ...ctx.request.query,
-          populate: 'deep,3',
-        }
-
         ctx.request.query.filters = {
           slug: {
             $eq: ctx.params.id,
