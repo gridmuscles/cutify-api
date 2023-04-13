@@ -28,6 +28,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+      - name: check env
+        run: echo $DATABASE_USERNAME
       - name: Install Dependencies
         run: yarn install
       - name: Build Project
