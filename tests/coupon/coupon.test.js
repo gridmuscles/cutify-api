@@ -64,6 +64,9 @@ describe('Coupons', () => {
       .then(({ body: { data } }) => {
         expect(data).toHaveLength(1)
         expect(data[0].attributes.uuid).toBe('1')
+        expect(data[0].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
       })
   })
 
@@ -77,7 +80,13 @@ describe('Coupons', () => {
       .then(({ body: { data } }) => {
         expect(data).toHaveLength(2)
         expect(data[0].attributes.uuid).toBe('1')
+        expect(data[0].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
         expect(data[1].attributes.uuid).toBe('2')
+        expect(data[1].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
       })
   })
 
