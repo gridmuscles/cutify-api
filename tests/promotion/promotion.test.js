@@ -201,6 +201,25 @@ describe('Promotions', () => {
       })
   })
 
+  it('should guest is not able to request a coupon if coupons limit is exceeded', async () => {
+    const promotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      couponsLimit: 0,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${promotion.id}/request`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: primaryUser.email,
+        count: 1,
+      })
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
   it('should guest is able to see a single draft promotion', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/promotions/${draftPromotion.id}`)

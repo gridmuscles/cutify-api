@@ -75,6 +75,22 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.PROMOTION_IS_FINISHED)
         }
 
+        const promotionCoupons = await strapi.entityService.findMany(
+          'api::coupon.coupon',
+          {
+            filters: {
+              promotion: promotion.data.id,
+            },
+          }
+        )
+
+        if (
+          promotionCoupons.length + count >
+          promotion.data.attributes.couponsLimit
+        ) {
+          throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_PROMOTION)
+        }
+
         const userCoupons = await strapi.entityService.findMany(
           'api::coupon.coupon',
           {
