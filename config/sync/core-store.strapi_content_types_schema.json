@@ -1984,6 +1984,230 @@
       "plugin": "users-permissions",
       "globalId": "UsersPermissionsUser"
     },
+    "api::auction.auction": {
+      "kind": "collectionType",
+      "collectionName": "auctions",
+      "info": {
+        "singularName": "auction",
+        "pluralName": "auctions",
+        "displayName": "Auction",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "promotion": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::promotion.promotion"
+        },
+        "startDateTime": {
+          "type": "datetime",
+          "required": true
+        },
+        "endDateTime": {
+          "type": "datetime",
+          "required": true
+        },
+        "direction": {
+          "type": "enumeration",
+          "enum": ["asc", "desc"],
+          "default": "desc",
+          "required": true
+        },
+        "startPrice": {
+          "type": "float",
+          "required": true
+        },
+        "status": {
+          "type": "enumeration",
+          "enum": ["active", "completed"],
+          "default": "active",
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "auctions",
+        "info": {
+          "singularName": "auction",
+          "pluralName": "auctions",
+          "displayName": "Auction",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "promotion": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::promotion.promotion"
+          },
+          "startDateTime": {
+            "type": "datetime",
+            "required": true
+          },
+          "endDateTime": {
+            "type": "datetime",
+            "required": true
+          },
+          "direction": {
+            "type": "enumeration",
+            "enum": ["asc", "desc"],
+            "default": "desc",
+            "required": true
+          },
+          "startPrice": {
+            "type": "float",
+            "required": true
+          },
+          "status": {
+            "type": "enumeration",
+            "enum": ["active", "completed"],
+            "default": "active",
+            "required": true
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "auction",
+      "connection": "default",
+      "uid": "api::auction.auction",
+      "apiName": "auction",
+      "globalId": "Auction",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::bid.bid": {
+      "kind": "collectionType",
+      "collectionName": "bids",
+      "info": {
+        "singularName": "bid",
+        "pluralName": "bids",
+        "displayName": "Bids",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "bidder": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
+        "amount": {
+          "type": "float",
+          "required": true
+        },
+        "auction": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::auction.auction"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "bids",
+        "info": {
+          "singularName": "bid",
+          "pluralName": "bids",
+          "displayName": "Bids",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "bidder": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          },
+          "amount": {
+            "type": "float",
+            "required": true
+          },
+          "auction": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::auction.auction"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "bid",
+      "connection": "default",
+      "uid": "api::bid.bid",
+      "apiName": "bid",
+      "globalId": "Bid",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::category.category": {
       "kind": "collectionType",
       "collectionName": "categories",
@@ -2869,6 +3093,9 @@
           "type": "integer",
           "default": 0
         },
+        "couponsLimit": {
+          "type": "integer"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3005,6 +3232,9 @@
           "viewsCount": {
             "type": "integer",
             "default": 0
+          },
+          "couponsLimit": {
+            "type": "integer"
           }
         },
         "kind": "collectionType"

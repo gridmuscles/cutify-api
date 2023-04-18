@@ -316,6 +316,20 @@
           "sortable": true
         }
       },
+      "couponsLimit": {
+        "edit": {
+          "label": "couponsLimit",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponsLimit",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -346,6 +360,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "organization", "title_ru", "couponsLimit"],
       "edit": [
         [
           {
@@ -458,9 +473,14 @@
             "name": "likesCount",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "couponsLimit",
+            "size": 4
+          }
         ]
-      ],
-      "list": ["id", "organization", "title_ru"]
+      ]
     }
   },
   "type": "object",

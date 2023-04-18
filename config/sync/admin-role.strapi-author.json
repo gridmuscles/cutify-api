@@ -154,10 +154,11 @@
           "categories",
           "organization",
           "discountTo",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "dateTimeUntil"
+          "couponsLimit"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -190,10 +191,11 @@
           "categories",
           "organization",
           "discountTo",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "dateTimeUntil"
+          "couponsLimit"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -220,10 +222,11 @@
           "categories",
           "organization",
           "discountTo",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "dateTimeUntil"
+          "couponsLimit"
         ]
       },
       "conditions": ["admin::is-creator"]

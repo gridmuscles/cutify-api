@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "auctions",
+  "info": {
+    "singularName": "auction",
+    "pluralName": "auctions",
+    "displayName": "Auction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "promotion": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::promotion.promotion"
+    },
+    "startDateTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "endDateTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "direction": {
+      "type": "enumeration",
+      "enum": ["asc", "desc"],
+      "default": "desc",
+      "required": true
+    },
+    "startPrice": {
+      "type": "float",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "completed"],
+      "default": "active",
+      "required": true
+    }
+  }
+}

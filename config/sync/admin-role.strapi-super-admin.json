@@ -5,6 +5,93 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "promotion",
+          "startDateTime",
+          "endDateTime",
+          "direction",
+          "startPrice",
+          "status"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::auction.auction",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::auction.auction",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "promotion",
+          "startDateTime",
+          "endDateTime",
+          "direction",
+          "startPrice",
+          "status"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "promotion",
+          "startDateTime",
+          "endDateTime",
+          "direction",
+          "startPrice",
+          "status"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::bid.bid",
+      "properties": {
+        "fields": ["bidder", "amount", "auction"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::bid.bid",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::bid.bid",
+      "properties": {
+        "fields": ["bidder", "amount", "auction"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::bid.bid",
+      "properties": {
+        "fields": ["bidder", "amount", "auction"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::category.category",
       "properties": {
         "fields": [
@@ -340,7 +427,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "couponsLimit"
         ]
       },
       "conditions": []
@@ -382,7 +470,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "couponsLimit"
         ]
       },
       "conditions": []
@@ -412,7 +501,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "couponsLimit"
         ]
       },
       "conditions": []
