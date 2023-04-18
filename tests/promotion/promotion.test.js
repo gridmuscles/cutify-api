@@ -101,10 +101,36 @@ describe('Promotions', () => {
     expect(link.split('[uuid][$in]')).toHaveLength(11)
   })
 
-  it('should be an error if guest exceed the total limit of coupons', async () => {
+  it('should be an error if user exceed the total user limit of coupons', async () => {
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue(true))
+
+    const promotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      couponsLimit: 0,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${promotion.id}/request`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'user1@gmail.com',
+        count: 10,
+      })
+      .expect('Content-Type', /json/)
+      .expect(400)
+
+    expect(emailSendMock).toBeCalledTimes(0)
+  })
+
+  it('should be an error if user exceed the total promotion limit of coupons', async () => {
     await createCoupon({
       promotion: primaryPromotion.id,
       email: 'user1@gmail.com',
+      couponsLimit: 100,
     })
 
     await request(strapi.server.httpServer)

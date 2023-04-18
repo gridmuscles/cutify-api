@@ -24,12 +24,17 @@ module.exports = createCoreController(
         }
 
         const promotion = await super.findOne(ctx)
-        const { dateTimeUntil, publishedAt } = promotion.data.attributes
+        const { dateTimeUntil, publishedAt, couponsLimit } =
+          promotion.data.attributes
 
         if (!publishedAt) {
           throw new Error(
             ERROR_CODES.UNABLE_TO_REQUEST_COUPON_FOR_DRAFT_PROMOTION
           )
+        }
+
+        if (couponsLimit === 0) {
+          throw new Error(ERROR_CODES.COUPON_LIMIT_EXCEEDED)
         }
 
         if (!dateTimeUntil) {
