@@ -10,6 +10,7 @@ module.exports = createCoreRouter('api::review.review', {
   config: {
     find: {
       middlewares: [
+        { name: 'global::locale' },
         { name: 'global::i18n' },
         { name: 'global::populate', config: { deep: 2 } },
       ],
