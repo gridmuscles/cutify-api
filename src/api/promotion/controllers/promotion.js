@@ -1,49 +1,14 @@
 'use strict'
 
 const { parseISO, isAfter } = require('date-fns')
-const qs = require('qs')
-
 const { ERROR_CODES } = require('../../../utils/const')
+const { getCouponListEmail } = require('../../../utils/email')
 
 /**
  * promotion controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories
-
-const TEMPLATE_DATA = {
-  en: {
-    title: 'Your coupon has been activated!',
-    greetings: 'Hello!',
-    description: 'To use your coupon, click on the "Open Coupon" button below.',
-    linkText: 'Open Coupon',
-    subject: 'Your Coupon Delivered!',
-  },
-  pl: {
-    title: 'Twój kupon został aktywowany!',
-    greetings: 'Witaj!',
-    description:
-      'Aby skorzystać z kuponu, kliknij przycisk "Otwórz kupon" poniżej.',
-    linkText: 'Otwórz kupon',
-    subject: 'Twój kupon dostarczony!',
-  },
-  ua: {
-    title: 'Ваш купон активовано!',
-    greetings: 'Вітаємо!',
-    description:
-      'Щоб скористатись купоном, натисніть на кнопку "Відкрити купон" нижче.',
-    linkText: 'Відкрити купон',
-    subject: 'Ваш купон доставлено!',
-  },
-  ru: {
-    title: 'Ваш купон активирован!',
-    greetings: 'Здравствуйте!',
-    description:
-      'Чтобы воспользоваться купоном, нажмите на кнопку "Открыть купон"',
-    linkText: 'Открыть купон',
-    subject: 'Ваш купон доставлен!',
-  },
-}
 
 //TODO (Tests)
 module.exports = createCoreController(
@@ -79,7 +44,7 @@ module.exports = createCoreController(
           'api::coupon.coupon',
           {
             filters: {
-              email: ctx.request.body.email,
+              email,
               promotion: promotion.data.id,
             },
           }
@@ -104,29 +69,14 @@ module.exports = createCoreController(
           )
         ).then((coupons) => coupons.map(({ uuid }) => uuid))
 
-        const couponsQuery = qs.stringify(
-          {
-            filters: {
-              uuid: {
-                $in: couponUUIDList,
-              },
-            },
-          },
-          {
-            encodeValuesOnly: true,
-          }
+        await strapi.plugins['email'].services.email.send(
+          getCouponListEmail({
+            email,
+            locale,
+            origin: ctx.request.header.origin,
+            couponUUIDList,
+          })
         )
-
-        await strapi.plugins['email'].services.email.send({
-          to: email,
-          templateId: 'd-c096941312084bdea8775e617e70e6b2',
-          dynamicTemplateData: {
-            ...TEMPLATE_DATA[locale],
-            link: `${ctx.request.header.origin}/${
-              locale ?? 'en'
-            }/coupons?${couponsQuery}`,
-          },
-        })
 
         return { data: couponUUIDList }
       } catch (err) {
