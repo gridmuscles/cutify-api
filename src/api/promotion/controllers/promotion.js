@@ -23,7 +23,7 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.REQUIRED_FIELDS_MISSING)
         }
 
-        const promotion = await super.findOne(ctx)
+        const promotion = await this.findOne(ctx)
         const { dateTimeUntil, publishedAt, couponsLimit } =
           promotion.data.attributes
 
@@ -45,15 +45,14 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.PROMOTION_IS_FINISHED)
         }
 
-        const userCoupons = await strapi.entityService.findMany(
-          'api::coupon.coupon',
-          {
+        const { results: userCoupons } = await strapi
+          .service('api::coupon.coupon')
+          .find({
             filters: {
               email,
               promotion: promotion.data.id,
             },
-          }
-        )
+          })
 
         if (userCoupons.length + count > 10) {
           throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_SINGLE_USER)
@@ -61,7 +60,7 @@ module.exports = createCoreController(
 
         const couponUUIDList = await Promise.all(
           [...Array(count).keys()].map(() =>
-            strapi.entityService.create('api::coupon.coupon', {
+            strapi.service('api::coupon.coupon').create({
               data: {
                 promotion: promotion.data.id,
                 email,
@@ -92,24 +91,19 @@ module.exports = createCoreController(
 
     async like(ctx) {
       try {
-        const promotion = await strapi.entityService.findOne(
-          'api::promotion.promotion',
-          ctx.params.id
-        )
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx.params.id)
 
         if (!promotion) {
           return
         }
 
-        await strapi.entityService.update(
-          'api::promotion.promotion',
-          promotion.id,
-          {
-            data: {
-              likesCount: promotion.likesCount ? promotion.likesCount + 1 : 1,
-            },
-          }
-        )
+        await strapi.service('api::promotion.promotion').update(promotion.id, {
+          data: {
+            likesCount: promotion.likesCount ? promotion.likesCount + 1 : 1,
+          },
+        })
 
         return {}
       } catch (err) {
@@ -118,70 +112,33 @@ module.exports = createCoreController(
       }
     },
 
-    async find(ctx) {
-      const { data, meta } = await super.find(ctx)
-
-      const coupons = await Promise.all(
-        data.map(async ({ id }) => {
-          const coupons = await strapi.entityService.findMany(
-            'api::coupon.coupon',
-            {
-              fields: ['id'],
-              filters: { promotion: id },
-            }
-          )
-
-          return coupons.length
-        })
-      )
-
-      return {
-        data: data.map((promotion, i) => ({
-          ...promotion,
-          attributes: {
-            ...promotion.attributes,
-            couponsCount: coupons[i],
-          },
-        })),
-
-        meta,
-      }
-    },
-
     async findOne(ctx) {
       try {
-        ctx.request.query.filters = {
-          slug: {
-            $eq: ctx.params.id,
-          },
-        }
-
         let promotion
         if (Number(ctx.params.id) != ctx.params.id) {
-          promotion = (await this.find(ctx)).data[0]
+          promotion = await strapi
+            .service('api::promotion.promotion')
+            .findOneBySlug(ctx)
         } else {
-          promotion = (await super.findOne(ctx)).data
+          promotion = await strapi
+            .service('api::promotion.promotion')
+            .findOne(ctx)
         }
-
         if (!promotion) {
           throw new Error(ERROR_CODES.PROMOTION_NOT_FOUND)
         }
-
         const { views } = ctx.request.query
-        await strapi.entityService.update(
-          'api::promotion.promotion',
-          promotion.id,
-          {
-            data: {
-              viewsCount:
-                views === 'true'
-                  ? promotion.attributes.viewsCount + 1
-                  : promotion.attributes.viewsCount,
-            },
-          }
-        )
+        await strapi.service('api::promotion.promotion').update(promotion.id, {
+          data: {
+            viewsCount:
+              views === 'true'
+                ? promotion.viewsCount + 1
+                : promotion.viewsCount,
+          },
+        })
 
-        return { data: promotion }
+        const sanitizedResult = await this.sanitizeOutput(promotion, ctx)
+        return this.transformResponse(sanitizedResult)
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()
