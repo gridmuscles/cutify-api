@@ -26,21 +26,26 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
   },
 
   async findOne(ctx) {
+    const { populate } = ctx.request.query
+
     const { results } = await this.find({
       filters: {
         id: ctx.params.id,
       },
+      populate,
       publicationState: 'preview',
     })
     return results[0]
   },
 
   async findOneBySlug(ctx) {
+    const { populate } = ctx.request.query
+
     const { results } = await this.find({
-      ...ctx.request.query,
       filters: {
         slug: ctx.params.id,
       },
+      populate,
     })
     return results[0]
   },

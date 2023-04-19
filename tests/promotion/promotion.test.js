@@ -49,7 +49,7 @@ describe('Promotions', () => {
     await clearCoupons()
   })
 
-  it('should guest is able to get the promotion by slug', async () => {
+  it('should guest is able to get the populated published promotion by slug', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/promotions/${primaryPromotion.slug}`)
       .set('accept', 'application/json')
@@ -253,7 +253,7 @@ describe('Promotions', () => {
       })
   })
 
-  it('should guest is able to see a single draft promotion', async () => {
+  it('should guest is able to see a single populated draft promotion', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/promotions/${draftPromotion.id}`)
       .set('accept', 'application/json')
@@ -261,7 +261,18 @@ describe('Promotions', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(({ body: { data } }) => {
-        expect(data).toBeDefined()
+        expect(data.attributes.categories).toBeDefined()
+        expect(data.attributes.organization).toBeDefined()
+        expect(
+          data.attributes.organization.data.attributes.promotions
+        ).toBeDefined()
+        expect(
+          data.attributes.organization.data.attributes.locations
+        ).toBeDefined()
+        expect(
+          data.attributes.organization.data.attributes.promotions.data[0]
+            .attributes.organization
+        ).toBeUndefined()
       })
   })
 
