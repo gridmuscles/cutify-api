@@ -18,7 +18,7 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
         .findAuctionLatestBid({ auctionId })
 
       if (!latestBid) {
-        throw new Error()
+        return { data: null }
       }
 
       const { id, ...attributes } = await this.sanitizeOutput(latestBid, ctx)

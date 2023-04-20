@@ -93,19 +93,24 @@ module.exports = createCoreController(
       try {
         const promotion = await strapi
           .service('api::promotion.promotion')
-          .findOne(ctx.params.id)
+          .findOne(ctx)
 
         if (!promotion) {
           return
         }
 
+        const likesCount = promotion.likesCount ? promotion.likesCount + 1 : 1
         await strapi.service('api::promotion.promotion').update(promotion.id, {
           data: {
-            likesCount: promotion.likesCount ? promotion.likesCount + 1 : 1,
+            likesCount,
           },
         })
 
-        return {}
+        return {
+          data: {
+            likesCount,
+          },
+        }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

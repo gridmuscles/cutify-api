@@ -19,7 +19,7 @@ module.exports = createCoreRouter('api::auction.auction', {
       middlewares: [
         { name: 'global::locale' },
         { name: 'global::i18n' },
-        { name: 'global::populate', config: { deep: 2 } },
+        { name: 'global::populate', config: { deep: 5 } },
       ],
     },
   },
