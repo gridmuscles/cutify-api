@@ -25,7 +25,7 @@ const mockPromotionData = (data = {}) => {
     discountTo: 50,
     dateTimeUntil: '2100-04-30 23:59:59',
     publishedAt: '2023-01-01 23:59:59',
-    couponsLimit: null,
+    auction: null,
     ...data,
   }
 }

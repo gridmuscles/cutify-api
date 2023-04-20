@@ -19,4 +19,24 @@ module.exports = createCoreService('api::auction.auction', () => ({
 
     return bids[0] ?? null
   },
+
+  async completeAuction({ auctionId }) {
+    try {
+      const auction = await super.findOne(auctionId)
+      if (auction.status === 'completed') {
+        throw new Error()
+      }
+
+      await strapi.service('api::auction.auction').update(auction.id, {
+        data: {
+          status: 'completed',
+        },
+      })
+
+      return true
+    } catch (err) {
+      strapi.log.error(err)
+      throw new Error()
+    }
+  },
 }))

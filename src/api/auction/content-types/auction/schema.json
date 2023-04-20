@@ -12,19 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "promotion": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::promotion.promotion"
-    },
-    "startDateTime": {
-      "type": "datetime",
-      "required": true
-    },
-    "endDateTime": {
-      "type": "datetime",
-      "required": true
-    },
     "direction": {
       "type": "enumeration",
       "enum": ["asc", "desc"],

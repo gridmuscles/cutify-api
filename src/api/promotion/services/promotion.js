@@ -26,7 +26,7 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
   },
 
   async findOne(ctx) {
-    const populate = ctx.request.query?.populate
+    const { populate } = ctx.request.query
 
     const { results } = await this.find({
       filters: {
@@ -39,7 +39,7 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
   },
 
   async findOneBySlug(ctx) {
-    const populate = ctx.request.query?.populate
+    const { populate } = ctx.request.query
 
     const { results } = await this.find({
       filters: {

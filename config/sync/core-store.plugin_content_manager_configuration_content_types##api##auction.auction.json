@@ -20,49 +20,6 @@
           "sortable": true
         }
       },
-      "promotion": {
-        "edit": {
-          "label": "promotion",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "promotion",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "startDateTime": {
-        "edit": {
-          "label": "startDateTime",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "startDateTime",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "endDateTime": {
-        "edit": {
-          "label": "endDateTime",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "endDateTime",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "direction": {
         "edit": {
           "label": "direction",
@@ -135,23 +92,9 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "promotion"],
+      "list": ["id", "createdAt", "updatedAt"],
       "edit": [
         [
-          {
-            "name": "promotion",
-            "size": 6
-          },
-          {
-            "name": "startDateTime",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "endDateTime",
-            "size": 6
-          },
           {
             "name": "direction",
             "size": 6

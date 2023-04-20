@@ -103,8 +103,10 @@
       "type": "integer",
       "default": 0
     },
-    "couponsLimit": {
-      "type": "integer"
+    "auction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::auction.auction"
     }
   }
 }

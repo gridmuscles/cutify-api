@@ -23,9 +23,11 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.REQUIRED_FIELDS_MISSING)
         }
 
-        const promotion = await this.findOne(ctx)
-        const { dateTimeUntil, publishedAt, couponsLimit } =
-          promotion.data.attributes
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx)
+
+        const { dateTimeUntil, publishedAt, auction } = promotion
 
         if (!publishedAt) {
           throw new Error(
@@ -33,8 +35,10 @@ module.exports = createCoreController(
           )
         }
 
-        if (couponsLimit === 0) {
-          throw new Error(ERROR_CODES.COUPON_LIMIT_EXCEEDED)
+        if (auction) {
+          throw new Error(
+            ERROR_CODES.UNABLE_TO_REQUEST_COUPON_FOR_AUCTION_PROMOTION
+          )
         }
 
         if (!dateTimeUntil) {
@@ -50,7 +54,7 @@ module.exports = createCoreController(
           .find({
             filters: {
               email,
-              promotion: promotion.data.id,
+              promotion: promotion.id,
             },
           })
 
@@ -62,7 +66,7 @@ module.exports = createCoreController(
           [...Array(count).keys()].map(() =>
             strapi.service('api::coupon.coupon').create({
               data: {
-                promotion: promotion.data.id,
+                promotion: promotion.id,
                 email,
                 uuid: `${Math.floor(
                   100000000 + Math.random() * 900000000
@@ -144,6 +148,46 @@ module.exports = createCoreController(
 
         const sanitizedResult = await this.sanitizeOutput(promotion, ctx)
         return this.transformResponse(sanitizedResult)
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async completeAuction(ctx) {
+      try {
+        const { locale } = ctx.request.query
+
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx)
+
+        await strapi.service('api::auction.auction').completeAuction({
+          auctionId: promotion.auction.id,
+        })
+
+        const { id: userId, email: userEmail } = ctx.state.user
+
+        const coupon = await strapi.service('api::coupon.coupon').create({
+          data: {
+            promotion: promotion.id,
+            email: userEmail,
+            user: userId,
+            state: 'active',
+          },
+        })
+
+        await strapi.plugins['email'].services.email.send(
+          getCouponListEmail({
+            email: userEmail,
+            locale,
+            origin: ctx.request.header.origin,
+            couponUUIDList: [coupon.uuid],
+          })
+        )
+
+        const { id } = coupon
+        return { id }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

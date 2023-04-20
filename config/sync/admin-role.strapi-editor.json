@@ -247,8 +247,7 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "couponsLimit"
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -290,8 +289,7 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "couponsLimit"
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -321,8 +319,7 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "couponsLimit"
+          "viewsCount"
         ]
       },
       "conditions": []

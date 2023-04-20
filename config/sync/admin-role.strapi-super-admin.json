@@ -7,14 +7,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::auction.auction",
       "properties": {
-        "fields": [
-          "promotion",
-          "startDateTime",
-          "endDateTime",
-          "direction",
-          "startPrice",
-          "status"
-        ]
+        "fields": ["direction", "startPrice", "status"]
       },
       "conditions": []
     },
@@ -34,14 +27,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::auction.auction",
       "properties": {
-        "fields": [
-          "promotion",
-          "startDateTime",
-          "endDateTime",
-          "direction",
-          "startPrice",
-          "status"
-        ]
+        "fields": ["direction", "startPrice", "status"]
       },
       "conditions": []
     },
@@ -49,14 +35,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::auction.auction",
       "properties": {
-        "fields": [
-          "promotion",
-          "startDateTime",
-          "endDateTime",
-          "direction",
-          "startPrice",
-          "status"
-        ]
+        "fields": ["direction", "startPrice", "status"]
       },
       "conditions": []
     },
@@ -428,7 +407,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "couponsLimit"
+          "auction"
         ]
       },
       "conditions": []
@@ -471,7 +450,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "couponsLimit"
+          "auction"
         ]
       },
       "conditions": []
@@ -502,7 +481,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "couponsLimit"
+          "auction"
         ]
       },
       "conditions": []

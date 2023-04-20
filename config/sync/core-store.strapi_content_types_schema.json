@@ -1998,19 +1998,6 @@
       },
       "pluginOptions": {},
       "attributes": {
-        "promotion": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "api::promotion.promotion"
-        },
-        "startDateTime": {
-          "type": "datetime",
-          "required": true
-        },
-        "endDateTime": {
-          "type": "datetime",
-          "required": true
-        },
         "direction": {
           "type": "enumeration",
           "enum": ["asc", "desc"],
@@ -2073,19 +2060,6 @@
         },
         "pluginOptions": {},
         "attributes": {
-          "promotion": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::promotion.promotion"
-          },
-          "startDateTime": {
-            "type": "datetime",
-            "required": true
-          },
-          "endDateTime": {
-            "type": "datetime",
-            "required": true
-          },
           "direction": {
             "type": "enumeration",
             "enum": ["asc", "desc"],
@@ -3093,8 +3067,10 @@
           "type": "integer",
           "default": 0
         },
-        "couponsLimit": {
-          "type": "integer"
+        "auction": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::auction.auction"
         },
         "createdAt": {
           "type": "datetime"
@@ -3233,8 +3209,10 @@
             "type": "integer",
             "default": 0
           },
-          "couponsLimit": {
-            "type": "integer"
+          "auction": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::auction.auction"
           }
         },
         "kind": "collectionType"

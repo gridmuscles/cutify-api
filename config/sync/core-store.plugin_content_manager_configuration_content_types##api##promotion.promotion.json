@@ -316,16 +316,17 @@
           "sortable": true
         }
       },
-      "couponsLimit": {
+      "auction": {
         "edit": {
-          "label": "couponsLimit",
+          "label": "auction",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "couponsLimit",
+          "label": "auction",
           "searchable": true,
           "sortable": true
         }
@@ -360,7 +361,7 @@
       }
     },
     "layouts": {
-      "list": ["id", "organization", "title_ru", "couponsLimit"],
+      "list": ["id", "organization", "title_ru", "auction"],
       "edit": [
         [
           {
@@ -476,8 +477,8 @@
         ],
         [
           {
-            "name": "couponsLimit",
-            "size": 4
+            "name": "auction",
+            "size": 6
           }
         ]
       ]

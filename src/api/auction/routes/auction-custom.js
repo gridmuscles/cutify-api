@@ -15,13 +15,5 @@ module.exports = {
         middlewares: [{ name: 'global::populate', config: { deep: 1 } }],
       },
     },
-    {
-      method: 'POST',
-      path: '/auctions/:id/complete',
-      handler: 'auction.completeAuction',
-      config: {
-        middlewares: [{ name: 'global::populate', config: { deep: 2 } }],
-      },
-    },
   ],
 }

@@ -157,8 +157,7 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "couponsLimit"
+          "viewsCount"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -194,8 +193,7 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "couponsLimit"
+          "viewsCount"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -225,8 +223,7 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "couponsLimit"
+          "viewsCount"
         ]
       },
       "conditions": ["admin::is-creator"]
