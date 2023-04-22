@@ -35,31 +35,35 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
 
   async createAuctionBid(ctx) {
     try {
-      const { data: auction } = await super.findOne(ctx)
+      const auction = await strapi
+        .service('api::auction.auction')
+        .findOne(ctx.params.id)
 
-      if (auction.attributes.status === 'completed') {
+      if (auction.status === 'completed') {
         throw new Error()
       }
 
       const { id: bidderId } = ctx.state.user
-      const { amount } = ctx.request.body.data
 
       const latestBid = await strapi
         .service('api::auction.auction')
         .findAuctionLatestBid({ auctionId: auction.id })
 
-      const { direction } = auction.attributes
-      if (
-        (direction === 'asc' && latestBid.amount >= amount) ||
-        (direction === 'desc' && latestBid.amount <= amount)
-      ) {
+      const { direction, step, startPrice } = auction
+
+      const amountToCompare = latestBid ? latestBid.amount : startPrice
+
+      if (direction === 'desc' && amountToCompare <= step) {
         throw new Error()
       }
 
       ctx.request.body.data = {
-        ...ctx.request.body.data,
         bidder: bidderId,
         auction: auction.id,
+        amount:
+          direction === 'desc'
+            ? amountToCompare - step
+            : amountToCompare + step,
       }
 
       return strapi.controller('api::bid.bid').create(ctx)

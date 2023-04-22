@@ -5,6 +5,7 @@ const mockAuctionData = (data = {}) => {
     endDateTime: '2100-01-01 23:59:59',
     direction: 'desc',
     startPrice: 100,
+    step: 10,
     status: 'active',
     ...data,
   }

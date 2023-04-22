@@ -62,6 +62,20 @@
           "sortable": true
         }
       },
+      "step": {
+        "edit": {
+          "label": "step",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "step",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -92,7 +106,7 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt"],
+      "list": ["id", "createdAt", "updatedAt", "step"],
       "edit": [
         [
           {
@@ -108,6 +122,12 @@
           {
             "name": "status",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "step",
+            "size": 4
           }
         ]
       ]

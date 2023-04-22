@@ -7,7 +7,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::auction.auction",
       "properties": {
-        "fields": ["direction", "startPrice", "status"]
+        "fields": ["direction", "startPrice", "status", "step"]
       },
       "conditions": []
     },
@@ -27,7 +27,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::auction.auction",
       "properties": {
-        "fields": ["direction", "startPrice", "status"]
+        "fields": ["direction", "startPrice", "status", "step"]
       },
       "conditions": []
     },
@@ -35,7 +35,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::auction.auction",
       "properties": {
-        "fields": ["direction", "startPrice", "status"]
+        "fields": ["direction", "startPrice", "status", "step"]
       },
       "conditions": []
     },

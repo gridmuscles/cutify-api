@@ -2014,6 +2014,11 @@
           "default": "active",
           "required": true
         },
+        "step": {
+          "type": "decimal",
+          "default": 1,
+          "required": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2074,6 +2079,11 @@
             "type": "enumeration",
             "enum": ["active", "completed"],
             "default": "active",
+            "required": true
+          },
+          "step": {
+            "type": "decimal",
+            "default": 1,
             "required": true
           }
         },

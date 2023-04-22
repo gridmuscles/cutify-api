@@ -100,33 +100,10 @@ describe('Auction', () => {
     }
   )
 
-  it('should authenticated user is able to do a bid', async () => {
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${primaryAuction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .send({
-        data: {
-          amount: 90,
-        },
-      })
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toBeDefined()
-      })
-  })
-
-  it('should not authenticated user be able to do a bid less than the max bid for asc auction', async () => {
+  it('should authenticated user be able to do a bid for asc auction', async () => {
     const auction = await createAuction({
       direction: 'asc',
-    })
-
-    await createBid({
-      bidder: authenticatedUser.id,
-      auction: auction.id,
-      amount: 100,
+      startPrice: 100,
     })
 
     await request(strapi.server.httpServer)
@@ -134,24 +111,26 @@ describe('Auction', () => {
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .send({
-        data: {
-          amount: 90,
-        },
-      })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.amount).toBe(110)
+      })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.amount).toBe(120)
+      })
   })
 
-  it('should not authenticated user be able to do a bid more than the min bid for desc auction', async () => {
+  it('should authenticated user be able to do a bid for desc auction', async () => {
     const auction = await createAuction({
       direction: 'desc',
-    })
-
-    await createBid({
-      bidder: authenticatedUser.id,
-      auction: auction.id,
-      amount: 90,
+      startPrice: 100,
     })
 
     await request(strapi.server.httpServer)
@@ -159,13 +138,20 @@ describe('Auction', () => {
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .send({
-        data: {
-          amount: 100,
-        },
-      })
       .expect('Content-Type', /json/)
-      .expect(400)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.amount).toBe(90)
+      })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.amount).toBe(80)
+      })
   })
 
   it('should not authenticated user be able to do a bid after auction is completed', async () => {
@@ -178,11 +164,6 @@ describe('Auction', () => {
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .send({
-        data: {
-          amount: 90,
-        },
-      })
       .expect('Content-Type', /json/)
       .expect(400)
   })
@@ -192,11 +173,6 @@ describe('Auction', () => {
       .post(`/api/auctions/${primaryAuction.id}/bids`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
-      .send({
-        data: {
-          amount: 100,
-        },
-      })
       .expect('Content-Type', /json/)
       .expect(403)
   })
