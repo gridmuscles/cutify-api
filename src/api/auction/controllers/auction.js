@@ -4,6 +4,9 @@
  * auction controller
  */
 
+const utils = require('@strapi/utils')
+const { ERROR_CODES } = require('../../../utils/const')
+const { ValidationError } = utils.errors
 const { createCoreController } = require('@strapi/strapi').factories
 
 module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
@@ -55,7 +58,7 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
       })
 
       if (userBids.length >= auction.userAttemptLimit) {
-        throw new Error()
+        throw new ValidationError(ERROR_CODES.BIDS_LIMIT_EXCEEDED)
       }
 
       const { direction, step, startPrice } = auction
@@ -87,7 +90,7 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
       }
     } catch (err) {
       strapi.log.error(err)
-      ctx.badRequest()
+      ctx.badRequest(err)
     }
   },
 }))

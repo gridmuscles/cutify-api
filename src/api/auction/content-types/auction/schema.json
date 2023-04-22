@@ -37,6 +37,12 @@
       "type": "integer",
       "default": 2,
       "required": false
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": ["pln", "usd", "eur"],
+      "default": "pln",
+      "required": false
     }
   }
 }
