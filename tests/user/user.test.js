@@ -70,20 +70,6 @@ describe('Users', () => {
       })
   })
 
-  it('should allow register users', async () => {
-    await request(strapi.server.httpServer)
-      .post('/api/auth/local/register')
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .send({ ...mockUserData() })
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { jwt, user } }) => {
-        expect(jwt).toBeDefined()
-        expect(user).toBeDefined()
-      })
-  })
-
   it('should unconfirmed user is able to login', async () => {
     await updatePluginStore('users-permissions', 'advanced', {
       email_confirmation: true,
@@ -133,6 +119,7 @@ describe('Users', () => {
 
   it('should register, send email with confirmation link, link should confirm account', async () => {
     await updatePluginStore('users-permissions', 'advanced', {
+      allow_register: true,
       email_confirmation: true,
     })
 
