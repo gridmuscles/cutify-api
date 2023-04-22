@@ -76,6 +76,34 @@
           "sortable": true
         }
       },
+      "userAttemptLimit": {
+        "edit": {
+          "label": "userAttemptLimit",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "userAttemptLimit",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "currency": {
+        "edit": {
+          "label": "currency",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "currency",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -128,6 +156,16 @@
           {
             "name": "step",
             "size": 4
+          },
+          {
+            "name": "userAttemptLimit",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "currency",
+            "size": 6
           }
         ]
       ]

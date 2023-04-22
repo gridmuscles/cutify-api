@@ -2019,6 +2019,17 @@
           "default": 1,
           "required": true
         },
+        "userAttemptLimit": {
+          "type": "integer",
+          "default": 2,
+          "required": false
+        },
+        "currency": {
+          "type": "enumeration",
+          "enum": ["pln", "usd", "eur"],
+          "default": "pln",
+          "required": false
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2085,6 +2096,17 @@
             "type": "decimal",
             "default": 1,
             "required": true
+          },
+          "userAttemptLimit": {
+            "type": "integer",
+            "default": 2,
+            "required": false
+          },
+          "currency": {
+            "type": "enumeration",
+            "enum": ["pln", "usd", "eur"],
+            "default": "pln",
+            "required": false
           }
         },
         "kind": "collectionType"
