@@ -2,7 +2,7 @@ const request = require('supertest')
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
-const { createAuction } = require('./auction.factory')
+const { createAuction, clearAuctions } = require('./auction.factory')
 const { createBid, clearBids } = require('../bid/bid.factory')
 const { createUser } = require('../user/user.factory')
 
@@ -24,26 +24,21 @@ describe('Auction', () => {
   let primaryAuction
 
   beforeAll(async () => {
-    const [user1, jwt1] = await createUser({ type: 'authenticated' })
-    authenticatedUser = user1
-    authenticatedUserJwt = jwt1
-
     const [, jwt2] = await createUser({ type: 'manager' })
     managerUserJwt = jwt2
-
-    primaryAuction = await createAuction({})
   })
 
   beforeEach(async () => {
-    await createBid({
-      bidder: authenticatedUser.id,
-      auction: primaryAuction.id,
-      amount: 100,
-    })
+    const [user, jwt] = await createUser({ type: 'authenticated' })
+    authenticatedUser = user
+    authenticatedUserJwt = jwt
+
+    primaryAuction = await createAuction()
   })
 
   afterEach(async () => {
     await clearBids()
+    await clearAuctions()
   })
 
   it.each([
@@ -96,6 +91,8 @@ describe('Auction', () => {
         .expect(200)
         .then(({ body: { data } }) => {
           expect(data.id).toBe(latestBid.id)
+          expect(data.attributes.auction).toBeUndefined()
+          expect(data.attributes.bidder).toBeUndefined()
         })
     }
   )
@@ -141,6 +138,8 @@ describe('Auction', () => {
       .expect('Content-Type', /json/)
       .then(({ body: { data } }) => {
         expect(data.attributes.amount).toBe(90)
+        expect(data.attributes.auction).toBeUndefined()
+        expect(data.attributes.bidder).toBeUndefined()
       })
 
     await request(strapi.server.httpServer)
@@ -164,6 +163,46 @@ describe('Auction', () => {
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not authenticated user be able to do a bid after exceed the auction user bids limit', async () => {
+    const auction = await createAuction({
+      userAttemptLimit: 2,
+    })
+
+    const [, jwt] = await createUser({ type: 'authenticated' })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt}`)
       .expect('Content-Type', /json/)
       .expect(400)
   })

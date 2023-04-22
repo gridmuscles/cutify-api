@@ -32,6 +32,11 @@
       "type": "decimal",
       "default": 1,
       "required": true
+    },
+    "userAttemptLimit": {
+      "type": "integer",
+      "default": 2,
+      "required": false
     }
   }
 }

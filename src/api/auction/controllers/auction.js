@@ -49,6 +49,15 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
         .service('api::auction.auction')
         .findAuctionLatestBid({ auctionId: auction.id })
 
+      const { results: userBids } = await strapi.service('api::bid.bid').find({
+        fields: ['id'],
+        filters: { auction: auction.id, bidder: bidderId },
+      })
+
+      if (userBids.length >= auction.userAttemptLimit) {
+        throw new Error()
+      }
+
       const { direction, step, startPrice } = auction
 
       const amountToCompare = latestBid ? latestBid.amount : startPrice
@@ -57,16 +66,25 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
         throw new Error()
       }
 
-      ctx.request.body.data = {
-        bidder: bidderId,
-        auction: auction.id,
-        amount:
-          direction === 'desc'
-            ? amountToCompare - step
-            : amountToCompare + step,
-      }
+      const newBid = await strapi.service('api::bid.bid').create({
+        data: {
+          bidder: bidderId,
+          auction: auction.id,
+          amount:
+            direction === 'desc'
+              ? amountToCompare - step
+              : amountToCompare + step,
+        },
+      })
 
-      return strapi.controller('api::bid.bid').create(ctx)
+      const { id, ...attributes } = await this.sanitizeOutput(newBid, ctx)
+
+      return {
+        data: {
+          id,
+          attributes,
+        },
+      }
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()

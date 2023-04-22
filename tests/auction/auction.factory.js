@@ -7,6 +7,7 @@ const mockAuctionData = (data = {}) => {
     startPrice: 100,
     step: 10,
     status: 'active',
+    userAttemptLimit: 100,
     ...data,
   }
 }
@@ -19,6 +20,11 @@ const createAuction = async (data = {}) => {
   })
 }
 
+const clearAuctions = () => {
+  return strapi.db.query('api::auction.auction').deleteMany()
+}
+
 module.exports = {
   createAuction,
+  clearAuctions,
 }
