@@ -244,10 +244,10 @@
           "categories",
           "organization",
           "discountTo",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "dateTimeUntil"
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -286,10 +286,10 @@
           "categories",
           "organization",
           "discountTo",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "dateTimeUntil"
+          "viewsCount"
         ]
       },
       "conditions": []
@@ -316,10 +316,10 @@
           "categories",
           "organization",
           "discountTo",
+          "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount",
-          "dateTimeUntil"
+          "viewsCount"
         ]
       },
       "conditions": []

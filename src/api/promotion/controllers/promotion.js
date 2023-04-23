@@ -1,49 +1,14 @@
 'use strict'
 
 const { parseISO, isAfter } = require('date-fns')
-const qs = require('qs')
-
 const { ERROR_CODES } = require('../../../utils/const')
+const { getCouponListEmail } = require('../../../utils/email')
 
 /**
  * promotion controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories
-
-const TEMPLATE_DATA = {
-  en: {
-    title: 'Your coupon has been activated!',
-    greetings: 'Hello!',
-    description: 'To use your coupon, click on the "Open Coupon" button below.',
-    linkText: 'Open Coupon',
-    subject: 'Your Coupon Delivered!',
-  },
-  pl: {
-    title: 'Twój kupon został aktywowany!',
-    greetings: 'Witaj!',
-    description:
-      'Aby skorzystać z kuponu, kliknij przycisk "Otwórz kupon" poniżej.',
-    linkText: 'Otwórz kupon',
-    subject: 'Twój kupon dostarczony!',
-  },
-  ua: {
-    title: 'Ваш купон активовано!',
-    greetings: 'Вітаємо!',
-    description:
-      'Щоб скористатись купоном, натисніть на кнопку "Відкрити купон" нижче.',
-    linkText: 'Відкрити купон',
-    subject: 'Ваш купон доставлено!',
-  },
-  ru: {
-    title: 'Ваш купон активирован!',
-    greetings: 'Здравствуйте!',
-    description:
-      'Чтобы воспользоваться купоном, нажмите на кнопку "Открыть купон"',
-    linkText: 'Открыть купон',
-    subject: 'Ваш купон доставлен!',
-  },
-}
 
 //TODO (Tests)
 module.exports = createCoreController(
@@ -58,12 +23,21 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.REQUIRED_FIELDS_MISSING)
         }
 
-        const promotion = await super.findOne(ctx)
-        const { dateTimeUntil, publishedAt } = promotion.data.attributes
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx)
+
+        const { dateTimeUntil, publishedAt, auction } = promotion
 
         if (!publishedAt) {
           throw new Error(
             ERROR_CODES.UNABLE_TO_REQUEST_COUPON_FOR_DRAFT_PROMOTION
+          )
+        }
+
+        if (auction) {
+          throw new Error(
+            ERROR_CODES.UNABLE_TO_REQUEST_COUPON_FOR_AUCTION_PROMOTION
           )
         }
 
@@ -75,31 +49,14 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.PROMOTION_IS_FINISHED)
         }
 
-        const promotionCoupons = await strapi.entityService.findMany(
-          'api::coupon.coupon',
-          {
+        const { results: userCoupons } = await strapi
+          .service('api::coupon.coupon')
+          .find({
             filters: {
-              promotion: promotion.data.id,
+              email,
+              promotion: promotion.id,
             },
-          }
-        )
-
-        if (
-          promotionCoupons.length + count >
-          promotion.data.attributes.couponsLimit
-        ) {
-          throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_PROMOTION)
-        }
-
-        const userCoupons = await strapi.entityService.findMany(
-          'api::coupon.coupon',
-          {
-            filters: {
-              email: ctx.request.body.email,
-              promotion: promotion.data.id,
-            },
-          }
-        )
+          })
 
         if (userCoupons.length + count > 10) {
           throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_SINGLE_USER)
@@ -107,9 +64,9 @@ module.exports = createCoreController(
 
         const couponUUIDList = await Promise.all(
           [...Array(count).keys()].map(() =>
-            strapi.entityService.create('api::coupon.coupon', {
+            strapi.service('api::coupon.coupon').create({
               data: {
-                promotion: promotion.data.id,
+                promotion: promotion.id,
                 email,
                 uuid: `${Math.floor(
                   100000000 + Math.random() * 900000000
@@ -120,29 +77,14 @@ module.exports = createCoreController(
           )
         ).then((coupons) => coupons.map(({ uuid }) => uuid))
 
-        const couponsQuery = qs.stringify(
-          {
-            filters: {
-              uuid: {
-                $in: couponUUIDList,
-              },
-            },
-          },
-          {
-            encodeValuesOnly: true,
-          }
+        await strapi.plugins['email'].services.email.send(
+          getCouponListEmail({
+            email,
+            locale,
+            origin: ctx.request.header.origin,
+            couponUUIDList,
+          })
         )
-
-        await strapi.plugins['email'].services.email.send({
-          to: email,
-          templateId: 'd-c096941312084bdea8775e617e70e6b2',
-          dynamicTemplateData: {
-            ...TEMPLATE_DATA[locale],
-            link: `${ctx.request.header.origin}/${
-              locale ?? 'en'
-            }/coupons?${couponsQuery}`,
-          },
-        })
 
         return { data: couponUUIDList }
       } catch (err) {
@@ -153,96 +95,99 @@ module.exports = createCoreController(
 
     async like(ctx) {
       try {
-        const promotion = await strapi.entityService.findOne(
-          'api::promotion.promotion',
-          ctx.params.id
-        )
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx)
 
         if (!promotion) {
           return
         }
 
-        await strapi.entityService.update(
-          'api::promotion.promotion',
-          promotion.id,
-          {
-            data: {
-              likesCount: promotion.likesCount ? promotion.likesCount + 1 : 1,
-            },
-          }
-        )
+        const likesCount = promotion.likesCount ? promotion.likesCount + 1 : 1
+        await strapi.service('api::promotion.promotion').update(promotion.id, {
+          data: {
+            likesCount,
+          },
+        })
 
-        return {}
+        return {
+          data: {
+            likesCount,
+          },
+        }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()
       }
     },
 
-    async find(ctx) {
-      const { data, meta } = await super.find(ctx)
-
-      const coupons = await Promise.all(
-        data.map(async ({ id }) => {
-          const coupons = await strapi.entityService.findMany(
-            'api::coupon.coupon',
-            {
-              fields: ['id'],
-              filters: { promotion: id },
-            }
-          )
-
-          return coupons.length
-        })
-      )
-
-      return {
-        data: data.map((promotion, i) => ({
-          ...promotion,
-          attributes: {
-            ...promotion.attributes,
-            couponsCount: coupons[i],
-          },
-        })),
-
-        meta,
-      }
-    },
-
     async findOne(ctx) {
       try {
-        ctx.request.query.filters = {
-          slug: {
-            $eq: ctx.params.id,
-          },
-        }
-
         let promotion
         if (Number(ctx.params.id) != ctx.params.id) {
-          promotion = (await this.find(ctx)).data[0]
+          promotion = await strapi
+            .service('api::promotion.promotion')
+            .findOneBySlug(ctx)
         } else {
-          promotion = (await super.findOne(ctx)).data
+          promotion = await strapi
+            .service('api::promotion.promotion')
+            .findOne(ctx)
         }
-
         if (!promotion) {
           throw new Error(ERROR_CODES.PROMOTION_NOT_FOUND)
         }
-
         const { views } = ctx.request.query
-        await strapi.entityService.update(
-          'api::promotion.promotion',
-          promotion.id,
-          {
-            data: {
-              viewsCount:
-                views === 'true'
-                  ? promotion.attributes.viewsCount + 1
-                  : promotion.attributes.viewsCount,
-            },
-          }
+        await strapi.service('api::promotion.promotion').update(promotion.id, {
+          data: {
+            viewsCount:
+              views === 'true'
+                ? promotion.viewsCount + 1
+                : promotion.viewsCount,
+          },
+        })
+
+        const sanitizedResult = await this.sanitizeOutput(promotion, ctx)
+        return this.transformResponse(sanitizedResult)
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async completeAuction(ctx) {
+      try {
+        const { locale } = ctx.request.query
+
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx)
+
+        await strapi.service('api::auction.auction').completeAuction({
+          auctionId: promotion.auction.id,
+        })
+
+        const { id: userId, email: userEmail } = ctx.state.user
+
+        const coupon = await strapi.service('api::coupon.coupon').create({
+          data: {
+            promotion: promotion.id,
+            email: userEmail,
+            user: userId,
+            state: 'active',
+          },
+        })
+
+        await strapi.plugins['email'].services.email.send(
+          getCouponListEmail({
+            email: userEmail,
+            locale,
+            origin: ctx.request.header.origin,
+            couponUUIDList: [coupon.uuid],
+          })
         )
 
-        return { data: promotion }
+        const { id } = coupon
+        return { id }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

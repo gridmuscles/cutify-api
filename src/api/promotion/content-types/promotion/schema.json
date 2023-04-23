@@ -102,6 +102,11 @@
     "viewsCount": {
       "type": "integer",
       "default": 0
+    },
+    "auction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::auction.auction"
     }
   }
 }

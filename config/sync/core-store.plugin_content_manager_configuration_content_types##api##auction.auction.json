@@ -1,0 +1,177 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::auction.auction",
+  "value": {
+    "uid": "api::auction.auction",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "direction": {
+        "edit": {
+          "label": "direction",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "direction",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "startPrice": {
+        "edit": {
+          "label": "startPrice",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "startPrice",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "status": {
+        "edit": {
+          "label": "status",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "status",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "step": {
+        "edit": {
+          "label": "step",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "step",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "userAttemptLimit": {
+        "edit": {
+          "label": "userAttemptLimit",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "userAttemptLimit",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "currency": {
+        "edit": {
+          "label": "currency",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "currency",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "step"],
+      "edit": [
+        [
+          {
+            "name": "direction",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "startPrice",
+            "size": 4
+          },
+          {
+            "name": "status",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "step",
+            "size": 4
+          },
+          {
+            "name": "userAttemptLimit",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "currency",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

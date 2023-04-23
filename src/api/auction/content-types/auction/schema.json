@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "auctions",
+  "info": {
+    "singularName": "auction",
+    "pluralName": "auctions",
+    "displayName": "Auction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "direction": {
+      "type": "enumeration",
+      "enum": ["asc", "desc"],
+      "default": "desc",
+      "required": true
+    },
+    "startPrice": {
+      "type": "float",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "completed"],
+      "default": "active",
+      "required": true
+    },
+    "step": {
+      "type": "decimal",
+      "default": 1,
+      "required": true
+    },
+    "userAttemptLimit": {
+      "type": "integer",
+      "default": 2,
+      "required": false
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": ["pln", "usd", "eur"],
+      "default": "pln",
+      "required": false
+    }
+  }
+}

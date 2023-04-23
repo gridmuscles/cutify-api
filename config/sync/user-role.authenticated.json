@@ -4,6 +4,18 @@
   "type": "authenticated",
   "permissions": [
     {
+      "action": "api::auction.auction.createAuctionBid"
+    },
+    {
+      "action": "api::auction.auction.find"
+    },
+    {
+      "action": "api::auction.auction.findAuctionLatestBid"
+    },
+    {
+      "action": "api::auction.auction.findOne"
+    },
+    {
       "action": "api::category.category.find"
     },
     {
@@ -20,6 +32,9 @@
     },
     {
       "action": "api::privacy-policy.privacy-policy.find"
+    },
+    {
+      "action": "api::promotion.promotion.completeAuction"
     },
     {
       "action": "api::promotion.promotion.find"

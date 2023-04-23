@@ -2,6 +2,8 @@ module.exports = (plugin) => {
   const bootstrap = plugin.bootstrap.bind({})
 
   plugin.bootstrap = async ({ strapi }) => {
+    await bootstrap({ strapi })
+
     const pluginStore = await strapi.store({
       environment: '',
       type: 'plugin',
@@ -64,8 +66,6 @@ module.exports = (plugin) => {
         },
       },
     })
-
-    return bootstrap({ strapi })
   }
 
   return plugin

@@ -316,6 +316,21 @@
           "sortable": true
         }
       },
+      "auction": {
+        "edit": {
+          "label": "auction",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "auction",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -346,6 +361,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "organization", "title_ru", "auction"],
       "edit": [
         [
           {
@@ -458,9 +474,14 @@
             "name": "likesCount",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "auction",
+            "size": 6
+          }
         ]
-      ],
-      "list": ["id", "organization", "title_ru"]
+      ]
     }
   },
   "type": "object",

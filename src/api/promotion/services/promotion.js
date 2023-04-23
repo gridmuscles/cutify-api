@@ -6,4 +6,56 @@
 
 const { createCoreService } = require('@strapi/strapi').factories
 
-module.exports = createCoreService('api::promotion.promotion')
+module.exports = createCoreService('api::promotion.promotion', () => ({
+  async find(ctx) {
+    const { results, pagination } = await super.find(ctx)
+
+    const coupons = await Promise.all(
+      results.map(async ({ id }) =>
+        this.getPromotionCouponsCount({ promotionId: id })
+      )
+    )
+
+    return {
+      results: results.map((promotion, i) => ({
+        ...promotion,
+        couponsCount: coupons[i],
+      })),
+      pagination,
+    }
+  },
+
+  async findOne(ctx) {
+    const { populate } = ctx.request.query
+
+    const { results } = await this.find({
+      filters: {
+        id: ctx.params.id,
+      },
+      populate,
+      publicationState: 'preview',
+    })
+    return results[0]
+  },
+
+  async findOneBySlug(ctx) {
+    const { populate } = ctx.request.query
+
+    const { results } = await this.find({
+      filters: {
+        slug: ctx.params.id,
+      },
+      populate,
+    })
+    return results[0]
+  },
+
+  async getPromotionCouponsCount({ promotionId }) {
+    const { results } = await strapi.service('api::coupon.coupon').find({
+      fields: ['id'],
+      filters: { promotion: promotionId },
+    })
+
+    return results.length
+  },
+}))
