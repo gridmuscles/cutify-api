@@ -19,11 +19,6 @@
       "unique": true,
       "configurable": false
     },
-    "name": {
-      "type": "string",
-      "minLength": 3,
-      "required": true
-    },
     "email": {
       "type": "email",
       "minLength": 6,
@@ -67,11 +62,20 @@
       "inversedBy": "users",
       "configurable": false
     },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "required": true
+    },
     "organizations": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::organization.organization",
       "mappedBy": "managers"
+    },
+    "phone": {
+      "type": "string",
+      "required": true
     }
   }
 }
