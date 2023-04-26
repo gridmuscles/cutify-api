@@ -34,20 +34,6 @@
           "sortable": true
         }
       },
-      "name": {
-        "edit": {
-          "label": "name",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "name",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "email": {
         "edit": {
           "label": "email",
@@ -161,6 +147,20 @@
           "sortable": true
         }
       },
+      "name": {
+        "edit": {
+          "label": "name",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "name",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "organizations": {
         "edit": {
           "label": "organizations",
@@ -174,6 +174,20 @@
           "label": "organizations",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "phone": {
+        "edit": {
+          "label": "phone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "phone",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -245,6 +259,12 @@
           },
           {
             "name": "name",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "phone",
             "size": 6
           }
         ]

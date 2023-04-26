@@ -1804,11 +1804,6 @@
           "unique": true,
           "configurable": false
         },
-        "name": {
-          "type": "string",
-          "minLength": 3,
-          "required": true
-        },
         "email": {
           "type": "email",
           "minLength": 6,
@@ -1852,11 +1847,20 @@
           "inversedBy": "users",
           "configurable": false
         },
+        "name": {
+          "type": "string",
+          "minLength": 3,
+          "required": true
+        },
         "organizations": {
           "type": "relation",
           "relation": "manyToMany",
           "target": "api::organization.organization",
           "mappedBy": "managers"
+        },
+        "phone": {
+          "type": "string",
+          "required": true
         },
         "createdAt": {
           "type": "datetime"
@@ -1920,11 +1924,6 @@
             "unique": true,
             "configurable": false
           },
-          "name": {
-            "type": "string",
-            "minLength": 3,
-            "required": true
-          },
           "email": {
             "type": "email",
             "minLength": 6,
@@ -1968,11 +1967,20 @@
             "inversedBy": "users",
             "configurable": false
           },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "required": true
+          },
           "organizations": {
             "type": "relation",
             "relation": "manyToMany",
             "target": "api::organization.organization",
             "mappedBy": "managers"
+          },
+          "phone": {
+            "type": "string",
+            "required": true
           }
         },
         "kind": "collectionType"
@@ -1994,7 +2002,7 @@
         "description": ""
       },
       "options": {
-        "draftAndPublish": true
+        "draftAndPublish": false
       },
       "pluginOptions": {},
       "attributes": {
@@ -2036,12 +2044,6 @@
         "updatedAt": {
           "type": "datetime"
         },
-        "publishedAt": {
-          "type": "datetime",
-          "configurable": false,
-          "writable": true,
-          "visible": false
-        },
         "createdBy": {
           "type": "relation",
           "relation": "oneToOne",
@@ -2072,7 +2074,7 @@
           "description": ""
         },
         "options": {
-          "draftAndPublish": true
+          "draftAndPublish": false
         },
         "pluginOptions": {},
         "attributes": {

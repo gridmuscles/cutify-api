@@ -5,6 +5,7 @@ const mockUserData = (data = {}) => {
     username: `tester${usernameSuffix}`,
     email: `tester${usernameSuffix}@strapi.com`,
     password: '1234Abc',
+    phone: `+99${usernameSuffix}`,
     ...data,
   }
 }
