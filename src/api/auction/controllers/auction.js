@@ -58,7 +58,9 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
       })
 
       if (userBids.length >= auction.userAttemptLimit) {
-        throw new ValidationError(ERROR_CODES.BIDS_LIMIT_EXCEEDED)
+        throw new ValidationError('Bid limit is exceeded for current user', {
+          code: ERROR_CODES.USER_BID_LIMIT_EXCEEDED,
+        })
       }
 
       const { direction, step, startPrice } = auction
@@ -90,7 +92,7 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
       }
     } catch (err) {
       strapi.log.error(err)
-      ctx.badRequest(err)
+      ctx.badRequest(err.message, err.details)
     }
   },
 }))
