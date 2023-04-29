@@ -17,4 +17,13 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
 
     return super.find(ctx)
   },
+
+  async findOwn(ctx) {
+    ctx.request.query.filters = {
+      ...(ctx.request.query.filters ?? {}),
+      user: ctx.state?.user?.id ?? 0,
+    }
+
+    return super.find(ctx)
+  },
 }))

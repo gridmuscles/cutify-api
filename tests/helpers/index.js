@@ -1,4 +1,4 @@
-const JEST_TIMEOUT = 200000
+const JEST_TIMEOUT = 20000
 
 module.exports = {
   JEST_TIMEOUT,

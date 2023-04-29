@@ -49,6 +49,9 @@
       "action": "api::review.review.findOne"
     },
     {
+      "action": "plugin::users-permissions.user.findMeChats"
+    },
+    {
       "action": "plugin::users-permissions.user.me"
     }
   ]

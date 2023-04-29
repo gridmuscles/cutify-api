@@ -1860,7 +1860,8 @@
         },
         "phone": {
           "type": "string",
-          "required": true
+          "required": true,
+          "unique": true
         },
         "createdAt": {
           "type": "datetime"
@@ -1980,7 +1981,8 @@
           },
           "phone": {
             "type": "string",
-            "required": true
+            "required": true,
+            "unique": true
           }
         },
         "kind": "collectionType"
@@ -2364,6 +2366,102 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::chat.chat": {
+      "kind": "collectionType",
+      "collectionName": "chats",
+      "info": {
+        "singularName": "chat",
+        "pluralName": "chats",
+        "displayName": "Chat"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "users": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "plugin::users-permissions.user"
+        },
+        "promotion": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::promotion.promotion"
+        },
+        "messages": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::message.message",
+          "mappedBy": "chat"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "chats",
+        "info": {
+          "singularName": "chat",
+          "pluralName": "chats",
+          "displayName": "Chat"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "users": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "plugin::users-permissions.user"
+          },
+          "promotion": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::promotion.promotion"
+          },
+          "messages": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::message.message",
+            "mappedBy": "chat"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "chat",
+      "connection": "default",
+      "uid": "api::chat.chat",
+      "apiName": "chat",
+      "globalId": "Chat",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::city.city": {
       "kind": "collectionType",
       "collectionName": "cities",
@@ -2671,6 +2769,100 @@
       "uid": "api::location.location",
       "apiName": "location",
       "globalId": "Location",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::message.message": {
+      "kind": "collectionType",
+      "collectionName": "messages",
+      "info": {
+        "singularName": "message",
+        "pluralName": "messages",
+        "displayName": "Message"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "text": {
+          "type": "text",
+          "required": true
+        },
+        "user": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
+        "chat": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::chat.chat",
+          "inversedBy": "messages"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "messages",
+        "info": {
+          "singularName": "message",
+          "pluralName": "messages",
+          "displayName": "Message"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "text": {
+            "type": "text",
+            "required": true
+          },
+          "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          },
+          "chat": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::chat.chat",
+            "inversedBy": "messages"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "message",
+      "connection": "default",
+      "uid": "api::message.message",
+      "apiName": "message",
+      "globalId": "Message",
       "actions": {},
       "lifecycles": {}
     },

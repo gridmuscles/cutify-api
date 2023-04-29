@@ -68,5 +68,27 @@ module.exports = (plugin) => {
     })
   }
 
+  plugin.controllers.user.findMeChats = async (ctx) => {
+    ctx.request.query.filters = {
+      ...(ctx.request.query.filters ?? {}),
+      users: {
+        id: {
+          $contains: ctx.state.user.id,
+        },
+      },
+    }
+
+    return strapi.controller('api::chat.chat').find(ctx)
+  }
+
+  plugin.routes['content-api'].routes.push({
+    method: 'GET',
+    path: '/users/me/chats',
+    handler: 'user.findMeChats',
+    config: {
+      prefix: '',
+    },
+  })
+
   return plugin
 }

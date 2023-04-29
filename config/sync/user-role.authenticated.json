@@ -64,6 +64,9 @@
       "action": "plugin::users-permissions.auth.resetPassword"
     },
     {
+      "action": "plugin::users-permissions.user.findMeChats"
+    },
+    {
       "action": "plugin::users-permissions.user.me"
     }
   ]
