@@ -69,16 +69,33 @@ module.exports = (plugin) => {
   }
 
   plugin.controllers.user.findMeChats = async (ctx) => {
-    ctx.request.query.filters = {
-      ...(ctx.request.query.filters ?? {}),
-      users: {
-        id: {
-          $contains: ctx.state.user.id,
+    const { transformResponse } = await strapi.controller('api::chat.chat')
+
+    const { results } = await strapi.service('api::chat.chat').find({
+      filters: {
+        users: {
+          id: {
+            $contains: ctx.state.user.id,
+          },
         },
       },
-    }
+      populate: {
+        promotion: true,
+        messages: {
+          sort: ['createdAt:asc'],
+          populate: {
+            user: {
+              fields: ['id'],
+            },
+          },
+        },
+        users: {
+          fields: ['id'],
+        },
+      },
+    })
 
-    return strapi.controller('api::chat.chat').find(ctx)
+    return transformResponse(results)
   }
 
   plugin.routes['content-api'].routes.push({
@@ -87,6 +104,7 @@ module.exports = (plugin) => {
     handler: 'user.findMeChats',
     config: {
       prefix: '',
+      middlewares: [{ name: 'global::locale' }],
     },
   })
 

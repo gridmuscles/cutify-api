@@ -16,7 +16,10 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap({ strapi }) {
+  async bootstrap({ strapi }) {
+    const { transformResponse: transformMessageResponse } =
+      await strapi.controller('api::message.message')
+
     const io = require('socket.io')(strapi.server.httpServer, {
       path: '',
       cors: {
@@ -29,6 +32,7 @@ module.exports = {
 
     promotionChatNamespace.use(async (socket, next) => {
       console.log(`socket connected`)
+      console.log(io.sockets.length)
 
       try {
         if (!socket.handshake.auth.token) {
@@ -60,7 +64,6 @@ module.exports = {
           },
         })
 
-      console.log('userChats', userChats)
       socket.join(userChats.map((chat) => `chat:${chat.id}`))
 
       socket.on('sendChatMessage', async ({ data: { chatId, text } }) => {
@@ -73,15 +76,16 @@ module.exports = {
             .service('api::chat.chat')
             .findOne(chatId, { populate: '*' })
 
-          strapi.log.info(JSON.stringify(chat))
+          // strapi.log.info(JSON.stringify(chat))
 
           if (!chat.users.some(({ id }) => id === socket.user)) {
+            socket.emit('receiveChatMessageError', {})
             throw new Error(
-              `User id:${socket.user} is not a member of the chat id:${chatId}`
+              `User id:${socket.user} is not a member of the chat id:${chat.id}`
             )
           }
 
-          const { id, ...attributes } = await strapi
+          const newMessage = await strapi
             .service('api::message.message')
             .create({
               data: {
@@ -89,16 +93,27 @@ module.exports = {
                 user: socket.user,
                 chat: chat.id,
               },
+              populate: {
+                user: {
+                  fields: ['id'],
+                },
+                chat: {
+                  fields: ['id'],
+                },
+              },
             })
 
-          strapi.log.info(
-            'New message is created',
-            JSON.stringify({ id, attributes })
+          socket.emit(
+            'receiveChatMessageSuccess',
+            transformMessageResponse(newMessage)
           )
 
-          socket.to(`chat:${chatId}`).emit('receiveChatMessageSuccess', {
-            data: { id, attributes },
-          })
+          socket
+            .to(`chat:${chat.id}`)
+            .emit(
+              'receiveChatMessageSuccess',
+              transformMessageResponse(newMessage)
+            )
         } catch (err) {
           strapi.log.error(err)
         }

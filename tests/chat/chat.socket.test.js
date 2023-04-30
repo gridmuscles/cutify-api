@@ -97,10 +97,8 @@ describe('Chat', () => {
       })
 
       clientSocket1.on(
-        'receiveChatMessage',
+        'receiveChatMessageSuccess',
         async ({ data: { attributes } }) => {
-          console.log('clientSocket1', 'receiveChatMessage')
-
           expect(attributes.text).toBe('test')
           try {
             const chat = await getChatById(primaryChat.id)
@@ -112,10 +110,8 @@ describe('Chat', () => {
       )
 
       clientSocket2.on(
-        'receiveChatMessage',
+        'receiveChatMessageSuccess',
         async ({ data: { attributes } }) => {
-          console.log('clientSocket2', 'receiveChatMessage')
-
           expect(attributes.text).toBe('test')
           try {
             const chat = await getChatById(primaryChat.id)
@@ -126,7 +122,7 @@ describe('Chat', () => {
         }
       )
 
-      clientSocket3.on('receiveChatMessage', async () => {
+      clientSocket3.on('receiveChatMessageSuccess', async () => {
         throw new Error(
           `receiveChatMessage should not be emitted for clientSocket3`
         )
@@ -145,15 +141,15 @@ describe('Chat', () => {
         },
       })
 
-      clientSocket1.on('receiveChatMessage', async () => {
+      clientSocket1.on('receiveChatMessageSuccess', async () => {
         throw new Error(
-          `receiveChatMessage should not be emitted for clientSocket1`
+          `receiveChatMessageSuccess should not be emitted for clientSocket1`
         )
       })
 
-      clientSocket2.on('receiveChatMessage', async () => {
+      clientSocket2.on('receiveChatMessageSuccess', async () => {
         throw new Error(
-          `receiveChatMessage should not be emitted for clientSocket2`
+          `receiveChatMessageSuccess should not be emitted for clientSocket2`
         )
       })
     })
