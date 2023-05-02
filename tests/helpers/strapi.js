@@ -45,7 +45,12 @@ async function stopStrapi() {
       fs.unlinkSync(tmpDbFile)
     }
   }
-  return instance
+
+  return new Promise((res) => {
+    setTimeout(() => {
+      res(instance)
+    }, 300)
+  })
 }
 
 /**
