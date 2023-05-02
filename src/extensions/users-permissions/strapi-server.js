@@ -1,4 +1,17 @@
 module.exports = (plugin) => {
+  const sanitizeOutput = (user) => {
+    /* eslint-disable no-unused-vars */
+    const {
+      password,
+      resetPasswordToken,
+      confirmationToken,
+      ...sanitizedUser
+    } = user
+    /* eslint-enable */
+
+    return sanitizedUser
+  }
+
   const bootstrap = plugin.bootstrap.bind({})
 
   plugin.bootstrap = async ({ strapi }) => {
@@ -182,6 +195,19 @@ module.exports = (plugin) => {
       strapi.log.error(err)
       ctx.badRequest()
     }
+  }
+
+  plugin.controllers.user.me = async (ctx) => {
+    if (!ctx.state.user) {
+      return ctx.unauthorized()
+    }
+    const user = await strapi.entityService.findOne(
+      'plugin::users-permissions.user',
+      ctx.state.user.id,
+      { populate: ['role'] }
+    )
+
+    ctx.body = sanitizeOutput(user)
   }
 
   plugin.routes['content-api'].routes.push({
