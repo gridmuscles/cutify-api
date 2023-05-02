@@ -1,0 +1,64 @@
+{
+  "name": "Moderator",
+  "description": "Moderate the promotions",
+  "type": "moderator",
+  "permissions": [
+    {
+      "action": "api::auction.auction.find"
+    },
+    {
+      "action": "api::auction.auction.findAuctionLatestBid"
+    },
+    {
+      "action": "api::auction.auction.findOne"
+    },
+    {
+      "action": "api::category.category.find"
+    },
+    {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
+      "action": "api::city.city.find"
+    },
+    {
+      "action": "api::coupon.coupon.find"
+    },
+    {
+      "action": "api::organization.organization.find"
+    },
+    {
+      "action": "api::organization.organization.findOne"
+    },
+    {
+      "action": "api::privacy-policy.privacy-policy.find"
+    },
+    {
+      "action": "api::promotion.promotion.find"
+    },
+    {
+      "action": "api::promotion.promotion.findOne"
+    },
+    {
+      "action": "api::review.review.find"
+    },
+    {
+      "action": "plugin::users-permissions.auth.changePassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.forgotPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.user.createChatMessage"
+    },
+    {
+      "action": "plugin::users-permissions.user.findChats"
+    },
+    {
+      "action": "plugin::users-permissions.user.me"
+    }
+  ]
+}
