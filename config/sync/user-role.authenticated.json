@@ -64,7 +64,13 @@
       "action": "plugin::users-permissions.auth.resetPassword"
     },
     {
-      "action": "plugin::users-permissions.user.findMeChats"
+      "action": "plugin::users-permissions.user.createChat"
+    },
+    {
+      "action": "plugin::users-permissions.user.createChatMessage"
+    },
+    {
+      "action": "plugin::users-permissions.user.findChats"
     },
     {
       "action": "plugin::users-permissions.user.me"

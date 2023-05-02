@@ -26,21 +26,19 @@ const mockPromotionData = (data = {}) => {
     dateTimeUntil: '2100-04-30 23:59:59',
     publishedAt: '2023-01-01 23:59:59',
     auction: null,
+    categories: [],
+    organization: null,
     ...data,
   }
 }
 
 const createPromotion = async (data = {}) => {
   if (!data.categories || !data.organization) {
-    throw new Error(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
+    strapi.log.warn(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
   }
 
   return strapi.db.query('api::promotion.promotion').create({
-    data: {
-      categories: data.categories,
-      organization: data.organization,
-      ...mockPromotionData(data),
-    },
+    data: mockPromotionData(data),
   })
 }
 

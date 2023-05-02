@@ -17,9 +17,6 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
-    const { transformResponse: transformMessageResponse } =
-      await strapi.controller('api::message.message')
-
     const io = require('socket.io')(strapi.server.httpServer, {
       path: '',
       cors: {
@@ -28,11 +25,13 @@ module.exports = {
       },
     })
 
+    strapi.io = io
+    strapi.io.socketMap = new Map()
+
     const promotionChatNamespace = io.of('/promotion-chats')
 
     promotionChatNamespace.use(async (socket, next) => {
       console.log(`socket connected`)
-      console.log(io.sockets.length)
 
       try {
         if (!socket.handshake.auth.token) {
@@ -52,78 +51,17 @@ module.exports = {
     promotionChatNamespace.on('connection', async (socket) => {
       console.log(`user id:${socket.user} connected`)
 
+      strapi.io.socketMap.set(socket.user, socket)
+
       const { results: userChats } = await strapi
         .service('api::chat.chat')
-        .find({
-          filters: {
-            users: {
-              id: {
-                $contains: socket.user,
-              },
-            },
-          },
-        })
+        .findByUser({ state: { user: { id: socket.user } } })
 
       socket.join(userChats.map((chat) => `chat:${chat.id}`))
-
-      socket.on('sendChatMessage', async ({ data: { chatId, text } }) => {
-        strapi.log.info(
-          `New message data received chat:${chatId}, text:${text}`
-        )
-
-        try {
-          const chat = await strapi
-            .service('api::chat.chat')
-            .findOne(chatId, { populate: '*' })
-
-          // strapi.log.info(JSON.stringify(chat))
-
-          if (!chat.users.some(({ id }) => id === socket.user)) {
-            socket.emit('receiveChatMessageError', {})
-            throw new Error(
-              `User id:${socket.user} is not a member of the chat id:${chat.id}`
-            )
-          }
-
-          const newMessage = await strapi
-            .service('api::message.message')
-            .create({
-              data: {
-                text,
-                user: socket.user,
-                chat: chat.id,
-              },
-              populate: {
-                user: {
-                  fields: ['id'],
-                },
-                chat: {
-                  fields: ['id'],
-                },
-              },
-            })
-
-          socket.emit(
-            'receiveChatMessageSuccess',
-            transformMessageResponse(newMessage)
-          )
-
-          socket
-            .to(`chat:${chat.id}`)
-            .emit(
-              'receiveChatMessageSuccess',
-              transformMessageResponse(newMessage)
-            )
-        } catch (err) {
-          strapi.log.error(err)
-        }
-      })
 
       socket.on('disconnect', () => {
         console.log(`user id:${socket.user} disconnected`)
       })
     })
-
-    strapi.io = io
   },
 }

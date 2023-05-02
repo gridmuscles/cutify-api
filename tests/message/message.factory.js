@@ -9,8 +9,8 @@ const mockMessageData = (data = {}) => {
 }
 
 const createMessage = async (data = {}) => {
-  if (!data.user) {
-    throw new Error(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
+  if (!data.user || !data.chat) {
+    strapi.log.warn(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
   }
 
   return strapi.db.query('api::message.message').create({
