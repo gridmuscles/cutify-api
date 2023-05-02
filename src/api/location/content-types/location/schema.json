@@ -34,6 +34,26 @@
     },
     "address": {
       "type": "text"
+    },
+    "isRU": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "isPL": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "isUA": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "isEN": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }
