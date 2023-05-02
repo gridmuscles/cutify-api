@@ -19,6 +19,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
       "action": "api::city.city.find"
     },
     {
@@ -62,6 +65,15 @@
     },
     {
       "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.user.createChat"
+    },
+    {
+      "action": "plugin::users-permissions.user.createChatMessage"
+    },
+    {
+      "action": "plugin::users-permissions.user.findChats"
     },
     {
       "action": "plugin::users-permissions.user.me"

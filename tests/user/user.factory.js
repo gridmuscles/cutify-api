@@ -16,7 +16,7 @@ const createUser = async (data = {}) => {
   }
 
   const role = await strapi.query('plugin::users-permissions.role').findOne({
-    where: { type: data?.type ?? 'authenticated' },
+    where: { type: data.type },
   })
 
   const user = await strapi

@@ -10,6 +10,9 @@
       "action": "api::category.category.findOne"
     },
     {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
       "action": "api::city.city.find"
     },
     {
@@ -47,6 +50,12 @@
     },
     {
       "action": "api::review.review.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.user.createChatMessage"
+    },
+    {
+      "action": "plugin::users-permissions.user.findChats"
     },
     {
       "action": "plugin::users-permissions.user.me"

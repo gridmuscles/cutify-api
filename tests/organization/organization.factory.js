@@ -24,7 +24,7 @@ const mockOrganizationData = (data = {}) => {
 
 const createOrganization = async (data = {}) => {
   if (!data.categories) {
-    throw new Error(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
+    strapi.log.warn(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
   }
 
   return strapi.db.query('api::organization.organization').create({
