@@ -117,9 +117,9 @@ module.exports = (plugin) => {
       }
 
       const userSocket = strapi.io.socketMap?.get(ctx.state.user.id)
-      userSocket.join(`chat:${newChat.id}`)
+      userSocket?.join(`chat:${newChat.id}`)
       userSocket
-        .to(`chat:${newChat.id}`)
+        ?.to(`chat:${newChat.id}`)
         .emit('receiveChatSuccess', transformResponse(newChat))
 
       return transformResponse(newChat)
@@ -174,7 +174,7 @@ module.exports = (plugin) => {
 
       const userSocket = strapi.io.socketMap?.get(ctx.state.user.id)
       userSocket
-        .to(`chat:${ctx.params.id}`)
+        ?.to(`chat:${ctx.params.id}`)
         .emit('receiveChatMessageSuccess', transformedMessage)
 
       return transformedMessage
