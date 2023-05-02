@@ -8,10 +8,6 @@ const { createCoreService } = require('@strapi/strapi').factories
 
 module.exports = createCoreService('api::chat.chat', () => ({
   async markAsRead(ctx) {
-    const { transformResponse } = await strapi.controller(
-      'api::message.message'
-    )
-
     try {
       const message = await strapi.db.query('api::message.message').findOne({
         where: {
@@ -34,26 +30,22 @@ module.exports = createCoreService('api::chat.chat', () => ({
           })
 
         newMessage.user = { id: newMessage.user.id }
-        return transformResponse(newMessage)
+        return newMessage
       }
 
-      const updatedMessage = await strapi
-        .service('api::message.message')
-        .update(message.id, {
-          data: {
-            updatedAt: new Date(),
+      return strapi.service('api::message.message').update(message.id, {
+        data: {
+          createdAt: new Date(),
+        },
+        populate: {
+          chat: {
+            fields: ['id'],
           },
-          populate: {
-            chat: {
-              fields: ['id'],
-            },
-            user: {
-              fields: ['id'],
-            },
+          user: {
+            fields: ['id'],
           },
-        })
-
-      return transformResponse(updatedMessage)
+        },
+      })
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()

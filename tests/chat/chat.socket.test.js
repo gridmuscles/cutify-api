@@ -157,7 +157,7 @@ describe('Chat', () => {
           clientSocket3.on(
             'receiveChatSuccess',
             async ({ data: { attributes } }) => {
-              expect(attributes.promotion).toBe(primaryPromotion.id)
+              expect(attributes.promotion.data.id).toBe(primaryPromotion.id)
             }
           )
         })

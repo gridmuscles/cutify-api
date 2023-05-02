@@ -61,7 +61,7 @@ describe('Chat', () => {
       .then(({ body: { data } }) => {
         expect(data.id).toBe(shadowMessage.id)
         expect(data.attributes.text).toBeNull()
-        expect(data.attributes.updatedAt).not.toBe(data.attributes.createdAt)
+        expect(data.attributes.createdAt).not.toBe(shadowMessage.createdAt)
       })
 
     const updatedChat = await getChatById(chat.id)
