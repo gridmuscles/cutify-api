@@ -24,20 +24,15 @@ module.exports = {
         methods: ['GET', 'POST'],
       },
     })
-
     strapi.io = io
     strapi.io.socketMap = new Map()
-
     const promotionChatNamespace = io.of('/promotion-chats')
-
     promotionChatNamespace.use(async (socket, next) => {
       console.log(`socket connected`)
-
       try {
         if (!socket.handshake.auth.token) {
           throw new Error()
         }
-
         const result = await strapi.plugins[
           'users-permissions'
         ].services.jwt.verify(socket.handshake.auth.token)
@@ -47,18 +42,13 @@ module.exports = {
         console.log(error)
       }
     })
-
     promotionChatNamespace.on('connection', async (socket) => {
       console.log(`user id:${socket.user} connected`)
-
       strapi.io.socketMap.set(socket.user, socket)
-
       const { results: userChats } = await strapi
         .service('api::chat.chat')
         .findByUser({ state: { user: { id: socket.user } } })
-
       socket.join(userChats.map((chat) => `chat:${chat.id}`))
-
       socket.on('disconnect', () => {
         console.log(`user id:${socket.user} disconnected`)
       })

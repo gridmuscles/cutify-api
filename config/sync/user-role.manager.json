@@ -10,6 +10,9 @@
       "action": "api::category.category.findOne"
     },
     {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
       "action": "api::city.city.find"
     },
     {
