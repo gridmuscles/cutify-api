@@ -37,23 +37,19 @@
     },
     "isRU": {
       "type": "boolean",
-      "default": false,
-      "required": true
+      "default": false
     },
     "isPL": {
       "type": "boolean",
-      "default": false,
-      "required": true
+      "default": false
     },
     "isUA": {
       "type": "boolean",
-      "default": false,
-      "required": true
+      "default": false
     },
     "isEN": {
       "type": "boolean",
-      "default": true,
-      "required": true
+      "default": true
     }
   }
 }
