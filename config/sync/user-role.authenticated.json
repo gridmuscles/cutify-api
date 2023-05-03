@@ -25,7 +25,7 @@
       "action": "api::city.city.find"
     },
     {
-      "action": "api::coupon.coupon.find"
+      "action": "api::coupon.coupon.findByUuidList"
     },
     {
       "action": "api::organization.organization.find"
@@ -74,6 +74,9 @@
     },
     {
       "action": "plugin::users-permissions.user.findChats"
+    },
+    {
+      "action": "plugin::users-permissions.user.findCoupons"
     },
     {
       "action": "plugin::users-permissions.user.me"

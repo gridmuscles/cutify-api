@@ -197,6 +197,33 @@ module.exports = (plugin) => {
     }
   }
 
+  plugin.controllers.user.findCoupons = async (ctx) => {
+    const {
+      transformResponse: transformCouponResponse,
+      sanitizeOutput: sanitizeCouponOutput,
+    } = await strapi.controller('api::coupon.coupon')
+
+    try {
+      ctx.request.query.filters
+      ctx.request.query.filters = {
+        ...(ctx.request.query.filters ?? {}),
+        user: ctx.state?.user?.id,
+      }
+
+      const { results, pagination } = await strapi
+        .service('api::coupon.coupon')
+        .find({
+          ...ctx.request.query,
+        })
+
+      const sanitizedResults = await sanitizeCouponOutput(results, ctx)
+      return transformCouponResponse(sanitizedResults, { pagination })
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest()
+    }
+  }
+
   plugin.controllers.user.me = async (ctx) => {
     if (!ctx.state.user) {
       return ctx.unauthorized()
@@ -237,6 +264,19 @@ module.exports = (plugin) => {
     config: {
       prefix: '',
       middlewares: [{ name: 'global::locale' }],
+    },
+  })
+
+  plugin.routes['content-api'].routes.push({
+    method: 'GET',
+    path: '/users/me/coupons',
+    handler: 'user.findCoupons',
+    config: {
+      prefix: '',
+      middlewares: [
+        { name: 'global::locale' },
+        { name: 'global::populate', config: { deep: 3 } },
+      ],
     },
   })
 
