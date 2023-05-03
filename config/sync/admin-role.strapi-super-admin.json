@@ -244,7 +244,11 @@
           "longitude",
           "phone",
           "organization",
-          "address"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN"
         ]
       },
       "conditions": []
@@ -265,7 +269,11 @@
           "longitude",
           "phone",
           "organization",
-          "address"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN"
         ]
       },
       "conditions": []
@@ -280,7 +288,11 @@
           "longitude",
           "phone",
           "organization",
-          "address"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN"
         ]
       },
       "conditions": []
