@@ -97,9 +97,7 @@ module.exports = (plugin) => {
         filters: {
           promotion: promotion.id,
           users: {
-            id: {
-              $contains: ctx.state.user.id,
-            },
+            id: ctx.state.user.id,
           },
         },
       })
