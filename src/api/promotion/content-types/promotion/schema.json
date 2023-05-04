@@ -107,6 +107,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::auction.auction"
+    },
+    "isChatAvailable": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
