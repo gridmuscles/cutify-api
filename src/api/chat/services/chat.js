@@ -42,7 +42,7 @@ module.exports = createCoreService('api::chat.chat', () => ({
             fields: ['id'],
           },
           user: {
-            fields: ['id'],
+            fields: ['id', 'name'],
           },
         },
       })
@@ -79,12 +79,12 @@ module.exports = createCoreService('api::chat.chat', () => ({
             sort: ['createdAt:asc'],
             populate: {
               user: {
-                fields: ['id'],
+                fields: ['id', 'name'],
               },
             },
           },
           users: {
-            fields: ['id'],
+            fields: ['id', 'name'],
           },
         },
       })

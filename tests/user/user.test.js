@@ -250,6 +250,9 @@ describe('Users', () => {
         .expect(200)
         .then(({ body: { data } }) => {
           expect(data).toHaveLength(2)
+          expect(data[0].attributes.users.data[0].attributes.name).toBe(
+            primaryUser1.name
+          )
         })
     })
 
