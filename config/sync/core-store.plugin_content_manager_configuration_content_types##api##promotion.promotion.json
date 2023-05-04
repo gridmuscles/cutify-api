@@ -331,6 +331,20 @@
           "sortable": true
         }
       },
+      "isChatAvailable": {
+        "edit": {
+          "label": "isChatAvailable",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isChatAvailable",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -479,6 +493,10 @@
           {
             "name": "auction",
             "size": 6
+          },
+          {
+            "name": "isChatAvailable",
+            "size": 4
           }
         ]
       ]

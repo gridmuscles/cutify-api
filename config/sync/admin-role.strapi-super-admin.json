@@ -494,7 +494,8 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "auction"
+          "auction",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -537,7 +538,8 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "auction"
+          "auction",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -568,7 +570,8 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "auction"
+          "auction",
+          "isChatAvailable"
         ]
       },
       "conditions": []

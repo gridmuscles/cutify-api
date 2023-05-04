@@ -247,7 +247,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -289,7 +290,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -319,7 +321,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "isChatAvailable"
         ]
       },
       "conditions": []

@@ -10,5 +10,13 @@ module.exports = {
         middlewares: [{ name: 'global::locale' }],
       },
     },
+    {
+      method: 'POST',
+      path: '/chats/:id/messages',
+      handler: 'chat.createMessage',
+      config: {
+        middlewares: [{ name: 'global::locale' }],
+      },
+    },
   ],
 }

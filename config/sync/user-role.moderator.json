@@ -52,9 +52,6 @@
       "action": "plugin::users-permissions.auth.resetPassword"
     },
     {
-      "action": "plugin::users-permissions.user.createChatMessage"
-    },
-    {
       "action": "plugin::users-permissions.user.findChats"
     },
     {

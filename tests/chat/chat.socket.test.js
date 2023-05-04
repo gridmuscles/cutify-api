@@ -68,6 +68,7 @@ describe('Chat', () => {
           Promise.all([
             createPromotion({
               organization: primaryOrganization.id,
+              isChatAvailable: true,
             }),
           ])
         )
@@ -123,18 +124,14 @@ describe('Chat', () => {
     it('should authenticated user be able to receive chats', (done) => {
       createPromotion({
         organization: primaryOrganization.id,
+        isChatAvailable: true,
       })
         .then((promotion) => {
           return request(strapi.server.httpServer)
-            .post(`/api/users/me/chats`)
+            .post(`/api/promotions/${promotion.id}/chats`)
             .set('accept', 'application/json')
             .set('Content-Type', 'application/json')
             .set('Authorization', `Bearer ${primaryUserJwt1}`)
-            .send({
-              data: {
-                promotionId: promotion.id,
-              },
-            })
             .expect('Content-Type', /json/)
             .expect(200)
         })
@@ -169,7 +166,7 @@ describe('Chat', () => {
 
     it('should authenticated user be able to receive messages', (done) => {
       request(strapi.server.httpServer)
-        .post(`/api/users/me/chats/${primaryChat.id}/message`)
+        .post(`/api/chats/${primaryChat.id}/messages`)
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${primaryUserJwt1}`)

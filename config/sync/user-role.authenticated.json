@@ -19,6 +19,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.createMessage"
+    },
+    {
       "action": "api::chat.chat.markAsRead"
     },
     {
@@ -38,6 +41,9 @@
     },
     {
       "action": "api::promotion.promotion.completeAuction"
+    },
+    {
+      "action": "api::promotion.promotion.createPromotionChat"
     },
     {
       "action": "api::promotion.promotion.find"
@@ -65,12 +71,6 @@
     },
     {
       "action": "plugin::users-permissions.auth.resetPassword"
-    },
-    {
-      "action": "plugin::users-permissions.user.createChat"
-    },
-    {
-      "action": "plugin::users-permissions.user.createChatMessage"
     },
     {
       "action": "plugin::users-permissions.user.findChats"

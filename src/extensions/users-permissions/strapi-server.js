@@ -81,114 +81,11 @@ module.exports = (plugin) => {
     })
   }
 
-  plugin.controllers.user.createChat = async (ctx) => {
-    try {
-      const { transformResponse } = await strapi.controller('api::chat.chat')
-
-      const { promotionId } = ctx.request.body.data
-
-      const promotion = await strapi.entityService.findOne(
-        'api::promotion.promotion',
-        promotionId,
-        { populate: ['organization.id', 'organization.managers'] }
-      )
-
-      const { results } = await strapi.service('api::chat.chat').find({
-        filters: {
-          promotion: promotion.id,
-          users: {
-            id: ctx.state.user.id,
-          },
-        },
-      })
-
-      if (results.length > 0) {
-        throw new Error()
-      }
-
-      const newChat = await strapi.service('api::chat.chat').create({
-        data: {
-          promotion: promotion.id,
-          users: [ctx.state.user.id],
-        },
-        populate: {
-          promotion: true,
-          messages: true,
-          users: {
-            fields: ['id, name'],
-          },
-        },
-      })
-
-      for (let manager of promotion.organization.managers) {
-        const socket = strapi.io.socketMap?.get(manager.id)
-        if (socket) {
-          socket.join(`chat:${newChat.id}`)
-        }
-      }
-
-      const userSocket = strapi.io.socketMap?.get(ctx.state.user.id)
-      userSocket?.join(`chat:${newChat.id}`)
-      userSocket
-        ?.to(`chat:${newChat.id}`)
-        .emit('receiveChatSuccess', transformResponse(newChat))
-
-      return transformResponse(newChat)
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
-  }
-
   plugin.controllers.user.findChats = async (ctx) => {
     try {
       const { transformResponse } = await strapi.controller('api::chat.chat')
       const { results } = await strapi.service('api::chat.chat').findByUser(ctx)
       return transformResponse(results)
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
-  }
-
-  plugin.controllers.user.createChatMessage = async (ctx) => {
-    try {
-      const { transformResponse } = await strapi.controller(
-        'api::message.message'
-      )
-
-      const ifChatOwner = await strapi
-        .service('api::chat.chat')
-        .ifChatOwner(ctx)
-
-      if (!ifChatOwner) {
-        throw new Error()
-      }
-
-      const message = await strapi.service('api::message.message').create({
-        data: {
-          text: ctx.request.body.data.text,
-          user: ctx.state.user.id,
-          chat: ctx.params.id,
-        },
-        populate: {
-          chat: {
-            fields: ['id'],
-          },
-          user: {
-            fields: ['id, name'],
-          },
-        },
-      })
-
-      const transformedMessage = await transformResponse(message)
-
-      const userSocket = strapi.io.socketMap?.get(ctx.state.user.id)
-      userSocket
-        ?.to(`chat:${ctx.params.id}`)
-        .emit('receiveChatMessageSuccess', transformedMessage)
-
-      return transformedMessage
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()
@@ -239,26 +136,6 @@ module.exports = (plugin) => {
     method: 'GET',
     path: '/users/me/chats',
     handler: 'user.findChats',
-    config: {
-      prefix: '',
-      middlewares: [{ name: 'global::locale' }],
-    },
-  })
-
-  plugin.routes['content-api'].routes.push({
-    method: 'POST',
-    path: '/users/me/chats',
-    handler: 'user.createChat',
-    config: {
-      prefix: '',
-      middlewares: [{ name: 'global::locale' }],
-    },
-  })
-
-  plugin.routes['content-api'].routes.push({
-    method: 'POST',
-    path: '/users/me/chats/:id/message',
-    handler: 'user.createChatMessage',
     config: {
       prefix: '',
       middlewares: [{ name: 'global::locale' }],

@@ -3342,6 +3342,11 @@
           "relation": "oneToOne",
           "target": "api::auction.auction"
         },
+        "isChatAvailable": {
+          "type": "boolean",
+          "default": false,
+          "required": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3483,6 +3488,11 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::auction.auction"
+          },
+          "isChatAvailable": {
+            "type": "boolean",
+            "default": false,
+            "required": true
           }
         },
         "kind": "collectionType"

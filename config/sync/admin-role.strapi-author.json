@@ -157,7 +157,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "isChatAvailable"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -193,7 +194,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "isChatAvailable"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -223,7 +225,8 @@
           "dateTimeUntil",
           "likesCount",
           "couponsCount",
-          "viewsCount"
+          "viewsCount",
+          "isChatAvailable"
         ]
       },
       "conditions": ["admin::is-creator"]
