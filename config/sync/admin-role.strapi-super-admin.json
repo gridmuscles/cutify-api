@@ -248,7 +248,9 @@
           "isRU",
           "isPL",
           "isUA",
-          "isEN"
+          "isEN",
+          "openHoursFrom",
+          "openHoursTo"
         ]
       },
       "conditions": []
@@ -273,7 +275,9 @@
           "isRU",
           "isPL",
           "isUA",
-          "isEN"
+          "isEN",
+          "openHoursFrom",
+          "openHoursTo"
         ]
       },
       "conditions": []
@@ -292,7 +296,9 @@
           "isRU",
           "isPL",
           "isUA",
-          "isEN"
+          "isEN",
+          "openHoursFrom",
+          "openHoursTo"
         ]
       },
       "conditions": []

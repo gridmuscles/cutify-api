@@ -8,8 +8,8 @@
       "searchable": true,
       "pageSize": 10,
       "mainField": "title",
-      "defaultSortBy": "title",
-      "defaultSortOrder": "ASC"
+      "defaultSortBy": "createdAt",
+      "defaultSortOrder": "DESC"
     },
     "metadatas": {
       "id": {
@@ -375,7 +375,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "organization", "title_ru", "auction"],
       "edit": [
         [
           {
@@ -427,8 +426,22 @@
         ],
         [
           {
-            "name": "images",
+            "name": "organization",
             "size": 6
+          },
+          {
+            "name": "auction",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "categories",
+            "size": 6
+          },
+          {
+            "name": "isChatAvailable",
+            "size": 4
           }
         ],
         [
@@ -439,6 +452,12 @@
           {
             "name": "discountTo",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "images",
+            "size": 6
           }
         ],
         [
@@ -467,16 +486,6 @@
         ],
         [
           {
-            "name": "categories",
-            "size": 6
-          },
-          {
-            "name": "organization",
-            "size": 6
-          }
-        ],
-        [
-          {
             "name": "viewsCount",
             "size": 4
           },
@@ -488,18 +497,9 @@
             "name": "likesCount",
             "size": 4
           }
-        ],
-        [
-          {
-            "name": "auction",
-            "size": 6
-          },
-          {
-            "name": "isChatAvailable",
-            "size": 4
-          }
         ]
-      ]
+      ],
+      "list": ["id", "organization", "title_ru", "auction"]
     }
   },
   "type": "object",

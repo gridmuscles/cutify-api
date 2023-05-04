@@ -8,8 +8,8 @@
       "searchable": true,
       "pageSize": 10,
       "mainField": "id",
-      "defaultSortBy": "id",
-      "defaultSortOrder": "ASC"
+      "defaultSortBy": "createdAt",
+      "defaultSortOrder": "DESC"
     },
     "metadatas": {
       "id": {
@@ -134,11 +134,10 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "step"],
       "edit": [
         [
           {
-            "name": "direction",
+            "name": "status",
             "size": 6
           }
         ],
@@ -148,11 +147,15 @@
             "size": 4
           },
           {
-            "name": "status",
+            "name": "currency",
             "size": 6
           }
         ],
         [
+          {
+            "name": "direction",
+            "size": 4
+          },
           {
             "name": "step",
             "size": 4
@@ -161,14 +164,9 @@
             "name": "userAttemptLimit",
             "size": 4
           }
-        ],
-        [
-          {
-            "name": "currency",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "status", "step"]
     }
   },
   "type": "object",

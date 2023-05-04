@@ -162,6 +162,34 @@
           "sortable": true
         }
       },
+      "openHoursFrom": {
+        "edit": {
+          "label": "openHoursFrom",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "openHoursFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "openHoursTo": {
+        "edit": {
+          "label": "openHoursTo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "openHoursTo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -204,9 +232,7 @@
           {
             "name": "city",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "address",
             "size": 6
@@ -226,24 +252,36 @@
           {
             "name": "longitude",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "isEN",
+            "size": 4
           },
           {
-            "name": "isRU",
+            "name": "isPL",
             "size": 4
           }
         ],
         [
           {
-            "name": "isPL",
+            "name": "isRU",
             "size": 4
           },
           {
             "name": "isUA",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "openHoursFrom",
+            "size": 6
           },
           {
-            "name": "isEN",
-            "size": 4
+            "name": "openHoursTo",
+            "size": 6
           }
         ]
       ]

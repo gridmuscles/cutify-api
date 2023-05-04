@@ -2725,6 +2725,12 @@
           "type": "boolean",
           "default": true
         },
+        "openHoursFrom": {
+          "type": "string"
+        },
+        "openHoursTo": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2803,6 +2809,12 @@
           "isEN": {
             "type": "boolean",
             "default": true
+          },
+          "openHoursFrom": {
+            "type": "string"
+          },
+          "openHoursTo": {
+            "type": "string"
           }
         },
         "kind": "collectionType"
@@ -3322,7 +3334,7 @@
           "type": "integer"
         },
         "dateTimeUntil": {
-          "type": "datetime",
+          "type": "date",
           "required": true
         },
         "likesCount": {
@@ -3469,7 +3481,7 @@
             "type": "integer"
           },
           "dateTimeUntil": {
-            "type": "datetime",
+            "type": "date",
             "required": true
           },
           "likesCount": {

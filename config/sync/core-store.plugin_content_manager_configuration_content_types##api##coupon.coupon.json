@@ -6,10 +6,10 @@
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 10,
+      "pageSize": 20,
       "mainField": "id",
       "defaultSortBy": "id",
-      "defaultSortOrder": "ASC"
+      "defaultSortOrder": "DESC"
     },
     "metadatas": {
       "id": {
@@ -122,7 +122,6 @@
       }
     },
     "layouts": {
-      "list": ["id"],
       "edit": [
         [
           {
@@ -150,7 +149,8 @@
             "size": 6
           }
         ]
-      ]
+      ],
+      "list": ["id", "email", "promotion"]
     }
   },
   "type": "object",
