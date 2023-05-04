@@ -60,7 +60,7 @@ module.exports = createCoreService('api::chat.chat', () => ({
             {
               users: {
                 id: {
-                  $contains: ctx.state.user.id,
+                  $in: [ctx.state.user.id],
                 },
               },
             },
@@ -69,7 +69,7 @@ module.exports = createCoreService('api::chat.chat', () => ({
                 organization: {
                   managers: {
                     id: {
-                      $contains: ctx.state.user.id,
+                      $in: [ctx.state.user.id],
                     },
                   },
                 },
@@ -107,7 +107,7 @@ module.exports = createCoreService('api::chat.chat', () => ({
             {
               users: {
                 id: {
-                  $contains: ctx.state.user.id,
+                  $in: [ctx.state.user.id],
                 },
               },
             },
@@ -116,7 +116,7 @@ module.exports = createCoreService('api::chat.chat', () => ({
                 organization: {
                   managers: {
                     id: {
-                      $contains: ctx.state.user.id,
+                      $in: [ctx.state.user.id],
                     },
                   },
                 },
