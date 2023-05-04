@@ -115,7 +115,7 @@ module.exports = (plugin) => {
           promotion: true,
           messages: true,
           users: {
-            fields: ['id'],
+            fields: ['id, name'],
           },
         },
       })
@@ -176,7 +176,7 @@ module.exports = (plugin) => {
             fields: ['id'],
           },
           user: {
-            fields: ['id'],
+            fields: ['id, name'],
           },
         },
       })

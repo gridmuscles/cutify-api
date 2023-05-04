@@ -287,6 +287,9 @@ describe('Users', () => {
           expect(data.attributes.messages.data).toHaveLength(0)
           expect(data.attributes.users.data).toHaveLength(1)
           expect(data.attributes.promotion.data.id).toBe(promotion.id)
+          expect(data.attributes.users.data[0].attributes.name).toBe(
+            primaryUser1.name
+          )
         })
     })
 
@@ -345,6 +348,9 @@ describe('Users', () => {
         .then(({ body: { data } }) => {
           expect(data.attributes.text).toBe('test text')
           expect(data.attributes.user.data.id).toBe(primaryUser1.id)
+          expect(data.attributes.user.data.attributes.name).toBe(
+            primaryUser1.name
+          )
           expect(data.attributes.chat.data.id).toBe(chat.id)
         })
     })
@@ -396,6 +402,9 @@ describe('Users', () => {
         .then(({ body: { data } }) => {
           expect(data.attributes.text).toBe('test text')
           expect(data.attributes.user.data.id).toBe(primaryManager1.id)
+          expect(data.attributes.user.data.attributes.name).toBe(
+            primaryManager1.name
+          )
           expect(data.attributes.chat.data.id).toBe(chat.id)
         })
     })
