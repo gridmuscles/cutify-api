@@ -59,18 +59,14 @@ module.exports = createCoreService('api::chat.chat', () => ({
           $or: [
             {
               users: {
-                id: {
-                  $in: [ctx.state.user.id],
-                },
+                id: ctx.state.user.id,
               },
             },
             {
               promotion: {
                 organization: {
                   managers: {
-                    id: {
-                      $in: [ctx.state.user.id],
-                    },
+                    id: ctx.state.user.id,
                   },
                 },
               },
@@ -106,18 +102,14 @@ module.exports = createCoreService('api::chat.chat', () => ({
           $or: [
             {
               users: {
-                id: {
-                  $in: [ctx.state.user.id],
-                },
+                id: ctx.state.user.id,
               },
             },
             {
               promotion: {
                 organization: {
                   managers: {
-                    id: {
-                      $in: [ctx.state.user.id],
-                    },
+                    id: ctx.state.user.id,
                   },
                 },
               },
