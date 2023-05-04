@@ -10,6 +10,8 @@ const { createUser, mockUserData } = require('./user.factory')
 const { createChat } = require('../chat/chat.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
 const { createOrganization } = require('../organization/organization.factory')
+const { createCategory } = require('../category/category.factory')
+const { createCoupon } = require('../coupon/coupon.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -204,7 +206,7 @@ describe('Users', () => {
     })
   })
 
-  describe('Chat', () => {
+  describe('Chats', () => {
     let primaryUser1
     let primaryUserJwt1
     let primaryManager1
@@ -423,6 +425,60 @@ describe('Users', () => {
         })
         .expect('Content-Type', /json/)
         .expect(400)
+    })
+  })
+
+  describe('Coupons', () => {
+    let primaryUser
+    let primaryUserJwt
+    let category
+    let primaryOrganization
+    let primaryPromotion
+
+    beforeAll(async () => {
+      const [user, jwt] = await createUser({ type: 'authenticated' })
+      primaryUser = user
+      primaryUserJwt = jwt
+
+      category = await createCategory()
+      primaryOrganization = await createOrganization({
+        categories: [category.id],
+      })
+      primaryPromotion = await createPromotion({
+        categories: [category.id],
+        organization: primaryOrganization.id,
+      })
+
+      await createCoupon({
+        promotion: primaryPromotion.id,
+        email: primaryUser.email,
+        user: primaryUser.id,
+        uuid: '1',
+      })
+
+      await createCoupon({
+        promotion: primaryPromotion.id,
+        email: 'user1@gmail.com',
+        uuid: '2',
+      })
+    })
+
+    it('should authenticated user be able to get only own coupons', async () => {
+      await request(strapi.server.httpServer)
+        .get(`/api/users/me/coupons`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${primaryUserJwt}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(1)
+          expect(data[0].attributes.uuid).toBe('1')
+          expect(data[0].attributes.user).toBeUndefined()
+          expect(data[0].attributes.promotion.data.attributes.title).toBe(
+            primaryPromotion.title
+          )
+        })
     })
   })
 })

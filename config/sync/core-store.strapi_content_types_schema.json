@@ -190,17 +190,20 @@
           "minLength": 6,
           "configurable": false,
           "required": false,
-          "private": true
+          "private": true,
+          "searchable": false
         },
         "resetPasswordToken": {
           "type": "string",
           "configurable": false,
-          "private": true
+          "private": true,
+          "searchable": false
         },
         "registrationToken": {
           "type": "string",
           "configurable": false,
-          "private": true
+          "private": true,
+          "searchable": false
         },
         "isActive": {
           "type": "boolean",
@@ -226,7 +229,8 @@
         "preferedLanguage": {
           "type": "string",
           "configurable": false,
-          "required": false
+          "required": false,
+          "searchable": false
         },
         "createdAt": {
           "type": "datetime"
@@ -307,17 +311,20 @@
             "minLength": 6,
             "configurable": false,
             "required": false,
-            "private": true
+            "private": true,
+            "searchable": false
           },
           "resetPasswordToken": {
             "type": "string",
             "configurable": false,
-            "private": true
+            "private": true,
+            "searchable": false
           },
           "registrationToken": {
             "type": "string",
             "configurable": false,
-            "private": true
+            "private": true,
+            "searchable": false
           },
           "isActive": {
             "type": "boolean",
@@ -343,7 +350,8 @@
           "preferedLanguage": {
             "type": "string",
             "configurable": false,
-            "required": false
+            "required": false,
+            "searchable": false
           }
         },
         "kind": "collectionType"
@@ -539,7 +547,8 @@
           "type": "string",
           "minLength": 1,
           "configurable": false,
-          "required": true
+          "required": true,
+          "searchable": false
         },
         "lastUsedAt": {
           "type": "datetime",
@@ -636,7 +645,8 @@
             "type": "string",
             "minLength": 1,
             "configurable": false,
-            "required": true
+            "required": true,
+            "searchable": false
           },
           "lastUsedAt": {
             "type": "datetime",
@@ -1133,7 +1143,8 @@
           "type": "string",
           "min": 1,
           "required": true,
-          "private": true
+          "private": true,
+          "searchable": false
         },
         "createdAt": {
           "type": "datetime"
@@ -1291,7 +1302,8 @@
             "type": "string",
             "min": 1,
             "required": true,
-            "private": true
+            "private": true,
+            "searchable": false
           }
         },
         "kind": "collectionType"
