@@ -15,7 +15,10 @@ module.exports = createCoreController(
   'api::promotion.promotion',
   ({ strapi }) => ({
     async requestCoupon(ctx) {
-      const { locale } = ctx.request.query
+      const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+      ctx.request.query = sanitizedQueryParams
+
+      const { locale } = sanitizedQueryParams
       const { email, count } = ctx.request.body
 
       try {
@@ -95,6 +98,9 @@ module.exports = createCoreController(
 
     async like(ctx) {
       try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
         const promotion = await strapi
           .service('api::promotion.promotion')
           .findOne(ctx)
@@ -123,6 +129,9 @@ module.exports = createCoreController(
 
     async findOne(ctx) {
       try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
         let promotion
         if (Number(ctx.params.id) != ctx.params.id) {
           promotion = await strapi
@@ -156,6 +165,9 @@ module.exports = createCoreController(
 
     async completeAuction(ctx) {
       try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
         const { locale } = ctx.request.query
 
         const promotion = await strapi

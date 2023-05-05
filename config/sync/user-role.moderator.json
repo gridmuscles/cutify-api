@@ -31,6 +31,9 @@
       "action": "api::organization.organization.findOne"
     },
     {
+      "action": "api::organization.organization.findReviews"
+    },
+    {
       "action": "api::privacy-policy.privacy-policy.find"
     },
     {
@@ -38,9 +41,6 @@
     },
     {
       "action": "api::promotion.promotion.findOne"
-    },
-    {
-      "action": "api::review.review.find"
     },
     {
       "action": "plugin::users-permissions.auth.changePassword"

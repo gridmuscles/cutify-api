@@ -40,6 +40,9 @@
       "action": "api::organization.organization.findOne"
     },
     {
+      "action": "api::organization.organization.findReviews"
+    },
+    {
       "action": "api::privacy-policy.privacy-policy.find"
     },
     {
@@ -56,9 +59,6 @@
     },
     {
       "action": "api::review.review.create"
-    },
-    {
-      "action": "api::review.review.find"
     },
     {
       "action": "plugin::email.email.send"

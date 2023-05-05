@@ -83,9 +83,16 @@ module.exports = (plugin) => {
 
   plugin.controllers.user.findChats = async (ctx) => {
     try {
-      const { transformResponse } = await strapi.controller('api::chat.chat')
+      const {
+        transformResponse: transformChatResponse,
+        sanitizeQuery: sanitizeChatQuery,
+      } = await strapi.controller('api::chat.chat')
+
+      const sanitizedQueryParams = await sanitizeChatQuery(ctx)
+      ctx.request.query = sanitizedQueryParams
+
       const { results } = await strapi.service('api::chat.chat').findByUser(ctx)
-      return transformResponse(results)
+      return transformChatResponse(results)
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()
@@ -96,7 +103,11 @@ module.exports = (plugin) => {
     const {
       transformResponse: transformCouponResponse,
       sanitizeOutput: sanitizeCouponOutput,
+      sanitizeQuery: sanitizeCouponQuery,
     } = await strapi.controller('api::coupon.coupon')
+
+    const sanitizedQueryParams = await sanitizeCouponQuery(ctx)
+    ctx.request.query = sanitizedQueryParams
 
     try {
       ctx.request.query.filters

@@ -12,6 +12,9 @@ module.exports = createCoreController('api::chat.chat', () => ({
       'api::message.message'
     )
 
+    const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+    ctx.request.query = sanitizedQueryParams
+
     try {
       const ifChatOwner = await strapi
         .service('api::chat.chat')
