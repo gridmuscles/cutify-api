@@ -8,8 +8,8 @@
       "searchable": true,
       "pageSize": 10,
       "mainField": "message",
-      "defaultSortBy": "message",
-      "defaultSortOrder": "ASC"
+      "defaultSortBy": "createdAt",
+      "defaultSortOrder": "DESC"
     },
     "metadatas": {
       "id": {
@@ -136,11 +136,14 @@
       }
     },
     "layouts": {
-      "list": ["id", "message", "reply", "name"],
       "edit": [
         [
           {
             "name": "message",
+            "size": 6
+          },
+          {
+            "name": "name",
             "size": 6
           }
         ],
@@ -163,14 +166,9 @@
             "name": "reply",
             "size": 6
           }
-        ],
-        [
-          {
-            "name": "name",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "rating", "message", "organization", "reply"]
     }
   },
   "type": "object",

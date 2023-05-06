@@ -106,6 +106,90 @@
           "sortable": true
         }
       },
+      "isRU": {
+        "edit": {
+          "label": "isRU",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isRU",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "isPL": {
+        "edit": {
+          "label": "isPL",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isPL",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "isUA": {
+        "edit": {
+          "label": "isUA",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isUA",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "isEN": {
+        "edit": {
+          "label": "isEN",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isEN",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "openHoursFrom": {
+        "edit": {
+          "label": "openHoursFrom",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "openHoursFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "openHoursTo": {
+        "edit": {
+          "label": "openHoursTo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "openHoursTo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -136,6 +220,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -147,9 +232,7 @@
           {
             "name": "city",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "address",
             "size": 6
@@ -170,9 +253,38 @@
             "name": "longitude",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "isEN",
+            "size": 4
+          },
+          {
+            "name": "isPL",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "isRU",
+            "size": 4
+          },
+          {
+            "name": "isUA",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "openHoursFrom",
+            "size": 6
+          },
+          {
+            "name": "openHoursTo",
+            "size": 6
+          }
         ]
-      ],
-      "list": ["id", "createdAt", "updatedAt", "city"]
+      ]
     }
   },
   "type": "object",

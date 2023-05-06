@@ -8,6 +8,7 @@ const { createUser } = require('../user/user.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
 const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
 const { createAuction } = require('../auction/auction.factory')
+const { createChat } = require('../chat/chat.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -358,6 +359,69 @@ describe('Promotions', () => {
   it('should not manager user be able to complete the auction and get coupon', async () => {
     await request(strapi.server.httpServer)
       .post(`/api/promotions/${auctionPromotion.id}/auction/complete`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${managerUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(403)
+  })
+
+  it('should authenticated user be able to create a chat for promotion', async () => {
+    const promotion = await createPromotion({
+      organization: primaryOrganization.id,
+      isChatAvailable: true,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${promotion.id}/chats`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.messages.data).toHaveLength(0)
+        expect(data.attributes.users.data).toHaveLength(1)
+        expect(data.attributes.promotion.data.id).toBe(promotion.id)
+        expect(data.attributes.users.data[0].attributes.name).toBe(
+          authenticatedUser.name
+        )
+      })
+  })
+
+  it('should not authenticated user be able to create a chat for promotion with disabled chat option', async () => {
+    const promotion = await createPromotion({
+      organization: primaryOrganization.id,
+      isChatAvailable: false,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${promotion.id}/chats`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not authenticated user be able to create a second chat for promotion', async () => {
+    await createChat({
+      users: [authenticatedUser.id],
+      promotion: primaryPromotion.id,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${primaryPromotion.id}/chats`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not manager user be able to create a chat for promotion', async () => {
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${primaryPromotion.id}/chats`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${managerUserJwt}`)

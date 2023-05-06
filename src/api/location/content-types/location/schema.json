@@ -34,6 +34,28 @@
     },
     "address": {
       "type": "text"
+    },
+    "isRU": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPL": {
+      "type": "boolean",
+      "default": false
+    },
+    "isUA": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEN": {
+      "type": "boolean",
+      "default": true
+    },
+    "openHoursFrom": {
+      "type": "string"
+    },
+    "openHoursTo": {
+      "type": "string"
     }
   }
 }

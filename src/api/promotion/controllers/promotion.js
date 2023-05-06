@@ -15,7 +15,10 @@ module.exports = createCoreController(
   'api::promotion.promotion',
   ({ strapi }) => ({
     async requestCoupon(ctx) {
-      const { locale } = ctx.request.query
+      const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+      ctx.request.query = sanitizedQueryParams
+
+      const { locale } = sanitizedQueryParams
       const { email, count } = ctx.request.body
 
       try {
@@ -95,6 +98,9 @@ module.exports = createCoreController(
 
     async like(ctx) {
       try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
         const promotion = await strapi
           .service('api::promotion.promotion')
           .findOne(ctx)
@@ -123,6 +129,9 @@ module.exports = createCoreController(
 
     async findOne(ctx) {
       try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
         let promotion
         if (Number(ctx.params.id) != ctx.params.id) {
           promotion = await strapi
@@ -156,6 +165,9 @@ module.exports = createCoreController(
 
     async completeAuction(ctx) {
       try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
         const { locale } = ctx.request.query
 
         const promotion = await strapi
@@ -188,6 +200,67 @@ module.exports = createCoreController(
 
         const { id } = coupon
         return { id }
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async createPromotionChat(ctx) {
+      try {
+        const { transformResponse: transformChatResponse } =
+          await strapi.controller('api::chat.chat')
+        const promotion = await strapi.entityService.findOne(
+          'api::promotion.promotion',
+          ctx.params.id,
+          { populate: ['organization.id', 'organization.managers'] }
+        )
+
+        if (!promotion.isChatAvailable) {
+          throw new Error()
+        }
+
+        const { results } = await strapi.service('api::chat.chat').find({
+          filters: {
+            promotion: promotion.id,
+            users: {
+              id: ctx.state.user.id,
+            },
+          },
+        })
+
+        if (results.length > 0) {
+          throw new Error()
+        }
+
+        const newChat = await strapi.service('api::chat.chat').create({
+          data: {
+            promotion: promotion.id,
+            users: [ctx.state.user.id],
+          },
+          populate: {
+            promotion: true,
+            messages: true,
+            users: {
+              fields: ['id, name'],
+            },
+          },
+        })
+
+        for (let manager of promotion.organization.managers) {
+          const socket = strapi.io.socketMap?.get(manager.id)
+          if (socket) {
+            socket.join(`chat:${newChat.id}`)
+          }
+        }
+
+        const userSocket = strapi.io.socketMap?.get(ctx.state.user.id)
+        userSocket?.join(`chat:${newChat.id}`)
+        userSocket
+          ?.to(`chat:${newChat.id}`)
+          .emit('receiveChatSuccess', transformChatResponse(newChat))
+
+        return transformChatResponse(newChat)
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

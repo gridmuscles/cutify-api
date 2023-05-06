@@ -18,14 +18,10 @@ afterAll(async () => {
 })
 
 describe('Reviews', () => {
-  let primaryUserJwt
   let category
   let organization
 
   beforeAll(async () => {
-    const [, jwt] = await createUser({ type: 'authenticated' })
-    primaryUserJwt = jwt
-
     category = await createCategory()
     organization = await createOrganization({
       categories: [category.id],
@@ -34,45 +30,23 @@ describe('Reviews', () => {
     await createReview({ organization: organization.id })
   })
 
-  it('should not guest be able to get all reviews wothout specified organization', async () => {
-    await request(strapi.server.httpServer)
+  it.each([
+    { type: 'public', code: 403 },
+    { type: 'authenticated', code: 403 },
+    { type: 'manager', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])('should $type user be able to get cities', async ({ type, code }) => {
+    const [, jwt] = await createUser({ type })
+
+    const req = request(strapi.server.httpServer)
       .get(`/api/reviews`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(500)
-  })
 
-  it('should guest be able to get organization reviews', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/reviews?filters[organization][id][$eq]=${organization.id}`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toHaveLength(1)
-        expect(data[0].attributes.organization.data.id).toBe(organization.id)
-        expect(
-          data[0].attributes.organization.data.attributes.categories
-        ).toBeUndefined()
-      })
-  })
+    if (jwt) {
+      req.set('Authorization', `Bearer ${jwt}`)
+    }
 
-  it('should authenticated user be able to get organization reviews', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/reviews?filters[organization][id][$eq]=${organization.id}`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toHaveLength(1)
-        expect(data[0].attributes.organization.data.id).toBe(organization.id)
-        expect(
-          data[0].attributes.organization.data.attributes.categories
-        ).toBeUndefined()
-      })
+    await req.expect('Content-Type', /json/).expect(code)
   })
 })

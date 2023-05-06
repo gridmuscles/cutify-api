@@ -19,10 +19,16 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.createMessage"
+    },
+    {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
       "action": "api::city.city.find"
     },
     {
-      "action": "api::coupon.coupon.find"
+      "action": "api::coupon.coupon.findByUuidList"
     },
     {
       "action": "api::organization.organization.find"
@@ -31,10 +37,16 @@
       "action": "api::organization.organization.findOne"
     },
     {
+      "action": "api::organization.organization.findReviews"
+    },
+    {
       "action": "api::privacy-policy.privacy-policy.find"
     },
     {
       "action": "api::promotion.promotion.completeAuction"
+    },
+    {
+      "action": "api::promotion.promotion.createPromotionChat"
     },
     {
       "action": "api::promotion.promotion.find"
@@ -52,9 +64,6 @@
       "action": "api::review.review.create"
     },
     {
-      "action": "api::review.review.find"
-    },
-    {
       "action": "plugin::users-permissions.auth.changePassword"
     },
     {
@@ -62,6 +71,12 @@
     },
     {
       "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.user.findChats"
+    },
+    {
+      "action": "plugin::users-permissions.user.findCoupons"
     },
     {
       "action": "plugin::users-permissions.user.me"

@@ -10,16 +10,16 @@
       "action": "api::category.category.findOne"
     },
     {
+      "action": "api::chat.chat.createMessage"
+    },
+    {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
       "action": "api::city.city.find"
     },
     {
       "action": "api::city.city.findOne"
-    },
-    {
-      "action": "api::coupon.coupon.find"
-    },
-    {
-      "action": "api::coupon.coupon.findOne"
     },
     {
       "action": "api::location.location.find"
@@ -34,6 +34,9 @@
       "action": "api::organization.organization.findOne"
     },
     {
+      "action": "api::organization.organization.findReviews"
+    },
+    {
       "action": "api::privacy-policy.privacy-policy.find"
     },
     {
@@ -43,10 +46,7 @@
       "action": "api::promotion.promotion.findOne"
     },
     {
-      "action": "api::review.review.find"
-    },
-    {
-      "action": "api::review.review.findOne"
+      "action": "plugin::users-permissions.user.findChats"
     },
     {
       "action": "plugin::users-permissions.user.me"

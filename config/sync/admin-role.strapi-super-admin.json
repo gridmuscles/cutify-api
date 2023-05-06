@@ -146,6 +146,36 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::chat.chat",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::city.city",
       "properties": {
         "fields": ["title", "slug"]
@@ -214,7 +244,13 @@
           "longitude",
           "phone",
           "organization",
-          "address"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "openHoursFrom",
+          "openHoursTo"
         ]
       },
       "conditions": []
@@ -235,7 +271,13 @@
           "longitude",
           "phone",
           "organization",
-          "address"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "openHoursFrom",
+          "openHoursTo"
         ]
       },
       "conditions": []
@@ -250,8 +292,44 @@
           "longitude",
           "phone",
           "organization",
-          "address"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "openHoursFrom",
+          "openHoursTo"
         ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::message.message",
+      "properties": {
+        "fields": ["text", "user", "chat"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::message.message",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::message.message",
+      "properties": {
+        "fields": ["text", "user", "chat"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::message.message",
+      "properties": {
+        "fields": ["text", "user", "chat"]
       },
       "conditions": []
     },
@@ -422,7 +500,8 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "auction"
+          "auction",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -465,7 +544,8 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "auction"
+          "auction",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -496,7 +576,8 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "auction"
+          "auction",
+          "isChatAvailable"
         ]
       },
       "conditions": []

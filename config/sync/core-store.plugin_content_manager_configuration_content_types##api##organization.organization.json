@@ -8,8 +8,8 @@
       "searchable": true,
       "pageSize": 10,
       "mainField": "title",
-      "defaultSortBy": "title",
-      "defaultSortOrder": "ASC"
+      "defaultSortBy": "createdAt",
+      "defaultSortOrder": "DESC"
     },
     "metadatas": {
       "id": {
@@ -350,7 +350,7 @@
           }
         ]
       ],
-      "list": ["id", "title", "slug", "siteLink"]
+      "list": ["id", "title", "promotions"]
     }
   },
   "type": "object",

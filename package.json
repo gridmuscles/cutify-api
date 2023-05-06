@@ -12,6 +12,7 @@
     "lint:fix": "yarn lint -- --fix",
     "lint:ci": "yarn lint -- config/*.js src/**/*.js tests/**/*.js",
     "test": "jest --detectOpenHandles --runInBand --verbose",
+    "test:tape": "tape tests/**/*.tape.test.js | tap-diff",
     "test:watch": "jest --watch",
     "prepare": "husky install",
     "cs": "config-sync"
@@ -26,18 +27,21 @@
     "jest": "^29.5.0",
     "lint-staged": "^13.2.1",
     "prettier-eslint": "^15.0.1",
-    "supertest": "^6.3.3"
+    "socket.io-client": "^4.6.1",
+    "supertest": "^6.3.3",
+    "tap-diff": "^0.1.1"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.21.3",
-    "@strapi/plugin-i18n": "4.7.1",
-    "@strapi/plugin-users-permissions": "4.7.1",
-    "@strapi/provider-email-sendgrid": "^4.7.1",
-    "@strapi/provider-upload-cloudinary": "^4.7.1",
-    "@strapi/strapi": "4.7.1",
+    "@strapi/plugin-i18n": "4.10.2",
+    "@strapi/plugin-users-permissions": "4.10.2",
+    "@strapi/provider-email-sendgrid": "^4.10.2",
+    "@strapi/provider-upload-cloudinary": "^4.10.2",
+    "@strapi/strapi": "4.10.2",
     "date-fns": "^2.29.3",
     "lodash": "^4.17.21",
     "pg": "^8.10.0",
+    "socket.io": "^4.6.1",
     "strapi-plugin-config-sync": "^1.1.1",
     "strapi-plugin-populate-deep": "^2.0.0"
   },

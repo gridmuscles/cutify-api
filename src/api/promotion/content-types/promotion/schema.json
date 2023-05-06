@@ -88,7 +88,7 @@
       "type": "integer"
     },
     "dateTimeUntil": {
-      "type": "datetime",
+      "type": "date",
       "required": true
     },
     "likesCount": {
@@ -107,6 +107,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::auction.auction"
+    },
+    "isChatAvailable": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
