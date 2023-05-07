@@ -3331,7 +3331,11 @@
         },
         "discountTo": {
           "pluginOptions": {},
-          "type": "integer"
+          "type": "integer",
+          "required": true,
+          "min": 0,
+          "max": 100,
+          "default": 10
         },
         "dateTimeUntil": {
           "type": "date",
@@ -3478,7 +3482,11 @@
           },
           "discountTo": {
             "pluginOptions": {},
-            "type": "integer"
+            "type": "integer",
+            "required": true,
+            "min": 0,
+            "max": 100,
+            "default": 10
           },
           "dateTimeUntil": {
             "type": "date",

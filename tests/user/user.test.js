@@ -12,6 +12,7 @@ const { createPromotion } = require('../promotion/promotion.factory')
 const { createOrganization } = require('../organization/organization.factory')
 const { createCategory } = require('../category/category.factory')
 const { createCoupon } = require('../coupon/coupon.factory')
+const { createMessage } = require('../message/message.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -234,11 +235,17 @@ describe('Users', () => {
       await createChat({
         users: [primaryUser1.id],
       })
-      await createChat({
+      const chat = await createChat({
         users: [primaryUser1.id],
         promotion: primaryPromotion.id,
       })
       await createChat({ users: [], promotion: primaryPromotion.id })
+
+      await createMessage({
+        user: primaryUser1.id,
+        chat: chat.id,
+        text: 'text text',
+      })
     })
 
     it('should authenticated user be able to get chats', async () => {
@@ -251,8 +258,11 @@ describe('Users', () => {
         .expect(200)
         .then(({ body: { data } }) => {
           expect(data).toHaveLength(2)
-          expect(data[0].attributes.users.data[0].attributes.name).toBe(
+          expect(data[1].attributes.users.data[0].attributes.name).toBe(
             primaryUser1.name
+          )
+          expect(data[1].attributes.messages.data[0].attributes.text).toBe(
+            'text text'
           )
         })
     })
@@ -267,6 +277,9 @@ describe('Users', () => {
         .expect(200)
         .then(({ body: { data } }) => {
           expect(data).toHaveLength(2)
+          expect(data[0].attributes.messages.data[0].attributes.text).toBe(
+            'text text'
+          )
         })
     })
   })

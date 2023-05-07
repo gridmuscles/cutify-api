@@ -378,6 +378,12 @@
       "edit": [
         [
           {
+            "name": "discountTo",
+            "size": 6
+          }
+        ],
+        [
+          {
             "name": "title",
             "size": 6
           },
@@ -448,10 +454,6 @@
           {
             "name": "dateTimeUntil",
             "size": 6
-          },
-          {
-            "name": "discountTo",
-            "size": 4
           }
         ],
         [
