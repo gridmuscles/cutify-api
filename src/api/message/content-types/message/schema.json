@@ -13,8 +13,7 @@
   "attributes": {
     "text": {
       "type": "text",
-      "required": true,
-      "encrypted": true
+      "required": true
     },
     "user": {
       "type": "relation",
