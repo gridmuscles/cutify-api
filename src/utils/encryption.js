@@ -2,43 +2,36 @@ const crypto = require('crypto')
 
 const init = async ({ strapi }) => {
   const {
-    app: { encryptionSecretKey, encryptionSecretIv },
+    app: { encryptionSecretKey },
   } = strapi.config.get('server')
 
-  if (!encryptionSecretKey || !encryptionSecretIv) {
-    throw new Error('secretKey, secretIV, and encryptionMethod are required')
+  if (!encryptionSecretKey) {
+    throw new Error('secretKey is required for crypto')
   }
 
-  const key = crypto
-    .createHash('sha512')
-    .update(encryptionSecretKey)
-    .digest('hex')
-    .substring(0, 32)
-  const encryptionIV = crypto
-    .createHash('sha512')
-    .update(encryptionSecretIv)
-    .digest('hex')
-    .substring(0, 16)
-  const encryptionMethod = 'aes-256-cbc'
+  const SECRET = encryptionSecretKey
+  const ALGORITHM = 'aes-256-cbc'
 
-  function encrypt(data) {
-    const cipher = crypto.createCipheriv(encryptionMethod, key, encryptionIV)
-    return Buffer.from(
-      cipher.update(data, 'utf8', 'hex') + cipher.final('hex')
-    ).toString('base64')
+  function encrypt(text) {
+    let iv = crypto.randomBytes(16)
+    let cipher = crypto.createCipheriv(ALGORITHM, Buffer.from(SECRET), iv)
+    let encrypted = cipher.update(text)
+
+    encrypted = Buffer.concat([encrypted, cipher.final()])
+
+    return iv.toString('hex') + ':' + encrypted.toString('hex')
   }
 
-  function decrypt(data) {
-    const buff = Buffer.from(data, 'base64')
-    const decipher = crypto.createDecipheriv(
-      encryptionMethod,
-      key,
-      encryptionIV
-    )
-    return (
-      decipher.update(buff.toString('utf8'), 'hex', 'utf8') +
-      decipher.final('utf8')
-    )
+  function decrypt(text) {
+    let textParts = text.split(':')
+    let iv = Buffer.from(textParts.shift(), 'hex')
+    let encryptedText = Buffer.from(textParts.join(':'), 'hex')
+    let decipher = crypto.createDecipheriv(ALGORITHM, Buffer.from(SECRET), iv)
+    let decrypted = decipher.update(encryptedText)
+
+    decrypted = Buffer.concat([decrypted, decipher.final()])
+
+    return decrypted.toString()
   }
 
   strapi.encrypt = encrypt
