@@ -249,8 +249,7 @@
           "isPL",
           "isUA",
           "isEN",
-          "openHoursFrom",
-          "openHoursTo"
+          "workhours"
         ]
       },
       "conditions": []
@@ -276,8 +275,7 @@
           "isPL",
           "isUA",
           "isEN",
-          "openHoursFrom",
-          "openHoursTo"
+          "workhours"
         ]
       },
       "conditions": []
@@ -297,8 +295,7 @@
           "isPL",
           "isUA",
           "isEN",
-          "openHoursFrom",
-          "openHoursTo"
+          "workhours"
         ]
       },
       "conditions": []

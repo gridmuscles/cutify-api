@@ -51,11 +51,8 @@
       "type": "boolean",
       "default": true
     },
-    "openHoursFrom": {
-      "type": "string"
-    },
-    "openHoursTo": {
-      "type": "string"
+    "workhours": {
+      "type": "richtext"
     }
   }
 }

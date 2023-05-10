@@ -162,32 +162,18 @@
           "sortable": true
         }
       },
-      "openHoursFrom": {
+      "workhours": {
         "edit": {
-          "label": "openHoursFrom",
+          "label": "workhours",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "openHoursFrom",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "openHoursTo": {
-        "edit": {
-          "label": "openHoursTo",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "openHoursTo",
-          "searchable": true,
-          "sortable": true
+          "label": "workhours",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -276,12 +262,8 @@
         ],
         [
           {
-            "name": "openHoursFrom",
-            "size": 6
-          },
-          {
-            "name": "openHoursTo",
-            "size": 6
+            "name": "workhours",
+            "size": 12
           }
         ]
       ]
