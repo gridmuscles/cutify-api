@@ -13,25 +13,35 @@ const init = async ({ strapi }) => {
   const ALGORITHM = 'aes-256-cbc'
 
   function encrypt(text) {
-    let iv = crypto.randomBytes(16)
-    let cipher = crypto.createCipheriv(ALGORITHM, Buffer.from(SECRET), iv)
-    let encrypted = cipher.update(text)
+    try {
+      let iv = crypto.randomBytes(16)
+      let cipher = crypto.createCipheriv(ALGORITHM, Buffer.from(SECRET), iv)
+      let encrypted = cipher.update(text)
 
-    encrypted = Buffer.concat([encrypted, cipher.final()])
+      encrypted = Buffer.concat([encrypted, cipher.final()])
 
-    return iv.toString('hex') + ':' + encrypted.toString('hex')
+      return iv.toString('hex') + ':' + encrypted.toString('hex')
+    } catch (err) {
+      strapi.log.error(err)
+      return text
+    }
   }
 
   function decrypt(text) {
-    let textParts = text.split(':')
-    let iv = Buffer.from(textParts.shift(), 'hex')
-    let encryptedText = Buffer.from(textParts.join(':'), 'hex')
-    let decipher = crypto.createDecipheriv(ALGORITHM, Buffer.from(SECRET), iv)
-    let decrypted = decipher.update(encryptedText)
+    try {
+      let textParts = text.split(':')
+      let iv = Buffer.from(textParts.shift(), 'hex')
+      let encryptedText = Buffer.from(textParts.join(':'), 'hex')
+      let decipher = crypto.createDecipheriv(ALGORITHM, Buffer.from(SECRET), iv)
+      let decrypted = decipher.update(encryptedText)
 
-    decrypted = Buffer.concat([decrypted, decipher.final()])
+      decrypted = Buffer.concat([decrypted, decipher.final()])
 
-    return decrypted.toString()
+      return decrypted.toString()
+    } catch (err) {
+      strapi.log.error(err)
+      return text
+    }
   }
 
   strapi.encrypt = encrypt
