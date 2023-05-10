@@ -280,7 +280,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": false
+          "editable": true
         },
         "list": {
           "label": "likesCount",
@@ -294,7 +294,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": false
+          "editable": true
         },
         "list": {
           "label": "couponsCount",
@@ -308,7 +308,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": false
+          "editable": true
         },
         "list": {
           "label": "viewsCount",
@@ -376,6 +376,12 @@
     },
     "layouts": {
       "edit": [
+        [
+          {
+            "name": "discountTo",
+            "size": 6
+          }
+        ],
         [
           {
             "name": "title",
@@ -448,10 +454,6 @@
           {
             "name": "dateTimeUntil",
             "size": 6
-          },
-          {
-            "name": "discountTo",
-            "size": 4
           }
         ],
         [

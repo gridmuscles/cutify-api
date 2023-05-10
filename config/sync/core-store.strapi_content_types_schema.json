@@ -2725,11 +2725,8 @@
           "type": "boolean",
           "default": true
         },
-        "openHoursFrom": {
-          "type": "string"
-        },
-        "openHoursTo": {
-          "type": "string"
+        "workhours": {
+          "type": "richtext"
         },
         "createdAt": {
           "type": "datetime"
@@ -2810,11 +2807,8 @@
             "type": "boolean",
             "default": true
           },
-          "openHoursFrom": {
-            "type": "string"
-          },
-          "openHoursTo": {
-            "type": "string"
+          "workhours": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
@@ -3331,7 +3325,11 @@
         },
         "discountTo": {
           "pluginOptions": {},
-          "type": "integer"
+          "type": "integer",
+          "required": true,
+          "min": 0,
+          "max": 100,
+          "default": 10
         },
         "dateTimeUntil": {
           "type": "date",
@@ -3478,7 +3476,11 @@
           },
           "discountTo": {
             "pluginOptions": {},
-            "type": "integer"
+            "type": "integer",
+            "required": true,
+            "min": 0,
+            "max": 100,
+            "default": 10
           },
           "dateTimeUntil": {
             "type": "date",

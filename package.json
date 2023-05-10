@@ -38,7 +38,7 @@
     "@strapi/provider-email-sendgrid": "^4.10.2",
     "@strapi/provider-upload-cloudinary": "^4.10.2",
     "@strapi/strapi": "4.10.2",
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "lodash": "^4.17.21",
     "pg": "^8.10.0",
     "socket.io": "^4.6.1",
