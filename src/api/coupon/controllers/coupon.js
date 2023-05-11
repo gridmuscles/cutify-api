@@ -18,4 +18,14 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
       ctx.badRequest(err.message, err.details)
     }
   },
+
+  async verify(ctx) {
+    try {
+      await strapi.service('api::coupon.coupon').verify(ctx)
+      return true
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest(err.message, err.details)
+    }
+  },
 }))

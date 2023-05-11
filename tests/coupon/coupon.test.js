@@ -20,6 +20,7 @@ afterAll(async () => {
 
 describe('Coupons', () => {
   let primaryUser
+  let primaryManagerJwt
   let category
   let primaryOrganization
   let primaryPromotion
@@ -28,9 +29,13 @@ describe('Coupons', () => {
     const [user] = await createUser({ type: 'authenticated' })
     primaryUser = user
 
+    const [manager, managerJwt] = await createUser({ type: 'manager' })
+    primaryManagerJwt = managerJwt
+
     category = await createCategory()
     primaryOrganization = await createOrganization({
       categories: [category.id],
+      managers: [manager.id],
     })
     primaryPromotion = await createPromotion({
       categories: [category.id],
@@ -112,4 +117,64 @@ describe('Coupons', () => {
       .expect('Content-Type', /json/)
       .expect(403)
   })
+
+  it('should organization manager be able to verify organization promotion coupon', async () => {
+    const coupon = await createCoupon({
+      promotion: primaryPromotion.id,
+      email: 'user10@gmail.com',
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/coupons/${coupon.id}/verify`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryManagerJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+  })
+
+  it('should not organization manager be able to verify already verified coupon', async () => {
+    const coupon = await createCoupon({
+      promotion: primaryPromotion.id,
+      email: 'user10@gmail.com',
+      state: 'verified',
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/coupons/${coupon.id}/verify`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryManagerJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it.each([
+    { type: 'public', code: 401 },
+    { type: 'authenticated', code: 403 },
+    { type: 'manager', code: 400 },
+    { type: 'moderator', code: 403 },
+  ])(
+    'should not $type be able to verify organization promotion coupon',
+    async ({ type, code }) => {
+      const coupon = await createCoupon({
+        promotion: primaryPromotion.id,
+        email: 'user10@gmail.com',
+      })
+
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .post(`/api/coupons/${coupon.id}/verify`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${jwt}`)
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
 })

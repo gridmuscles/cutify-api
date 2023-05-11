@@ -22,6 +22,9 @@
       "action": "api::city.city.findOne"
     },
     {
+      "action": "api::coupon.coupon.verify"
+    },
+    {
       "action": "api::location.location.find"
     },
     {

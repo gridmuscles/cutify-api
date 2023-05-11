@@ -25,6 +25,9 @@
       "action": "api::coupon.coupon.find"
     },
     {
+      "action": "api::coupon.coupon.findOne"
+    },
+    {
       "action": "api::organization.organization.find"
     },
     {
