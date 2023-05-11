@@ -2,7 +2,7 @@ const mockUserData = (data = {}) => {
   const usernameSuffix = Math.round(Math.random() * 10000).toString()
   return {
     name: 'John',
-    username: `tester${usernameSuffix}`,
+    username: `${usernameSuffix}`,
     email: `tester${usernameSuffix}@strapi.com`,
     password: '1234Abc',
     phone: `+99${usernameSuffix}`,
