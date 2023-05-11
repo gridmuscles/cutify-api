@@ -12,7 +12,20 @@ module.exports = ({ env }) => ({
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
   cron: {
-    enabled: env.bool('ENABLED_CRON_TASKS', false),
+    enabled: env.bool('ENABLE_CRON_TASKS', false),
     tasks: cronTasks,
+  },
+  sms: {
+    enabled: env.bool('ENABLE_SMS', false),
+    config: {
+      provider: 'twilio',
+      providerOptions: {
+        accountSid: env('TWILIO_ACCOUNT_SID'),
+        authToken: env('TWILIO_AUTH_TOKEN'),
+      },
+      settings: {
+        senderPhoneNumber: env('TWILIO_PHONE_NUMBER'),
+      },
+    },
   },
 })

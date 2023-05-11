@@ -260,6 +260,17 @@ module.exports = createCoreController(
           ?.to(`chat:${newChat.id}`)
           .emit('receiveChatSuccess', transformChatResponse(newChat))
 
+        try {
+          await strapi.services['api::sms.sms'].sendSMS({
+            phoneNumbers: promotion.organization.managers.map(
+              ({ phone }) => phone
+            ),
+            body: 'Cappybara.com - There is a new chat created, please take a look!',
+          })
+        } catch (err) {
+          strapi.log.error('SMS notification about the new chat was not sent')
+        }
+
         return transformChatResponse(newChat)
       } catch (err) {
         strapi.log.error(err)

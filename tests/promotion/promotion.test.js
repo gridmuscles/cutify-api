@@ -23,6 +23,7 @@ afterAll(async () => {
 describe('Promotions', () => {
   let authenticatedUser
   let authenticatedUserJwt
+  let managerUser
   let managerUserJwt
 
   let category
@@ -37,12 +38,14 @@ describe('Promotions', () => {
     authenticatedUser = user
     authenticatedUserJwt = jwt
 
-    const [, jwt2] = await createUser({ type: 'manager' })
+    const [manager, jwt2] = await createUser({ type: 'manager' })
+    managerUser = manager
     managerUserJwt = jwt2
 
     category = await createCategory()
     primaryOrganization = await createOrganization({
       categories: [category.id],
+      managers: [manager.id],
     })
     primaryPromotion = await createPromotion({
       categories: [category.id],
@@ -367,6 +370,10 @@ describe('Promotions', () => {
   })
 
   it('should authenticated user be able to create a chat for promotion', async () => {
+    const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+      .fn()
+      .mockReturnValue([]))
+
     const promotion = await createPromotion({
       organization: primaryOrganization.id,
       isChatAvailable: true,
@@ -387,6 +394,11 @@ describe('Promotions', () => {
           authenticatedUser.name
         )
       })
+
+    expect(smsSendMock).toBeCalledTimes(1)
+
+    const { phoneNumbers } = smsSendMock.mock.calls[0][0]
+    expect(phoneNumbers).toContain(managerUser.phone)
   })
 
   it('should not authenticated user be able to create a chat for promotion with disabled chat option', async () => {

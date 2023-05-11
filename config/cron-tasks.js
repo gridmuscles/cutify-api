@@ -20,9 +20,13 @@ module.exports = {
       })
 
       lastCronLaunchDateTime = new Date().toISOString()
+      strapi.log.warn(
+        'Chat message notification cron job is finished at: ',
+        lastCronLaunchDateTime
+      )
     },
     options: {
-      rule: '* */30 * * * *',
+      rule: '* */10 * * * *',
     },
   },
 }
