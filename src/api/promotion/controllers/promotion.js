@@ -277,5 +277,34 @@ module.exports = createCoreController(
         ctx.badRequest()
       }
     },
+
+    async findCoupons(ctx) {
+      try {
+        const {
+          transformResponse: transformCouponResponse,
+          sanitizeOutput: sanitizeCouponOutput,
+        } = await strapi.controller('api::coupon.coupon')
+
+        const { results, pagination } = await strapi
+          .service('api::coupon.coupon')
+          .find({
+            filters: {
+              promotion: {
+                organization: {
+                  managers: {
+                    id: ctx.state.user.id,
+                  },
+                },
+              },
+            },
+          })
+
+        const sanitizedResults = await sanitizeCouponOutput(results, ctx)
+        return transformCouponResponse(sanitizedResults, { pagination })
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
   })
 )

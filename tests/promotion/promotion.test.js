@@ -440,4 +440,48 @@ describe('Promotions', () => {
       .expect('Content-Type', /json/)
       .expect(403)
   })
+
+  it('should manager user be able to get promotion coupons if its an org manager', async () => {
+    const promotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+    })
+
+    await createCoupon({ promotion: promotion.id })
+    await createCoupon({ promotion: promotion.id })
+    await createCoupon({ promotion: promotion.id })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/coupons`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${managerUserJwt}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(3)
+      })
+  })
+
+  it.each([
+    { type: 'public', code: 401 },
+    { type: 'authenticated', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])(
+    'should not $type be able to get promotion coupons',
+    async ({ type, code }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/promotions/${primaryPromotion.id}/coupons`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${jwt}`)
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
 })
