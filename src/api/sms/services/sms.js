@@ -7,8 +7,10 @@
 module.exports = {
   async sendSMS({ phoneNumbers, body }) {
     try {
-      const { enabled, providerOptions, settings } =
-        strapi.config.get('server.sms').config
+      const {
+        enabled,
+        config: { providerOptions, settings },
+      } = strapi.config.get('server.sms')
 
       if (!enabled) {
         throw new Error('SMS service is disabled')
