@@ -31,7 +31,12 @@ const getChatById = async (chatId) => {
   })
 }
 
+const clearChats = () => {
+  return strapi.db.query('api::chat.chat').deleteMany()
+}
+
 module.exports = {
   createChat,
   getChatById,
+  clearChats,
 }
