@@ -22,12 +22,6 @@
       "conditions": []
     },
     {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::category.category",
-      "properties": {},
-      "conditions": []
-    },
-    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::category.category",
       "properties": {
@@ -72,12 +66,6 @@
       "conditions": []
     },
     {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::coupon.coupon",
-      "properties": {},
-      "conditions": []
-    },
-    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
@@ -98,20 +86,19 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::location.location",
-      "properties": {},
       "conditions": []
     },
     {
@@ -119,12 +106,17 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
       "conditions": []
@@ -134,12 +126,17 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
       "conditions": []
@@ -149,29 +146,23 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::organization.organization",
-      "properties": {},
       "conditions": []
     },
     {
@@ -179,21 +170,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": []
@@ -203,21 +194,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": []
@@ -248,15 +239,10 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
+          "auction",
           "isChatAvailable"
         ]
       },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::promotion.promotion",
-      "properties": {},
       "conditions": []
     },
     {
@@ -291,6 +277,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
+          "auction",
           "isChatAvailable"
         ]
       },
@@ -322,6 +309,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
+          "auction",
           "isChatAvailable"
         ]
       },
@@ -331,14 +319,8 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply"]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::review.review",
-      "properties": {},
       "conditions": []
     },
     {
@@ -351,7 +333,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply"]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -359,7 +341,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply"]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },

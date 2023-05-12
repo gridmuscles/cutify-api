@@ -8,15 +8,20 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.delete",
@@ -29,12 +34,17 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -44,12 +54,17 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -59,24 +74,24 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.delete",
@@ -89,21 +104,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -113,21 +128,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -158,16 +173,11 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
+          "auction",
           "isChatAvailable"
         ]
       },
-      "conditions": ["admin::is-creator"]
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::promotion.promotion",
-      "properties": {},
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.read",
@@ -195,6 +205,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
+          "auction",
           "isChatAvailable"
         ]
       },
@@ -226,6 +237,7 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
+          "auction",
           "isChatAvailable"
         ]
       },
