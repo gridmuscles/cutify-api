@@ -32,9 +32,6 @@
       "target": "api::organization.organization",
       "inversedBy": "locations"
     },
-    "address": {
-      "type": "text"
-    },
     "isRU": {
       "type": "boolean",
       "default": false
@@ -51,8 +48,25 @@
       "type": "boolean",
       "default": true
     },
+    "address": {
+      "type": "richtext"
+    },
     "workhours": {
       "type": "richtext"
+    },
+    "workhours_pl": {
+      "type": "richtext"
+    },
+    "workhours_ua": {
+      "type": "richtext"
+    },
+    "workhours_ru": {
+      "type": "richtext"
+    },
+    "managers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

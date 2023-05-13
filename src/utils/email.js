@@ -1,40 +1,46 @@
 const qs = require('qs')
 
 const TEMPLATE_DATA = {
-  en: {
-    title: 'Your coupon has been activated!',
+  en: ({ title, couponsAmount }) => ({
+    subject: `Cappybara.com - Your coupons (${couponsAmount} pcs.) for the promotion ${title} have been activated!`,
     greetings: 'Hello!',
-    description: 'To use your coupon, click on the "Open Coupon" button below.',
-    linkText: 'Open Coupon',
-    subject: 'Your Coupon Delivered!',
-  },
-  pl: {
-    title: 'Twój kupon został aktywowany!',
+    description: "To use the coupons, click the 'Open Coupons' button",
+    linkText: 'Open Coupons',
+    title: 'Your coupons have been delivered!',
+  }),
+  pl: ({ title, couponsAmount }) => ({
+    subject: `Cappybara.com - Twoje kupony (${couponsAmount} szt.) dla promocji ${title} zostały aktywowane!`,
     greetings: 'Witaj!',
-    description:
-      'Aby skorzystać z kuponu, kliknij przycisk "Otwórz kupon" poniżej.',
-    linkText: 'Otwórz kupon',
-    subject: 'Twój kupon dostarczony!',
-  },
-  ua: {
-    title: 'Ваш купон активовано!',
+    description: "Aby skorzystać z kuponów, kliknij przycisk 'Otwórz kupony'",
+    linkText: 'Otwórz kupony',
+    title: 'Twoje kupony zostały dostarczone!',
+  }),
+  ua: ({ title, couponsAmount }) => ({
+    subject: `Cappybara.com - Ваші купони (${couponsAmount} шт.) для акції ${title} активовані!`,
     greetings: 'Вітаємо!',
     description:
-      'Щоб скористатись купоном, натисніть на кнопку "Відкрити купон" нижче.',
-    linkText: 'Відкрити купон',
-    subject: 'Ваш купон доставлено!',
-  },
-  ru: {
-    title: 'Ваш купон активирован!',
+      "Щоб скористатися купонами, натисніть кнопку 'Відкрити купони'",
+    linkText: 'Відкрити купони',
+    title: 'Ваші купони доставлені!',
+  }),
+  ru: ({ title, couponsAmount }) => ({
+    subject: `Cappybara.com - Ваши купоны (${couponsAmount} шт.) для акции ${title} активированы!`,
     greetings: 'Здравствуйте!',
     description:
-      'Чтобы воспользоваться купоном, нажмите на кнопку "Открыть купон"',
-    linkText: 'Открыть купон',
-    subject: 'Ваш купон доставлен!',
-  },
+      'Чтобы воспользоваться купонами, нажмите на кнопку "Открыть купоны"',
+    linkText: 'Открыть купоны',
+    title: 'Ваши купоны доставлены!',
+  }),
 }
 
-const getCouponListEmail = ({ email, locale, origin, couponUUIDList }) => {
+const getCouponListEmail = ({
+  discount,
+  promotionTitle,
+  email,
+  locale,
+  origin,
+  couponUUIDList,
+}) => {
   const query = qs.stringify(
     {
       filters: {
@@ -52,7 +58,10 @@ const getCouponListEmail = ({ email, locale, origin, couponUUIDList }) => {
     to: email,
     templateId: 'd-c096941312084bdea8775e617e70e6b2',
     dynamicTemplateData: {
-      ...TEMPLATE_DATA[locale],
+      ...TEMPLATE_DATA[locale ?? 'en']({
+        title: `${discount} ${promotionTitle}`,
+        couponsAmount: couponUUIDList.length,
+      }),
       link: `${origin}/${locale ?? 'en'}/coupons?${query}`,
     },
   }

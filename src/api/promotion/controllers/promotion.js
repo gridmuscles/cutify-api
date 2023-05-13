@@ -82,6 +82,8 @@ module.exports = createCoreController(
 
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
+            discount: promotion.discount,
+            promotionTitle: promotion.title,
             email,
             locale,
             origin: ctx.request.header.origin,
@@ -191,6 +193,8 @@ module.exports = createCoreController(
 
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
+            discount: promotion.discount,
+            promotionTitle: promotion.discount,
             email: userEmail,
             locale,
             origin: ctx.request.header.origin,

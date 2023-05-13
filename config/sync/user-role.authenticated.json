@@ -31,6 +31,12 @@
       "action": "api::coupon.coupon.findByUuidList"
     },
     {
+      "action": "api::location.location.find"
+    },
+    {
+      "action": "api::location.location.findOne"
+    },
+    {
       "action": "api::organization.organization.find"
     },
     {

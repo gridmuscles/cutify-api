@@ -92,20 +92,6 @@
           "sortable": true
         }
       },
-      "address": {
-        "edit": {
-          "label": "address",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "address",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "isRU": {
         "edit": {
           "label": "isRU",
@@ -176,6 +162,77 @@
           "sortable": false
         }
       },
+      "address": {
+        "edit": {
+          "label": "address",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "workhours_pl": {
+        "edit": {
+          "label": "workhours_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "workhours_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "workhours_ua": {
+        "edit": {
+          "label": "workhours_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "workhours_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "workhours_ru": {
+        "edit": {
+          "label": "workhours_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "workhours_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "managers": {
+        "edit": {
+          "label": "managers",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "managers",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -212,15 +269,9 @@
           {
             "name": "organization",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "city",
-            "size": 6
           },
           {
-            "name": "address",
+            "name": "city",
             "size": 6
           }
         ],
@@ -228,16 +279,6 @@
           {
             "name": "phone",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "latitude",
-            "size": 4
-          },
-          {
-            "name": "longitude",
-            "size": 4
           }
         ],
         [
@@ -262,8 +303,48 @@
         ],
         [
           {
+            "name": "address",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "workhours",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "workhours_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "workhours_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "workhours_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "latitude",
+            "size": 4
+          },
+          {
+            "name": "longitude",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "managers",
+            "size": 6
           }
         ]
       ]

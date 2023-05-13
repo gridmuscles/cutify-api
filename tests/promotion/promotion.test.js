@@ -9,6 +9,7 @@ const { createPromotion } = require('../promotion/promotion.factory')
 const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
 const { createAuction } = require('../auction/auction.factory')
 const { createChat } = require('../chat/chat.factory')
+const { createLocation } = require('../location/location.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -28,6 +29,7 @@ describe('Promotions', () => {
 
   let category
   let primaryOrganization
+  let primaryLocation
   let primaryPromotion
   let draftPromotion
   let primaryAuction
@@ -46,6 +48,9 @@ describe('Promotions', () => {
     primaryOrganization = await createOrganization({
       categories: [category.id],
       managers: [manager.id],
+    })
+    primaryLocation = await createLocation({
+      organization: primaryOrganization.id,
     })
     primaryPromotion = await createPromotion({
       categories: [category.id],
@@ -84,8 +89,9 @@ describe('Promotions', () => {
           data.attributes.organization.data.attributes.promotions
         ).toBeDefined()
         expect(
-          data.attributes.organization.data.attributes.locations
-        ).toBeDefined()
+          data.attributes.organization.data.attributes.locations.data[0]
+            .attributes.address
+        ).toBe(primaryLocation.address)
         expect(
           data.attributes.organization.data.attributes.promotions.data[0]
             .attributes.organization
