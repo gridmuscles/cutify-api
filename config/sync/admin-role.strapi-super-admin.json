@@ -498,7 +498,9 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -542,7 +544,9 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -574,7 +578,9 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "size",
+          "order"
         ]
       },
       "conditions": []

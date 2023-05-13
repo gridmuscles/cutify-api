@@ -116,6 +116,17 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": ["x", "x2"],
+      "default": "x",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": -1,
+      "required": true
     }
   }
 }

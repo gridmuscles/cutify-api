@@ -5,6 +5,59 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::bid.bid",
+      "properties": {
+        "fields": ["bidder", "amount", "auction"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::category.category",
       "properties": {
         "fields": [
@@ -19,6 +72,12 @@
           "slug"
         ]
       },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::category.category",
+      "properties": {},
       "conditions": []
     },
     {
@@ -54,6 +113,52 @@
           "description_ru",
           "slug"
         ]
+      },
+      "conditions": ["admin::is-creator"]
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::city.city",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
       },
       "conditions": []
     },
@@ -66,6 +171,12 @@
       "conditions": []
     },
     {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::coupon.coupon",
+      "properties": {},
+      "conditions": []
+    },
+    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
@@ -102,6 +213,12 @@
       "conditions": []
     },
     {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::location.location",
+      "properties": {},
+      "conditions": []
+    },
+    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::location.location",
       "properties": {
@@ -138,6 +255,14 @@
           "isEN",
           "workhours"
         ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::message.message",
+      "properties": {
+        "fields": ["text", "user", "chat"]
       },
       "conditions": []
     },
@@ -163,6 +288,12 @@
           "locations"
         ]
       },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::organization.organization",
+      "properties": {},
       "conditions": []
     },
     {
@@ -240,9 +371,17 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "order",
+          "size"
         ]
       },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::promotion.promotion",
+      "properties": {},
       "conditions": []
     },
     {
@@ -278,7 +417,9 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "order",
+          "size"
         ]
       },
       "conditions": []
@@ -310,7 +451,9 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "order",
+          "size"
         ]
       },
       "conditions": []
@@ -321,6 +464,12 @@
       "properties": {
         "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::review.review",
+      "properties": {},
       "conditions": []
     },
     {
@@ -344,6 +493,69 @@
         "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "name",
+          "organizations",
+          "phone"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "name",
+          "organizations",
+          "phone"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "name",
+          "organizations",
+          "phone"
+        ]
+      },
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::upload.assets.copy-link",

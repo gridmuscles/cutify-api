@@ -24,12 +24,6 @@
       "conditions": []
     },
     {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::location.location",
-      "properties": {},
-      "conditions": ["admin::is-creator"]
-    },
-    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::location.location",
       "properties": {
@@ -92,12 +86,6 @@
         ]
       },
       "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::organization.organization",
-      "properties": {},
-      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::content-manager.explorer.read",
@@ -174,9 +162,17 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "order",
+          "size"
         ]
       },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::promotion.promotion",
+      "properties": {},
       "conditions": []
     },
     {
@@ -206,7 +202,9 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "order",
+          "size"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -238,10 +236,18 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable"
+          "isChatAvailable",
+          "order",
+          "size"
         ]
       },
       "conditions": ["admin::is-creator"]
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::review.review",
+      "properties": {},
+      "conditions": []
     },
     {
       "action": "plugin::upload.assets.copy-link",
