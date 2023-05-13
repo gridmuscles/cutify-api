@@ -22,6 +22,9 @@
       "action": "api::city.city.findOne"
     },
     {
+      "action": "api::coupon.coupon.verify"
+    },
+    {
       "action": "api::location.location.find"
     },
     {
@@ -41,6 +44,9 @@
     },
     {
       "action": "api::promotion.promotion.find"
+    },
+    {
+      "action": "api::promotion.promotion.findCoupons"
     },
     {
       "action": "api::promotion.promotion.findOne"

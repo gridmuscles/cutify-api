@@ -5,6 +5,59 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::bid.bid",
+      "properties": {
+        "fields": ["bidder", "amount", "auction"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::category.category",
       "properties": {
         "fields": [
@@ -61,6 +114,52 @@
           "slug"
         ]
       },
+      "conditions": ["admin::is-creator"]
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::chat.chat",
+      "properties": {
+        "fields": ["users", "promotion", "messages"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::city.city",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
+      },
       "conditions": []
     },
     {
@@ -98,12 +197,17 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
       "conditions": []
@@ -119,12 +223,17 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
       },
       "conditions": []
@@ -134,13 +243,26 @@
       "subject": "api::location.location",
       "properties": {
         "fields": [
-          "address",
           "city",
           "latitude",
           "longitude",
+          "phone",
           "organization",
-          "phone"
+          "address",
+          "isRU",
+          "isPL",
+          "isUA",
+          "isEN",
+          "workhours"
         ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::message.message",
+      "properties": {
+        "fields": ["text", "user", "chat"]
       },
       "conditions": []
     },
@@ -149,21 +271,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": []
@@ -179,21 +301,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": []
@@ -203,21 +325,21 @@
       "subject": "api::organization.organization",
       "properties": {
         "fields": [
-          "categories",
+          "title",
+          "slug",
           "description",
           "description_pl",
-          "description_ru",
           "description_ua",
-          "facebookLink",
-          "googleMapLink",
-          "instagramLink",
-          "locations",
-          "managers",
+          "description_ru",
+          "categories",
           "promotions",
+          "managers",
           "siteLink",
-          "slug",
           "telegramLink",
-          "title"
+          "facebookLink",
+          "instagramLink",
+          "googleMapLink",
+          "locations"
         ]
       },
       "conditions": []
@@ -248,7 +370,10 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "isChatAvailable"
+          "auction",
+          "isChatAvailable",
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -291,7 +416,10 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "isChatAvailable"
+          "auction",
+          "isChatAvailable",
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -322,7 +450,10 @@
           "likesCount",
           "couponsCount",
           "viewsCount",
-          "isChatAvailable"
+          "auction",
+          "isChatAvailable",
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -331,7 +462,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply"]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -351,7 +482,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply"]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
     },
@@ -359,9 +490,72 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::review.review",
       "properties": {
-        "fields": ["message", "user", "organization", "rating", "reply"]
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
       },
       "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "name",
+          "organizations",
+          "phone"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "name",
+          "organizations",
+          "phone"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "name",
+          "organizations",
+          "phone"
+        ]
+      },
+      "conditions": ["admin::is-creator"]
     },
     {
       "action": "plugin::upload.assets.copy-link",

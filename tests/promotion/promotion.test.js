@@ -9,6 +9,7 @@ const { createPromotion } = require('../promotion/promotion.factory')
 const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
 const { createAuction } = require('../auction/auction.factory')
 const { createChat } = require('../chat/chat.factory')
+const { createLocation } = require('../location/location.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -23,10 +24,12 @@ afterAll(async () => {
 describe('Promotions', () => {
   let authenticatedUser
   let authenticatedUserJwt
+  let managerUser
   let managerUserJwt
 
   let category
   let primaryOrganization
+  let primaryLocation
   let primaryPromotion
   let draftPromotion
   let primaryAuction
@@ -37,12 +40,17 @@ describe('Promotions', () => {
     authenticatedUser = user
     authenticatedUserJwt = jwt
 
-    const [, jwt2] = await createUser({ type: 'manager' })
+    const [manager, jwt2] = await createUser({ type: 'manager' })
+    managerUser = manager
     managerUserJwt = jwt2
 
     category = await createCategory()
     primaryOrganization = await createOrganization({
       categories: [category.id],
+      managers: [manager.id],
+    })
+    primaryLocation = await createLocation({
+      organization: primaryOrganization.id,
     })
     primaryPromotion = await createPromotion({
       categories: [category.id],
@@ -81,8 +89,9 @@ describe('Promotions', () => {
           data.attributes.organization.data.attributes.promotions
         ).toBeDefined()
         expect(
-          data.attributes.organization.data.attributes.locations
-        ).toBeDefined()
+          data.attributes.organization.data.attributes.locations.data[0]
+            .attributes.address
+        ).toBe(primaryLocation.address)
         expect(
           data.attributes.organization.data.attributes.promotions.data[0]
             .attributes.organization
@@ -367,6 +376,10 @@ describe('Promotions', () => {
   })
 
   it('should authenticated user be able to create a chat for promotion', async () => {
+    const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+      .fn()
+      .mockReturnValue([]))
+
     const promotion = await createPromotion({
       organization: primaryOrganization.id,
       isChatAvailable: true,
@@ -387,6 +400,11 @@ describe('Promotions', () => {
           authenticatedUser.name
         )
       })
+
+    expect(smsSendMock).toBeCalledTimes(1)
+
+    const { phoneNumbers } = smsSendMock.mock.calls[0][0]
+    expect(phoneNumbers).toContain(managerUser.phone)
   })
 
   it('should not authenticated user be able to create a chat for promotion with disabled chat option', async () => {
@@ -428,4 +446,48 @@ describe('Promotions', () => {
       .expect('Content-Type', /json/)
       .expect(403)
   })
+
+  it('should manager user be able to get promotion coupons if its an org manager', async () => {
+    const promotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+    })
+
+    await createCoupon({ promotion: promotion.id })
+    await createCoupon({ promotion: promotion.id })
+    await createCoupon({ promotion: promotion.id })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/coupons`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${managerUserJwt}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(3)
+      })
+  })
+
+  it.each([
+    { type: 'public', code: 401 },
+    { type: 'authenticated', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])(
+    'should not $type be able to get promotion coupons',
+    async ({ type, code }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/promotions/${primaryPromotion.id}/coupons`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${jwt}`)
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
 })

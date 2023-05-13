@@ -13,5 +13,10 @@ module.exports = {
         ],
       },
     },
+    {
+      method: 'POST',
+      path: '/coupons/:id/verify',
+      handler: 'coupon.verify',
+    },
   ],
 }

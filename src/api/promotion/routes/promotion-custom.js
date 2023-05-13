@@ -37,5 +37,13 @@ module.exports = {
         middlewares: [{ name: 'global::locale' }],
       },
     },
+    {
+      method: 'GET',
+      path: '/promotions/:id/coupons',
+      handler: 'promotion.findCoupons',
+      config: {
+        middlewares: [{ name: 'global::locale' }],
+      },
+    },
   ],
 }

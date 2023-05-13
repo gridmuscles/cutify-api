@@ -2706,9 +2706,6 @@
           "target": "api::organization.organization",
           "inversedBy": "locations"
         },
-        "address": {
-          "type": "text"
-        },
         "isRU": {
           "type": "boolean",
           "default": false
@@ -2725,8 +2722,25 @@
           "type": "boolean",
           "default": true
         },
+        "address": {
+          "type": "richtext"
+        },
         "workhours": {
           "type": "richtext"
+        },
+        "workhours_pl": {
+          "type": "richtext"
+        },
+        "workhours_ua": {
+          "type": "richtext"
+        },
+        "workhours_ru": {
+          "type": "richtext"
+        },
+        "managers": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "plugin::users-permissions.user"
         },
         "createdAt": {
           "type": "datetime"
@@ -2788,9 +2802,6 @@
             "target": "api::organization.organization",
             "inversedBy": "locations"
           },
-          "address": {
-            "type": "text"
-          },
           "isRU": {
             "type": "boolean",
             "default": false
@@ -2807,8 +2818,25 @@
             "type": "boolean",
             "default": true
           },
+          "address": {
+            "type": "richtext"
+          },
           "workhours": {
             "type": "richtext"
+          },
+          "workhours_pl": {
+            "type": "richtext"
+          },
+          "workhours_ua": {
+            "type": "richtext"
+          },
+          "workhours_ru": {
+            "type": "richtext"
+          },
+          "managers": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "plugin::users-permissions.user"
           }
         },
         "kind": "collectionType"
@@ -3357,6 +3385,17 @@
           "default": false,
           "required": true
         },
+        "size": {
+          "type": "enumeration",
+          "enum": ["x", "x2"],
+          "default": "x",
+          "required": true
+        },
+        "order": {
+          "type": "integer",
+          "default": -1,
+          "required": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3506,6 +3545,17 @@
           "isChatAvailable": {
             "type": "boolean",
             "default": false,
+            "required": true
+          },
+          "size": {
+            "type": "enumeration",
+            "enum": ["x", "x2"],
+            "default": "x",
+            "required": true
+          },
+          "order": {
+            "type": "integer",
+            "default": -1,
             "required": true
           }
         },

@@ -82,6 +82,7 @@ module.exports = createCoreController(
 
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
+            title: `${promotion.discountTo}% ${promotion.title}`,
             email,
             locale,
             origin: ctx.request.header.origin,
@@ -191,6 +192,7 @@ module.exports = createCoreController(
 
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
+            title: `${promotion.discountTo}% ${promotion.title}`,
             email: userEmail,
             locale,
             origin: ctx.request.header.origin,
@@ -260,7 +262,47 @@ module.exports = createCoreController(
           ?.to(`chat:${newChat.id}`)
           .emit('receiveChatSuccess', transformChatResponse(newChat))
 
+        try {
+          await strapi.services['api::sms.sms'].sendSMS({
+            phoneNumbers: promotion.organization.managers.map(
+              ({ phone }) => phone
+            ),
+            body: 'Cappybara.com - There is a new chat created, please take a look!',
+          })
+        } catch (err) {
+          strapi.log.error('SMS notification about the new chat was not sent')
+        }
+
         return transformChatResponse(newChat)
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async findCoupons(ctx) {
+      try {
+        const {
+          transformResponse: transformCouponResponse,
+          sanitizeOutput: sanitizeCouponOutput,
+        } = await strapi.controller('api::coupon.coupon')
+
+        const { results, pagination } = await strapi
+          .service('api::coupon.coupon')
+          .find({
+            filters: {
+              promotion: {
+                organization: {
+                  managers: {
+                    id: ctx.state.user.id,
+                  },
+                },
+              },
+            },
+          })
+
+        const sanitizedResults = await sanitizeCouponOutput(results, ctx)
+        return transformCouponResponse(sanitizedResults, { pagination })
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

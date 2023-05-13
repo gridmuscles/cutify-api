@@ -1,3 +1,5 @@
+const cronTasks = require('./cron-tasks')
+
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
@@ -8,5 +10,22 @@ module.exports = ({ env }) => ({
   },
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+  },
+  cron: {
+    enabled: env.bool('ENABLE_CRON_TASKS', false),
+    tasks: cronTasks,
+  },
+  sms: {
+    enabled: env.bool('ENABLE_SMS', false),
+    config: {
+      provider: 'twilio',
+      providerOptions: {
+        accountSid: env('TWILIO_ACCOUNT_SID'),
+        authToken: env('TWILIO_AUTH_TOKEN'),
+      },
+      settings: {
+        senderPhoneNumber: env('TWILIO_PHONE_NUMBER'),
+      },
+    },
   },
 })

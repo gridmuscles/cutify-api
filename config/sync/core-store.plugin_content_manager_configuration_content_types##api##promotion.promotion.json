@@ -345,6 +345,34 @@
           "sortable": true
         }
       },
+      "size": {
+        "edit": {
+          "label": "size",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "size",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "order": {
+        "edit": {
+          "label": "order",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "order",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -379,7 +407,15 @@
         [
           {
             "name": "discountTo",
-            "size": 6
+            "size": 4
+          },
+          {
+            "name": "size",
+            "size": 4
+          },
+          {
+            "name": "order",
+            "size": 4
           }
         ],
         [
@@ -414,7 +450,9 @@
           {
             "name": "subtitle",
             "size": 6
-          },
+          }
+        ],
+        [
           {
             "name": "subtitle_pl",
             "size": 6
@@ -501,7 +539,7 @@
           }
         ]
       ],
-      "list": ["id", "organization", "title_ru", "auction"]
+      "list": ["id", "title_ru", "organization", "auction"]
     }
   },
   "type": "object",

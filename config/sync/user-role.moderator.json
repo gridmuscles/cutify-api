@@ -25,6 +25,15 @@
       "action": "api::coupon.coupon.find"
     },
     {
+      "action": "api::coupon.coupon.findOne"
+    },
+    {
+      "action": "api::location.location.find"
+    },
+    {
+      "action": "api::location.location.findOne"
+    },
+    {
       "action": "api::organization.organization.find"
     },
     {

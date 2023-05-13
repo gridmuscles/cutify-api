@@ -12,14 +12,14 @@ module.exports = createCoreRouter('api::organization.organization', {
       middlewares: [
         { name: 'global::locale' },
         { name: 'global::i18n' },
-        { name: 'global::populate', config: { deep: 1 } },
+        { name: 'global::populate', config: { deep: 2 } },
       ],
     },
     findOne: {
       middlewares: [
         { name: 'global::locale' },
         { name: 'global::i18n' },
-        { name: 'global::populate', config: { deep: 1 } },
+        { name: 'global::populate', config: { deep: 2 } },
       ],
     },
   },
