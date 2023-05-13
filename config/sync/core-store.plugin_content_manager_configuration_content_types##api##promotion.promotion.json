@@ -403,12 +403,19 @@
       }
     },
     "layouts": {
-      "list": ["id", "title_ru", "order", "organization", "auction"],
       "edit": [
         [
           {
             "name": "discountTo",
-            "size": 6
+            "size": 4
+          },
+          {
+            "name": "size",
+            "size": 4
+          },
+          {
+            "name": "order",
+            "size": 4
           }
         ],
         [
@@ -437,12 +444,6 @@
           {
             "name": "title_ru",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "order",
-            "size": 4
           }
         ],
         [
@@ -536,14 +537,9 @@
             "name": "likesCount",
             "size": 4
           }
-        ],
-        [
-          {
-            "name": "size",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "title_ru", "organization", "auction"]
     }
   },
   "type": "object",

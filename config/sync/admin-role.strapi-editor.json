@@ -372,8 +372,8 @@
           "viewsCount",
           "auction",
           "isChatAvailable",
-          "order",
-          "size"
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -418,8 +418,8 @@
           "viewsCount",
           "auction",
           "isChatAvailable",
-          "order",
-          "size"
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -452,8 +452,8 @@
           "viewsCount",
           "auction",
           "isChatAvailable",
-          "order",
-          "size"
+          "size",
+          "order"
         ]
       },
       "conditions": []

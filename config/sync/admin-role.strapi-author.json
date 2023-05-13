@@ -163,8 +163,8 @@
           "viewsCount",
           "auction",
           "isChatAvailable",
-          "order",
-          "size"
+          "size",
+          "order"
         ]
       },
       "conditions": []
@@ -203,8 +203,8 @@
           "viewsCount",
           "auction",
           "isChatAvailable",
-          "order",
-          "size"
+          "size",
+          "order"
         ]
       },
       "conditions": ["admin::is-creator"]
@@ -237,8 +237,8 @@
           "viewsCount",
           "auction",
           "isChatAvailable",
-          "order",
-          "size"
+          "size",
+          "order"
         ]
       },
       "conditions": ["admin::is-creator"]
