@@ -35,6 +35,13 @@ module.exports = {
           })
         })
       )
+
+      strapi.log.info(
+        `
+        SMS is successfully sent for the following numbers
+        ${phoneNumbers.join(', ')}
+        `
+      )
     } catch (err) {
       strapi.log.error(err)
       return err

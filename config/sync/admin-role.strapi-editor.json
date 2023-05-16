@@ -114,7 +114,7 @@
           "slug"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.create",
@@ -202,12 +202,16 @@
           "longitude",
           "phone",
           "organization",
-          "address",
           "isRU",
           "isPL",
           "isUA",
           "isEN",
-          "workhours"
+          "address",
+          "workhours",
+          "workhours_pl",
+          "workhours_ua",
+          "workhours_ru",
+          "managers"
         ]
       },
       "conditions": []
@@ -228,12 +232,16 @@
           "longitude",
           "phone",
           "organization",
-          "address",
           "isRU",
           "isPL",
           "isUA",
           "isEN",
-          "workhours"
+          "address",
+          "workhours",
+          "workhours_pl",
+          "workhours_ua",
+          "workhours_ru",
+          "managers"
         ]
       },
       "conditions": []
@@ -248,12 +256,16 @@
           "longitude",
           "phone",
           "organization",
-          "address",
           "isRU",
           "isPL",
           "isUA",
           "isEN",
-          "workhours"
+          "address",
+          "workhours",
+          "workhours_pl",
+          "workhours_ua",
+          "workhours_ru",
+          "managers"
         ]
       },
       "conditions": []
@@ -555,7 +567,7 @@
           "phone"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::upload.assets.copy-link",
