@@ -13,12 +13,16 @@
           "longitude",
           "phone",
           "organization",
-          "address",
           "isRU",
           "isPL",
           "isUA",
           "isEN",
-          "workhours"
+          "address",
+          "workhours",
+          "workhours_pl",
+          "workhours_ua",
+          "workhours_ru",
+          "managers"
         ]
       },
       "conditions": []
@@ -33,15 +37,19 @@
           "longitude",
           "phone",
           "organization",
-          "address",
           "isRU",
           "isPL",
           "isUA",
           "isEN",
-          "workhours"
+          "address",
+          "workhours",
+          "workhours_pl",
+          "workhours_ua",
+          "workhours_ru",
+          "managers"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.update",
@@ -53,15 +61,19 @@
           "longitude",
           "phone",
           "organization",
-          "address",
           "isRU",
           "isPL",
           "isUA",
           "isEN",
-          "workhours"
+          "address",
+          "workhours",
+          "workhours_pl",
+          "workhours_ua",
+          "workhours_ru",
+          "managers"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.create",
@@ -109,7 +121,7 @@
           "locations"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.update",
@@ -133,7 +145,7 @@
           "locations"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.create",
@@ -207,7 +219,7 @@
           "order"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.update",
@@ -241,7 +253,7 @@
           "order"
         ]
       },
-      "conditions": ["admin::is-creator"]
+      "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.publish",
