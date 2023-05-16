@@ -5,6 +5,13 @@ let lastCronLaunchDateTime = subMinutes(new Date(), 15).toISOString()
 module.exports = {
   newChatMessageNotification: {
     task: async ({ strapi }) => {
+      strapi.log.info(
+        `
+        New message notifications cron job is started at
+        ${new Date().toISOString()}
+        `
+      )
+
       const recipients = await strapi
         .service('api::chat.chat')
         .getUsersToNotificate({
@@ -22,8 +29,15 @@ module.exports = {
         html: `You have new messages! <br> Check https://cappybara.com/dashboard/chats to see all of them`,
       })
 
+      strapi.log.info(
+        `
+        New message notifications were successfully sent for the following emails
+        ${recipients.join(', ')}
+        `
+      )
+
       lastCronLaunchDateTime = new Date().toISOString()
-      strapi.log.warn(
+      strapi.log.info(
         `Chat message notification cron job is finished at: ${lastCronLaunchDateTime}`
       )
     },
