@@ -86,10 +86,10 @@
     "discountTo": {
       "pluginOptions": {},
       "type": "integer",
-      "required": true,
-      "min": 0,
+      "required": false,
+      "default": 10,
       "max": 100,
-      "default": 10
+      "min": 0
     },
     "dateTimeUntil": {
       "type": "date",
