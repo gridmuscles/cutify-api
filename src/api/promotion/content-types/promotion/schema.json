@@ -125,8 +125,7 @@
     },
     "order": {
       "type": "integer",
-      "default": -1,
-      "required": true
+      "required": false
     }
   }
 }

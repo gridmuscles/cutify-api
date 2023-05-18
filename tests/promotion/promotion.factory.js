@@ -30,7 +30,7 @@ const mockPromotionData = (data = {}) => {
     organization: null,
     isChatAvailable: false,
     size: 'x',
-    order: -1,
+    order: null,
     ...data,
   }
 }
