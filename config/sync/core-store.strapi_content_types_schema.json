@@ -3393,8 +3393,7 @@
         },
         "order": {
           "type": "integer",
-          "default": -1,
-          "required": true
+          "required": false
         },
         "createdAt": {
           "type": "datetime"
@@ -3555,8 +3554,7 @@
           },
           "order": {
             "type": "integer",
-            "default": -1,
-            "required": true
+            "required": false
           }
         },
         "kind": "collectionType"
