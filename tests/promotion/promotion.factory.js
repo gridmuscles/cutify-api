@@ -31,6 +31,7 @@ const mockPromotionData = (data = {}) => {
     isChatAvailable: false,
     size: 'x',
     order: null,
+    seo: {},
     ...data,
   }
 }
