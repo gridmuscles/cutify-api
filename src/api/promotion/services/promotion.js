@@ -51,11 +51,13 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
   },
 
   async getPromotionCouponsCount({ promotionId }) {
-    const { results } = await strapi.service('api::coupon.coupon').find({
+    const {
+      pagination: { total },
+    } = await strapi.service('api::coupon.coupon').find({
       fields: ['id'],
       filters: { promotion: promotionId },
     })
 
-    return results.length
+    return total
   },
 }))
