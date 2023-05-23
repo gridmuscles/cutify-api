@@ -44,6 +44,8 @@ describe('Auction', () => {
   it.each([
     { type: 'public', expectedLength: 1 },
     { type: 'authenticated', expectedLength: 1 },
+    { type: 'manager', expectedLength: 1 },
+    { type: 'moderator', expectedLength: 1 },
   ])(
     'should $type user is able to get auctions',
     async ({ type, expectedLength }) => {

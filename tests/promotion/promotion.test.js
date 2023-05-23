@@ -472,6 +472,7 @@ describe('Promotions', () => {
     { type: 'public', code: 401 },
     { type: 'authenticated', code: 403 },
     { type: 'moderator', code: 403 },
+    { type: 'moderator', code: 403 },
   ])(
     'should not $type be able to get promotion coupons',
     async ({ type, code }) => {
