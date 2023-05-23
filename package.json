@@ -34,6 +34,7 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.21.3",
     "@strapi/plugin-i18n": "4.10.2",
+    "@strapi/plugin-seo": "^1.8.0",
     "@strapi/plugin-users-permissions": "4.10.2",
     "@strapi/provider-email-sendgrid": "^4.10.2",
     "@strapi/provider-upload-cloudinary": "^4.10.2",
