@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -75,7 +74,7 @@
     },
     "phone": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": true
     }
   }
