@@ -42,7 +42,7 @@ module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
         .service('api::auction.auction')
         .findOne(ctx.params.id)
 
-      if (auction.status === 'completed') {
+      if (auction.status !== 'active') {
         throw new Error()
       }
 

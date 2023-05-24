@@ -2030,7 +2030,7 @@
         },
         "status": {
           "type": "enumeration",
-          "enum": ["active", "completed"],
+          "enum": ["active", "completed", "verified"],
           "default": "active",
           "required": true
         },
@@ -2102,7 +2102,7 @@
           },
           "status": {
             "type": "enumeration",
-            "enum": ["active", "completed"],
+            "enum": ["active", "completed", "verified"],
             "default": "active",
             "required": true
           },
@@ -2283,6 +2283,11 @@
           "type": "uid",
           "targetField": "title"
         },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2363,6 +2368,11 @@
             "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
           }
         },
         "kind": "collectionType"
@@ -3393,6 +3403,11 @@
           "type": "integer",
           "required": false
         },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3553,6 +3568,11 @@
           "order": {
             "type": "integer",
             "required": false
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
           }
         },
         "kind": "collectionType"
