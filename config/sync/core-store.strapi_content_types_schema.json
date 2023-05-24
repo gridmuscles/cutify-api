@@ -2262,26 +2262,27 @@
           "type": "string",
           "required": true
         },
-        "description": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_pl": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_ua": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_ru": {
-          "pluginOptions": {},
-          "type": "text"
-        },
         "slug": {
           "pluginOptions": {},
           "type": "uid",
           "targetField": "title"
+        },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
+        "description": {
+          "type": "richtext"
+        },
+        "description_pl": {
+          "type": "richtext"
+        },
+        "description_ua": {
+          "type": "richtext"
+        },
+        "description_ru": {
+          "type": "richtext"
         },
         "createdAt": {
           "type": "datetime"
@@ -2343,26 +2344,27 @@
             "type": "string",
             "required": true
           },
-          "description": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_pl": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_ua": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_ru": {
-            "pluginOptions": {},
-            "type": "text"
-          },
           "slug": {
             "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
+          },
+          "description": {
+            "type": "richtext"
+          },
+          "description_pl": {
+            "type": "richtext"
+          },
+          "description_ua": {
+            "type": "richtext"
+          },
+          "description_ru": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
@@ -3393,6 +3395,11 @@
           "type": "integer",
           "required": false
         },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3553,6 +3560,11 @@
           "order": {
             "type": "integer",
             "required": false
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
           }
         },
         "kind": "collectionType"

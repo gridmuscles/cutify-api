@@ -31,7 +31,6 @@ const mockPromotionData = (data = {}) => {
     isChatAvailable: false,
     size: 'x',
     order: null,
-    seo: {},
     ...data,
   }
 }
@@ -41,8 +40,15 @@ const createPromotion = async (data = {}) => {
     strapi.log.warn(ERROR_CODES.NO_REQUIRED_DYNAMIC_DATA)
   }
 
+  const seoComponent = await strapi.query('shared.seo').create({
+    data: data.seo ?? {},
+  })
+
   return strapi.db.query('api::promotion.promotion').create({
-    data: mockPromotionData(data),
+    data: {
+      ...mockPromotionData(data),
+      seo: seoComponent.id,
+    },
   })
 }
 

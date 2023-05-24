@@ -373,6 +373,20 @@
           "sortable": true
         }
       },
+      "seo": {
+        "edit": {
+          "label": "seo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "seo",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -403,6 +417,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "size", "order", "title_ru", "auction", "organization"],
       "edit": [
         [
           {
@@ -537,9 +552,14 @@
             "name": "likesCount",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "seo",
+            "size": 12
+          }
         ]
-      ],
-      "list": ["id", "title_ru", "organization", "auction"]
+      ]
     }
   },
   "type": "object",
