@@ -17,7 +17,7 @@ afterAll(async () => {
 
 describe('Categories', () => {
   beforeAll(async () => {
-    await createCategory()
+    await createCategory({ seo: { keywords: 'a,b,c' } })
   })
 
   it.each([
@@ -44,6 +44,7 @@ describe('Categories', () => {
         .expect(200)
         .then(({ body: { data } }) => {
           expect(data).toHaveLength(expectedLength)
+          expect(data[0].attributes.seo.keywords).toBe('a,b,c')
         })
     }
   )

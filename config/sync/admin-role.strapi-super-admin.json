@@ -93,10 +93,6 @@
           "title_pl",
           "title_ua",
           "title_ru",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
           "slug",
           "seo.metaTitle",
           "seo.metaDescription",
@@ -115,7 +111,11 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru"
         ]
       },
       "conditions": []
@@ -135,10 +135,6 @@
           "title_pl",
           "title_ua",
           "title_ru",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
           "slug",
           "seo.metaTitle",
           "seo.metaDescription",
@@ -157,7 +153,11 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru"
         ]
       },
       "conditions": []
@@ -171,10 +171,6 @@
           "title_pl",
           "title_ua",
           "title_ru",
-          "description",
-          "description_pl",
-          "description_ua",
-          "description_ru",
           "slug",
           "seo.metaTitle",
           "seo.metaDescription",
@@ -193,7 +189,11 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru"
         ]
       },
       "conditions": []

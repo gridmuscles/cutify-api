@@ -2262,26 +2262,27 @@
           "type": "string",
           "required": true
         },
-        "description": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_pl": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_ua": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_ru": {
-          "pluginOptions": {},
-          "type": "text"
-        },
         "slug": {
           "pluginOptions": {},
           "type": "uid",
           "targetField": "title"
+        },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
+        "description": {
+          "type": "richtext"
+        },
+        "description_pl": {
+          "type": "richtext"
+        },
+        "description_ua": {
+          "type": "richtext"
+        },
+        "description_ru": {
+          "type": "richtext"
         },
         "seo": {
           "type": "component",
@@ -2348,22 +2349,6 @@
             "type": "string",
             "required": true
           },
-          "description": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_pl": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_ua": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_ru": {
-            "pluginOptions": {},
-            "type": "text"
-          },
           "slug": {
             "pluginOptions": {},
             "type": "uid",
@@ -2373,6 +2358,18 @@
             "type": "component",
             "repeatable": false,
             "component": "shared.seo"
+          },
+          "description": {
+            "type": "richtext"
+          },
+          "description_pl": {
+            "type": "richtext"
+          },
+          "description_ua": {
+            "type": "richtext"
+          },
+          "description_ru": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
