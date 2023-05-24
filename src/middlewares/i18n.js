@@ -15,28 +15,26 @@ const translateObject = (data, locale) => {
     return data.map((item) => translateObject(item, locale))
   }
 
-  const attributes = {}
+  const newData = {}
 
-  for (const key in data?.attributes) {
+  for (const key in data) {
     if (
-      data.attributes[key] &&
-      (Array.isArray(data.attributes[key]) ||
-        typeof data.attributes[key] === 'object')
+      data[key] &&
+      (Array.isArray(data[key]) || typeof data[key] === 'object')
     ) {
-      attributes[key] = {}
-      attributes[key].data = translateObject(data.attributes[key].data, locale)
+      newData[key] = translateObject(data[key], locale)
     } else if (key.includes('_')) {
       const [field, fieldLocale] = key.split('_')
       if (
         fieldLocale === locale &&
-        Object.prototype.hasOwnProperty.call(data?.attributes, field)
+        Object.prototype.hasOwnProperty.call(data, field)
       ) {
-        attributes[field] = data?.attributes[key]
+        newData[field] = data[key]
       }
     } else {
-      attributes[key] = data?.attributes[key]
+      newData[key] = data[key]
     }
   }
 
-  return { ...data, attributes }
+  return newData
 }

@@ -76,62 +76,6 @@
           "sortable": true
         }
       },
-      "description": {
-        "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description_pl": {
-        "edit": {
-          "label": "description_pl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_pl",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description_ua": {
-        "edit": {
-          "label": "description_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_ua",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "description_ru": {
-        "edit": {
-          "label": "description_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "description_ru",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "slug": {
         "edit": {
           "label": "slug",
@@ -144,6 +88,76 @@
           "label": "slug",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "seo": {
+        "edit": {
+          "label": "seo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "seo",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -208,22 +222,32 @@
         ],
         [
           {
+            "name": "seo",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "description",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "description_pl",
-            "size": 6
+            "size": 12
           }
         ],
         [
           {
             "name": "description_ua",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "description_ru",
-            "size": 6
+            "size": 12
           }
         ]
       ]

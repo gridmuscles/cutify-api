@@ -1,0 +1,84 @@
+{
+  "collectionName": "components_shared_seos",
+  "info": {
+    "displayName": "seo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "required": true,
+      "type": "string",
+      "maxLength": 120,
+      "default": "{{organization}} - discount coupons {{discount}}% off | Cappybara"
+    },
+    "metaDescription": {
+      "type": "text",
+      "required": false,
+      "maxLength": 300,
+      "minLength": 50,
+      "default": "{{title}} ⭐️Free discount coupons up to 90% off from Cappybara ➤ Restaurants, Entertainment, Beauty, Gifts ✔️ Best deals for the best!"
+    },
+    "metaImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos"]
+    },
+    "metaSocial": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.meta-social"
+    },
+    "keywords": {
+      "type": "text",
+      "regex": "[^,]+"
+    },
+    "metaRobots": {
+      "type": "string",
+      "regex": "[^,]+"
+    },
+    "structuredData": {
+      "type": "json"
+    },
+    "metaViewport": {
+      "type": "string"
+    },
+    "canonicalURL": {
+      "type": "string"
+    },
+    "metaTitle_ru": {
+      "type": "string",
+      "default": "{{organization}} - купоны на скидку {{discount}}% | Сappybara",
+      "maxLength": 120
+    },
+    "metaTitle_pl": {
+      "type": "string",
+      "maxLength": 120,
+      "default": "{{organization}} - kupony rabatowe {{discount}}% | Cappybara"
+    },
+    "metaTitle_ua": {
+      "type": "string",
+      "default": "{{organization}} - купони на знижку {{discount}}% | Cappybara",
+      "maxLength": 120
+    },
+    "metaDescription_ru": {
+      "type": "text",
+      "minLength": 50,
+      "maxLength": 300,
+      "default": "{{title}} ⭐️Бесплатные купоны со скидкой до 90% от Cappybara ➤ Рестораны, Развлечения, Красота, Подарки ✔️ Лучшие акции для лучших! "
+    },
+    "metaDescription_pl": {
+      "type": "text",
+      "maxLength": 300,
+      "minLength": 50,
+      "default": "{{title}} ⭐️Darmowe kupony z rabatem do 90% od Cappybara ➤ Restauracje, Rozrywka, Uroda, Prezenty ✔️ Najlepsze promocje dla najlepszych!"
+    },
+    "metaDescription_ua": {
+      "type": "text",
+      "default": "{{title}} ⭐️Безкоштовні купони зі знижкою до 90% від Cappybara ➤ Ресторани, Розваги, Краса, Подарунки ✔️ Найкращі акції для найкращих!",
+      "maxLength": 300,
+      "minLength": 50
+    }
+  }
+}

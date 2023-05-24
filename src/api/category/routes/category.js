@@ -12,7 +12,7 @@ module.exports = createCoreRouter('api::category.category', {
       middlewares: [
         { name: 'global::locale' },
         { name: 'global::i18n' },
-        { name: 'global::populate', config: { deep: 0 } },
+        { name: 'global::populate', config: { deep: 3 } },
       ],
     },
   },

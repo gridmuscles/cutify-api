@@ -17,13 +17,14 @@ afterAll(async () => {
 
 describe('Categories', () => {
   beforeAll(async () => {
-    await createCategory()
+    await createCategory({ seo: { keywords: 'a,b,c' } })
   })
 
   it.each([
     { type: 'public', expectedLength: 1 },
     { type: 'authenticated', expectedLength: 1 },
     { type: 'manager', expectedLength: 1 },
+    { type: 'moderator', expectedLength: 1 },
   ])(
     'should $type user be able to get cities',
     async ({ type, expectedLength }) => {
@@ -43,6 +44,7 @@ describe('Categories', () => {
         .expect(200)
         .then(({ body: { data } }) => {
           expect(data).toHaveLength(expectedLength)
+          expect(data[0].attributes.seo.keywords).toBe('a,b,c')
         })
     }
   )

@@ -19,14 +19,8 @@ afterAll(async () => {
 describe('Auction', () => {
   let authenticatedUser
   let authenticatedUserJwt
-  let managerUserJwt
 
   let primaryAuction
-
-  beforeAll(async () => {
-    const [, jwt2] = await createUser({ type: 'manager' })
-    managerUserJwt = jwt2
-  })
 
   beforeEach(async () => {
     const [user, jwt] = await createUser({ type: 'authenticated' })
@@ -44,6 +38,8 @@ describe('Auction', () => {
   it.each([
     { type: 'public', expectedLength: 1 },
     { type: 'authenticated', expectedLength: 1 },
+    { type: 'manager', expectedLength: 1 },
+    { type: 'moderator', expectedLength: 1 },
   ])(
     'should $type user is able to get auctions',
     async ({ type, expectedLength }) => {
@@ -167,6 +163,20 @@ describe('Auction', () => {
       .expect(400)
   })
 
+  it('should not authenticated user be able to do a bid if auction is verified', async () => {
+    const auction = await createAuction({
+      status: 'verified',
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
   it('should not authenticated user be able to do a bid after exceed the auction user bids limit', async () => {
     const auction = await createAuction({
       userAttemptLimit: 2,
@@ -207,42 +217,26 @@ describe('Auction', () => {
       .expect(400)
   })
 
-  it('should not public user be able to do a bid', async () => {
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${primaryAuction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(403)
-  })
+  it.each([
+    { type: 'public', code: 403 },
+    { type: 'manager', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])('should $type user is not able to do a bid', async ({ type, code }) => {
+    const [, jwt] = await createUser({ type })
 
-  it('should not manager user be able to get auctions', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/auctions`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${managerUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(403)
-  })
+    const auction = await createAuction({
+      status: 'active',
+    })
 
-  it('should not manager user be able to get last auction bid', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/auctions/${primaryAuction.id}/bids/latest`)
+    const req = request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/bids`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${managerUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(403)
-  })
 
-  it('should not manager user be able to do a bid', async () => {
-    await request(strapi.server.httpServer)
-      .get(`/api/auctions/${primaryAuction.id}/bids/latest`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${managerUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(403)
+    if (jwt) {
+      req.set('Authorization', `Bearer ${jwt}`)
+    }
+
+    req.expect('Content-Type', /json/).expect(code)
   })
 })

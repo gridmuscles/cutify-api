@@ -24,7 +24,7 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["active", "completed"],
+      "enum": ["active", "completed", "verified"],
       "default": "active",
       "required": true
     },

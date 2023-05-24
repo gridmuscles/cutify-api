@@ -24,6 +24,7 @@ describe('Cities', () => {
     { type: 'public', expectedLength: 1 },
     { type: 'authenticated', expectedLength: 1 },
     { type: 'manager', expectedLength: 1 },
+    { type: 'moderator', expectedLength: 1 },
   ])(
     'should $type user be able to get cities',
     async ({ type, expectedLength }) => {

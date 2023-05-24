@@ -1806,8 +1806,7 @@
         "displayName": "User"
       },
       "options": {
-        "draftAndPublish": false,
-        "timestamps": true
+        "draftAndPublish": false
       },
       "attributes": {
         "username": {
@@ -1872,7 +1871,7 @@
         },
         "phone": {
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": true
         },
         "createdAt": {
@@ -1927,8 +1926,7 @@
           "displayName": "User"
         },
         "options": {
-          "draftAndPublish": false,
-          "timestamps": true
+          "draftAndPublish": false
         },
         "attributes": {
           "username": {
@@ -1993,7 +1991,7 @@
           },
           "phone": {
             "type": "string",
-            "required": true,
+            "required": false,
             "unique": true
           }
         },
@@ -2032,7 +2030,7 @@
         },
         "status": {
           "type": "enumeration",
-          "enum": ["active", "completed"],
+          "enum": ["active", "completed", "verified"],
           "default": "active",
           "required": true
         },
@@ -2104,7 +2102,7 @@
           },
           "status": {
             "type": "enumeration",
-            "enum": ["active", "completed"],
+            "enum": ["active", "completed", "verified"],
             "default": "active",
             "required": true
           },
@@ -2264,26 +2262,32 @@
           "type": "string",
           "required": true
         },
-        "description": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_pl": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_ua": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "description_ru": {
-          "pluginOptions": {},
-          "type": "text"
-        },
         "slug": {
           "pluginOptions": {},
           "type": "uid",
           "targetField": "title"
+        },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
+        "description": {
+          "type": "richtext"
+        },
+        "description_pl": {
+          "type": "richtext"
+        },
+        "description_ua": {
+          "type": "richtext"
+        },
+        "description_ru": {
+          "type": "richtext"
+        },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
         },
         "createdAt": {
           "type": "datetime"
@@ -2345,26 +2349,27 @@
             "type": "string",
             "required": true
           },
-          "description": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_pl": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_ua": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "description_ru": {
-            "pluginOptions": {},
-            "type": "text"
-          },
           "slug": {
             "pluginOptions": {},
             "type": "uid",
             "targetField": "title"
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
+          },
+          "description": {
+            "type": "richtext"
+          },
+          "description_pl": {
+            "type": "richtext"
+          },
+          "description_ua": {
+            "type": "richtext"
+          },
+          "description_ru": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
@@ -3395,6 +3400,11 @@
           "type": "integer",
           "required": false
         },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3555,6 +3565,11 @@
           "order": {
             "type": "integer",
             "required": false
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
           }
         },
         "kind": "collectionType"

@@ -164,7 +164,7 @@ module.exports = createCoreController(
       }
     },
 
-    async completeAuction(ctx) {
+    async verifyAuction(ctx) {
       try {
         const sanitizedQueryParams = await this.sanitizeQuery(ctx)
         ctx.request.query = sanitizedQueryParams
@@ -175,17 +175,19 @@ module.exports = createCoreController(
           .service('api::promotion.promotion')
           .findOne(ctx)
 
-        await strapi.service('api::auction.auction').completeAuction({
+        const latestBid = await strapi
+          .service('api::auction.auction')
+          .findPopulatedAuctionLatestBid({ auctionId: promotion.auction.id })
+
+        await strapi.service('api::auction.auction').verifyAuction({
           auctionId: promotion.auction.id,
         })
-
-        const { id: userId, email: userEmail } = ctx.state.user
 
         const coupon = await strapi.service('api::coupon.coupon').create({
           data: {
             promotion: promotion.id,
-            email: userEmail,
-            user: userId,
+            email: latestBid.bidder.email,
+            user: latestBid.bidder.id,
             state: 'active',
           },
         })
@@ -193,7 +195,7 @@ module.exports = createCoreController(
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
             title: `${promotion.discountTo}% ${promotion.title}`,
-            email: userEmail,
+            email: latestBid.bidder.email,
             locale,
             origin: ctx.request.header.origin,
             couponUUIDList: [coupon.uuid],
@@ -202,6 +204,26 @@ module.exports = createCoreController(
 
         const { id } = coupon
         return { id }
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async completeAuction(ctx) {
+      try {
+        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+        ctx.request.query = sanitizedQueryParams
+
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOne(ctx)
+
+        await strapi.service('api::auction.auction').completeAuction({
+          auctionId: promotion.auction.id,
+        })
+
+        return true
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

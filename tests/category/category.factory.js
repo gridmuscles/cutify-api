@@ -13,15 +13,19 @@ const mockCategoryData = (data = {}) => {
     description_ru:
       'Ресторан, специализирующийся на настоящей итальянской пицце.',
     slug: `italian-pizza-restaurant-${slugSuffix}`,
-
     ...data,
   }
 }
 
 const createCategory = async (data = {}) => {
+  const seoComponent = await strapi.query('shared.seo').create({
+    data: data.seo ?? {},
+  })
+
   return strapi.db.query('api::category.category').create({
     data: {
       ...mockCategoryData(data),
+      seo: seoComponent.id,
     },
   })
 }
