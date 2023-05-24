@@ -9,6 +9,7 @@ module.exports = {
       config: {
         middlewares: [
           { name: 'global::locale' },
+          { name: 'global::i18n' },
           { name: 'global::populate', config: { deep: 3 } },
         ],
       },
