@@ -55,6 +55,7 @@ describe('Promotions', () => {
     primaryPromotion = await createPromotion({
       categories: [category.id],
       organization: primaryOrganization.id,
+      seo: { keywords: 'a,b,c' },
     })
     draftPromotion = await createPromotion({
       categories: [category.id],
@@ -96,6 +97,7 @@ describe('Promotions', () => {
           data.attributes.organization.data.attributes.promotions.data[0]
             .attributes.organization
         ).toBeUndefined()
+        expect(data.attributes.seo.keywords).toBe('a,b,c')
       })
   })
 

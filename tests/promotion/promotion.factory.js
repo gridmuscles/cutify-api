@@ -45,8 +45,10 @@ const createPromotion = async (data = {}) => {
   })
 
   return strapi.db.query('api::promotion.promotion').create({
-    data: mockPromotionData(data),
-    seo: seoComponent,
+    data: {
+      ...mockPromotionData(data),
+      seo: seoComponent.id,
+    },
   })
 }
 
