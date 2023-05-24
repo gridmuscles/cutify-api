@@ -2030,7 +2030,7 @@
         },
         "status": {
           "type": "enumeration",
-          "enum": ["active", "completed"],
+          "enum": ["active", "completed", "verified"],
           "default": "active",
           "required": true
         },
@@ -2102,7 +2102,7 @@
           },
           "status": {
             "type": "enumeration",
-            "enum": ["active", "completed"],
+            "enum": ["active", "completed", "verified"],
             "default": "active",
             "required": true
           },
@@ -2283,6 +2283,11 @@
         },
         "description_ru": {
           "type": "richtext"
+        },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
         },
         "createdAt": {
           "type": "datetime"

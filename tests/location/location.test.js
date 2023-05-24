@@ -22,7 +22,12 @@ describe('Locations', () => {
     primaryLocation = await createLocation()
   })
 
-  it.each([{ type: 'public' }, { type: 'authenticated' }, { type: 'manager' }])(
+  it.each([
+    { type: 'public' },
+    { type: 'authenticated' },
+    { type: 'manager' },
+    { type: 'moderator' },
+  ])(
     'should not $type user be able to get list of location',
     async ({ type }) => {
       const [, jwt] = await createUser({ type })
@@ -40,7 +45,12 @@ describe('Locations', () => {
     }
   )
 
-  it.each([{ type: 'public' }, { type: 'authenticated' }, { type: 'manager' }])(
+  it.each([
+    { type: 'public' },
+    { type: 'authenticated' },
+    { type: 'manager' },
+    { type: 'moderator' },
+  ])(
     'should not $type user be able to get single location',
     async ({ type }) => {
       const [, jwt] = await createUser({ type })

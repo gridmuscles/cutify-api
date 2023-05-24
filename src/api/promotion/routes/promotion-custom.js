@@ -25,7 +25,18 @@ module.exports = {
       config: {
         middlewares: [
           { name: 'global::locale' },
-          { name: 'global::populate', config: { deep: 3 } },
+          { name: 'global::populate', config: { deep: 2 } },
+        ],
+      },
+    },
+    {
+      method: 'POST',
+      path: '/promotions/:id/auction/verify',
+      handler: 'promotion.verifyAuction',
+      config: {
+        middlewares: [
+          { name: 'global::locale' },
+          { name: 'global::populate', config: { deep: 2 } },
         ],
       },
     },

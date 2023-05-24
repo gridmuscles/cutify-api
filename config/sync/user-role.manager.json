@@ -4,6 +4,12 @@
   "type": "manager",
   "permissions": [
     {
+      "action": "api::auction.auction.find"
+    },
+    {
+      "action": "api::auction.auction.findAuctionLatestBid"
+    },
+    {
       "action": "api::category.category.find"
     },
     {
