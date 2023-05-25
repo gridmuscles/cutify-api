@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "arcticles",
+  "info": {
+    "singularName": "arcticle",
+    "pluralName": "arcticles",
+    "displayName": "arcticle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "title_pl": {
+      "type": "text",
+      "required": true
+    },
+    "title_ru": {
+      "type": "text",
+      "required": true
+    },
+    "title_ua": {
+      "type": "text",
+      "required": true
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "text_pl": {
+      "type": "richtext"
+    },
+    "text_ru": {
+      "type": "richtext"
+    },
+    "text_ua": {
+      "type": "richtext"
+    },
+    "isPage": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

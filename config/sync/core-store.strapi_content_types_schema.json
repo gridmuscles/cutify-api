@@ -2004,6 +2004,154 @@
       "plugin": "users-permissions",
       "globalId": "UsersPermissionsUser"
     },
+    "api::arcticle.arcticle": {
+      "kind": "collectionType",
+      "collectionName": "arcticles",
+      "info": {
+        "singularName": "arcticle",
+        "pluralName": "arcticles",
+        "displayName": "arcticle",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "slug": {
+          "type": "uid",
+          "targetField": "title",
+          "required": true
+        },
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "title_pl": {
+          "type": "text",
+          "required": true
+        },
+        "title_ru": {
+          "type": "text",
+          "required": true
+        },
+        "title_ua": {
+          "type": "text",
+          "required": true
+        },
+        "text": {
+          "type": "richtext"
+        },
+        "text_pl": {
+          "type": "richtext"
+        },
+        "text_ru": {
+          "type": "richtext"
+        },
+        "text_ua": {
+          "type": "richtext"
+        },
+        "isPage": {
+          "type": "boolean",
+          "default": true,
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "arcticles",
+        "info": {
+          "singularName": "arcticle",
+          "pluralName": "arcticles",
+          "displayName": "arcticle",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "slug": {
+            "type": "uid",
+            "targetField": "title",
+            "required": true
+          },
+          "title": {
+            "type": "text",
+            "required": true
+          },
+          "title_pl": {
+            "type": "text",
+            "required": true
+          },
+          "title_ru": {
+            "type": "text",
+            "required": true
+          },
+          "title_ua": {
+            "type": "text",
+            "required": true
+          },
+          "text": {
+            "type": "richtext"
+          },
+          "text_pl": {
+            "type": "richtext"
+          },
+          "text_ru": {
+            "type": "richtext"
+          },
+          "text_ua": {
+            "type": "richtext"
+          },
+          "isPage": {
+            "type": "boolean",
+            "default": true,
+            "required": true
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "arcticle",
+      "connection": "default",
+      "uid": "api::arcticle.arcticle",
+      "apiName": "arcticle",
+      "globalId": "Arcticle",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::auction.auction": {
       "kind": "collectionType",
       "collectionName": "auctions",
