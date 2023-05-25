@@ -35,6 +35,30 @@
       "enum": ["active", "verified"],
       "required": true,
       "default": "active"
+    },
+    "title": {
+      "type": "richtext"
+    },
+    "title_pl": {
+      "type": "richtext"
+    },
+    "title_ru": {
+      "type": "richtext"
+    },
+    "title_ua": {
+      "type": "richtext"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "description_pl": {
+      "type": "richtext"
+    },
+    "description_ru": {
+      "type": "richtext"
+    },
+    "description_ua": {
+      "type": "richtext"
     }
   }
 }

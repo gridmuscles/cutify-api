@@ -262,7 +262,21 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
       },
       "conditions": []
     },
@@ -276,7 +290,21 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
       },
       "conditions": []
     },
@@ -284,7 +312,21 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
       },
       "conditions": []
     },
