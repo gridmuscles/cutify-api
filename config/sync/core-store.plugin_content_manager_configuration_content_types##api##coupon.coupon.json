@@ -92,6 +92,118 @@
           "sortable": true
         }
       },
+      "title": {
+        "edit": {
+          "label": "title",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title_pl": {
+        "edit": {
+          "label": "title_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title_ru": {
+        "edit": {
+          "label": "title_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title_ua": {
+        "edit": {
+          "label": "title_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_pl": {
+        "edit": {
+          "label": "description_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ru": {
+        "edit": {
+          "label": "description_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "description_ua": {
+        "edit": {
+          "label": "description_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -122,6 +234,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "email", "promotion"],
       "edit": [
         [
           {
@@ -148,9 +261,56 @@
             "name": "promotion",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "title",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "title_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "title_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "title_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ua",
+            "size": 12
+          }
         ]
-      ],
-      "list": ["id", "email", "promotion"]
+      ]
     }
   },
   "type": "object",
