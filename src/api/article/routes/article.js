@@ -1,9 +1,9 @@
 'use strict'
 
 /**
- * arcticle router
+ * article router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories
 
-module.exports = createCoreRouter('api::arcticle.arcticle')
+module.exports = createCoreRouter('api::article.article')

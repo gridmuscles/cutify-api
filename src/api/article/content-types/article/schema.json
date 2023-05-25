@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "arcticles",
+  "collectionName": "articles",
   "info": {
-    "singularName": "arcticle",
-    "pluralName": "arcticles",
-    "displayName": "arcticle",
-    "description": ""
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
   },
   "options": {
     "draftAndPublish": true

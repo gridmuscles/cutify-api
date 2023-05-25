@@ -4,6 +4,9 @@
   "type": "authenticated",
   "permissions": [
     {
+      "action": "api::article.article.findOne"
+    },
+    {
       "action": "api::auction.auction.createAuctionBid"
     },
     {
@@ -46,9 +49,6 @@
       "action": "api::organization.organization.findReviews"
     },
     {
-      "action": "api::privacy-policy.privacy-policy.find"
-    },
-    {
       "action": "api::promotion.promotion.completeAuction"
     },
     {
@@ -68,6 +68,9 @@
     },
     {
       "action": "api::review.review.create"
+    },
+    {
+      "action": "api::static-pages.static-pages.find"
     },
     {
       "action": "plugin::users-permissions.auth.changePassword"

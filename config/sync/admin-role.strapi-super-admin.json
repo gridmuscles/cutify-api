@@ -5,7 +5,7 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
-      "subject": "api::arcticle.arcticle",
+      "subject": "api::article.article",
       "properties": {
         "fields": [
           "slug",
@@ -24,19 +24,19 @@
     },
     {
       "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::arcticle.arcticle",
+      "subject": "api::article.article",
       "properties": {},
       "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.publish",
-      "subject": "api::arcticle.arcticle",
+      "subject": "api::article.article",
       "properties": {},
       "conditions": []
     },
     {
       "action": "plugin::content-manager.explorer.read",
-      "subject": "api::arcticle.arcticle",
+      "subject": "api::article.article",
       "properties": {
         "fields": [
           "slug",
@@ -55,7 +55,7 @@
     },
     {
       "action": "plugin::content-manager.explorer.update",
-      "subject": "api::arcticle.arcticle",
+      "subject": "api::article.article",
       "properties": {
         "fields": [
           "slug",
@@ -587,69 +587,6 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
-      "subject": "api::privacy-policy.privacy-policy",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "text",
-          "text_pl",
-          "text_ua",
-          "text_ru"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::privacy-policy.privacy-policy",
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.publish",
-      "subject": "api::privacy-policy.privacy-policy",
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::privacy-policy.privacy-policy",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "text",
-          "text_pl",
-          "text_ua",
-          "text_ru"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "subject": "api::privacy-policy.privacy-policy",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "text",
-          "text_pl",
-          "text_ua",
-          "text_ru"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
       "subject": "api::promotion.promotion",
       "properties": {
         "fields": [
@@ -849,6 +786,63 @@
       "subject": "api::review.review",
       "properties": {
         "fields": ["message", "user", "organization", "rating", "reply", "name"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "support",
+          "howitworks",
+          "contacts",
+          "about"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::static-pages.static-pages",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::static-pages.static-pages",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "support",
+          "howitworks",
+          "contacts",
+          "about"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "support",
+          "howitworks",
+          "contacts",
+          "about"
+        ]
       },
       "conditions": []
     },
