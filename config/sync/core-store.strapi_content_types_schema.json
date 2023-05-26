@@ -2027,16 +2027,13 @@
           "required": true
         },
         "title_pl": {
-          "type": "text",
-          "required": true
+          "type": "text"
         },
         "title_ru": {
-          "type": "text",
-          "required": true
+          "type": "text"
         },
         "title_ua": {
-          "type": "text",
-          "required": true
+          "type": "text"
         },
         "text": {
           "type": "richtext"
@@ -2110,16 +2107,13 @@
             "required": true
           },
           "title_pl": {
-            "type": "text",
-            "required": true
+            "type": "text"
           },
           "title_ru": {
-            "type": "text",
-            "required": true
+            "type": "text"
           },
           "title_ua": {
-            "type": "text",
-            "required": true
+            "type": "text"
           },
           "text": {
             "type": "richtext"
