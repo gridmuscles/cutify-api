@@ -796,10 +796,10 @@
         "fields": [
           "privacy",
           "help",
-          "support",
           "howitworks",
           "contacts",
-          "about"
+          "about",
+          "donate"
         ]
       },
       "conditions": []
@@ -823,10 +823,10 @@
         "fields": [
           "privacy",
           "help",
-          "support",
           "howitworks",
           "contacts",
-          "about"
+          "about",
+          "donate"
         ]
       },
       "conditions": []
@@ -838,10 +838,10 @@
         "fields": [
           "privacy",
           "help",
-          "support",
           "howitworks",
           "contacts",
-          "about"
+          "about",
+          "donate"
         ]
       },
       "conditions": []

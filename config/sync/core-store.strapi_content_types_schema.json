@@ -3788,11 +3788,6 @@
           "relation": "oneToOne",
           "target": "api::article.article"
         },
-        "support": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "api::article.article"
-        },
         "howitworks": {
           "type": "relation",
           "relation": "oneToOne",
@@ -3804,6 +3799,11 @@
           "target": "api::article.article"
         },
         "about": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "donate": {
           "type": "relation",
           "relation": "oneToOne",
           "target": "api::article.article"
@@ -3864,11 +3864,6 @@
             "relation": "oneToOne",
             "target": "api::article.article"
           },
-          "support": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::article.article"
-          },
           "howitworks": {
             "type": "relation",
             "relation": "oneToOne",
@@ -3880,6 +3875,11 @@
             "target": "api::article.article"
           },
           "about": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "donate": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::article.article"

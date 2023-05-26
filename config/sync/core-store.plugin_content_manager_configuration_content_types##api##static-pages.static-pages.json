@@ -50,21 +50,6 @@
           "sortable": true
         }
       },
-      "support": {
-        "edit": {
-          "label": "support",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "id"
-        },
-        "list": {
-          "label": "support",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "howitworks": {
         "edit": {
           "label": "howitworks",
@@ -106,6 +91,21 @@
         },
         "list": {
           "label": "about",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "donate": {
+        "edit": {
+          "label": "donate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "donate",
           "searchable": true,
           "sortable": true
         }
@@ -154,10 +154,6 @@
         ],
         [
           {
-            "name": "support",
-            "size": 6
-          },
-          {
             "name": "howitworks",
             "size": 6
           }
@@ -169,6 +165,12 @@
           },
           {
             "name": "about",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "donate",
             "size": 6
           }
         ]
