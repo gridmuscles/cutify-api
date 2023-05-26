@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::privacy-policy.privacy-policy",
+  "key": "plugin_content_manager_configuration_content_types::api::static-pages.static-pages",
   "value": {
-    "uid": "api::privacy-policy.privacy-policy",
+    "uid": "api::static-pages.static-pages",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "title",
-      "defaultSortBy": "title",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,116 +20,94 @@
           "sortable": true
         }
       },
-      "title": {
+      "privacy": {
         "edit": {
-          "label": "title",
+          "label": "privacy",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "title",
+          "label": "privacy",
           "searchable": true,
           "sortable": true
         }
       },
-      "title_pl": {
+      "help": {
         "edit": {
-          "label": "title_pl",
+          "label": "help",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "title_pl",
+          "label": "help",
           "searchable": true,
           "sortable": true
         }
       },
-      "title_ua": {
+      "howitworks": {
         "edit": {
-          "label": "title_ua",
+          "label": "howitworks",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "title_ua",
+          "label": "howitworks",
           "searchable": true,
           "sortable": true
         }
       },
-      "title_ru": {
+      "contacts": {
         "edit": {
-          "label": "title_ru",
+          "label": "contacts",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "title_ru",
+          "label": "contacts",
           "searchable": true,
           "sortable": true
         }
       },
-      "text": {
+      "about": {
         "edit": {
-          "label": "text",
+          "label": "about",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "text",
-          "searchable": false,
-          "sortable": false
+          "label": "about",
+          "searchable": true,
+          "sortable": true
         }
       },
-      "text_pl": {
+      "donate": {
         "edit": {
-          "label": "text_pl",
+          "label": "donate",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "id"
         },
         "list": {
-          "label": "text_pl",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "text_ua": {
-        "edit": {
-          "label": "text_ua",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "text_ua",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "text_ru": {
-        "edit": {
-          "label": "text_ru",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "text_ru",
-          "searchable": false,
-          "sortable": false
+          "label": "donate",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -162,53 +140,41 @@
       }
     },
     "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "privacy"],
       "edit": [
         [
           {
-            "name": "title",
+            "name": "privacy",
             "size": 6
           },
           {
-            "name": "title_pl",
+            "name": "help",
             "size": 6
           }
         ],
         [
           {
-            "name": "title_ua",
+            "name": "howitworks",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "contacts",
             "size": 6
           },
           {
-            "name": "title_ru",
+            "name": "about",
             "size": 6
           }
         ],
         [
           {
-            "name": "text",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "text_pl",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "text_ua",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "text_ru",
-            "size": 12
+            "name": "donate",
+            "size": 6
           }
         ]
-      ],
-      "list": ["id", "title", "createdAt", "updatedAt"]
+      ]
     }
   },
   "type": "object",

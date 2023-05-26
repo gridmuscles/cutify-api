@@ -4,6 +4,9 @@
   "type": "moderator",
   "permissions": [
     {
+      "action": "api::article.article.findOne"
+    },
+    {
       "action": "api::auction.auction.find"
     },
     {
@@ -43,9 +46,6 @@
       "action": "api::organization.organization.findReviews"
     },
     {
-      "action": "api::privacy-policy.privacy-policy.find"
-    },
-    {
       "action": "api::promotion.promotion.find"
     },
     {
@@ -56,6 +56,9 @@
     },
     {
       "action": "api::promotion.promotion.verifyAuction"
+    },
+    {
+      "action": "api::static-pages.static-pages.findOne"
     },
     {
       "action": "plugin::users-permissions.auth.changePassword"

@@ -2004,6 +2004,152 @@
       "plugin": "users-permissions",
       "globalId": "UsersPermissionsUser"
     },
+    "api::article.article": {
+      "kind": "collectionType",
+      "collectionName": "articles",
+      "info": {
+        "singularName": "article",
+        "pluralName": "articles",
+        "displayName": "Article"
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "slug": {
+          "type": "uid",
+          "targetField": "title",
+          "required": true
+        },
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "title_pl": {
+          "type": "text",
+          "required": true
+        },
+        "title_ru": {
+          "type": "text",
+          "required": true
+        },
+        "title_ua": {
+          "type": "text",
+          "required": true
+        },
+        "text": {
+          "type": "richtext"
+        },
+        "text_pl": {
+          "type": "richtext"
+        },
+        "text_ru": {
+          "type": "richtext"
+        },
+        "text_ua": {
+          "type": "richtext"
+        },
+        "isPage": {
+          "type": "boolean",
+          "default": true,
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "articles",
+        "info": {
+          "singularName": "article",
+          "pluralName": "articles",
+          "displayName": "Article"
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "slug": {
+            "type": "uid",
+            "targetField": "title",
+            "required": true
+          },
+          "title": {
+            "type": "text",
+            "required": true
+          },
+          "title_pl": {
+            "type": "text",
+            "required": true
+          },
+          "title_ru": {
+            "type": "text",
+            "required": true
+          },
+          "title_ua": {
+            "type": "text",
+            "required": true
+          },
+          "text": {
+            "type": "richtext"
+          },
+          "text_pl": {
+            "type": "richtext"
+          },
+          "text_ru": {
+            "type": "richtext"
+          },
+          "text_ua": {
+            "type": "richtext"
+          },
+          "isPage": {
+            "type": "boolean",
+            "default": true,
+            "required": true
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "article",
+      "connection": "default",
+      "uid": "api::article.article",
+      "apiName": "article",
+      "globalId": "Article",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::auction.auction": {
       "kind": "collectionType",
       "collectionName": "auctions",
@@ -3178,142 +3324,6 @@
       "actions": {},
       "lifecycles": {}
     },
-    "api::privacy-policy.privacy-policy": {
-      "kind": "singleType",
-      "collectionName": "privacy_policies",
-      "info": {
-        "singularName": "privacy-policy",
-        "pluralName": "privacy-policies",
-        "displayName": "Privacy policy",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": true
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "title": {
-          "type": "string",
-          "required": true
-        },
-        "title_pl": {
-          "type": "string",
-          "required": true
-        },
-        "title_ua": {
-          "type": "string",
-          "required": true
-        },
-        "title_ru": {
-          "type": "string",
-          "required": true
-        },
-        "text": {
-          "type": "richtext",
-          "required": true
-        },
-        "text_pl": {
-          "type": "richtext",
-          "required": true
-        },
-        "text_ua": {
-          "type": "richtext",
-          "required": true
-        },
-        "text_ru": {
-          "type": "richtext",
-          "required": true
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "publishedAt": {
-          "type": "datetime",
-          "configurable": false,
-          "writable": true,
-          "visible": false
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        }
-      },
-      "__schema__": {
-        "collectionName": "privacy_policies",
-        "info": {
-          "singularName": "privacy-policy",
-          "pluralName": "privacy-policies",
-          "displayName": "Privacy policy",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": true
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "title": {
-            "type": "string",
-            "required": true
-          },
-          "title_pl": {
-            "type": "string",
-            "required": true
-          },
-          "title_ua": {
-            "type": "string",
-            "required": true
-          },
-          "title_ru": {
-            "type": "string",
-            "required": true
-          },
-          "text": {
-            "type": "richtext",
-            "required": true
-          },
-          "text_pl": {
-            "type": "richtext",
-            "required": true
-          },
-          "text_ua": {
-            "type": "richtext",
-            "required": true
-          },
-          "text_ru": {
-            "type": "richtext",
-            "required": true
-          }
-        },
-        "kind": "singleType"
-      },
-      "modelType": "contentType",
-      "modelName": "privacy-policy",
-      "connection": "default",
-      "uid": "api::privacy-policy.privacy-policy",
-      "apiName": "privacy-policy",
-      "globalId": "PrivacyPolicy",
-      "actions": {},
-      "lifecycles": {}
-    },
     "api::promotion.promotion": {
       "kind": "collectionType",
       "collectionName": "promotions",
@@ -3751,6 +3761,138 @@
       "uid": "api::review.review",
       "apiName": "review",
       "globalId": "Review",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::static-pages.static-pages": {
+      "kind": "singleType",
+      "collectionName": "static_pagess",
+      "info": {
+        "singularName": "static-pages",
+        "pluralName": "static-pagess",
+        "displayName": "Static pages",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "privacy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "help": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "howitworks": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "contacts": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "about": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "donate": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "static_pagess",
+        "info": {
+          "singularName": "static-pages",
+          "pluralName": "static-pagess",
+          "displayName": "Static pages",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "privacy": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "help": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "howitworks": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "contacts": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "about": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "donate": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "static-pages",
+      "connection": "default",
+      "uid": "api::static-pages.static-pages",
+      "apiName": "static-pages",
+      "globalId": "StaticPages",
       "actions": {},
       "lifecycles": {}
     }

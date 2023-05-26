@@ -4,6 +4,9 @@
   "type": "public",
   "permissions": [
     {
+      "action": "api::article.article.findOne"
+    },
+    {
       "action": "api::auction.auction.find"
     },
     {
@@ -43,9 +46,6 @@
       "action": "api::organization.organization.findReviews"
     },
     {
-      "action": "api::privacy-policy.privacy-policy.find"
-    },
-    {
       "action": "api::promotion.promotion.find"
     },
     {
@@ -59,6 +59,9 @@
     },
     {
       "action": "api::review.review.create"
+    },
+    {
+      "action": "api::static-pages.static-pages.findOne"
     },
     {
       "action": "plugin::email.email.send"
