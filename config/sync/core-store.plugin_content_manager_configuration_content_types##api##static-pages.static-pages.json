@@ -27,7 +27,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "privacy",
@@ -42,7 +42,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "help",
@@ -57,7 +57,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "howitworks",
@@ -72,7 +72,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "contacts",
@@ -87,7 +87,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "about",
@@ -102,7 +102,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "donate",
@@ -140,41 +140,37 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "privacy"],
       "edit": [
         [
           {
+            "name": "howitworks",
+            "size": 4
+          },
+          {
             "name": "privacy",
-            "size": 6
+            "size": 4
           },
           {
             "name": "help",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "howitworks",
-            "size": 6
+            "size": 4
           }
         ],
         [
           {
             "name": "contacts",
-            "size": 6
+            "size": 4
+          },
+          {
+            "name": "donate",
+            "size": 4
           },
           {
             "name": "about",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "donate",
-            "size": 6
+            "size": 4
           }
         ]
-      ]
+      ],
+      "list": ["id", "createdAt", "updatedAt", "privacy"]
     }
   },
   "type": "object",

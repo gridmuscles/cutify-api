@@ -7,7 +7,7 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "id",
+      "mainField": "slug",
       "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
@@ -197,24 +197,28 @@
             "size": 6
           },
           {
-            "name": "slug",
+            "name": "title_pl",
             "size": 6
           }
         ],
         [
-          {
-            "name": "title_pl",
-            "size": 6
-          },
           {
             "name": "title_ru",
             "size": 6
+          },
+          {
+            "name": "title_ua",
+            "size": 6
           }
         ],
         [
           {
-            "name": "title_ua",
+            "name": "slug",
             "size": 6
+          },
+          {
+            "name": "isPage",
+            "size": 4
           }
         ],
         [
@@ -240,15 +244,9 @@
             "name": "text_ua",
             "size": 12
           }
-        ],
-        [
-          {
-            "name": "isPage",
-            "size": 4
-          }
         ]
       ],
-      "list": ["id", "createdAt", "updatedAt", "slug"]
+      "list": ["id", "slug", "title", "isPage"]
     }
   },
   "type": "object",
