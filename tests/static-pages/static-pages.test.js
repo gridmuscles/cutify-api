@@ -19,19 +19,11 @@ afterAll(async () => {
 describe('Articles', () => {
   beforeAll(async () => {
     const article1 = await createArticle()
-    const article2 = await createArticle()
-    const article3 = await createArticle()
-    const article4 = await createArticle()
-    const article5 = await createArticle()
-    const article6 = await createArticle()
+    const article2 = await createArticle({ publishedAt: null })
 
     await createStaticPages({
       privacy: article1.id,
-      about: article2.id,
-      help: article3.id,
-      support: article4.id,
-      contacts: article5.id,
-      howitworks: article6.id,
+      help: article2.id,
     })
   })
 
@@ -40,11 +32,11 @@ describe('Articles', () => {
     { type: 'authenticated' },
     { type: 'manager' },
     { type: 'moderator' },
-  ])('should $type user be able to get static pages list', async ({ type }) => {
+  ])('should $type user be able to get static pages', async ({ type }) => {
     const [, jwt] = await createUser({ type })
 
     const req = request(strapi.server.httpServer)
-      .get(`/api/static-pages`)
+      .get(`/api/static-pages/privacy`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
 
@@ -56,14 +48,27 @@ describe('Articles', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(({ body: { data } }) => {
-        expect(data.attributes.privacy.id).toBeDefined()
-        expect(data.attributes.privacy.attributes).toBeUndefined()
-
-        expect(data.attributes.about.id).toBeDefined()
-        expect(data.attributes.help.id).toBeDefined()
-        expect(data.attributes.support.id).toBeDefined()
-        expect(data.attributes.contacts.id).toBeDefined()
-        expect(data.attributes.howitworks.id).toBeDefined()
+        expect(data.attributes.privacy.data.id).toBeDefined()
+        expect(data.attributes.privacy.data.attributes).toBeDefined()
+        expect(data.attributes.help).toBeUndefined()
       })
+  })
+
+  it('should non published page throw an error', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/static-pages/help`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should non-existing page throw an error', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/static-pages/privacy1`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
   })
 })

@@ -58,7 +58,7 @@
       "action": "api::promotion.promotion.verifyAuction"
     },
     {
-      "action": "api::static-pages.static-pages.find"
+      "action": "api::static-pages.static-pages.findOne"
     },
     {
       "action": "plugin::users-permissions.auth.changePassword"

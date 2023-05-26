@@ -61,7 +61,7 @@
       "action": "api::review.review.create"
     },
     {
-      "action": "api::static-pages.static-pages.find"
+      "action": "api::static-pages.static-pages.findOne"
     },
     {
       "action": "plugin::email.email.send"
