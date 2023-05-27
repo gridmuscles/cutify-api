@@ -65,11 +65,29 @@
           "title_pl",
           "title_ua",
           "title_ru",
+          "slug",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
           "description",
           "description_pl",
           "description_ua",
-          "description_ru",
-          "slug"
+          "description_ru"
         ]
       },
       "conditions": []
@@ -89,11 +107,29 @@
           "title_pl",
           "title_ua",
           "title_ru",
+          "slug",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
           "description",
           "description_pl",
           "description_ua",
-          "description_ru",
-          "slug"
+          "description_ru"
         ]
       },
       "conditions": []
@@ -107,11 +143,29 @@
           "title_pl",
           "title_ua",
           "title_ru",
+          "slug",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
           "description",
           "description_pl",
           "description_ua",
-          "description_ru",
-          "slug"
+          "description_ru"
         ]
       },
       "conditions": []
@@ -166,7 +220,21 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
       },
       "conditions": []
     },
@@ -180,7 +248,21 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
       },
       "conditions": []
     },
@@ -188,7 +270,21 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::coupon.coupon",
       "properties": {
-        "fields": ["promotion", "user", "uuid", "email", "state"]
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
       },
       "conditions": []
     },
@@ -385,7 +481,25 @@
           "auction",
           "isChatAvailable",
           "size",
-          "order"
+          "order",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua"
         ]
       },
       "conditions": []
@@ -431,7 +545,25 @@
           "auction",
           "isChatAvailable",
           "size",
-          "order"
+          "order",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua"
         ]
       },
       "conditions": []
@@ -465,7 +597,25 @@
           "auction",
           "isChatAvailable",
           "size",
-          "order"
+          "order",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua"
         ]
       },
       "conditions": []
