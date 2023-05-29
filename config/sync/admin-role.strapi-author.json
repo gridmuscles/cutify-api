@@ -5,6 +5,117 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::article.article",
+      "properties": {
+        "fields": [
+          "slug",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "text",
+          "text_pl",
+          "text_ru",
+          "text_ua",
+          "isPage",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::article.article",
+      "properties": {
+        "fields": [
+          "slug",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "text",
+          "text_pl",
+          "text_ru",
+          "text_ua",
+          "isPage",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::article.article",
+      "properties": {
+        "fields": [
+          "slug",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "text",
+          "text_pl",
+          "text_ru",
+          "text_ua",
+          "isPage",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::location.location",
       "properties": {
         "fields": [

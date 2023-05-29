@@ -160,6 +160,20 @@
           "sortable": true
         }
       },
+      "seo": {
+        "edit": {
+          "label": "seo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "seo",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -190,6 +204,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "slug", "title", "isPage"],
       "edit": [
         [
           {
@@ -244,9 +259,14 @@
             "name": "text_ua",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "seo",
+            "size": 12
+          }
         ]
-      ],
-      "list": ["id", "slug", "title", "isPage"]
+      ]
     }
   },
   "type": "object",
