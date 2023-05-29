@@ -503,7 +503,11 @@
           "indexTitle",
           "indexTitle_pl",
           "indexTitle_ru",
-          "indexTitle_ua"
+          "indexTitle_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
         ]
       },
       "conditions": []
@@ -571,7 +575,11 @@
           "indexTitle",
           "indexTitle_pl",
           "indexTitle_ru",
-          "indexTitle_ua"
+          "indexTitle_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
         ]
       },
       "conditions": []
@@ -627,7 +635,11 @@
           "indexTitle",
           "indexTitle_pl",
           "indexTitle_ru",
-          "indexTitle_ua"
+          "indexTitle_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
         ]
       },
       "conditions": []

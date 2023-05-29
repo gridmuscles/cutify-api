@@ -143,6 +143,18 @@
     },
     "indexTitle_ua": {
       "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "description_pl": {
+      "type": "richtext"
+    },
+    "description_ru": {
+      "type": "richtext"
+    },
+    "description_ua": {
+      "type": "richtext"
     }
   }
 }
