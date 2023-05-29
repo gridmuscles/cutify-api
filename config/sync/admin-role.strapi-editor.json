@@ -499,7 +499,11 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "indexTitle",
+          "indexTitle_pl",
+          "indexTitle_ru",
+          "indexTitle_ua"
         ]
       },
       "conditions": []
@@ -563,7 +567,11 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "indexTitle",
+          "indexTitle_pl",
+          "indexTitle_ru",
+          "indexTitle_ua"
         ]
       },
       "conditions": []
@@ -615,7 +623,11 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "indexTitle",
+          "indexTitle_pl",
+          "indexTitle_ru",
+          "indexTitle_ua"
         ]
       },
       "conditions": []
