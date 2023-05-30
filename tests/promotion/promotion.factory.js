@@ -3,6 +3,10 @@ const { ERROR_CODES } = require('../../src/utils/const')
 const mockPromotionData = (data = {}) => {
   const slugSuffix = Math.round(Math.random() * 10000).toString()
   return {
+    indexTitle: 'index Pizza Mondays',
+    indexTitle_pl: 'index Poniedziałki Pizzy',
+    indexTitle_ua: 'index Понеділки Піци',
+    indexTitle_ru: 'index Понедельник Пиццы',
     title: 'Pizza Mondays',
     title_pl: 'Poniedziałki Pizzy',
     title_ua: 'Понеділки Піци',
@@ -22,6 +26,10 @@ const mockPromotionData = (data = {}) => {
       'Дійсно лише в понеділок. Не поєднується з іншими пропозиціями або знижками. Діє лише при прийомі їжі на місці.',
     terms_ru:
       'Действительно только по понедельникам. Не сочетается с другими предложениями или скидками. Действует только для гостей, которые употребляют пищу на месте.',
+    description: 'Pizza Mondays description',
+    description_pl: 'Poniedziałki Pizzy description',
+    description_ua: 'Понеділки Піци description',
+    description_ru: 'Понедельник Пиццы description',
     discountTo: 50,
     dateTimeUntil: '2100-04-30 23:59:59',
     publishedAt: '2023-01-01 23:59:59',

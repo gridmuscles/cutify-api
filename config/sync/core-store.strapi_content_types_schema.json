@@ -2010,7 +2010,8 @@
       "info": {
         "singularName": "article",
         "pluralName": "articles",
-        "displayName": "Article"
+        "displayName": "Article",
+        "description": ""
       },
       "options": {
         "draftAndPublish": true
@@ -2052,6 +2053,11 @@
           "default": true,
           "required": true
         },
+        "seo": {
+          "type": "component",
+          "repeatable": false,
+          "component": "shared.seo"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2090,7 +2096,8 @@
         "info": {
           "singularName": "article",
           "pluralName": "articles",
-          "displayName": "Article"
+          "displayName": "Article",
+          "description": ""
         },
         "options": {
           "draftAndPublish": true
@@ -2131,6 +2138,11 @@
             "type": "boolean",
             "default": true,
             "required": true
+          },
+          "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo"
           }
         },
         "kind": "collectionType"
@@ -3452,6 +3464,30 @@
           "repeatable": false,
           "component": "shared.seo"
         },
+        "indexTitle": {
+          "type": "string"
+        },
+        "indexTitle_pl": {
+          "type": "string"
+        },
+        "indexTitle_ru": {
+          "type": "string"
+        },
+        "indexTitle_ua": {
+          "type": "string"
+        },
+        "description": {
+          "type": "richtext"
+        },
+        "description_pl": {
+          "type": "richtext"
+        },
+        "description_ru": {
+          "type": "richtext"
+        },
+        "description_ua": {
+          "type": "richtext"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3617,6 +3653,30 @@
             "type": "component",
             "repeatable": false,
             "component": "shared.seo"
+          },
+          "indexTitle": {
+            "type": "string"
+          },
+          "indexTitle_pl": {
+            "type": "string"
+          },
+          "indexTitle_ru": {
+            "type": "string"
+          },
+          "indexTitle_ua": {
+            "type": "string"
+          },
+          "description": {
+            "type": "richtext"
+          },
+          "description_pl": {
+            "type": "richtext"
+          },
+          "description_ru": {
+            "type": "richtext"
+          },
+          "description_ua": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"

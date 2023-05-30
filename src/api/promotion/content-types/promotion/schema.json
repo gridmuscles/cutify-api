@@ -131,6 +131,30 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.seo"
+    },
+    "indexTitle": {
+      "type": "string"
+    },
+    "indexTitle_pl": {
+      "type": "string"
+    },
+    "indexTitle_ru": {
+      "type": "string"
+    },
+    "indexTitle_ua": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "description_pl": {
+      "type": "richtext"
+    },
+    "description_ru": {
+      "type": "richtext"
+    },
+    "description_ua": {
+      "type": "richtext"
     }
   }
 }
