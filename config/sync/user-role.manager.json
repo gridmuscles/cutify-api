@@ -58,6 +58,9 @@
       "action": "api::promotion.promotion.findOne"
     },
     {
+      "action": "api::receipt.receipt.find"
+    },
+    {
       "action": "api::static-pages.static-pages.findOne"
     },
     {

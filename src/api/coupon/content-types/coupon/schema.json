@@ -59,6 +59,12 @@
     },
     "description_ua": {
       "type": "richtext"
+    },
+    "receipt": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::receipt.receipt",
+      "inversedBy": "coupons"
     }
   }
 }

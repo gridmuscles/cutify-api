@@ -19,33 +19,12 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
   },
 
   async verify(ctx) {
-    const coupon = await strapi
-      .service('api::coupon.coupon')
-      .findOne(ctx.params.id, {
-        populate: {
-          promotion: {
-            populate: {
-              organization: {
-                populate: {
-                  managers: {
-                    fields: ['id'],
-                  },
-                },
-              },
-            },
-          },
-        },
-      })
+    return strapi.service('api::coupon.coupon').update(ctx.params.id, {
+      data: { state: 'verified' },
+    })
+  },
 
-    if (
-      !coupon.promotion.organization.managers.some(
-        ({ id }) => id === ctx.state.user.id
-      ) ||
-      coupon.state === 'verified'
-    ) {
-      throw new Error()
-    }
-
+  async verifyWithCode(ctx) {
     return strapi.service('api::coupon.coupon').update(ctx.params.id, {
       data: { state: 'verified' },
     })

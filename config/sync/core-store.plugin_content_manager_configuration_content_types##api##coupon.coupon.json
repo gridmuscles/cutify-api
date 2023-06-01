@@ -204,6 +204,21 @@
           "sortable": false
         }
       },
+      "receipt": {
+        "edit": {
+          "label": "receipt",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "receipt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -234,7 +249,7 @@
       }
     },
     "layouts": {
-      "list": ["id", "email", "promotion"],
+      "list": ["id", "email", "promotion", "receipt"],
       "edit": [
         [
           {
@@ -308,6 +323,12 @@
           {
             "name": "description_ua",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "receipt",
+            "size": 6
           }
         ]
       ]

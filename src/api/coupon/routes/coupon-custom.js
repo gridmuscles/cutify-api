@@ -16,7 +16,7 @@ module.exports = {
     },
     {
       method: 'POST',
-      path: '/coupons/:id/verify',
+      path: '/coupons/verify',
       handler: 'coupon.verify',
     },
   ],

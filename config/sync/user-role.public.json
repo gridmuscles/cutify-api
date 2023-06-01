@@ -58,6 +58,9 @@
       "action": "api::promotion.promotion.requestCoupon"
     },
     {
+      "action": "api::receipt.receipt.create"
+    },
+    {
       "action": "api::review.review.create"
     },
     {

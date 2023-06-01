@@ -31,6 +31,9 @@
       "action": "api::coupon.coupon.findOne"
     },
     {
+      "action": "api::coupon.coupon.verify"
+    },
+    {
       "action": "api::location.location.find"
     },
     {
@@ -56,6 +59,12 @@
     },
     {
       "action": "api::promotion.promotion.verifyAuction"
+    },
+    {
+      "action": "api::receipt.receipt.find"
+    },
+    {
+      "action": "api::receipt.receipt.findOne"
     },
     {
       "action": "api::static-pages.static-pages.findOne"

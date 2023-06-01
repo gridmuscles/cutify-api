@@ -1863,12 +1863,6 @@
           "minLength": 3,
           "required": true
         },
-        "organizations": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::organization.organization",
-          "mappedBy": "managers"
-        },
         "phone": {
           "type": "string",
           "required": false,
@@ -1982,12 +1976,6 @@
             "type": "string",
             "minLength": 3,
             "required": true
-          },
-          "organizations": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::organization.organization",
-            "mappedBy": "managers"
           },
           "phone": {
             "type": "string",
@@ -2772,6 +2760,12 @@
         "description_ua": {
           "type": "richtext"
         },
+        "receipt": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::receipt.receipt",
+          "inversedBy": "coupons"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2859,6 +2853,12 @@
           },
           "description_ua": {
             "type": "richtext"
+          },
+          "receipt": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::receipt.receipt",
+            "inversedBy": "coupons"
           }
         },
         "kind": "collectionType"
@@ -2941,6 +2941,10 @@
           "type": "relation",
           "relation": "oneToMany",
           "target": "plugin::users-permissions.user"
+        },
+        "confirmationCode": {
+          "type": "string",
+          "private": true
         },
         "createdAt": {
           "type": "datetime"
@@ -3037,6 +3041,10 @@
             "type": "relation",
             "relation": "oneToMany",
             "target": "plugin::users-permissions.user"
+          },
+          "confirmationCode": {
+            "type": "string",
+            "private": true
           }
         },
         "kind": "collectionType"
@@ -3191,12 +3199,6 @@
           "target": "api::promotion.promotion",
           "mappedBy": "organization"
         },
-        "managers": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "plugin::users-permissions.user",
-          "inversedBy": "organizations"
-        },
         "siteLink": {
           "type": "string"
         },
@@ -3290,12 +3292,6 @@
             "relation": "oneToMany",
             "target": "api::promotion.promotion",
             "mappedBy": "organization"
-          },
-          "managers": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "plugin::users-permissions.user",
-            "inversedBy": "organizations"
           },
           "siteLink": {
             "type": "string"
@@ -3687,6 +3683,102 @@
       "uid": "api::promotion.promotion",
       "apiName": "promotion",
       "globalId": "Promotion",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::receipt.receipt": {
+      "kind": "collectionType",
+      "collectionName": "receipts",
+      "info": {
+        "singularName": "receipt",
+        "pluralName": "receipts",
+        "displayName": "Receipt",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "photo": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": ["images"]
+        },
+        "text": {
+          "type": "text"
+        },
+        "coupons": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::coupon.coupon",
+          "mappedBy": "receipt"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "receipts",
+        "info": {
+          "singularName": "receipt",
+          "pluralName": "receipts",
+          "displayName": "Receipt",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "photo": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": ["images"]
+          },
+          "text": {
+            "type": "text"
+          },
+          "coupons": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::coupon.coupon",
+            "mappedBy": "receipt"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "receipt",
+      "connection": "default",
+      "uid": "api::receipt.receipt",
+      "apiName": "receipt",
+      "globalId": "Receipt",
       "actions": {},
       "lifecycles": {}
     },

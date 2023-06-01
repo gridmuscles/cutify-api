@@ -148,20 +148,6 @@
           "sortable": true
         }
       },
-      "workhours": {
-        "edit": {
-          "label": "workhours",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "workhours",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "address": {
         "edit": {
           "label": "address",
@@ -172,6 +158,20 @@
         },
         "list": {
           "label": "address",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "workhours": {
+        "edit": {
+          "label": "workhours",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "workhours",
           "searchable": false,
           "sortable": false
         }
@@ -231,6 +231,20 @@
           "label": "managers",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "confirmationCode": {
+        "edit": {
+          "label": "confirmationCode",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "confirmationCode",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -344,6 +358,10 @@
         [
           {
             "name": "managers",
+            "size": 6
+          },
+          {
+            "name": "confirmationCode",
             "size": 6
           }
         ]

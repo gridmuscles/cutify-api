@@ -350,7 +350,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt"
         ]
       },
       "conditions": []
@@ -378,7 +379,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt"
         ]
       },
       "conditions": []
@@ -400,7 +402,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt"
         ]
       },
       "conditions": []
@@ -424,7 +427,8 @@
           "workhours_pl",
           "workhours_ua",
           "workhours_ru",
-          "managers"
+          "managers",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -454,7 +458,8 @@
           "workhours_pl",
           "workhours_ua",
           "workhours_ru",
-          "managers"
+          "managers",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -478,7 +483,8 @@
           "workhours_pl",
           "workhours_ua",
           "workhours_ru",
-          "managers"
+          "managers",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -504,7 +510,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -534,7 +539,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -558,7 +562,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -762,6 +765,14 @@
       "conditions": []
     },
     {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::receipt.receipt",
+      "properties": {
+        "fields": ["photo", "text", "coupons"]
+      },
+      "conditions": []
+    },
+    {
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::review.review",
       "properties": {
@@ -812,7 +823,6 @@
           "blocked",
           "role",
           "name",
-          "organizations",
           "phone"
         ]
       },
@@ -833,7 +843,6 @@
           "blocked",
           "role",
           "name",
-          "organizations",
           "phone"
         ]
       },
@@ -854,7 +863,6 @@
           "blocked",
           "role",
           "name",
-          "organizations",
           "phone"
         ]
       },

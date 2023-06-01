@@ -67,6 +67,10 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
+    },
+    "confirmationCode": {
+      "type": "string",
+      "private": true
     }
   }
 }
