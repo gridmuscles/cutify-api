@@ -18,15 +18,56 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     return super.create(ctx)
   },
 
-  async verify(ctx) {
-    return strapi.service('api::coupon.coupon').update(ctx.params.id, {
-      data: { state: 'verified' },
-    })
-  },
+  async verifyAsManager({ uuidList, managerId }) {
+    const locations = await strapi.entityService.findMany(
+      'api::location.location',
+      {
+        filters: {
+          managers: {
+            id: managerId,
+          },
+        },
+        populate: {
+          organization: {
+            populate: {
+              promotions: true,
+            },
+          },
+        },
+      }
+    )
 
-  async verifyWithCode(ctx) {
-    return strapi.service('api::coupon.coupon').update(ctx.params.id, {
-      data: { state: 'verified' },
+    const organizationIds = locations.reduce((acc, location) => {
+      return [...acc, location.organization.id]
+    }, [])
+
+    const couponsToVerify = await strapi.db
+      .query('api::coupon.coupon')
+      .findMany({
+        where: {
+          uuid: {
+            $in: uuidList,
+          },
+          state: 'completed',
+          promotion: {
+            organization: { id: { $in: organizationIds } },
+          },
+        },
+      })
+
+    if (!couponsToVerify.length) {
+      return { count: 0 }
+    }
+
+    return strapi.db.query('api::coupon.coupon').updateMany({
+      where: {
+        id: {
+          $in: couponsToVerify.map(({ id }) => id),
+        },
+      },
+      data: {
+        state: 'verified',
+      },
     })
   },
 }))

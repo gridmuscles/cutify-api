@@ -33,7 +33,7 @@ describe('Receipt', () => {
     { type: 'manager', code: 403 },
     { type: 'moderator', code: 200 },
   ])(
-    'should $type user have a code $code to get all coupons',
+    'should $type user have a code $code to get all receipts',
     async ({ type, code }) => {
       const [, jwt] = await createUser({ type })
 
@@ -75,7 +75,10 @@ describe('Receipt', () => {
       .set('Content-type', 'multipart/form-data')
       .field(
         'data',
-        JSON.stringify({ text: 'text1', coupons: [coupon1.uuid, coupon2.uuid] })
+        JSON.stringify({
+          text: 'text1',
+          uuidList: [coupon1.uuid, coupon2.uuid],
+        })
       )
       .attach(
         'files.photo',

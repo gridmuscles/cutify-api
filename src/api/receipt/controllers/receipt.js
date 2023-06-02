@@ -17,7 +17,7 @@ module.exports = createCoreController('api::receipt.receipt', () => ({
       const { results: coupons } = await strapi
         .service('api::coupon.coupon')
         .find({
-          filters: { uuid: { $in: data.coupons } },
+          filters: { uuid: { $in: data.uuidList } },
         })
 
       await strapi.service('api::receipt.receipt').update(receipt.data.id, {

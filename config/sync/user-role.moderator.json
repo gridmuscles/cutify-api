@@ -31,9 +31,6 @@
       "action": "api::coupon.coupon.findOne"
     },
     {
-      "action": "api::coupon.coupon.verify"
-    },
-    {
       "action": "api::location.location.find"
     },
     {

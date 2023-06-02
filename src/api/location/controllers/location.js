@@ -39,8 +39,6 @@ module.exports = createCoreController('api::location.location', () => ({
         populate: '*',
       })
 
-      console.log(results)
-
       if (results.length > 0) {
         throw new Error()
       }
@@ -58,8 +56,6 @@ module.exports = createCoreController('api::location.location', () => ({
           },
         },
       })
-
-      console.log(6)
 
       for (let manager of location.managers) {
         const socket = strapi.io.socketMap?.get(manager.id)

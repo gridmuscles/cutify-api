@@ -237,14 +237,36 @@ module.exports = createCoreController(
           sanitizeOutput: sanitizeCouponOutput,
         } = await strapi.controller('api::coupon.coupon')
 
+        const locations = await strapi.entityService.findMany(
+          'api::location.location',
+          {
+            filters: {
+              managers: {
+                id: ctx.state.user.id,
+              },
+            },
+            populate: {
+              organization: {
+                populate: {
+                  promotions: true,
+                },
+              },
+            },
+          }
+        )
+
+        const organizationIds = locations.reduce((acc, location) => {
+          return [...acc, location.organization.id]
+        }, [])
+
         const { results, pagination } = await strapi
           .service('api::coupon.coupon')
           .find({
             filters: {
               promotion: {
                 organization: {
-                  managers: {
-                    id: ctx.state.user.id,
+                  id: {
+                    $in: organizationIds,
                   },
                 },
               },
