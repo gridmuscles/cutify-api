@@ -15,9 +15,14 @@ const mockArticleData = (data = {}) => {
 }
 
 const createArticle = async (data = {}) => {
+  const seoComponent = await strapi.query('shared.seo').create({
+    data: data.seo ?? {},
+  })
+
   return strapi.db.query('api::article.article').create({
     data: {
       ...mockArticleData(data),
+      seo: seoComponent.id,
     },
   })
 }
