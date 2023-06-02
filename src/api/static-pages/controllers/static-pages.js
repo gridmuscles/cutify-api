@@ -14,7 +14,19 @@ module.exports = createCoreController('api::static-pages.static-pages', () => ({
         'api::static-pages.static-pages',
         {
           populate: {
-            [slug]: true,
+            [slug]: {
+              populate: {
+                seo: {
+                  populate: {
+                    metaSocial: {
+                      populate: {
+                        image: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
           },
         }
       )
