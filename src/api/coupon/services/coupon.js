@@ -28,15 +28,39 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
           },
         },
         populate: {
-          organization: {
-            populate: {
-              promotions: true,
-            },
-          },
+          organization: true,
         },
       }
     )
 
+    if (!locations.length) {
+      throw new Error()
+    }
+
+    return this.verifyCouponList({ uuidList, locations })
+  },
+
+  async verifyWithCode({ uuidList, code }) {
+    const locations = await strapi.entityService.findMany(
+      'api::location.location',
+      {
+        filters: {
+          confirmationCode: code,
+        },
+        populate: {
+          organization: true,
+        },
+      }
+    )
+
+    if (!locations.length) {
+      throw new Error()
+    }
+
+    return this.verifyCouponList({ uuidList, locations })
+  },
+
+  async verifyCouponList({ uuidList, locations }) {
     const organizationIds = locations.reduce((acc, location) => {
       return [...acc, location.organization.id]
     }, [])
@@ -56,10 +80,10 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
       })
 
     if (!couponsToVerify.length) {
-      return { count: 0 }
+      return []
     }
 
-    return strapi.db.query('api::coupon.coupon').updateMany({
+    await strapi.db.query('api::coupon.coupon').updateMany({
       where: {
         id: {
           $in: couponsToVerify.map(({ id }) => id),
@@ -69,5 +93,7 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
         state: 'verified',
       },
     })
+
+    return couponsToVerify.map(({ id }) => id)
   },
 }))

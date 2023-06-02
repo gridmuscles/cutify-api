@@ -21,14 +21,17 @@ afterAll(async () => {
 
 describe('Coupons', () => {
   let primaryUser
+  let primaryUserJwt
   let primaryManagerJwt
   let category
   let primaryOrganization
   let primaryPromotion
+  let primaryLocation
 
   beforeAll(async () => {
-    const [user] = await createUser({ type: 'authenticated' })
+    const [user, userJwt] = await createUser({ type: 'authenticated' })
     primaryUser = user
+    primaryUserJwt = userJwt
 
     const [manager, managerJwt] = await createUser({ type: 'manager' })
     primaryManagerJwt = managerJwt
@@ -37,7 +40,7 @@ describe('Coupons', () => {
     primaryOrganization = await createOrganization({
       categories: [category.id],
     })
-    await createLocation({
+    primaryLocation = await createLocation({
       managers: [manager.id],
       organization: primaryOrganization.id,
     })
@@ -168,7 +171,7 @@ describe('Coupons', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(({ body: { data } }) => {
-        expect(data.count).toBe(0)
+        expect(data.ids).toHaveLength(0)
       })
   })
 
@@ -204,4 +207,85 @@ describe('Coupons', () => {
       await req.expect('Content-Type', /json/).expect(code)
     }
   )
+
+  it.each([
+    { type: 'public', code: 200 },
+    { type: 'authenticated', code: 200 },
+    { type: 'manager', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])(
+    'should $type user has response $code when verify coupons with confirmation code',
+    async ({ type, code }) => {
+      const coupon = await createCoupon({
+        promotion: primaryPromotion.id,
+        email: 'user10@gmail.com',
+      })
+
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .post(`/api/coupons/verify/code`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          data: {
+            code: primaryLocation.confirmationCode,
+            uuidList: [coupon.uuid],
+          },
+        })
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
+
+  it('should authenticated user be able to verify coupon with confirmation code', async () => {
+    const coupon = await createCoupon({
+      promotion: primaryPromotion.id,
+      email: 'user10@gmail.com',
+      state: 'verified',
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/coupons/verify/code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt}`)
+      .send({
+        data: {
+          code: primaryLocation.confirmationCode,
+          uuidList: [coupon.uuid],
+        },
+      })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.ids).toHaveLength(0)
+      })
+  })
+
+  it('should not authenticated user be able to verify coupon with incorrect confirmation code', async () => {
+    const coupon = await createCoupon({
+      promotion: primaryPromotion.id,
+      email: 'user10@gmail.com',
+      state: 'verified',
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/coupons/verify/code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt}`)
+      .send({
+        data: {
+          code: '11111',
+          uuidList: [coupon.uuid],
+        },
+      })
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
 })

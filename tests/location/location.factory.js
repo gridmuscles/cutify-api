@@ -19,6 +19,7 @@ const mockLocationData = (data = {}) => {
     managers: [],
     messages: [],
     users: [],
+    confirmationCode: `${slugSuffix}`,
     ...data,
   }
 }

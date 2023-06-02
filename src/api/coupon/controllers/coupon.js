@@ -27,11 +27,30 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         throw new Error('UUID List is required.')
       }
 
-      const { count } = await strapi
+      const verifiedCouponIds = await strapi
         .service('api::coupon.coupon')
         .verifyAsManager({ uuidList, managerId: ctx.state.user.id })
 
-      return { data: { count } }
+      return { data: { ids: verifiedCouponIds } }
+    } catch (err) {
+      strapi.log.error(err.message)
+      ctx.badRequest(err.message, err.details)
+    }
+  },
+
+  async verifyWithCode(ctx) {
+    try {
+      const { uuidList, code } = ctx.request.body.data
+
+      if (!uuidList || !code) {
+        throw new Error('UUID List is required.')
+      }
+
+      const verifiedCouponIds = await strapi
+        .service('api::coupon.coupon')
+        .verifyWithCode({ uuidList, code })
+
+      return { data: { ids: verifiedCouponIds } }
     } catch (err) {
       strapi.log.error(err.message)
       ctx.badRequest(err.message, err.details)
