@@ -5,8 +5,7 @@ const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 const { createUser } = require('../user/user.factory')
 const { createChat, getChatById } = require('../chat/chat.factory')
 const { createMessage } = require('../message/message.factory')
-const { createOrganization } = require('../organization/organization.factory')
-const { createPromotion } = require('../promotion/promotion.factory')
+const { createLocation } = require('../location/location.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -23,8 +22,7 @@ describe('Chat', () => {
   let primaryUserJwt1
   let primaryManager1
   let primaryManagerJwt1
-  let primaryPromotion
-  let primaryOrganization
+  let primaryLocation
 
   beforeAll(async () => {
     const [user, userJwt] = await createUser({ type: 'authenticated' })
@@ -35,12 +33,9 @@ describe('Chat', () => {
     primaryManager1 = manager
     primaryManagerJwt1 = managerJwt
 
-    primaryOrganization = await createOrganization({
-      managers: [primaryManager1.id],
-    })
-    primaryPromotion = await createPromotion({
-      organization: primaryOrganization.id,
+    primaryLocation = await createLocation({
       isChatAvailable: true,
+      managers: [primaryManager1.id],
     })
   })
 
@@ -79,18 +74,9 @@ describe('Chat', () => {
   })
 
   it('should manager user be able to mark own chat as read', async () => {
-    const organization = await createOrganization({
-      managers: [primaryManager1.id],
-    })
-
-    const promotion = await createPromotion({
-      organization: organization.id,
-      isChatAvailable: true,
-    })
-
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: promotion.id,
+      location: primaryLocation.id,
     })
 
     await request(strapi.server.httpServer)
@@ -128,7 +114,7 @@ describe('Chat', () => {
   it('should authenticated user be able to create a chat message', async () => {
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: primaryPromotion.id,
+      location: primaryLocation.id,
     })
 
     await request(strapi.server.httpServer)
@@ -153,14 +139,15 @@ describe('Chat', () => {
       })
   })
 
-  it('should not authenticated user be able to create a chat message if promotion chat is disabled', async () => {
-    const promotion = await createPromotion({
-      organization: primaryOrganization.id,
+  it('should not authenticated user be able to create a chat message if location chat is disabled', async () => {
+    const location = await createLocation({
       isChatAvailable: false,
+      managers: [primaryManager1.id],
     })
+
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: promotion.id,
+      location: location.id,
     })
 
     await request(strapi.server.httpServer)
@@ -197,9 +184,14 @@ describe('Chat', () => {
   })
 
   it('should manager user be able to create a chat message if own organization promotion', async () => {
+    const location = await createLocation({
+      isChatAvailable: true,
+      managers: [primaryManager1.id],
+    })
+
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: primaryPromotion.id,
+      location: location.id,
     })
 
     await request(strapi.server.httpServer)
@@ -225,16 +217,14 @@ describe('Chat', () => {
   })
 
   it('should not manager user be able to create a chat message if elses organization promotion', async () => {
-    const organization = await createOrganization({
+    const location = await createLocation({
+      isChatAvailable: true,
       managers: [],
     })
-    const promotion = await createPromotion({
-      organization: organization.id,
-      isChatAvailable: true,
-    })
+
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: promotion.id,
+      location: location.id,
     })
 
     await request(strapi.server.httpServer)

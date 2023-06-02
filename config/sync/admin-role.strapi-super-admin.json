@@ -325,7 +325,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::chat.chat",
       "properties": {
-        "fields": ["users", "promotion", "messages"]
+        "fields": ["users", "promotion", "messages", "location"]
       },
       "conditions": []
     },
@@ -339,7 +339,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::chat.chat",
       "properties": {
-        "fields": ["users", "promotion", "messages"]
+        "fields": ["users", "promotion", "messages", "location"]
       },
       "conditions": []
     },
@@ -347,7 +347,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::chat.chat",
       "properties": {
-        "fields": ["users", "promotion", "messages"]
+        "fields": ["users", "promotion", "messages", "location"]
       },
       "conditions": []
     },
@@ -476,7 +476,9 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode"
+          "confirmationCode",
+          "chats",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -507,7 +509,9 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode"
+          "confirmationCode",
+          "chats",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -532,7 +536,9 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode"
+          "confirmationCode",
+          "chats",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -669,7 +675,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -741,7 +746,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -801,7 +805,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",

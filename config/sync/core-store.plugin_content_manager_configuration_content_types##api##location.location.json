@@ -247,6 +247,35 @@
           "sortable": true
         }
       },
+      "chats": {
+        "edit": {
+          "label": "chats",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "chats",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "isChatAvailable": {
+        "edit": {
+          "label": "isChatAvailable",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isChatAvailable",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -363,6 +392,16 @@
           {
             "name": "confirmationCode",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "chats",
+            "size": 6
+          },
+          {
+            "name": "isChatAvailable",
+            "size": 4
           }
         ]
       ]

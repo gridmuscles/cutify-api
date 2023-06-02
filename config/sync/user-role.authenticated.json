@@ -34,6 +34,9 @@
       "action": "api::coupon.coupon.findByUuidList"
     },
     {
+      "action": "api::location.location.createLocationChat"
+    },
+    {
       "action": "api::location.location.find"
     },
     {
@@ -50,9 +53,6 @@
     },
     {
       "action": "api::promotion.promotion.completeAuction"
-    },
-    {
-      "action": "api::promotion.promotion.createPromotionChat"
     },
     {
       "action": "api::promotion.promotion.find"

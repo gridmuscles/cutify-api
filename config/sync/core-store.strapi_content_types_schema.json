@@ -2524,7 +2524,8 @@
       "info": {
         "singularName": "chat",
         "pluralName": "chats",
-        "displayName": "Chat"
+        "displayName": "Chat",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -2546,6 +2547,12 @@
           "relation": "oneToMany",
           "target": "api::message.message",
           "mappedBy": "chat"
+        },
+        "location": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::location.location",
+          "inversedBy": "chats"
         },
         "createdAt": {
           "type": "datetime"
@@ -2579,7 +2586,8 @@
         "info": {
           "singularName": "chat",
           "pluralName": "chats",
-          "displayName": "Chat"
+          "displayName": "Chat",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
@@ -2601,6 +2609,12 @@
             "relation": "oneToMany",
             "target": "api::message.message",
             "mappedBy": "chat"
+          },
+          "location": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::location.location",
+            "inversedBy": "chats"
           }
         },
         "kind": "collectionType"
@@ -2946,6 +2960,16 @@
           "type": "string",
           "private": true
         },
+        "chats": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::chat.chat",
+          "mappedBy": "location"
+        },
+        "isChatAvailable": {
+          "type": "boolean",
+          "default": false
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3045,6 +3069,16 @@
           "confirmationCode": {
             "type": "string",
             "private": true
+          },
+          "chats": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::chat.chat",
+            "mappedBy": "location"
+          },
+          "isChatAvailable": {
+            "type": "boolean",
+            "default": false
           }
         },
         "kind": "collectionType"
@@ -3440,11 +3474,6 @@
           "relation": "oneToOne",
           "target": "api::auction.auction"
         },
-        "isChatAvailable": {
-          "type": "boolean",
-          "default": false,
-          "required": true
-        },
         "size": {
           "type": "enumeration",
           "enum": ["x", "x2"],
@@ -3629,11 +3658,6 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::auction.auction"
-          },
-          "isChatAvailable": {
-            "type": "boolean",
-            "default": false,
-            "required": true
           },
           "size": {
             "type": "enumeration",

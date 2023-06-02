@@ -65,6 +65,21 @@
           "sortable": false
         }
       },
+      "location": {
+        "edit": {
+          "label": "location",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "confirmationCode"
+        },
+        "list": {
+          "label": "location",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -110,6 +125,10 @@
         [
           {
             "name": "messages",
+            "size": 6
+          },
+          {
+            "name": "location",
             "size": 6
           }
         ]

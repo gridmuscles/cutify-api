@@ -115,6 +115,88 @@
       "conditions": []
     },
     {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::auction.auction",
+      "properties": {
+        "fields": [
+          "direction",
+          "startPrice",
+          "status",
+          "step",
+          "userAttemptLimit",
+          "currency"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::category.category",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "slug",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
+          "description",
+          "description_pl",
+          "description_ua",
+          "description_ru"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::city.city",
+      "properties": {
+        "fields": ["title", "slug"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::coupon.coupon",
+      "properties": {
+        "fields": [
+          "promotion",
+          "user",
+          "uuid",
+          "email",
+          "state",
+          "title",
+          "title_pl",
+          "title_ru",
+          "title_ua",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua",
+          "receipt"
+        ]
+      },
+      "conditions": []
+    },
+    {
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::location.location",
       "properties": {
@@ -134,7 +216,9 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode"
+          "confirmationCode",
+          "chats",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -159,7 +243,9 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode"
+          "confirmationCode",
+          "chats",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -184,7 +270,9 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode"
+          "confirmationCode",
+          "chats",
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -285,7 +373,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -351,7 +438,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -411,7 +497,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -456,6 +541,14 @@
       "action": "plugin::content-manager.explorer.publish",
       "subject": "api::review.review",
       "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::review.review",
+      "properties": {
+        "fields": ["message", "user", "organization", "rating", "reply", "name"]
+      },
       "conditions": []
     },
     {

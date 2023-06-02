@@ -55,22 +55,20 @@ module.exports = createCoreController('api::chat.chat', () => ({
               },
             },
             {
-              promotion: {
-                organization: {
-                  managers: {
-                    id: ctx.state.user.id,
-                  },
+              location: {
+                managers: {
+                  id: ctx.state.user.id,
                 },
               },
             },
           ],
         },
         populate: {
-          promotion: true,
+          location: true,
         },
       })
 
-      if (!chat || (chat.promotion && !chat.promotion.isChatAvailable)) {
+      if (!chat || (chat.location && !chat.location.isChatAvailable)) {
         throw new Error()
       }
 

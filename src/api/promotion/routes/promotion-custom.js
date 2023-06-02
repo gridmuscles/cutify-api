@@ -41,14 +41,6 @@ module.exports = {
       },
     },
     {
-      method: 'POST',
-      path: '/promotions/:id/chats',
-      handler: 'promotion.createPromotionChat',
-      config: {
-        middlewares: [{ name: 'global::locale' }],
-      },
-    },
-    {
       method: 'GET',
       path: '/promotions/:id/coupons',
       handler: 'promotion.findCoupons',
