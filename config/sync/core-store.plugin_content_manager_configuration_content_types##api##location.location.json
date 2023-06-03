@@ -247,21 +247,6 @@
           "sortable": true
         }
       },
-      "chats": {
-        "edit": {
-          "label": "chats",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "id"
-        },
-        "list": {
-          "label": "chats",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "isChatAvailable": {
         "edit": {
           "label": "isChatAvailable",
@@ -395,10 +380,6 @@
           }
         ],
         [
-          {
-            "name": "chats",
-            "size": 6
-          },
           {
             "name": "isChatAvailable",
             "size": 4

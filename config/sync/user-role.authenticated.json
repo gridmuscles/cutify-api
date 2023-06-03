@@ -22,6 +22,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.createLocationPromotionChat"
+    },
+    {
       "action": "api::chat.chat.createMessage"
     },
     {
@@ -32,12 +35,6 @@
     },
     {
       "action": "api::coupon.coupon.findByUuidList"
-    },
-    {
-      "action": "api::coupon.coupon.verifyWithCode"
-    },
-    {
-      "action": "api::location.location.createLocationChat"
     },
     {
       "action": "api::location.location.find"
@@ -68,9 +65,6 @@
     },
     {
       "action": "api::promotion.promotion.requestCoupon"
-    },
-    {
-      "action": "api::receipt.receipt.create"
     },
     {
       "action": "api::review.review.create"

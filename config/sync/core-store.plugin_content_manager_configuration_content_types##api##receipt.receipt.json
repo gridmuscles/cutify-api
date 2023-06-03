@@ -93,7 +93,7 @@
       }
     },
     "layouts": {
-      "list": ["id", "photo", "text", "createdAt"],
+      "list": ["id", "photo", "text", "coupons"],
       "edit": [
         [
           {

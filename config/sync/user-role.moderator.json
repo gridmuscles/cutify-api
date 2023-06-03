@@ -19,9 +19,6 @@
       "action": "api::category.category.find"
     },
     {
-      "action": "api::chat.chat.markAsRead"
-    },
-    {
       "action": "api::city.city.find"
     },
     {
@@ -56,12 +53,6 @@
     },
     {
       "action": "api::promotion.promotion.verifyAuction"
-    },
-    {
-      "action": "api::receipt.receipt.find"
-    },
-    {
-      "action": "api::receipt.receipt.findOne"
     },
     {
       "action": "api::static-pages.static-pages.findOne"

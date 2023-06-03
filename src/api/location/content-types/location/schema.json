@@ -72,12 +72,6 @@
       "type": "string",
       "private": true
     },
-    "chats": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::chat.chat",
-      "mappedBy": "location"
-    },
     "isChatAvailable": {
       "type": "boolean",
       "default": false

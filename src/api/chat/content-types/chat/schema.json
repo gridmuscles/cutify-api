@@ -30,9 +30,8 @@
     },
     "location": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::location.location",
-      "inversedBy": "chats"
+      "relation": "oneToOne",
+      "target": "api::location.location"
     }
   }
 }

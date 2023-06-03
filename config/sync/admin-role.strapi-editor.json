@@ -429,7 +429,6 @@
           "workhours_ru",
           "managers",
           "confirmationCode",
-          "chats",
           "isChatAvailable"
         ]
       },
@@ -462,7 +461,6 @@
           "workhours_ru",
           "managers",
           "confirmationCode",
-          "chats",
           "isChatAvailable"
         ]
       },
@@ -489,7 +487,6 @@
           "workhours_ru",
           "managers",
           "confirmationCode",
-          "chats",
           "isChatAvailable"
         ]
       },
@@ -764,14 +761,6 @@
           "description_ru",
           "description_ua"
         ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::receipt.receipt",
-      "properties": {
-        "fields": ["photo", "text", "coupons"]
       },
       "conditions": []
     },

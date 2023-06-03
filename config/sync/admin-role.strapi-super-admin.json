@@ -477,7 +477,6 @@
           "workhours_ru",
           "managers",
           "confirmationCode",
-          "chats",
           "isChatAvailable"
         ]
       },
@@ -510,7 +509,6 @@
           "workhours_ru",
           "managers",
           "confirmationCode",
-          "chats",
           "isChatAvailable"
         ]
       },
@@ -537,7 +535,6 @@
           "workhours_ru",
           "managers",
           "confirmationCode",
-          "chats",
           "isChatAvailable"
         ]
       },

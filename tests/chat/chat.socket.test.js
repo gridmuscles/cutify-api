@@ -7,6 +7,8 @@ const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 const { createChat } = require('../chat/chat.factory')
 const { createUser } = require('../user/user.factory')
 const { createLocation } = require('../location/location.factory')
+const { createPromotion } = require('../promotion/promotion.factory')
+const { createOrganization } = require('../organization/organization.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -108,45 +110,55 @@ describe('Chat', () => {
     })
 
     it('should authenticated user be able to receive chats', (done) => {
-      createLocation({
-        isChatAvailable: true,
-        managers: [primaryManager1.id],
-      }).then((location) => {
-        return request(strapi.server.httpServer)
-          .post(`/api/locations/${location.id}/chats`)
-          .set('accept', 'application/json')
-          .set('Content-Type', 'application/json')
-          .set('Authorization', `Bearer ${primaryUserJwt1}`)
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .then(() => {
-            setTimeout(done, 1000)
-
-            clientSocket1.on(
-              'receiveChatSuccess',
-              async ({ data: { attributes } }) => {
-                expect(attributes.users[0]).toBe(primaryUser1.id)
-              }
+      createOrganization()
+        .then((organization) =>
+          Promise.all([
+            createLocation({
+              isChatAvailable: true,
+              managers: [primaryManager1.id],
+              organization,
+            }),
+            createPromotion({ organization }),
+          ])
+        )
+        .then(([location, promotion]) => {
+          return request(strapi.server.httpServer)
+            .post(
+              `/api/chats/location/${location.id}/promotion/${promotion.id}`
             )
+            .set('accept', 'application/json')
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `Bearer ${primaryUserJwt1}`)
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(() => {
+              setTimeout(done, 1000)
 
-            clientSocket2.on('receiveChatSuccess', async () => {
-              throw new Error(
-                `receiveChatMessage should not be emitted for clientSocket3`
+              clientSocket1.on(
+                'receiveChatSuccess',
+                async ({ data: { attributes } }) => {
+                  expect(attributes.users[0]).toBe(primaryUser1.id)
+                }
+              )
+
+              clientSocket2.on('receiveChatSuccess', async () => {
+                throw new Error(
+                  `receiveChatMessage should not be emitted for clientSocket3`
+                )
+              })
+
+              clientSocket3.on(
+                'receiveChatSuccess',
+                async ({ data: { attributes } }) => {
+                  expect(attributes.location.data.id).toBe(primaryLocation.id)
+                }
               )
             })
-
-            clientSocket3.on(
-              'receiveChatSuccess',
-              async ({ data: { attributes } }) => {
-                expect(attributes.location.data.id).toBe(primaryLocation.id)
-              }
-            )
-          })
-          .catch((err) => {
-            console.log(err)
-            done
-          })
-      })
+            .catch((err) => {
+              console.log(err)
+              done
+            })
+        })
     })
 
     it('should authenticated user be able to receive messages', (done) => {

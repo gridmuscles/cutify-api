@@ -2550,9 +2550,8 @@
         },
         "location": {
           "type": "relation",
-          "relation": "manyToOne",
-          "target": "api::location.location",
-          "inversedBy": "chats"
+          "relation": "oneToOne",
+          "target": "api::location.location"
         },
         "createdAt": {
           "type": "datetime"
@@ -2612,9 +2611,8 @@
           },
           "location": {
             "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::location.location",
-            "inversedBy": "chats"
+            "relation": "oneToOne",
+            "target": "api::location.location"
           }
         },
         "kind": "collectionType"
@@ -2960,12 +2958,6 @@
           "type": "string",
           "private": true
         },
-        "chats": {
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::chat.chat",
-          "mappedBy": "location"
-        },
         "isChatAvailable": {
           "type": "boolean",
           "default": false
@@ -3069,12 +3061,6 @@
           "confirmationCode": {
             "type": "string",
             "private": true
-          },
-          "chats": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::chat.chat",
-            "mappedBy": "location"
           },
           "isChatAvailable": {
             "type": "boolean",

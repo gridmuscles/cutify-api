@@ -92,37 +92,32 @@ module.exports = createCoreService('api::chat.chat', () => ({
     }
   },
 
-  async ifChatOwner(ctx) {
-    try {
-      const { results: chats } = await strapi.service('api::chat.chat').find({
-        filters: {
-          id: ctx.params.id,
-          $or: [
-            {
-              users: {
-                id: ctx.state.user.id,
+  async ifChatOwner({ chatId, userId }) {
+    const chats = await strapi.entityService.findMany('api::chat.chat', {
+      filters: {
+        id: chatId,
+        $or: [
+          {
+            users: {
+              id: userId,
+            },
+          },
+          {
+            location: {
+              managers: {
+                id: userId,
               },
             },
-            {
-              location: {
-                managers: {
-                  id: ctx.state.user.id,
-                },
-              },
-            },
-          ],
-        },
-      })
+          },
+        ],
+      },
+    })
 
-      return chats.length === 1
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
+    return chats.length === 1
   },
 
   async getUsersToNotificate({ messagesCreatedAtStart }) {
-    const { results: chats } = await strapi.service('api::chat.chat').find({
+    const chats = await strapi.entityService.findMany('api::chat.chat', {
       filters: {
         messages: {
           text: { $notNull: true },
