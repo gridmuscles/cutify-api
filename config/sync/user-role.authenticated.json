@@ -37,6 +37,9 @@
       "action": "api::coupon.coupon.findByUuidList"
     },
     {
+      "action": "api::coupon.coupon.verifyWithCode"
+    },
+    {
       "action": "api::location.location.find"
     },
     {
