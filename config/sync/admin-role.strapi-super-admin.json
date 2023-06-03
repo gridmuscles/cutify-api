@@ -383,6 +383,63 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::coupon-terms.coupon-terms",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::coupon-terms.coupon-terms",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::coupon-terms.coupon-terms",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::coupon-terms.coupon-terms",
+      "properties": {
+        "fields": [
+          "title",
+          "title_pl",
+          "title_ua",
+          "title_ru",
+          "description",
+          "description_pl",
+          "description_ru",
+          "description_ua"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
@@ -476,7 +533,6 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode",
           "isChatAvailable"
         ]
       },
@@ -508,7 +564,6 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode",
           "isChatAvailable"
         ]
       },
@@ -534,7 +589,6 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode",
           "isChatAvailable"
         ]
       },
@@ -699,7 +753,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -770,7 +825,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -829,7 +885,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode"
         ]
       },
       "conditions": []

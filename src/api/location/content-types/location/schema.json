@@ -68,10 +68,6 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
     },
-    "confirmationCode": {
-      "type": "string",
-      "private": true
-    },
     "isChatAvailable": {
       "type": "boolean",
       "default": false

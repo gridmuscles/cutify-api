@@ -72,7 +72,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "confirmationCode"
+          "mainField": "id"
         },
         "list": {
           "label": "location",

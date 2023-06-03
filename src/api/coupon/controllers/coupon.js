@@ -38,11 +38,11 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         throw new Error('UUID List is required.')
       }
 
-      const verifiedCouponIds = await strapi
+      await strapi
         .service('api::coupon.coupon')
         .verifyAsManager({ uuidList, managerId: ctx.state.user.id })
 
-      return { data: { ids: verifiedCouponIds } }
+      return true
     } catch (err) {
       strapi.log.error(err.message)
       ctx.badRequest(err.message, err.details)
@@ -57,11 +57,11 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         throw new Error('UUID List is required.')
       }
 
-      const verifiedCouponIds = await strapi
+      await strapi
         .service('api::coupon.coupon')
         .verifyWithCode({ uuidList, code })
 
-      return { data: { ids: verifiedCouponIds } }
+      return true
     } catch (err) {
       strapi.log.error(err.message)
       ctx.badRequest(err.message, err.details)
@@ -80,7 +80,7 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
 
       await strapi
         .service('api::coupon.coupon')
-        .verifyWithReceipt({ uuidList, receiptId: receipt.id })
+        .verifyCouponList({ uuidList, receiptId: receipt.id })
 
       return true
     } catch (err) {

@@ -150,6 +150,11 @@
     },
     "description_ua": {
       "type": "richtext"
+    },
+    "confirmationCode": {
+      "type": "string",
+      "private": true,
+      "default": "000000"
     }
   }
 }

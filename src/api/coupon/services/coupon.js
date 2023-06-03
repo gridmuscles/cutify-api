@@ -26,6 +26,11 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
           managers: {
             id: managerId,
           },
+          organization: {
+            id: {
+              $notNull: true,
+            },
+          },
         },
         populate: {
           organization: true,
@@ -37,33 +42,71 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
       throw new Error()
     }
 
-    return this.verifyCouponList({ uuidList, locations })
+    const organization = locations[0].organization
+
+    if (
+      locations.some((location) => location.organization.id !== organization.id)
+    ) {
+      throw new Error()
+    }
+
+    const coupons = await strapi.db.query('api::coupon.coupon').findMany({
+      where: {
+        uuid: {
+          $in: uuidList,
+        },
+        state: 'active',
+        promotion: {
+          organization: { id: organization.id },
+        },
+      },
+    })
+
+    if (coupons.length !== uuidList.length) {
+      throw new Error()
+    }
+
+    return this.verifyCouponList({ uuidList })
   },
 
   async verifyWithCode({ uuidList, code }) {
-    const locations = await strapi.entityService.findMany(
-      'api::location.location',
-      {
-        filters: {
-          confirmationCode: code,
+    const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+      filters: {
+        state: 'active',
+        uuid: {
+          $in: uuidList,
         },
-        populate: {
-          organization: true,
+        promotion: {
+          id: {
+            $notNull: true,
+          },
         },
-      }
-    )
+      },
+      populate: {
+        promotion: true,
+      },
+    })
 
-    if (!locations.length) {
+    if (coupons.length !== uuidList.length) {
       throw new Error()
     }
 
-    return this.verifyCouponList({ uuidList, locations })
+    const promotion = coupons[0].promotion
+    if (coupons.some((coupon) => coupon.promotion.id !== promotion.id)) {
+      throw new Error()
+    }
+
+    if (promotion.confirmationCode !== code) {
+      throw new Error()
+    }
+
+    return this.verifyCouponList({ uuidList })
   },
 
-  async verifyWithReceipt({ uuidList, receiptId }) {
+  async verifyCouponList({ uuidList, receiptId }) {
     await strapi.db.query('api::coupon.coupon').updateMany({
       where: {
-        uuid: {
+        id: {
           $in: uuidList,
         },
       },
@@ -72,42 +115,5 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
         receipt: receiptId,
       },
     })
-  },
-
-  async verifyCouponList({ uuidList, locations }) {
-    const organizationIds = locations.reduce((acc, location) => {
-      return [...acc, location.organization.id]
-    }, [])
-
-    const couponsToVerify = await strapi.db
-      .query('api::coupon.coupon')
-      .findMany({
-        where: {
-          uuid: {
-            $in: uuidList,
-          },
-          state: 'completed',
-          promotion: {
-            organization: { id: { $in: organizationIds } },
-          },
-        },
-      })
-
-    if (!couponsToVerify.length) {
-      return []
-    }
-
-    await strapi.db.query('api::coupon.coupon').updateMany({
-      where: {
-        id: {
-          $in: couponsToVerify.map(({ id }) => id),
-        },
-      },
-      data: {
-        state: 'verified',
-      },
-    })
-
-    return couponsToVerify.map(({ id }) => id)
   },
 }))

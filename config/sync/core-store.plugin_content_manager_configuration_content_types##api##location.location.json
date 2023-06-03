@@ -233,20 +233,6 @@
           "sortable": false
         }
       },
-      "confirmationCode": {
-        "edit": {
-          "label": "confirmationCode",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "confirmationCode",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "isChatAvailable": {
         "edit": {
           "label": "isChatAvailable",
@@ -372,10 +358,6 @@
         [
           {
             "name": "managers",
-            "size": 6
-          },
-          {
-            "name": "confirmationCode",
             "size": 6
           }
         ],

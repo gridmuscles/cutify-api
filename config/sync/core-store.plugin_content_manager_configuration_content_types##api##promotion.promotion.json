@@ -485,6 +485,20 @@
           "sortable": false
         }
       },
+      "confirmationCode": {
+        "edit": {
+          "label": "confirmationCode",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "confirmationCode",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -695,6 +709,12 @@
           {
             "name": "description_ua",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "confirmationCode",
+            "size": 6
           }
         ]
       ]

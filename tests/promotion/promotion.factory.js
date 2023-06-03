@@ -39,6 +39,7 @@ const mockPromotionData = (data = {}) => {
     isChatAvailable: false,
     size: 'x',
     order: null,
+    confirmationCode: `${slugSuffix}`,
     ...data,
   }
 }

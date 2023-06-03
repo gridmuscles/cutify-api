@@ -216,7 +216,6 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode",
           "isChatAvailable"
         ]
       },
@@ -242,7 +241,6 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode",
           "isChatAvailable"
         ]
       },
@@ -268,7 +266,6 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "confirmationCode",
           "isChatAvailable"
         ]
       },
@@ -397,7 +394,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -462,7 +460,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode"
         ]
       },
       "conditions": []
@@ -521,7 +520,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode"
         ]
       },
       "conditions": []
