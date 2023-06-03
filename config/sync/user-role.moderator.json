@@ -55,6 +55,9 @@
       "action": "api::promotion.promotion.verifyAuction"
     },
     {
+      "action": "api::receipt.receipt.find"
+    },
+    {
       "action": "api::static-pages.static-pages.findOne"
     },
     {

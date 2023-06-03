@@ -5,6 +5,17 @@
  */
 
 const { createCoreController } = require('@strapi/strapi').factories
+const { parseMultipartData } = require('@strapi/utils')
+
+const parseBody = (ctx) => {
+  if (ctx.is('multipart')) {
+    return parseMultipartData(ctx)
+  }
+
+  const { data } = ctx.request.body || {}
+
+  return { data }
+}
 
 module.exports = createCoreController('api::coupon.coupon', () => ({
   async findByUuidList(ctx) {
@@ -53,6 +64,27 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
       return { data: { ids: verifiedCouponIds } }
     } catch (err) {
       strapi.log.error(err.message)
+      ctx.badRequest(err.message, err.details)
+    }
+  },
+
+  async verifyWithReceipt(ctx) {
+    try {
+      const { data, files } = parseBody(ctx)
+      const { uuidList } = await this.sanitizeInput(data, ctx)
+
+      const receipt = await strapi.service('api::receipt.receipt').create({
+        data,
+        files,
+      })
+
+      await strapi
+        .service('api::coupon.coupon')
+        .verifyWithReceipt({ uuidList, receiptId: receipt.id })
+
+      return true
+    } catch (err) {
+      strapi.log.error(err)
       ctx.badRequest(err.message, err.details)
     }
   },

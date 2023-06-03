@@ -60,6 +60,20 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     return this.verifyCouponList({ uuidList, locations })
   },
 
+  async verifyWithReceipt({ uuidList, receiptId }) {
+    await strapi.db.query('api::coupon.coupon').updateMany({
+      where: {
+        uuid: {
+          $in: uuidList,
+        },
+      },
+      data: {
+        state: 'verified',
+        receipt: receiptId,
+      },
+    })
+  },
+
   async verifyCouponList({ uuidList, locations }) {
     const organizationIds = locations.reduce((acc, location) => {
       return [...acc, location.organization.id]

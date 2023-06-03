@@ -1,6 +1,9 @@
 const request = require('supertest')
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
+const fs = require('fs')
+const path = require('path')
+const FormData = require('form-data')
 
 const { createCategory } = require('../category/category.factory')
 const { createOrganization } = require('../organization/organization.factory')
@@ -287,5 +290,43 @@ describe('Coupons', () => {
       })
       .expect('Content-Type', /json/)
       .expect(400)
+  })
+
+  it('should coupon owner be able to verify coupon with receipt', async () => {
+    const coupon1 = await createCoupon({
+      email: primaryUser.email,
+      user: primaryUser.id,
+      uuid: 'uuid1',
+    })
+
+    const coupon2 = await createCoupon({
+      email: 'user1@gmail.com',
+      uuid: 'uuid2',
+    })
+
+    var formData = new FormData()
+
+    formData.append(
+      'files.photo',
+      fs.createReadStream('tests/coupon/receipt.jpeg')
+    )
+
+    await request(strapi.server.httpServer)
+      .post(`/api/coupons/verify/receipt`)
+      .set('accept', 'application/json')
+      .set('Content-type', 'multipart/form-data')
+      .field(
+        'data',
+        JSON.stringify({
+          uuidList: [coupon1.uuid, coupon2.uuid],
+        })
+      )
+      .attach(
+        'files.photo',
+        path.join(__dirname, './receipt.webp'),
+        'receipt.webp'
+      )
+      .expect('Content-Type', /json/)
+      .expect(200)
   })
 })

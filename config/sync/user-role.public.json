@@ -34,6 +34,9 @@
       "action": "api::coupon.coupon.verifyWithCode"
     },
     {
+      "action": "api::coupon.coupon.verifyWithReceipt"
+    },
+    {
       "action": "api::location.location.find"
     },
     {

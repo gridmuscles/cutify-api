@@ -190,7 +190,8 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt"
         ]
       },
       "conditions": []

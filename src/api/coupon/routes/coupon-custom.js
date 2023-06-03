@@ -24,5 +24,10 @@ module.exports = {
       path: '/coupons/verify/code',
       handler: 'coupon.verifyWithCode',
     },
+    {
+      method: 'POST',
+      path: '/coupons/verify/receipt',
+      handler: 'coupon.verifyWithReceipt',
+    },
   ],
 }
