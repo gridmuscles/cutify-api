@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "coupon_termss",
+  "info": {
+    "singularName": "coupon-terms",
+    "pluralName": "coupon-termss",
+    "displayName": "Coupon terms"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "title_pl": {
+      "type": "string"
+    },
+    "title_ua": {
+      "type": "string"
+    },
+    "title_ru": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "description_pl": {
+      "type": "richtext"
+    },
+    "description_ru": {
+      "type": "richtext"
+    },
+    "description_ua": {
+      "type": "richtext"
+    }
+  }
+}
