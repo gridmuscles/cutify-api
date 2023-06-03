@@ -8,7 +8,7 @@ const init = async ({ strapi }) => {
   })
   strapi.io = io
   strapi.io.socketMap = new Map()
-  const promotionChatNamespace = io.of('/location-chats')
+  const promotionChatNamespace = io.of('/chats')
   promotionChatNamespace.use(async (socket, next) => {
     console.log(`socket connected`)
     try {
