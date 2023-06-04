@@ -31,6 +31,9 @@
       "action": "api::city.city.findOne"
     },
     {
+      "action": "api::coupon.coupon.findByPromotionAndUuidList"
+    },
+    {
       "action": "api::coupon.coupon.verify"
     },
     {

@@ -18,12 +18,26 @@ const parseBody = (ctx) => {
 }
 
 module.exports = createCoreController('api::coupon.coupon', () => ({
-  async findByUuidList(ctx) {
+  async findByPromotionAndUuidList(ctx) {
     try {
-      if (!ctx.request.query.filters?.uuid?.$in) {
+      if (!ctx.request.query.filters?.uuid?.$in || !ctx.params.promotionId) {
         throw new Error()
       }
-      return super.find(ctx)
+
+      ctx.request.query.filters = {
+        ...ctx.request.query.filters,
+        promotion: {
+          id: ctx.params.promotionId,
+        },
+      }
+
+      const result = await super.find(ctx)
+
+      if (result.data.length !== ctx.request.query.filters.uuid.$in.length) {
+        throw new Error()
+      }
+
+      return result
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest(err.message, err.details)

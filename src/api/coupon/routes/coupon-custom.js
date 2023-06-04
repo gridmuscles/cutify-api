@@ -4,8 +4,8 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/coupons/uuid',
-      handler: 'coupon.findByUuidList',
+      path: '/coupons/promotion/:promotionId/uuid',
+      handler: 'coupon.findByPromotionAndUuidList',
       config: {
         middlewares: [
           { name: 'global::locale' },

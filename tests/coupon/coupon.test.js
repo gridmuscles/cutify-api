@@ -93,9 +93,11 @@ describe('Coupons', () => {
     }
   )
 
-  it('should guest be able to get any coupons by slug list from the sasme promotion', async () => {
+  it('should guest be able to get any coupons by slug list from the same promotion', async () => {
     await request(strapi.server.httpServer)
-      .get(`/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`)
+      .get(
+        `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`
+      )
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .expect('Content-Type', /json/)
@@ -116,14 +118,14 @@ describe('Coupons', () => {
 
   it('should not guest be able to get any coupons without specific slugs', async () => {
     await request(strapi.server.httpServer)
-      .get(`/api/coupons/uuid`)
+      .get(`/api/coupons/promotion/${primaryPromotion.id}/uuid`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .expect('Content-Type', /json/)
       .expect(400)
   })
 
-  it('should guest not be able to get all coupons', async () => {
+  it('should not guest be able to get all coupons', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/coupons`)
       .set('accept', 'application/json')
@@ -132,10 +134,10 @@ describe('Coupons', () => {
       .expect(403)
   })
 
-  it('should guest be able to get any coupons by slug list from the sasme promotion', async () => {
+  it('should not guest be able to get coupons by slug list from different promotions', async () => {
     await request(strapi.server.httpServer)
       .get(
-        `/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&filters[uuid][$in][2]=3`
+        `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&filters[uuid][$in][2]=3`
       )
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')

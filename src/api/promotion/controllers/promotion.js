@@ -86,6 +86,7 @@ module.exports = createCoreController(
             email,
             locale,
             origin: ctx.request.header.origin,
+            promotionId: promotion.id,
             couponUUIDList,
           })
         )
@@ -198,6 +199,7 @@ module.exports = createCoreController(
             email: latestBid.bidder.email,
             locale,
             origin: ctx.request.header.origin,
+            promotionId: promotion.id,
             couponUUIDList: [coupon.uuid],
           })
         )
