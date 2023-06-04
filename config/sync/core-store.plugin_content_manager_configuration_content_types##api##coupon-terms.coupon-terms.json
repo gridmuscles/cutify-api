@@ -132,6 +132,174 @@
           "sortable": false
         }
       },
+      "stateActive": {
+        "edit": {
+          "label": "stateActive",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateActive",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "stateActive_pl": {
+        "edit": {
+          "label": "stateActive_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateActive_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateActive_ru": {
+        "edit": {
+          "label": "stateActive_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateActive_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateActive_ua": {
+        "edit": {
+          "label": "stateActive_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateActive_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateVerified": {
+        "edit": {
+          "label": "stateVerified",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateVerified",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "stateVerified_pl": {
+        "edit": {
+          "label": "stateVerified_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateVerified_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateVerified_ru": {
+        "edit": {
+          "label": "stateVerified_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateVerified_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateVerified_ua": {
+        "edit": {
+          "label": "stateVerified_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateVerified_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateExpired": {
+        "edit": {
+          "label": "stateExpired",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateExpired",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "stateExpired_pl": {
+        "edit": {
+          "label": "stateExpired_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateExpired_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateExpired_ru": {
+        "edit": {
+          "label": "stateExpired_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateExpired_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "stateExpired_ua": {
+        "edit": {
+          "label": "stateExpired_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "stateExpired_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -162,23 +330,20 @@
       }
     },
     "layouts": {
-      "list": ["id", "title", "createdAt", "updatedAt"],
       "edit": [
         [
           {
             "name": "title",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "description",
-            "size": 12
-          }
-        ],
-        [
+          },
           {
             "name": "title_pl",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "title_ru",
             "size": 6
           },
           {
@@ -188,8 +353,8 @@
         ],
         [
           {
-            "name": "title_ru",
-            "size": 6
+            "name": "description",
+            "size": 12
           }
         ],
         [
@@ -209,8 +374,65 @@
             "name": "description_ua",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "stateActive",
+            "size": 4
+          },
+          {
+            "name": "stateVerified",
+            "size": 4
+          },
+          {
+            "name": "stateExpired",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "stateActive_pl",
+            "size": 4
+          },
+          {
+            "name": "stateVerified_pl",
+            "size": 4
+          },
+          {
+            "name": "stateExpired_pl",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "stateActive_ru",
+            "size": 4
+          },
+          {
+            "name": "stateVerified_ru",
+            "size": 4
+          },
+          {
+            "name": "stateExpired_ru",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "stateActive_ua",
+            "size": 4
+          },
+          {
+            "name": "stateVerified_ua",
+            "size": 4
+          },
+          {
+            "name": "stateExpired_ua",
+            "size": 4
+          }
         ]
-      ]
+      ],
+      "list": ["id", "title", "createdAt", "updatedAt"]
     }
   },
   "type": "object",

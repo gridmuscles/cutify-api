@@ -28,7 +28,7 @@
       "action": "api::city.city.findOne"
     },
     {
-      "action": "api::coupon.coupon.findByUuidList"
+      "action": "api::coupon.coupon.downloadPdf"
     },
     {
       "action": "api::coupon.coupon.verifyWithCode"

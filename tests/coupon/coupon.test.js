@@ -63,6 +63,11 @@ describe('Coupons', () => {
       email: 'user1@gmail.com',
       uuid: '2',
     })
+
+    await createCoupon({
+      email: 'user1@gmail.com',
+      uuid: '3',
+    })
   })
 
   it.each([
@@ -88,7 +93,7 @@ describe('Coupons', () => {
     }
   )
 
-  it('should guest be able to get any coupons by slug list', async () => {
+  it('should guest be able to get any coupons by slug list from the sasme promotion', async () => {
     await request(strapi.server.httpServer)
       .get(`/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`)
       .set('accept', 'application/json')
@@ -125,6 +130,17 @@ describe('Coupons', () => {
       .set('Content-Type', 'application/json')
       .expect('Content-Type', /json/)
       .expect(403)
+  })
+
+  it('should guest be able to get any coupons by slug list from the sasme promotion', async () => {
+    await request(strapi.server.httpServer)
+      .get(
+        `/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&filters[uuid][$in][2]=3`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
   })
 
   it('should organization manager be able to verify only organization promotion coupon', async () => {

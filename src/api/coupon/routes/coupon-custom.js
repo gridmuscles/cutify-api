@@ -15,6 +15,14 @@ module.exports = {
       },
     },
     {
+      method: 'GET',
+      path: '/coupons/uuid/download/pdf',
+      handler: 'coupon.downloadPdf',
+      config: {
+        middlewares: [{ name: 'global::locale' }],
+      },
+    },
+    {
       method: 'POST',
       path: '/coupons/verify',
       handler: 'coupon.verify',

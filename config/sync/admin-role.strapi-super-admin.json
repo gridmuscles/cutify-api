@@ -393,7 +393,19 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "stateActive",
+          "stateActive_pl",
+          "stateActive_ru",
+          "stateActive_ua",
+          "stateVerified",
+          "stateVerified_pl",
+          "stateVerified_ru",
+          "stateVerified_ua",
+          "stateExpired",
+          "stateExpired_pl",
+          "stateExpired_ru",
+          "stateExpired_ua"
         ]
       },
       "conditions": []
@@ -416,7 +428,19 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "stateActive",
+          "stateActive_pl",
+          "stateActive_ru",
+          "stateActive_ua",
+          "stateVerified",
+          "stateVerified_pl",
+          "stateVerified_ru",
+          "stateVerified_ua",
+          "stateExpired",
+          "stateExpired_pl",
+          "stateExpired_ru",
+          "stateExpired_ua"
         ]
       },
       "conditions": []
@@ -433,7 +457,19 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "stateActive",
+          "stateActive_pl",
+          "stateActive_ru",
+          "stateActive_ua",
+          "stateVerified",
+          "stateVerified_pl",
+          "stateVerified_ru",
+          "stateVerified_ua",
+          "stateExpired",
+          "stateExpired_pl",
+          "stateExpired_ru",
+          "stateExpired_ua"
         ]
       },
       "conditions": []

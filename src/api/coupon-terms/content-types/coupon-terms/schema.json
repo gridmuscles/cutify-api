@@ -4,7 +4,8 @@
   "info": {
     "singularName": "coupon-terms",
     "pluralName": "coupon-termss",
-    "displayName": "Coupon terms"
+    "displayName": "Coupon terms",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -34,6 +35,42 @@
     },
     "description_ua": {
       "type": "richtext"
+    },
+    "stateActive": {
+      "type": "string"
+    },
+    "stateActive_pl": {
+      "type": "string"
+    },
+    "stateActive_ru": {
+      "type": "string"
+    },
+    "stateActive_ua": {
+      "type": "string"
+    },
+    "stateVerified": {
+      "type": "string"
+    },
+    "stateVerified_pl": {
+      "type": "string"
+    },
+    "stateVerified_ru": {
+      "type": "string"
+    },
+    "stateVerified_ua": {
+      "type": "string"
+    },
+    "stateExpired": {
+      "type": "string"
+    },
+    "stateExpired_pl": {
+      "type": "string"
+    },
+    "stateExpired_ru": {
+      "type": "string"
+    },
+    "stateExpired_ua": {
+      "type": "string"
     }
   }
 }

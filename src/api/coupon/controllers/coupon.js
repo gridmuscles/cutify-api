@@ -88,4 +88,30 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
       ctx.badRequest(err.message, err.details)
     }
   },
+
+  async downloadPdf(ctx) {
+    try {
+      const sanitizedQueryParams = await this.sanitizeQuery(ctx)
+      const {
+        filters: {
+          uuid: { $in: uuidList },
+        },
+        locale,
+      } = sanitizedQueryParams
+
+      const file = await strapi
+        .service('api::coupon.coupon')
+        .generateCouponListPdf({
+          uuidList,
+          locale,
+          origin: ctx.request.header.origin,
+        })
+
+      ctx.body = file
+      ctx.attachment(`coupons-${new Date().toISOString()}.pdf`)
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest(err.message, err.details)
+    }
+  },
 }))
