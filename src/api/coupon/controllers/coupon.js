@@ -20,18 +20,24 @@ const parseBody = (ctx) => {
 module.exports = createCoreController('api::coupon.coupon', () => ({
   async findByPromotionAndUuidList(ctx) {
     try {
-      if (!ctx.request.query.filters?.uuid?.$in || !ctx.params.promotionId) {
+      if (!ctx.request.query.filters?.uuid?.$in) {
         throw new Error()
       }
 
-      ctx.request.query.filters = {
-        ...ctx.request.query.filters,
-        promotion: {
+      if (ctx.params.promotionId) {
+        ctx.request.query.filters.promotion = {
           id: ctx.params.promotionId,
-        },
+        }
       }
 
       const result = await super.find(ctx)
+      const promotionId = result.data[0]?.attributes.promotion.data.id
+      if (
+        !ctx.params.promotionId &&
+        result.data.some((c) => c.attributes.promotion.data.id !== promotionId)
+      ) {
+        throw new Error()
+      }
 
       if (result.data.length !== ctx.request.query.filters.uuid.$in.length) {
         throw new Error()

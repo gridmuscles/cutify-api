@@ -95,6 +95,27 @@ describe('Coupons', () => {
 
   it('should guest be able to get any coupons by slug list from the same promotion', async () => {
     await request(strapi.server.httpServer)
+      .get(`/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(2)
+        expect(data[0].attributes.uuid).toBe('1')
+        expect(data[0].attributes.user).toBeUndefined()
+        expect(data[0].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
+        expect(data[1].attributes.uuid).toBe('2')
+        expect(data[1].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
+      })
+  })
+
+  it('should guest be able to get any coupons by slug list from the same promotion', async () => {
+    await request(strapi.server.httpServer)
       .get(
         `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`
       )
@@ -138,6 +159,17 @@ describe('Coupons', () => {
     await request(strapi.server.httpServer)
       .get(
         `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&filters[uuid][$in][2]=3`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not guest be able to get coupons by slug list from different promotions', async () => {
+    await request(strapi.server.httpServer)
+      .get(
+        `/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&filters[uuid][$in][2]=3`
       )
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
