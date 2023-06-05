@@ -57,6 +57,10 @@ describe('Promotions', () => {
       categories: [category.id],
       organization: primaryOrganization.id,
       seo: { keywords: 'a,b,c' },
+      title: 'Company tytuł EN',
+      title_pl: 'Tytuł firmy PL',
+      title_ru: 'Tytuł компании RU',
+      title_ua: 'Tytuł компанії UA',
     })
     draftPromotion = await createPromotion({
       categories: [category.id],
@@ -270,6 +274,35 @@ describe('Promotions', () => {
         expect(data[data.length - 1].attributes.couponsCount).toBe(2)
       })
   })
+
+  it.each([
+    { locale: 'en', search: 'tytuł', result: 1 },
+    { locale: 'ru', search: 'tytuł', result: 1 },
+    { locale: 'ua', search: 'tytuł', result: 1 },
+    { locale: 'pl', search: 'tytuł', result: 1 },
+
+    { locale: 'en', search: 'UA', result: 0 },
+    { locale: 'ru', search: 'UA', result: 0 },
+    { locale: 'ua', search: 'UA', result: 1 },
+    { locale: 'pl', search: 'UA', result: 0 },
+  ])(
+    'should search title $company in $locale locale returns $result',
+    async ({ locale, search, result }) => {
+      await request(strapi.server.httpServer)
+        .get(
+          encodeURI(
+            `/api/promotions?filters[title][$containsi]=${search}&locale=${locale}`
+          )
+        )
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(result)
+        })
+    }
+  )
 
   it('should guest be able to see a single populated draft promotion', async () => {
     await request(strapi.server.httpServer)
