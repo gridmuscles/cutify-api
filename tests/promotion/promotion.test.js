@@ -129,7 +129,7 @@ describe('Promotions', () => {
     expect(link.split('[uuid][$in]')).toHaveLength(11)
   })
 
-  it('should be an error if user exceed the total user limit of coupons', async () => {
+  it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
     const emailSendMock = (strapi.plugin('email').service('email').send = jest
       .fn()
       .mockReturnValue(true))
@@ -144,7 +144,7 @@ describe('Promotions', () => {
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .send({
-        email: 'user1@gmail.com',
+        email: 'USER1@gmail.com',
         count: 10,
       })
       .expect('Content-Type', /json/)

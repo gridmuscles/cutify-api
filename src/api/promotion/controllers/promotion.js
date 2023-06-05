@@ -56,7 +56,7 @@ module.exports = createCoreController(
           .service('api::coupon.coupon')
           .find({
             filters: {
-              email,
+              email: email.toLowerCase(),
               promotion: promotion.id,
             },
           })
