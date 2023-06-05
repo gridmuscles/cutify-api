@@ -330,6 +330,12 @@
             "name": "promotions",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "managers",
+            "size": 6
+          }
         ]
       ]
     }
