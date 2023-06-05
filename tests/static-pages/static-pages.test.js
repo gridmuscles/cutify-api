@@ -48,8 +48,9 @@ describe('Articles', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(({ body: { data } }) => {
-        expect(data.attributes.privacy.data.id).toBeDefined()
-        expect(data.attributes.privacy.data.attributes).toBeDefined()
+        expect(
+          data.attributes.privacy.data.attributes.seo.metaSocial
+        ).toBeDefined()
         expect(data.attributes.help).toBeUndefined()
       })
   })
