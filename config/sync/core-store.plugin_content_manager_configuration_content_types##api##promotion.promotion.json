@@ -609,10 +609,6 @@
           {
             "name": "categories",
             "size": 6
-          },
-          {
-            "name": "isChatAvailable",
-            "size": 4
           }
         ],
         [
@@ -713,6 +709,12 @@
           {
             "name": "description_ua",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "isChatAvailable",
+            "size": 4
           }
         ]
       ]

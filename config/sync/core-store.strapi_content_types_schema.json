@@ -2942,6 +2942,10 @@
           "relation": "oneToMany",
           "target": "plugin::users-permissions.user"
         },
+        "privatePhone": {
+          "type": "string",
+          "private": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3037,6 +3041,10 @@
             "type": "relation",
             "relation": "oneToMany",
             "target": "plugin::users-permissions.user"
+          },
+          "privatePhone": {
+            "type": "string",
+            "private": true
           }
         },
         "kind": "collectionType"

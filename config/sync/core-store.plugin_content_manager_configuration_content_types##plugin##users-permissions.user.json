@@ -254,10 +254,6 @@
         ],
         [
           {
-            "name": "organizations",
-            "size": 6
-          },
-          {
             "name": "name",
             "size": 6
           }
@@ -265,6 +261,10 @@
         [
           {
             "name": "phone",
+            "size": 6
+          },
+          {
+            "name": "organizations",
             "size": 6
           }
         ]

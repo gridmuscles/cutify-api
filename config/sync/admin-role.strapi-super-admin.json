@@ -472,7 +472,8 @@
           "workhours_pl",
           "workhours_ua",
           "workhours_ru",
-          "managers"
+          "managers",
+          "privatePhone"
         ]
       },
       "conditions": []
@@ -502,7 +503,8 @@
           "workhours_pl",
           "workhours_ua",
           "workhours_ru",
-          "managers"
+          "managers",
+          "privatePhone"
         ]
       },
       "conditions": []
@@ -526,7 +528,8 @@
           "workhours_pl",
           "workhours_ua",
           "workhours_ru",
-          "managers"
+          "managers",
+          "privatePhone"
         ]
       },
       "conditions": []

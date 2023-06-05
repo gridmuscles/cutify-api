@@ -31,9 +31,6 @@
       "action": "api::city.city.find"
     },
     {
-      "action": "api::coupon.coupon.findByUuidList"
-    },
-    {
       "action": "api::location.location.find"
     },
     {
