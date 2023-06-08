@@ -41,9 +41,12 @@ const getCouponListEmail = ({
   promotionId,
   couponUUIDList,
 }) => {
-  const uuidList = qs.stringify(
+  const filters = qs.stringify(
     {
       filters: {
+        promotion: {
+          id: promotionId,
+        },
         uuid: {
           $in: couponUUIDList,
         },
@@ -62,9 +65,7 @@ const getCouponListEmail = ({
         title,
         couponsAmount: couponUUIDList.length,
       }),
-      link: `${origin}/${
-        locale ?? 'en'
-      }/coupons/promotion/${promotionId}?${uuidList}`,
+      link: `${origin}/${locale ?? 'en'}/coupons/?${filters}`,
     },
   }
 }

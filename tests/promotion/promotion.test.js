@@ -140,6 +140,7 @@ describe('Promotions', () => {
     } = emailSendMock.mock.calls[0][0]
     expect(to).toBe(authenticatedUser.email)
     expect(link.split('[uuid][$in]')).toHaveLength(11)
+    expect(link.includes('[promotion][id]')).toBe(true)
   })
 
   it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
