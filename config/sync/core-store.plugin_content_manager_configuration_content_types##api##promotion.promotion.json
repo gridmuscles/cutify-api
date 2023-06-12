@@ -663,12 +663,6 @@
         ],
         [
           {
-            "name": "seo",
-            "size": 12
-          }
-        ],
-        [
-          {
             "name": "indexTitle",
             "size": 6
           },
@@ -715,6 +709,12 @@
           {
             "name": "confirmationCode",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "seo",
+            "size": 12
           }
         ]
       ]

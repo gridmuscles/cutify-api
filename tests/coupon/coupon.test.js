@@ -9,7 +9,7 @@ const { createCategory } = require('../category/category.factory')
 const { createOrganization } = require('../organization/organization.factory')
 const { createUser } = require('../user/user.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
-const { createCoupon } = require('../coupon/coupon.factory')
+const { createCoupon, getCouponById } = require('../coupon/coupon.factory')
 const { createLocation } = require('../location/location.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
@@ -338,6 +338,9 @@ describe('Coupons', () => {
       })
       .expect('Content-Type', /json/)
       .expect(200)
+
+    const updatedCoupon = await getCouponById({ id: coupon.id })
+    expect(updatedCoupon.state).toBe('verified')
   })
 
   it('should not authenticated user be able to verify coupon with incorrect confirmation code', async () => {
@@ -362,16 +365,46 @@ describe('Coupons', () => {
       .expect(400)
   })
 
-  it('should coupon owner be able to verify coupon with receipt', async () => {
+  it('should not authenticated user be able to verify coupon with if promotion expired', async () => {
+    const promotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      dateTimeUntil: '2023-01-02 23:59:59',
+    })
+
+    const coupon = await createCoupon({
+      promotion: promotion.id,
+      email: 'user10@gmail.com',
+      state: 'active',
+    })
+
+    await request(strapi.server.httpServer)
+      .post(`/api/coupons/verify/code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt}`)
+      .send({
+        data: {
+          code: promotion.confirmationCode,
+          uuidList: [coupon.uuid],
+        },
+      })
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should anyone be able to verify coupon with receipt', async () => {
     const coupon1 = await createCoupon({
       email: primaryUser.email,
       user: primaryUser.id,
       uuid: 'uuid1',
+      promotion: primaryPromotion.id,
     })
 
     const coupon2 = await createCoupon({
       email: 'user1@gmail.com',
       uuid: 'uuid2',
+      promotion: primaryPromotion.id,
     })
 
     var formData = new FormData()
@@ -398,5 +431,9 @@ describe('Coupons', () => {
       )
       .expect('Content-Type', /json/)
       .expect(200)
+
+    const updatedCoupon = await getCouponById({ id: coupon1.id })
+    expect(updatedCoupon.state).toBe('verified')
+    expect(updatedCoupon.receipt).toBeDefined()
   })
 })

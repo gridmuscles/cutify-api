@@ -44,9 +44,9 @@ describe('Promotions', () => {
 
     primaryCategory = await createCategory()
     const category2 = await createCategory()
+
     primaryOrganization = await createOrganization({
       categories: [primaryCategory.id],
-      managers: [manager.id],
     })
     primaryLocation = await createLocation({
       organization: primaryOrganization.id,
@@ -474,6 +474,85 @@ describe('Promotions', () => {
         expect(data).toHaveLength(3)
       })
   })
+
+  it('should manager user be able to get promotions from organization only', async () => {
+    const [manager1, jwt2] = await createUser({ type: 'manager' })
+
+    const organization = await createOrganization({
+      categories: [primaryCategory.id],
+    })
+    await createLocation({
+      organization: organization.id,
+      managers: [manager1.id],
+    })
+
+    const promotion = await createPromotion({
+      categories: [primaryCategory.id],
+      organization: organization.id,
+    })
+
+    await createPromotion({
+      categories: [primaryCategory.id],
+    })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/manager`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt2}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(1)
+        expect(data[0].id).toBe(promotion.id)
+      })
+  })
+
+  it('should manager user be able to get promotion confirmation code', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/confirmation-code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${managerUserJwt}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data.confirmationCode).toBe(primaryPromotion.confirmationCode)
+      })
+  })
+
+  it('should not manager user be able to get promotion confirmation code if another organization', async () => {
+    const [, jwt2] = await createUser({ type: 'manager' })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/confirmation-code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt2}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it.each([
+    { type: 'public', code: 401 },
+    { type: 'authenticated', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])(
+    'should not $type be able to get promotion confirmation code',
+    async ({ type, code }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/promotions/${primaryPromotion.id}/confirmation-code`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${jwt}`)
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
 
   it.each([
     { type: 'public', code: 401 },

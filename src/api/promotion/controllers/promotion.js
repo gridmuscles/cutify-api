@@ -282,5 +282,82 @@ module.exports = createCoreController(
         ctx.badRequest()
       }
     },
+
+    async findManagerPromotions(ctx) {
+      try {
+        const locations = await strapi.entityService.findMany(
+          'api::location.location',
+          {
+            filters: {
+              managers: {
+                id: ctx.state.user.id,
+              },
+            },
+            populate: {
+              organization: {
+                populate: {
+                  promotions: true,
+                },
+              },
+            },
+          }
+        )
+
+        if (!locations[0] || !locations[0].organization) {
+          throw new Error()
+        }
+
+        ctx.request.query.filters = {
+          ...ctx.request.query.filters,
+          organization: {
+            id: locations[0].organization.id,
+          },
+        }
+
+        return super.find(ctx)
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async getPromotionConfirmationCode(ctx) {
+      try {
+        const locations = await strapi.entityService.findMany(
+          'api::location.location',
+          {
+            filters: {
+              managers: {
+                id: ctx.state.user.id,
+              },
+            },
+            populate: {
+              organization: {
+                populate: {
+                  promotions: true,
+                },
+              },
+            },
+          }
+        )
+
+        const promotion = locations[0]?.organization.promotions.find(
+          (promotion) => promotion.id === Number(ctx.params.id)
+        )
+
+        if (!promotion) {
+          throw new Error()
+        }
+
+        return {
+          data: {
+            confirmationCode: promotion.confirmationCode,
+          },
+        }
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
   })
 )

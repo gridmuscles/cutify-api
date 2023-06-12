@@ -247,10 +247,6 @@
           {
             "name": "phone",
             "size": 6
-          },
-          {
-            "name": "organizations",
-            "size": 6
           }
         ]
       ]

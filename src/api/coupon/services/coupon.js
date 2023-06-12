@@ -41,32 +41,6 @@ const addCouponPageToDoc = async ({
 
   const linePosition = doc.y
 
-  switch (coupon.state) {
-    case 'active':
-      doc.fontSize(12).text(terms.stateActive, {
-        align: 'right',
-        x: 0,
-        y: linePosition,
-      })
-      break
-    case 'verified':
-      doc.fontSize(12).text(terms.stateVerified, {
-        align: 'right',
-        x: 0,
-        y: linePosition,
-      })
-      break
-    case 'expired':
-      doc.fontSize(12).text(terms.stateExpired, {
-        align: 'right',
-        x: 0,
-        y: linePosition,
-      })
-      break
-    default:
-      doc.fontSize(12).text('-')
-  }
-
   doc.fontSize(16).text(`# ${coupon.uuid}`, {
     x: 0,
     y: linePosition,
@@ -79,7 +53,7 @@ const addCouponPageToDoc = async ({
     .text(terms.title, {
       align: 'left',
     })
-    .text(terms.description)
+    .text(terms.text)
 
   doc
     .fontSize(9)
@@ -111,6 +85,11 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
           organization: {
             id: {
               $notNull: true,
+            },
+          },
+          promotion: {
+            dateTimeUntil: {
+              $gte: new Date().toISOString(),
             },
           },
         },
@@ -162,6 +141,9 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
           id: {
             $notNull: true,
           },
+          dateTimeUntil: {
+            $gte: new Date().toISOString(),
+          },
           confirmationCode: code,
         },
       },
@@ -182,10 +164,49 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     return this.verifyCouponList({ uuidList })
   },
 
+  async verifyWithReceipt({ uuidList, receipt }) {
+    const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+      filters: {
+        state: 'active',
+        uuid: {
+          $in: uuidList,
+        },
+        promotion: {
+          id: {
+            $notNull: true,
+          },
+          dateTimeUntil: {
+            $gte: new Date().toISOString(),
+          },
+        },
+      },
+      populate: {
+        promotion: true,
+      },
+    })
+
+    if (coupons.length !== uuidList.length) {
+      throw new Error()
+    }
+
+    const promotion = coupons[0].promotion
+    if (coupons.some((coupon) => coupon.promotion.id !== promotion.id)) {
+      throw new Error()
+    }
+
+    await this.verifyCouponList({ uuidList })
+
+    await strapi.entityService.update('api::receipt.receipt', receipt.id, {
+      data: {
+        coupons: coupons.map((coupon) => coupon.id),
+      },
+    })
+  },
+
   async verifyCouponList({ uuidList, receiptId }) {
     await strapi.db.query('api::coupon.coupon').updateMany({
       where: {
-        id: {
+        uuid: {
           $in: uuidList,
         },
       },
@@ -210,10 +231,19 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
       throw new Error()
     }
 
-    const terms = await strapi.entityService.findMany(
-      'api::coupon-terms.coupon-terms'
+    const { coupon } = await strapi.entityService.findMany(
+      'api::static-pages.static-pages',
+      {
+        filters: {
+          slug: 'coupon',
+        },
+        populate: {
+          coupon: true,
+        },
+      }
     )
-    const translatedTerms = translateEntity(terms, locale)
+
+    const translatedTerms = translateEntity(coupon, locale)
     const translatedCoupons = translateEntity(coupons, locale)
 
     const [firstCoupon, ...otherCoupons] = translatedCoupons

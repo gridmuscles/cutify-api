@@ -2884,192 +2884,6 @@
       "actions": {},
       "lifecycles": {}
     },
-    "api::coupon-terms.coupon-terms": {
-      "kind": "singleType",
-      "collectionName": "coupon_termss",
-      "info": {
-        "singularName": "coupon-terms",
-        "pluralName": "coupon-termss",
-        "displayName": "Coupon terms",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "title": {
-          "type": "string"
-        },
-        "title_pl": {
-          "type": "string"
-        },
-        "title_ua": {
-          "type": "string"
-        },
-        "title_ru": {
-          "type": "string"
-        },
-        "description": {
-          "type": "richtext"
-        },
-        "description_pl": {
-          "type": "richtext"
-        },
-        "description_ru": {
-          "type": "richtext"
-        },
-        "description_ua": {
-          "type": "richtext"
-        },
-        "stateActive": {
-          "type": "string"
-        },
-        "stateActive_pl": {
-          "type": "string"
-        },
-        "stateActive_ru": {
-          "type": "string"
-        },
-        "stateActive_ua": {
-          "type": "string"
-        },
-        "stateVerified": {
-          "type": "string"
-        },
-        "stateVerified_pl": {
-          "type": "string"
-        },
-        "stateVerified_ru": {
-          "type": "string"
-        },
-        "stateVerified_ua": {
-          "type": "string"
-        },
-        "stateExpired": {
-          "type": "string"
-        },
-        "stateExpired_pl": {
-          "type": "string"
-        },
-        "stateExpired_ru": {
-          "type": "string"
-        },
-        "stateExpired_ua": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        }
-      },
-      "__schema__": {
-        "collectionName": "coupon_termss",
-        "info": {
-          "singularName": "coupon-terms",
-          "pluralName": "coupon-termss",
-          "displayName": "Coupon terms",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "title": {
-            "type": "string"
-          },
-          "title_pl": {
-            "type": "string"
-          },
-          "title_ua": {
-            "type": "string"
-          },
-          "title_ru": {
-            "type": "string"
-          },
-          "description": {
-            "type": "richtext"
-          },
-          "description_pl": {
-            "type": "richtext"
-          },
-          "description_ru": {
-            "type": "richtext"
-          },
-          "description_ua": {
-            "type": "richtext"
-          },
-          "stateActive": {
-            "type": "string"
-          },
-          "stateActive_pl": {
-            "type": "string"
-          },
-          "stateActive_ru": {
-            "type": "string"
-          },
-          "stateActive_ua": {
-            "type": "string"
-          },
-          "stateVerified": {
-            "type": "string"
-          },
-          "stateVerified_pl": {
-            "type": "string"
-          },
-          "stateVerified_ru": {
-            "type": "string"
-          },
-          "stateVerified_ua": {
-            "type": "string"
-          },
-          "stateExpired": {
-            "type": "string"
-          },
-          "stateExpired_pl": {
-            "type": "string"
-          },
-          "stateExpired_ru": {
-            "type": "string"
-          },
-          "stateExpired_ua": {
-            "type": "string"
-          }
-        },
-        "kind": "singleType"
-      },
-      "modelType": "contentType",
-      "modelName": "coupon-terms",
-      "connection": "default",
-      "uid": "api::coupon-terms.coupon-terms",
-      "apiName": "coupon-terms",
-      "globalId": "CouponTerms",
-      "actions": {},
-      "lifecycles": {}
-    },
     "api::location.location": {
       "kind": "collectionType",
       "collectionName": "locations",
@@ -4152,6 +3966,11 @@
           "relation": "oneToOne",
           "target": "api::article.article"
         },
+        "coupon": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -4224,6 +4043,11 @@
             "target": "api::article.article"
           },
           "donate": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "coupon": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::article.article"

@@ -383,99 +383,6 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
-      "subject": "api::coupon-terms.coupon-terms",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "stateActive",
-          "stateActive_pl",
-          "stateActive_ru",
-          "stateActive_ua",
-          "stateVerified",
-          "stateVerified_pl",
-          "stateVerified_ru",
-          "stateVerified_ua",
-          "stateExpired",
-          "stateExpired_pl",
-          "stateExpired_ru",
-          "stateExpired_ua"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::coupon-terms.coupon-terms",
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "subject": "api::coupon-terms.coupon-terms",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "stateActive",
-          "stateActive_pl",
-          "stateActive_ru",
-          "stateActive_ua",
-          "stateVerified",
-          "stateVerified_pl",
-          "stateVerified_ru",
-          "stateVerified_ua",
-          "stateExpired",
-          "stateExpired_pl",
-          "stateExpired_ru",
-          "stateExpired_ua"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "subject": "api::coupon-terms.coupon-terms",
-      "properties": {
-        "fields": [
-          "title",
-          "title_pl",
-          "title_ua",
-          "title_ru",
-          "description",
-          "description_pl",
-          "description_ru",
-          "description_ua",
-          "stateActive",
-          "stateActive_pl",
-          "stateActive_ru",
-          "stateActive_ua",
-          "stateVerified",
-          "stateVerified_pl",
-          "stateVerified_ru",
-          "stateVerified_ua",
-          "stateExpired",
-          "stateExpired_pl",
-          "stateExpired_ru",
-          "stateExpired_ua"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
       "subject": "api::coupon.coupon",
       "properties": {
         "fields": [
@@ -1003,7 +910,8 @@
           "howitworks",
           "contacts",
           "about",
-          "donate"
+          "donate",
+          "coupon"
         ]
       },
       "conditions": []
@@ -1030,7 +938,8 @@
           "howitworks",
           "contacts",
           "about",
-          "donate"
+          "donate",
+          "coupon"
         ]
       },
       "conditions": []
@@ -1045,7 +954,8 @@
           "howitworks",
           "contacts",
           "about",
-          "donate"
+          "donate",
+          "coupon"
         ]
       },
       "conditions": []
@@ -1340,6 +1250,12 @@
     },
     {
       "action": "plugin::i18n.locale.update",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::seo.read",
       "subject": null,
       "properties": {},
       "conditions": []

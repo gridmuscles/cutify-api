@@ -48,5 +48,29 @@ module.exports = {
         middlewares: [{ name: 'global::locale' }],
       },
     },
+    {
+      method: 'GET',
+      path: '/promotions/manager',
+      handler: 'promotion.findManagerPromotions',
+      config: {
+        middlewares: [
+          { name: 'global::locale' },
+          { name: 'global::i18n' },
+          { name: 'global::populate', config: { deep: 2 } },
+        ],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/promotions/:id/confirmation-code',
+      handler: 'promotion.getPromotionConfirmationCode',
+      config: {
+        middlewares: [
+          { name: 'global::locale' },
+          { name: 'global::i18n' },
+          { name: 'global::populate', config: { deep: 2 } },
+        ],
+      },
+    },
   ],
 }

@@ -31,7 +31,8 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
       }
 
       const result = await super.find(ctx)
-      const promotionId = result.data[0]?.attributes.promotion.data.id
+      const promotionId = result.data[0]?.attributes.promotion.data?.id
+
       if (
         !ctx.params.promotionId &&
         result.data.some((c) => c.attributes.promotion.data.id !== promotionId)
@@ -100,7 +101,7 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
 
       await strapi
         .service('api::coupon.coupon')
-        .verifyCouponList({ uuidList, receiptId: receipt.id })
+        .verifyWithReceipt({ uuidList, receipt })
 
       return true
     } catch (err) {

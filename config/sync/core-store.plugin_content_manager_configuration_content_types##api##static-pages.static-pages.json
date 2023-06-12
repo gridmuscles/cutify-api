@@ -110,6 +110,21 @@
           "sortable": true
         }
       },
+      "coupon": {
+        "edit": {
+          "label": "coupon",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "slug"
+        },
+        "list": {
+          "label": "coupon",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -166,6 +181,12 @@
           },
           {
             "name": "about",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "coupon",
             "size": 4
           }
         ]
