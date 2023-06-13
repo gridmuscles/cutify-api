@@ -56,7 +56,7 @@ module.exports = createCoreController(
           .service('api::coupon.coupon')
           .find({
             filters: {
-              email,
+              email: email.toLowerCase(),
               promotion: promotion.id,
             },
           })
@@ -86,6 +86,7 @@ module.exports = createCoreController(
             email,
             locale,
             origin: ctx.request.header.origin,
+            promotionId: promotion.id,
             couponUUIDList,
           })
         )
@@ -198,6 +199,7 @@ module.exports = createCoreController(
             email: latestBid.bidder.email,
             locale,
             origin: ctx.request.header.origin,
+            promotionId: promotion.id,
             couponUUIDList: [coupon.uuid],
           })
         )
@@ -230,78 +232,6 @@ module.exports = createCoreController(
       }
     },
 
-    async createPromotionChat(ctx) {
-      try {
-        const { transformResponse: transformChatResponse } =
-          await strapi.controller('api::chat.chat')
-        const promotion = await strapi.entityService.findOne(
-          'api::promotion.promotion',
-          ctx.params.id,
-          { populate: ['organization.id', 'organization.managers'] }
-        )
-
-        if (!promotion.isChatAvailable) {
-          throw new Error()
-        }
-
-        const { results } = await strapi.service('api::chat.chat').find({
-          filters: {
-            promotion: promotion.id,
-            users: {
-              id: ctx.state.user.id,
-            },
-          },
-        })
-
-        if (results.length > 0) {
-          throw new Error()
-        }
-
-        const newChat = await strapi.service('api::chat.chat').create({
-          data: {
-            promotion: promotion.id,
-            users: [ctx.state.user.id],
-          },
-          populate: {
-            promotion: true,
-            messages: true,
-            users: {
-              fields: ['id, name'],
-            },
-          },
-        })
-
-        for (let manager of promotion.organization.managers) {
-          const socket = strapi.io.socketMap?.get(manager.id)
-          if (socket) {
-            socket.join(`chat:${newChat.id}`)
-          }
-        }
-
-        const userSocket = strapi.io.socketMap?.get(ctx.state.user.id)
-        userSocket?.join(`chat:${newChat.id}`)
-        userSocket
-          ?.to(`chat:${newChat.id}`)
-          .emit('receiveChatSuccess', transformChatResponse(newChat))
-
-        try {
-          await strapi.services['api::sms.sms'].sendSMS({
-            phoneNumbers: promotion.organization.managers.map(
-              ({ phone }) => phone
-            ),
-            body: 'Cappybara.com - There is a new chat created, please take a look!',
-          })
-        } catch (err) {
-          strapi.log.error('SMS notification about the new chat was not sent')
-        }
-
-        return transformChatResponse(newChat)
-      } catch (err) {
-        strapi.log.error(err)
-        ctx.badRequest()
-      }
-    },
-
     async findCoupons(ctx) {
       try {
         const {
@@ -309,14 +239,36 @@ module.exports = createCoreController(
           sanitizeOutput: sanitizeCouponOutput,
         } = await strapi.controller('api::coupon.coupon')
 
+        const locations = await strapi.entityService.findMany(
+          'api::location.location',
+          {
+            filters: {
+              managers: {
+                id: ctx.state.user.id,
+              },
+            },
+            populate: {
+              organization: {
+                populate: {
+                  promotions: true,
+                },
+              },
+            },
+          }
+        )
+
+        const organizationIds = locations.reduce((acc, location) => {
+          return [...acc, location.organization.id]
+        }, [])
+
         const { results, pagination } = await strapi
           .service('api::coupon.coupon')
           .find({
             filters: {
               promotion: {
                 organization: {
-                  managers: {
-                    id: ctx.state.user.id,
+                  id: {
+                    $in: organizationIds,
                   },
                 },
               },
@@ -325,6 +277,83 @@ module.exports = createCoreController(
 
         const sanitizedResults = await sanitizeCouponOutput(results, ctx)
         return transformCouponResponse(sanitizedResults, { pagination })
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async findManagerPromotions(ctx) {
+      try {
+        const locations = await strapi.entityService.findMany(
+          'api::location.location',
+          {
+            filters: {
+              managers: {
+                id: ctx.state.user.id,
+              },
+            },
+            populate: {
+              organization: {
+                populate: {
+                  promotions: true,
+                },
+              },
+            },
+          }
+        )
+
+        if (!locations[0] || !locations[0].organization) {
+          throw new Error()
+        }
+
+        ctx.request.query.filters = {
+          ...ctx.request.query.filters,
+          organization: {
+            id: locations[0].organization.id,
+          },
+        }
+
+        return super.find(ctx)
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async getPromotionConfirmationCode(ctx) {
+      try {
+        const locations = await strapi.entityService.findMany(
+          'api::location.location',
+          {
+            filters: {
+              managers: {
+                id: ctx.state.user.id,
+              },
+            },
+            populate: {
+              organization: {
+                populate: {
+                  promotions: true,
+                },
+              },
+            },
+          }
+        )
+
+        const promotion = locations[0]?.organization.promotions.find(
+          (promotion) => promotion.id === Number(ctx.params.id)
+        )
+
+        if (!promotion) {
+          throw new Error()
+        }
+
+        return {
+          data: {
+            confirmationCode: promotion.confirmationCode,
+          },
+        }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()

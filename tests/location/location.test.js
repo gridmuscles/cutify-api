@@ -19,7 +19,12 @@ describe('Locations', () => {
   let primaryLocation
 
   beforeAll(async () => {
-    primaryLocation = await createLocation()
+    const [manager] = await createUser({ type: 'manager' })
+
+    primaryLocation = await createLocation({
+      isChatAvailable: true,
+      managers: [manager.id],
+    })
   })
 
   it.each([

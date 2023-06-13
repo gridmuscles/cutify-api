@@ -18,5 +18,13 @@ module.exports = {
         middlewares: [{ name: 'global::locale' }],
       },
     },
+    {
+      method: 'POST',
+      path: '/chats/location/:locationId/promotion/:promotionId',
+      handler: 'chat.createLocationPromotionChat',
+      config: {
+        middlewares: [{ name: 'global::locale' }],
+      },
+    },
   ],
 }

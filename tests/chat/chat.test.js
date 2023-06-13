@@ -5,6 +5,7 @@ const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 const { createUser } = require('../user/user.factory')
 const { createChat, getChatById } = require('../chat/chat.factory')
 const { createMessage } = require('../message/message.factory')
+const { createLocation } = require('../location/location.factory')
 const { createOrganization } = require('../organization/organization.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
 
@@ -23,8 +24,9 @@ describe('Chat', () => {
   let primaryUserJwt1
   let primaryManager1
   let primaryManagerJwt1
-  let primaryPromotion
   let primaryOrganization
+  let primaryPromotion
+  let primaryLocation
 
   beforeAll(async () => {
     const [user, userJwt] = await createUser({ type: 'authenticated' })
@@ -35,12 +37,14 @@ describe('Chat', () => {
     primaryManager1 = manager
     primaryManagerJwt1 = managerJwt
 
-    primaryOrganization = await createOrganization({
+    primaryOrganization = await createOrganization()
+    primaryLocation = await createLocation({
+      organization: primaryOrganization.id,
+      isChatAvailable: true,
       managers: [primaryManager1.id],
     })
     primaryPromotion = await createPromotion({
       organization: primaryOrganization.id,
-      isChatAvailable: true,
     })
   })
 
@@ -78,19 +82,10 @@ describe('Chat', () => {
     expect(updatedChat.messages).toHaveLength(2)
   })
 
-  it('should manager user be able to mark own chat as read', async () => {
-    const organization = await createOrganization({
-      managers: [primaryManager1.id],
-    })
-
-    const promotion = await createPromotion({
-      organization: organization.id,
-      isChatAvailable: true,
-    })
-
+  it('should manager user wich related to location be able to mark chat as read', async () => {
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: promotion.id,
+      location: primaryLocation.id,
     })
 
     await request(strapi.server.httpServer)
@@ -128,7 +123,7 @@ describe('Chat', () => {
   it('should authenticated user be able to create a chat message', async () => {
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: primaryPromotion.id,
+      location: primaryLocation.id,
     })
 
     await request(strapi.server.httpServer)
@@ -153,14 +148,15 @@ describe('Chat', () => {
       })
   })
 
-  it('should not authenticated user be able to create a chat message if promotion chat is disabled', async () => {
-    const promotion = await createPromotion({
-      organization: primaryOrganization.id,
+  it('should not authenticated user be able to create a chat message if location chat is disabled', async () => {
+    const location = await createLocation({
       isChatAvailable: false,
+      managers: [primaryManager1.id],
     })
+
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: promotion.id,
+      location: location.id,
     })
 
     await request(strapi.server.httpServer)
@@ -196,10 +192,15 @@ describe('Chat', () => {
       .expect(400)
   })
 
-  it('should manager user be able to create a chat message if own organization promotion', async () => {
+  it('should manager user be able to create a chat message in own location chat', async () => {
+    const location = await createLocation({
+      isChatAvailable: true,
+      managers: [primaryManager1.id],
+    })
+
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: primaryPromotion.id,
+      location: location.id,
     })
 
     await request(strapi.server.httpServer)
@@ -224,17 +225,15 @@ describe('Chat', () => {
       })
   })
 
-  it('should not manager user be able to create a chat message if elses organization promotion', async () => {
-    const organization = await createOrganization({
+  it('should not manager user be able to create a chat message if elses location', async () => {
+    const location = await createLocation({
+      isChatAvailable: true,
       managers: [],
     })
-    const promotion = await createPromotion({
-      organization: organization.id,
-      isChatAvailable: true,
-    })
+
     const chat = await createChat({
       users: [primaryUser1.id],
-      promotion: promotion.id,
+      location: location.id,
     })
 
     await request(strapi.server.httpServer)
@@ -247,6 +246,102 @@ describe('Chat', () => {
           text: 'test text',
         },
       })
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should authenticated user be able to create a chat for location and promotion', async () => {
+    const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+      .fn()
+      .mockReturnValue([]))
+
+    await request(strapi.server.httpServer)
+      .post(
+        `/api/chats/location/${primaryLocation.id}/promotion/${primaryPromotion.id}`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt1}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.messages.data).toHaveLength(0)
+        expect(data.attributes.users.data).toHaveLength(1)
+        expect(data.attributes.location.data.id).toBe(primaryLocation.id)
+        expect(data.attributes.users.data[0].attributes.name).toBe(
+          primaryUser1.name
+        )
+      })
+
+    expect(smsSendMock).toBeCalledTimes(1)
+
+    const { phoneNumbers } = smsSendMock.mock.calls[0][0]
+    expect(phoneNumbers).toContain(primaryManager1.phone)
+  })
+
+  it('should not authenticated user be able to create a chat for location with disabled chat option', async () => {
+    const location = await createLocation({
+      organization: primaryLocation,
+      managers: [primaryManager1.id],
+      isChatAvailable: false,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(
+        `/api/chats/location/${location.id}/promotion/${primaryPromotion.id}`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt1}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not authenticated user be able to create a second chat for location and promotion', async () => {
+    await createChat({
+      users: [primaryUser1.id],
+      location: primaryLocation.id,
+      promotion: primaryPromotion.id,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(
+        `/api/chats/location/${primaryLocation.id}/promotion/${primaryPromotion.id}`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt1}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not authenticated user be able to create a second chat for the same location and promotion', async () => {
+    await createChat({
+      users: [primaryUser1.id],
+      location: primaryLocation.id,
+      promotion: primaryPromotion.id,
+    })
+
+    await request(strapi.server.httpServer)
+      .post(
+        `/api/chats/location/${primaryLocation.id}/promotion/${primaryPromotion.id}`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt1}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it('should not authenticated user be able to create a  chat for location and promotion from different orgs', async () => {
+    const promotion = await createPromotion()
+    const location = await createLocation()
+
+    await request(strapi.server.httpServer)
+      .post(`/api/chats/location/${location.id}/promotion/${promotion.id}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt1}`)
       .expect('Content-Type', /json/)
       .expect(400)
   })

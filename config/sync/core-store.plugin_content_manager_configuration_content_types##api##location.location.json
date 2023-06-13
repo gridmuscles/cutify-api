@@ -233,16 +233,16 @@
           "sortable": false
         }
       },
-      "privatePhone": {
+      "isChatAvailable": {
         "edit": {
-          "label": "privatePhone",
+          "label": "isChatAvailable",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "privatePhone",
+          "label": "isChatAvailable",
           "searchable": true,
           "sortable": true
         }
@@ -277,7 +277,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -335,14 +334,24 @@
         ],
         [
           {
+            "name": "workhours_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "workhours_ua",
             "size": 12
           }
         ],
         [
           {
-            "name": "workhours_ru",
-            "size": 12
+            "name": "isChatAvailable",
+            "size": 4
+          },
+          {
+            "name": "managers",
+            "size": 4
           }
         ],
         [
@@ -354,18 +363,9 @@
             "name": "longitude",
             "size": 4
           }
-        ],
-        [
-          {
-            "name": "managers",
-            "size": 6
-          },
-          {
-            "name": "privatePhone",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "createdAt", "updatedAt", "city"]
     }
   },
   "type": "object",

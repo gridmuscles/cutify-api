@@ -6,6 +6,9 @@
 
 const { createCoreService } = require('@strapi/strapi').factories
 
+const { getCouponListPdf } = require('../../../utils/get-coupon-list-pdf.js')
+const { translateEntity } = require('../../../utils/translate-entity.js')
+
 module.exports = createCoreService('api::coupon.coupon', () => ({
   async create(ctx) {
     ctx.data = {
@@ -18,36 +21,183 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     return super.create(ctx)
   },
 
-  async verify(ctx) {
-    const coupon = await strapi
-      .service('api::coupon.coupon')
-      .findOne(ctx.params.id, {
-        populate: {
+  async verifyAsManager({ uuidList, managerId }) {
+    const locations = await strapi.entityService.findMany(
+      'api::location.location',
+      {
+        filters: {
+          managers: {
+            id: managerId,
+          },
+          organization: {
+            id: {
+              $notNull: true,
+            },
+          },
           promotion: {
-            populate: {
-              organization: {
-                populate: {
-                  managers: {
-                    fields: ['id'],
-                  },
-                },
-              },
+            dateTimeUntil: {
+              $gte: new Date().toISOString(),
             },
           },
         },
-      })
+        populate: {
+          organization: true,
+        },
+      }
+    )
+
+    if (!locations.length) {
+      throw new Error()
+    }
+
+    const organization = locations[0].organization
 
     if (
-      !coupon.promotion.organization.managers.some(
-        ({ id }) => id === ctx.state.user.id
-      ) ||
-      coupon.state === 'verified'
+      locations.some((location) => location.organization.id !== organization.id)
     ) {
       throw new Error()
     }
 
-    return strapi.service('api::coupon.coupon').update(ctx.params.id, {
-      data: { state: 'verified' },
+    const coupons = await strapi.db.query('api::coupon.coupon').findMany({
+      where: {
+        uuid: {
+          $in: uuidList,
+        },
+        state: 'active',
+        promotion: {
+          organization: { id: organization.id },
+        },
+      },
+    })
+
+    if (coupons.length !== uuidList.length) {
+      throw new Error()
+    }
+
+    return this.verifyCouponList({ uuidList })
+  },
+
+  async verifyWithCode({ uuidList, code }) {
+    const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+      filters: {
+        state: 'active',
+        uuid: {
+          $in: uuidList,
+        },
+        promotion: {
+          id: {
+            $notNull: true,
+          },
+          dateTimeUntil: {
+            $gte: new Date().toISOString(),
+          },
+          confirmationCode: code,
+        },
+      },
+      populate: {
+        promotion: true,
+      },
+    })
+
+    if (coupons.length !== uuidList.length) {
+      throw new Error()
+    }
+
+    const promotion = coupons[0].promotion
+    if (coupons.some((coupon) => coupon.promotion.id !== promotion.id)) {
+      throw new Error()
+    }
+
+    return this.verifyCouponList({ uuidList })
+  },
+
+  async verifyWithReceipt({ uuidList, receipt }) {
+    const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+      filters: {
+        state: 'active',
+        uuid: {
+          $in: uuidList,
+        },
+        promotion: {
+          id: {
+            $notNull: true,
+          },
+          dateTimeUntil: {
+            $gte: new Date().toISOString(),
+          },
+        },
+      },
+      populate: {
+        promotion: true,
+      },
+    })
+
+    if (coupons.length !== uuidList.length) {
+      throw new Error()
+    }
+
+    const promotion = coupons[0].promotion
+    if (coupons.some((coupon) => coupon.promotion.id !== promotion.id)) {
+      throw new Error()
+    }
+
+    await this.verifyCouponList({ uuidList })
+
+    await strapi.entityService.update('api::receipt.receipt', receipt.id, {
+      data: {
+        coupons: coupons.map((coupon) => coupon.id),
+      },
+    })
+  },
+
+  async verifyCouponList({ uuidList, receiptId }) {
+    await strapi.db.query('api::coupon.coupon').updateMany({
+      where: {
+        uuid: {
+          $in: uuidList,
+        },
+      },
+      data: {
+        state: 'verified',
+        receipt: receiptId,
+      },
+    })
+  },
+
+  async generateCouponListPdf({ uuidList, origin, locale }) {
+    const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
+      filters: {
+        uuid: { $in: uuidList },
+      },
+      populate: {
+        promotion: true,
+      },
+    })
+
+    if (!coupons.length) {
+      throw new Error()
+    }
+
+    const { coupon } = await strapi.entityService.findMany(
+      'api::static-pages.static-pages',
+      {
+        filters: {
+          slug: 'coupon',
+        },
+        populate: {
+          coupon: true,
+        },
+      }
+    )
+
+    const translatedTerms = translateEntity(coupon, locale)
+    const translatedCoupons = translateEntity(coupons, locale)
+
+    return getCouponListPdf({
+      coupons: translatedCoupons,
+      terms: translatedTerms,
+      origin,
+      locale,
     })
   },
 }))

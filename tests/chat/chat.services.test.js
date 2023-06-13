@@ -4,8 +4,7 @@ const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 const { createUser } = require('../user/user.factory')
 const { createChat, clearChats } = require('../chat/chat.factory')
 const { createMessage } = require('../message/message.factory')
-const { createOrganization } = require('../organization/organization.factory')
-const { createPromotion } = require('../promotion/promotion.factory')
+const { createLocation } = require('../location/location.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -29,16 +28,14 @@ describe('Chat services', () => {
       const [user3] = await createUser({ type: 'authenticated' })
       const [manager1] = await createUser({ type: 'manager' })
 
-      const organization = await createOrganization({
+      const location = await createLocation({
+        isChatAvailable: true,
         managers: [manager1.id],
       })
-      const promotion = await createPromotion({
-        organization: organization.id,
-        isChatAvailable: true,
-      })
+
       const chat1 = await createChat({
         users: [user1.id, user2.id, user3.id],
-        promotion: promotion.id,
+        location: location.id,
       })
 
       await createMessage({
@@ -89,16 +86,14 @@ describe('Chat services', () => {
       const [user3] = await createUser({ type: 'authenticated' })
       const [manager1] = await createUser({ type: 'manager' })
 
-      const organization = await createOrganization({
+      const location = await createLocation({
+        isChatAvailable: true,
         managers: [manager1.id],
       })
-      const promotion = await createPromotion({
-        organization: organization.id,
-        isChatAvailable: true,
-      })
+
       const chat1 = await createChat({
         users: [user1.id, user2.id, user3.id],
-        promotion: promotion.id,
+        location: location.id,
       })
 
       await createMessage({
@@ -125,16 +120,14 @@ describe('Chat services', () => {
       const [user3] = await createUser({ type: 'authenticated' })
       const [manager1] = await createUser({ type: 'manager' })
 
-      const organization = await createOrganization({
+      const location = await createLocation({
+        isChatAvailable: true,
         managers: [manager1.id],
       })
-      const promotion = await createPromotion({
-        organization: organization.id,
-        isChatAvailable: true,
-      })
+
       const chat1 = await createChat({
         users: [user1.id, user2.id, user3.id],
-        promotion: promotion.id,
+        location: location.id,
       })
 
       await createMessage({
@@ -159,16 +152,14 @@ describe('Chat services', () => {
       const [user3] = await createUser({ type: 'authenticated' })
       const [manager1] = await createUser({ type: 'manager' })
 
-      const organization = await createOrganization({
+      const location = await createLocation({
+        isChatAvailable: true,
         managers: [manager1.id],
       })
-      const promotion = await createPromotion({
-        organization: organization.id,
-        isChatAvailable: true,
-      })
+
       const chat1 = await createChat({
         users: [user1.id, user2.id, user3.id],
-        promotion: promotion.id,
+        location: location.id,
       })
 
       await createMessage({
@@ -179,7 +170,7 @@ describe('Chat services', () => {
 
       const chat2 = await createChat({
         users: [user1.id],
-        promotion: promotion.id,
+        location: location.id,
       })
 
       await createMessage({
@@ -208,16 +199,14 @@ describe('Chat services', () => {
       const [user3] = await createUser({ type: 'authenticated' })
       const [manager1] = await createUser({ type: 'manager' })
 
-      const organization = await createOrganization({
+      const location = await createLocation({
+        isChatAvailable: true,
         managers: [manager1.id],
       })
-      const promotion = await createPromotion({
-        organization: organization.id,
-        isChatAvailable: true,
-      })
+
       const chat1 = await createChat({
         users: [user1.id, user2.id, user3.id],
-        promotion: promotion.id,
+        location: location.id,
       })
 
       await createMessage({

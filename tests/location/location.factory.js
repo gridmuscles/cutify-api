@@ -16,6 +16,9 @@ const mockLocationData = (data = {}) => {
     workhours_pl: `pl workhours for location-${slugSuffix}`,
     workhours_ua: `ua workhours for location-${slugSuffix}`,
     workhours_ru: `ru workhours for location-${slugSuffix}`,
+    managers: [],
+    messages: [],
+    users: [],
     ...data,
   }
 }

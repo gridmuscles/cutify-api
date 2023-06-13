@@ -13,6 +13,7 @@ const { createOrganization } = require('../organization/organization.factory')
 const { createCategory } = require('../category/category.factory')
 const { createCoupon } = require('../coupon/coupon.factory')
 const { createMessage } = require('../message/message.factory')
+const { createLocation } = require('../location/location.factory')
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -212,8 +213,7 @@ describe('Users', () => {
     let primaryUserJwt1
     let primaryManager1
     let primaryManagerJwt1
-    let primaryPromotion
-    let primaryOrganization
+    let primaryLocation
 
     beforeAll(async () => {
       const [user, userJwt] = await createUser({ type: 'authenticated' })
@@ -224,11 +224,8 @@ describe('Users', () => {
       primaryManager1 = manager
       primaryManagerJwt1 = managerJwt
 
-      primaryOrganization = await createOrganization({
+      primaryLocation = await createLocation({
         managers: [primaryManager1.id],
-      })
-      primaryPromotion = await createPromotion({
-        organization: primaryOrganization.id,
         isChatAvailable: true,
       })
 
@@ -237,9 +234,9 @@ describe('Users', () => {
       })
       const chat = await createChat({
         users: [primaryUser1.id],
-        promotion: primaryPromotion.id,
+        location: primaryLocation.id,
       })
-      await createChat({ users: [], promotion: primaryPromotion.id })
+      await createChat({ users: [], location: primaryLocation.id })
 
       await createMessage({
         user: primaryUser1.id,

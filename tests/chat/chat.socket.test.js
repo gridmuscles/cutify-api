@@ -6,6 +6,7 @@ const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
 const { createChat } = require('../chat/chat.factory')
 const { createUser } = require('../user/user.factory')
+const { createLocation } = require('../location/location.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
 const { createOrganization } = require('../organization/organization.factory')
 
@@ -33,8 +34,7 @@ describe('Chat', () => {
     let primaryManager1
     let primaryManagerJwt1
 
-    let primaryPromotion
-    let primaryOrganization
+    let primaryLocation
 
     beforeAll((done) => {
       const { host, port } = strapi.config.get('server')
@@ -55,29 +55,17 @@ describe('Chat', () => {
           primaryManagerJwt1 = jwt3
         })
         .then(() =>
-          Promise.all([
-            createOrganization({
-              managers: [primaryManager1.id],
-            }),
-          ])
+          createLocation({
+            isChatAvailable: true,
+            managers: [primaryManager1.id],
+          })
         )
-        .then(([organization]) => {
-          primaryOrganization = organization
-        })
-        .then(() =>
-          Promise.all([
-            createPromotion({
-              organization: primaryOrganization.id,
-              isChatAvailable: true,
-            }),
-          ])
-        )
-        .then(([promotion]) => {
-          primaryPromotion = promotion
+        .then((location) => {
+          primaryLocation = location
         })
         .then(() => {
           return createChat({
-            promotion: primaryPromotion.id,
+            location: primaryLocation.id,
             messages: [],
             users: [primaryUser1],
           })
@@ -88,19 +76,19 @@ describe('Chat', () => {
         .then(() => {
           setTimeout(done, 300)
 
-          clientSocket1 = new client(`http://${host}:${port}/promotion-chats`, {
+          clientSocket1 = new client(`http://${host}:${port}/location-chats`, {
             auth: {
               token: `${primaryUserJwt1}`,
             },
           })
 
-          clientSocket2 = new client(`http://${host}:${port}/promotion-chats`, {
+          clientSocket2 = new client(`http://${host}:${port}/location-chats`, {
             auth: {
               token: `${primaryUserJwt2}`,
             },
           })
 
-          clientSocket3 = new client(`http://${host}:${port}/promotion-chats`, {
+          clientSocket3 = new client(`http://${host}:${port}/location-chats`, {
             auth: {
               token: `${primaryManagerJwt1}`,
             },
@@ -122,45 +110,54 @@ describe('Chat', () => {
     })
 
     it('should authenticated user be able to receive chats', (done) => {
-      createPromotion({
-        organization: primaryOrganization.id,
-        isChatAvailable: true,
-      })
-        .then((promotion) => {
+      createOrganization()
+        .then((organization) =>
+          Promise.all([
+            createLocation({
+              isChatAvailable: true,
+              managers: [primaryManager1.id],
+              organization,
+            }),
+            createPromotion({ organization }),
+          ])
+        )
+        .then(([location, promotion]) => {
           return request(strapi.server.httpServer)
-            .post(`/api/promotions/${promotion.id}/chats`)
+            .post(
+              `/api/chats/location/${location.id}/promotion/${promotion.id}`
+            )
             .set('accept', 'application/json')
             .set('Content-Type', 'application/json')
             .set('Authorization', `Bearer ${primaryUserJwt1}`)
             .expect('Content-Type', /json/)
             .expect(200)
-        })
-        .then(() => {
-          setTimeout(done, 1000)
+            .then(() => {
+              setTimeout(done, 1000)
 
-          clientSocket1.on(
-            'receiveChatSuccess',
-            async ({ data: { attributes } }) => {
-              expect(attributes.users[0]).toBe(primaryUser1.id)
-            }
-          )
+              clientSocket1.on(
+                'receiveChatSuccess',
+                async ({ data: { attributes } }) => {
+                  expect(attributes.users[0]).toBe(primaryUser1.id)
+                }
+              )
 
-          clientSocket2.on('receiveChatSuccess', async () => {
-            throw new Error(
-              `receiveChatMessage should not be emitted for clientSocket3`
-            )
-          })
+              clientSocket2.on('receiveChatSuccess', async () => {
+                throw new Error(
+                  `receiveChatMessage should not be emitted for clientSocket3`
+                )
+              })
 
-          clientSocket3.on(
-            'receiveChatSuccess',
-            async ({ data: { attributes } }) => {
-              expect(attributes.promotion.data.id).toBe(primaryPromotion.id)
-            }
-          )
-        })
-        .catch((err) => {
-          console.log(err)
-          done
+              clientSocket3.on(
+                'receiveChatSuccess',
+                async ({ data: { attributes } }) => {
+                  expect(attributes.location.data.id).toBe(primaryLocation.id)
+                }
+              )
+            })
+            .catch((err) => {
+              console.log(err)
+              done
+            })
         })
     })
 

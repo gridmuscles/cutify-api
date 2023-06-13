@@ -161,21 +161,6 @@
           "sortable": true
         }
       },
-      "organizations": {
-        "edit": {
-          "label": "organizations",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "organizations",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "phone": {
         "edit": {
           "label": "phone",
@@ -261,10 +246,6 @@
         [
           {
             "name": "phone",
-            "size": 6
-          },
-          {
-            "name": "organizations",
             "size": 6
           }
         ]

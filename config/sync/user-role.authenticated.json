@@ -22,6 +22,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.createLocationPromotionChat"
+    },
+    {
       "action": "api::chat.chat.createMessage"
     },
     {
@@ -29,6 +32,18 @@
     },
     {
       "action": "api::city.city.find"
+    },
+    {
+      "action": "api::coupon.coupon.downloadPdf"
+    },
+    {
+      "action": "api::coupon.coupon.findByPromotionAndUuidList"
+    },
+    {
+      "action": "api::coupon.coupon.verifyWithCode"
+    },
+    {
+      "action": "api::coupon.coupon.verifyWithReceipt"
     },
     {
       "action": "api::location.location.find"
@@ -47,9 +62,6 @@
     },
     {
       "action": "api::promotion.promotion.completeAuction"
-    },
-    {
-      "action": "api::promotion.promotion.createPromotionChat"
     },
     {
       "action": "api::promotion.promotion.find"

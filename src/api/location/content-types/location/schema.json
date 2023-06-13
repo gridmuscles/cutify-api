@@ -68,9 +68,9 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
     },
-    "privatePhone": {
-      "type": "string",
-      "private": true
+    "isChatAvailable": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
