@@ -157,7 +157,12 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["active", "finished"]
+      "enum": ["active", "finished"],
+      "default": "active"
+    },
+    "expirationDate": {
+      "type": "date",
+      "required": true
     }
   }
 }

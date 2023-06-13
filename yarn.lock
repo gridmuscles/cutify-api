@@ -2759,10 +2759,10 @@
     redux "^4.2.1"
     yup "^0.32.9"
 
-"@strapi/plugin-seo@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-1.8.0.tgz#cd6d9e3d00d3c15577d8d533cc7ef9206ab47040"
-  integrity sha512-o3llsICF9gjTALQV7D9k/Q4XblYGlsI3Z+QRsM0tsaU890ROZqAjeloZ4sxfPaX7NlrGPuSslDMPxlnywz3jow==
+"@strapi/plugin-seo@1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-1.9.1.tgz#0d6d7ad8ad2ae20a36c29ff028bcb7f8562262da"
+  integrity sha512-lOkyhrtuMIT9kn/g90aVa1iNE/BPIuNfvM5YZEIaLdUVuXogJp5xXT89YxMj9WFL2TaMQuM4zJgls2P1y79AOw==
   dependencies:
     date-fns "^2.29.3"
     eslint-plugin-react-hooks "^4.3.0"
@@ -2832,7 +2832,7 @@
   resolved "https://registry.yarnpkg.com/@strapi/provider-audit-logs-local/-/provider-audit-logs-local-4.11.0.tgz#36730817865fa9ad836b00ae7886eeedb31943cf"
   integrity sha512-6FXcyELvWDPuqqTIqk+2k9Axoq2TD8SrWHJRhaYgi1PiwDMEOK66x1c2LtCuybiqFzK9+UIBEFeDBMhW7+RMQA==
 
-"@strapi/provider-email-sendgrid@^4.11.0":
+"@strapi/provider-email-sendgrid@4.11.0":
   version "4.11.0"
   resolved "https://registry.yarnpkg.com/@strapi/provider-email-sendgrid/-/provider-email-sendgrid-4.11.0.tgz#de09a6552b9b64ab37da03a7af0c73029a55977c"
   integrity sha512-IELgOuihFw+99Uf88O49epbW7NinlXWE9UjuZRyUEz/zyBeQSARMK2moxbDjhJgFiX5DP+2LrQjSvZ15Z4qAHA==
@@ -2848,7 +2848,7 @@
     "@strapi/utils" "4.11.0"
     sendmail "^1.6.1"
 
-"@strapi/provider-upload-cloudinary@^4.11.0":
+"@strapi/provider-upload-cloudinary@4.11.0":
   version "4.11.0"
   resolved "https://registry.yarnpkg.com/@strapi/provider-upload-cloudinary/-/provider-upload-cloudinary-4.11.0.tgz#56483ed66f894f33cf13e41b97a31259512a382d"
   integrity sha512-OomYz+Qil5/2rmwAsyeLmxUICSTnSI1w3Y4TiROiCKyDIqJGVlYC4KjeOZ6PIV7yNaljeuDq+kDRodMUor5Z7Q==

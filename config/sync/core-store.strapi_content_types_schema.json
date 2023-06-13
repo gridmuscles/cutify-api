@@ -2778,6 +2778,10 @@
           "target": "api::receipt.receipt",
           "inversedBy": "coupons"
         },
+        "dateTimeUntil": {
+          "type": "date",
+          "required": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2871,6 +2875,10 @@
             "relation": "manyToOne",
             "target": "api::receipt.receipt",
             "inversedBy": "coupons"
+          },
+          "dateTimeUntil": {
+            "type": "date",
+            "required": true
           }
         },
         "kind": "collectionType"
@@ -3497,7 +3505,12 @@
         },
         "status": {
           "type": "enumeration",
-          "enum": ["active", "finished"]
+          "enum": ["active", "finished"],
+          "default": "active"
+        },
+        "expirationDate": {
+          "type": "date",
+          "required": true
         },
         "createdAt": {
           "type": "datetime"
@@ -3690,7 +3703,12 @@
           },
           "status": {
             "type": "enumeration",
-            "enum": ["active", "finished"]
+            "enum": ["active", "finished"],
+            "default": "active"
+          },
+          "expirationDate": {
+            "type": "date",
+            "required": true
           }
         },
         "kind": "collectionType"

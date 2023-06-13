@@ -4,6 +4,7 @@ const mockCouponData = (data = {}) => {
     uuid: `${slugSuffix}`,
     email: `${slugSuffix}@test.com`,
     state: 'active',
+    dateTimeUntil: '2100-04-30 23:59:59',
     ...data,
   }
 }

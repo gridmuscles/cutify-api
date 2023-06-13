@@ -75,7 +75,7 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
       const { uuidList, code } = ctx.request.body.data
 
       if (!uuidList || !code) {
-        throw new Error('UUID List is required.')
+        throw new Error('UUID List and code is required.')
       }
 
       await strapi

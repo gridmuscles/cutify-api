@@ -190,7 +190,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -395,7 +397,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
@@ -462,7 +465,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
@@ -523,7 +527,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []

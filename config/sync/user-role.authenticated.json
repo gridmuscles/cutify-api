@@ -31,6 +31,18 @@
       "action": "api::city.city.find"
     },
     {
+      "action": "api::coupon.coupon.downloadPdf"
+    },
+    {
+      "action": "api::coupon.coupon.findByPromotionAndUuidList"
+    },
+    {
+      "action": "api::coupon.coupon.verifyWithCode"
+    },
+    {
+      "action": "api::coupon.coupon.verifyWithReceipt"
+    },
+    {
       "action": "api::location.location.find"
     },
     {

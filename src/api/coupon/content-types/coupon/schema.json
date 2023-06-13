@@ -65,6 +65,9 @@
       "relation": "manyToOne",
       "target": "api::receipt.receipt",
       "inversedBy": "coupons"
+    },
+    "dateTimeUntil": {
+      "type": "date"
     }
   }
 }

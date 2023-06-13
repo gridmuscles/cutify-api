@@ -351,7 +351,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "receipt"
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -380,7 +381,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "receipt"
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -403,7 +405,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "receipt"
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -628,7 +631,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
@@ -701,7 +705,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
@@ -762,7 +767,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
