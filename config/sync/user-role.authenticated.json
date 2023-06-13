@@ -22,6 +22,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.createLocationPromotionChat"
+    },
+    {
       "action": "api::chat.chat.createMessage"
     },
     {

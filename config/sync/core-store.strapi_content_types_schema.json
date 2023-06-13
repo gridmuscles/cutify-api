@@ -2779,8 +2779,7 @@
           "inversedBy": "coupons"
         },
         "dateTimeUntil": {
-          "type": "date",
-          "required": true
+          "type": "date"
         },
         "createdAt": {
           "type": "datetime"
@@ -2877,8 +2876,7 @@
             "inversedBy": "coupons"
           },
           "dateTimeUntil": {
-            "type": "date",
-            "required": true
+            "type": "date"
           }
         },
         "kind": "collectionType"
