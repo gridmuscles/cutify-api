@@ -485,16 +485,16 @@
           "sortable": false
         }
       },
-      "confirmationCode": {
+      "status": {
         "edit": {
-          "label": "confirmationCode",
+          "label": "status",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "confirmationCode",
+          "label": "status",
           "searchable": true,
           "sortable": true
         }
@@ -707,14 +707,18 @@
         ],
         [
           {
-            "name": "confirmationCode",
-            "size": 6
+            "name": "seo",
+            "size": 12
           }
         ],
         [
           {
-            "name": "seo",
-            "size": 12
+            "name": "isChatAvailable",
+            "size": 4
+          },
+          {
+            "name": "status",
+            "size": 6
           }
         ]
       ]

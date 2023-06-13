@@ -153,8 +153,11 @@
     },
     "confirmationCode": {
       "type": "string",
-      "private": true,
-      "default": "000000"
+      "private": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "finished"]
     }
   }
 }

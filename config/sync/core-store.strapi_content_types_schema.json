@@ -3491,10 +3491,9 @@
         "description_ua": {
           "type": "richtext"
         },
-        "confirmationCode": {
-          "type": "string",
-          "private": true,
-          "default": "000000"
+        "status": {
+          "type": "enumeration",
+          "enum": ["active", "finished"]
         },
         "createdAt": {
           "type": "datetime"
@@ -3681,10 +3680,9 @@
           "description_ua": {
             "type": "richtext"
           },
-          "confirmationCode": {
-            "type": "string",
-            "private": true,
-            "default": "000000"
+          "status": {
+            "type": "enumeration",
+            "enum": ["active", "finished"]
           }
         },
         "kind": "collectionType"

@@ -3,6 +3,7 @@ const { ERROR_CODES } = require('../../src/utils/const')
 const mockPromotionData = (data = {}) => {
   const slugSuffix = Math.round(Math.random() * 10000).toString()
   return {
+    status: 'active',
     indexTitle: 'index Pizza Mondays',
     indexTitle_pl: 'index Poniedziałki Pizzy',
     indexTitle_ua: 'index Понеділки Піци',
