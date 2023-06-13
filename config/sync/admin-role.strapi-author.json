@@ -206,6 +206,7 @@
           "latitude",
           "longitude",
           "phone",
+          "publicPhone",
           "organization",
           "isRU",
           "isPL",
@@ -231,6 +232,7 @@
           "latitude",
           "longitude",
           "phone",
+          "publicPhone",
           "organization",
           "isRU",
           "isPL",
@@ -256,6 +258,7 @@
           "latitude",
           "longitude",
           "phone",
+          "publicPhone",
           "organization",
           "isRU",
           "isPL",
@@ -397,8 +400,7 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
-          "expirationDate"
+          "status"
         ]
       },
       "conditions": []
@@ -465,8 +467,7 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
-          "expirationDate"
+          "status"
         ]
       },
       "conditions": []
@@ -527,8 +528,7 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
-          "expirationDate"
+          "status"
         ]
       },
       "conditions": []

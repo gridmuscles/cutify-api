@@ -513,20 +513,6 @@
           "sortable": true
         }
       },
-      "expirationDate": {
-        "edit": {
-          "label": "expirationDate",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "expirationDate",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -557,6 +543,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "size", "order", "title_ru", "auction", "organization"],
       "edit": [
         [
           {
@@ -575,10 +562,6 @@
         [
           {
             "name": "discountTo",
-            "size": 4
-          },
-          {
-            "name": "expirationDate",
             "size": 4
           },
           {
@@ -750,8 +733,7 @@
             "size": 12
           }
         ]
-      ],
-      "list": ["id", "size", "order", "title_ru", "auction", "organization"]
+      ]
     }
   },
   "type": "object",

@@ -2918,6 +2918,9 @@
         "phone": {
           "type": "text"
         },
+        "publicPhone": {
+          "type": "text"
+        },
         "organization": {
           "type": "relation",
           "relation": "manyToOne",
@@ -3016,6 +3019,9 @@
             "type": "float"
           },
           "phone": {
+            "type": "text"
+          },
+          "publicPhone": {
             "type": "text"
           },
           "organization": {
@@ -3506,10 +3512,6 @@
           "enum": ["active", "finished"],
           "default": "active"
         },
-        "expirationDate": {
-          "type": "date",
-          "required": true
-        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3703,10 +3705,6 @@
             "type": "enumeration",
             "enum": ["active", "finished"],
             "default": "active"
-          },
-          "expirationDate": {
-            "type": "date",
-            "required": true
           }
         },
         "kind": "collectionType"
