@@ -155,6 +155,10 @@
     },
     "description_ua": {
       "type": "richtext"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "finished"]
     }
   }
 }
