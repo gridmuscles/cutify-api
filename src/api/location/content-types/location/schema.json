@@ -26,6 +26,9 @@
     "phone": {
       "type": "text"
     },
+    "publicPhone": {
+      "type": "text"
+    },
     "organization": {
       "type": "relation",
       "relation": "manyToOne",
