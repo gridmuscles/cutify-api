@@ -697,7 +697,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "confirmationCode"
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []
@@ -769,7 +770,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "confirmationCode"
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []
@@ -829,7 +831,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "confirmationCode"
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []

@@ -190,8 +190,7 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua",
-          "receipt"
+          "description_ua"
         ]
       },
       "conditions": []
@@ -369,6 +368,24 @@
           "auction",
           "size",
           "order",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
           "indexTitle",
           "indexTitle_pl",
           "indexTitle_ru",
@@ -377,7 +394,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "confirmationCode"
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []
@@ -417,6 +435,24 @@
           "auction",
           "size",
           "order",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
           "indexTitle",
           "indexTitle_pl",
           "indexTitle_ru",
@@ -425,7 +461,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "confirmationCode"
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []
@@ -459,6 +496,24 @@
           "auction",
           "size",
           "order",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.metaImage",
+          "seo.metaSocial.socialNetwork",
+          "seo.metaSocial.title",
+          "seo.metaSocial.description",
+          "seo.metaSocial.image",
+          "seo.keywords",
+          "seo.metaRobots",
+          "seo.structuredData",
+          "seo.metaViewport",
+          "seo.canonicalURL",
+          "seo.metaTitle_ru",
+          "seo.metaTitle_pl",
+          "seo.metaTitle_ua",
+          "seo.metaDescription_ru",
+          "seo.metaDescription_pl",
+          "seo.metaDescription_ua",
           "indexTitle",
           "indexTitle_pl",
           "indexTitle_ru",
@@ -467,7 +522,8 @@
           "description_pl",
           "description_ru",
           "description_ua",
-          "confirmationCode"
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []

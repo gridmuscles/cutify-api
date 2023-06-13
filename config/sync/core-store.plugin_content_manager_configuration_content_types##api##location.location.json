@@ -359,9 +359,7 @@
           {
             "name": "managers",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "isChatAvailable",
             "size": 4
