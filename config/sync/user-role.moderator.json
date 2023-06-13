@@ -25,6 +25,9 @@
       "action": "api::coupon.coupon.find"
     },
     {
+      "action": "api::coupon.coupon.findByPromotionAndUuidList"
+    },
+    {
       "action": "api::coupon.coupon.findOne"
     },
     {
@@ -53,6 +56,9 @@
     },
     {
       "action": "api::promotion.promotion.verifyAuction"
+    },
+    {
+      "action": "api::receipt.receipt.find"
     },
     {
       "action": "api::static-pages.static-pages.findOne"

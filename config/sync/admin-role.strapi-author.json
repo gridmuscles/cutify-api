@@ -190,7 +190,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -215,7 +217,7 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "privatePhone"
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -240,7 +242,7 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "privatePhone"
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -265,7 +267,7 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "privatePhone"
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -283,7 +285,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -307,7 +308,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -331,7 +331,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -369,7 +368,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -397,7 +395,10 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode",
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
@@ -435,7 +436,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -463,7 +463,10 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode",
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []
@@ -495,7 +498,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -523,7 +525,10 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode",
+          "status",
+          "expirationDate"
         ]
       },
       "conditions": []

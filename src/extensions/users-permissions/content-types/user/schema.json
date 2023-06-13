@@ -66,12 +66,6 @@
       "minLength": 3,
       "required": true
     },
-    "organizations": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::organization.organization",
-      "mappedBy": "managers"
-    },
     "phone": {
       "type": "string",
       "required": false,

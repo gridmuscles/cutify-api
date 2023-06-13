@@ -8,7 +8,6 @@ const { createUser } = require('../user/user.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
 const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
 const { createAuction } = require('../auction/auction.factory')
-const { createChat } = require('../chat/chat.factory')
 const { createLocation } = require('../location/location.factory')
 const { createBid } = require('../bid/bid.factory')
 
@@ -25,7 +24,6 @@ afterAll(async () => {
 describe('Promotions', () => {
   let authenticatedUser
   let authenticatedUserJwt
-  let managerUser
   let managerUserJwt
 
   let primaryCategory
@@ -42,17 +40,17 @@ describe('Promotions', () => {
     authenticatedUserJwt = jwt
 
     const [manager, jwt2] = await createUser({ type: 'manager' })
-    managerUser = manager
     managerUserJwt = jwt2
 
     primaryCategory = await createCategory()
     const category2 = await createCategory()
+
     primaryOrganization = await createOrganization({
       categories: [primaryCategory.id],
-      managers: [manager.id],
     })
     primaryLocation = await createLocation({
       organization: primaryOrganization.id,
+      managers: [manager.id],
     })
     primaryPromotion = await createPromotion({
       categories: [primaryCategory.id],
@@ -142,9 +140,10 @@ describe('Promotions', () => {
     } = emailSendMock.mock.calls[0][0]
     expect(to).toBe(authenticatedUser.email)
     expect(link.split('[uuid][$in]')).toHaveLength(11)
+    expect(link.includes('[promotion][id]')).toBe(true)
   })
 
-  it('should be an error if user exceed the total user limit of coupons', async () => {
+  it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
     const emailSendMock = (strapi.plugin('email').service('email').send = jest
       .fn()
       .mockReturnValue(true))
@@ -159,7 +158,7 @@ describe('Promotions', () => {
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .send({
-        email: 'user1@gmail.com',
+        email: 'USER1@gmail.com',
         count: 10,
       })
       .expect('Content-Type', /json/)
@@ -455,78 +454,6 @@ describe('Promotions', () => {
       .expect(403)
   })
 
-  it('should authenticated user be able to create a chat for promotion', async () => {
-    const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
-      .fn()
-      .mockReturnValue([]))
-
-    const promotion = await createPromotion({
-      organization: primaryOrganization.id,
-      isChatAvailable: true,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${promotion.id}/chats`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.messages.data).toHaveLength(0)
-        expect(data.attributes.users.data).toHaveLength(1)
-        expect(data.attributes.promotion.data.id).toBe(promotion.id)
-        expect(data.attributes.users.data[0].attributes.name).toBe(
-          authenticatedUser.name
-        )
-      })
-
-    expect(smsSendMock).toBeCalledTimes(1)
-
-    const { phoneNumbers } = smsSendMock.mock.calls[0][0]
-    expect(phoneNumbers).toContain(managerUser.phone)
-  })
-
-  it('should not authenticated user be able to create a chat for promotion with disabled chat option', async () => {
-    const promotion = await createPromotion({
-      organization: primaryOrganization.id,
-      isChatAvailable: false,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${promotion.id}/chats`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should not authenticated user be able to create a second chat for promotion', async () => {
-    await createChat({
-      users: [authenticatedUser.id],
-      promotion: primaryPromotion.id,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${primaryPromotion.id}/chats`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should not manager user be able to create a chat for promotion', async () => {
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${primaryPromotion.id}/chats`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${managerUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(403)
-  })
-
   it('should manager user be able to get promotion coupons if its an org manager', async () => {
     const promotion = await createPromotion({
       categories: [primaryCategory.id],
@@ -547,6 +474,85 @@ describe('Promotions', () => {
         expect(data).toHaveLength(3)
       })
   })
+
+  it('should manager user be able to get promotions from organization only', async () => {
+    const [manager1, jwt2] = await createUser({ type: 'manager' })
+
+    const organization = await createOrganization({
+      categories: [primaryCategory.id],
+    })
+    await createLocation({
+      organization: organization.id,
+      managers: [manager1.id],
+    })
+
+    const promotion = await createPromotion({
+      categories: [primaryCategory.id],
+      organization: organization.id,
+    })
+
+    await createPromotion({
+      categories: [primaryCategory.id],
+    })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/manager`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt2}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(1)
+        expect(data[0].id).toBe(promotion.id)
+      })
+  })
+
+  it('should manager user be able to get promotion confirmation code', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/confirmation-code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${managerUserJwt}`)
+      .expect('Content-Type', /json/)
+      .then(({ body: { data } }) => {
+        expect(data.confirmationCode).toBe(primaryPromotion.confirmationCode)
+      })
+  })
+
+  it('should not manager user be able to get promotion confirmation code if another organization', async () => {
+    const [, jwt2] = await createUser({ type: 'manager' })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/confirmation-code`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt2}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+
+  it.each([
+    { type: 'public', code: 401 },
+    { type: 'authenticated', code: 403 },
+    { type: 'moderator', code: 403 },
+  ])(
+    'should not $type be able to get promotion confirmation code',
+    async ({ type, code }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/promotions/${primaryPromotion.id}/confirmation-code`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${jwt}`)
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
 
   it.each([
     { type: 'public', code: 401 },
