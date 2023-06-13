@@ -28,7 +28,7 @@ describe('Promotions', () => {
   let managerUser
   let managerUserJwt
 
-  let category
+  let primaryCategory
   let primaryOrganization
   let primaryLocation
   let primaryPromotion
@@ -45,21 +45,34 @@ describe('Promotions', () => {
     managerUser = manager
     managerUserJwt = jwt2
 
-    category = await createCategory()
+    primaryCategory = await createCategory()
+    const category2 = await createCategory()
     primaryOrganization = await createOrganization({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       managers: [manager.id],
     })
     primaryLocation = await createLocation({
       organization: primaryOrganization.id,
     })
     primaryPromotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       seo: { keywords: 'a,b,c' },
+      title: 'Company tytuł EN',
+      title_pl: 'Tytuł firmy PL',
+      title_ru: 'Tytuł компании RU',
+      title_ua: 'Tytuł компанії UA',
+    })
+    await createPromotion({
+      categories: [category2.id],
+      organization: primaryOrganization.id,
+      title: 'Company tytuł 2 EN',
+      title_pl: 'Tytuł firmy 2 PL',
+      title_ru: 'Tytuł компании 2 RU',
+      title_ua: 'Tytuł компанії 2 UA',
     })
     draftPromotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       publishedAt: null,
     })
@@ -67,7 +80,7 @@ describe('Promotions', () => {
     primaryAuction = await createAuction()
 
     auctionPromotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       auction: primaryAuction.id,
     })
@@ -184,7 +197,7 @@ describe('Promotions', () => {
   it('should guest be able to request promotion by slug with updated views number', async () => {
     const slug = 'promotion-1-slug'
     await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       slug,
     })
@@ -211,7 +224,7 @@ describe('Promotions', () => {
   it('should guest be able to request promotion by slug with the original views number', async () => {
     const slug = 'promotion-2-slug'
     await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       slug,
     })
@@ -252,7 +265,7 @@ describe('Promotions', () => {
 
   it('should guest be able to request promotion list and see coupons number of each promotion', async () => {
     const promotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
     })
 
@@ -270,6 +283,44 @@ describe('Promotions', () => {
         expect(data[data.length - 1].attributes.couponsCount).toBe(2)
       })
   })
+
+  it.each([
+    {
+      locale: 'en',
+      search: 'tytuł',
+      result: 1,
+      filters: `&filters[categories][id][$eq]=2`,
+    },
+    { locale: 'ru', search: 'tytuł', result: 2, filters: '' },
+    {
+      locale: 'ua',
+      search: 'tytuł',
+      result: 1,
+      filters: `&filters[categories][id][$eq]=2`,
+    },
+    { locale: 'pl', search: 'tytuł', result: 2, filters: '' },
+    { locale: 'en', search: 'UA', result: 0, filters: '' },
+    { locale: 'ru', search: 'UA', result: 0, filters: '' },
+    { locale: 'ua', search: 'UA', result: 2, filters: '' },
+    { locale: 'pl', search: 'UA', result: 0, filters: '' },
+  ])(
+    'should search title $company in $locale locale returns $result with filters: $filters',
+    async ({ locale, search, result, filters }) => {
+      await request(strapi.server.httpServer)
+        .get(
+          encodeURI(
+            `/api/promotions?search=${search}&locale=${locale}${filters}`
+          )
+        )
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(result)
+        })
+    }
+  )
 
   it('should guest be able to see a single populated draft promotion', async () => {
     await request(strapi.server.httpServer)
@@ -339,7 +390,7 @@ describe('Promotions', () => {
     })
 
     const promotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       auction: auction.id,
     })
@@ -365,7 +416,7 @@ describe('Promotions', () => {
     })
 
     const promotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       auction: auction.id,
     })
@@ -478,7 +529,7 @@ describe('Promotions', () => {
 
   it('should manager user be able to get promotion coupons if its an org manager', async () => {
     const promotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
     })
 
@@ -533,7 +584,7 @@ describe('Promotions', () => {
     })
 
     const promotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       auction: auction.id,
     })
@@ -565,7 +616,7 @@ describe('Promotions', () => {
     })
 
     const promotion = await createPromotion({
-      categories: [category.id],
+      categories: [primaryCategory.id],
       organization: primaryOrganization.id,
       auction: auction.id,
     })

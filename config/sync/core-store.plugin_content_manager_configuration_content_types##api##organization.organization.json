@@ -264,6 +264,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "title", "promotions", "managers"],
       "edit": [
         [
           {
@@ -300,10 +301,6 @@
           }
         ],
         [
-          {
-            "name": "managers",
-            "size": 6
-          },
           {
             "name": "categories",
             "size": 6
@@ -348,9 +345,14 @@
             "name": "promotions",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "managers",
+            "size": 6
+          }
         ]
-      ],
-      "list": ["id", "title", "promotions"]
+      ]
     }
   },
   "type": "object",

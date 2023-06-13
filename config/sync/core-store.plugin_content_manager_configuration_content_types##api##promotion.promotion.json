@@ -499,6 +499,20 @@
           "sortable": false
         }
       },
+      "status": {
+        "edit": {
+          "label": "status",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "status",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -609,10 +623,6 @@
           {
             "name": "categories",
             "size": 6
-          },
-          {
-            "name": "isChatAvailable",
-            "size": 4
           }
         ],
         [
@@ -667,12 +677,6 @@
         ],
         [
           {
-            "name": "seo",
-            "size": 12
-          }
-        ],
-        [
-          {
             "name": "indexTitle",
             "size": 6
           },
@@ -713,6 +717,22 @@
           {
             "name": "description_ua",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "seo",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "isChatAvailable",
+            "size": 4
+          },
+          {
+            "name": "status",
+            "size": 6
           }
         ]
       ]

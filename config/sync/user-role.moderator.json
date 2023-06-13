@@ -19,9 +19,6 @@
       "action": "api::category.category.find"
     },
     {
-      "action": "api::chat.chat.markAsRead"
-    },
-    {
       "action": "api::city.city.find"
     },
     {
