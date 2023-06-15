@@ -26,7 +26,10 @@
     "phone": {
       "type": "text"
     },
-    "publicPhone": {
+    "originalPhone": {
+      "type": "text"
+    },
+    "pin": {
       "type": "text"
     },
     "organization": {

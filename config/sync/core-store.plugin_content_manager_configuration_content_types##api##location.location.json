@@ -77,16 +77,30 @@
           "sortable": true
         }
       },
-      "publicPhone": {
+      "originalPhone": {
         "edit": {
-          "label": "publicPhone",
+          "label": "originalPhone",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "publicPhone",
+          "label": "originalPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "pin": {
+        "edit": {
+          "label": "pin",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "pin",
           "searchable": true,
           "sortable": true
         }
@@ -291,7 +305,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -306,7 +319,15 @@
         [
           {
             "name": "phone",
-            "size": 6
+            "size": 4
+          },
+          {
+            "name": "originalPhone",
+            "size": 4
+          },
+          {
+            "name": "pin",
+            "size": 4
           }
         ],
         [
@@ -378,14 +399,9 @@
             "name": "longitude",
             "size": 4
           }
-        ],
-        [
-          {
-            "name": "publicPhone",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "createdAt", "updatedAt", "city"]
     }
   },
   "type": "object",
