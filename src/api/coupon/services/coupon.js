@@ -164,7 +164,7 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     })
   },
 
-  async generateCouponListPdf({ uuidList, origin, locale }) {
+  async generateCouponListPdf({ uuidList, host, locale }) {
     const coupons = await strapi.entityService.findMany('api::coupon.coupon', {
       filters: {
         uuid: { $in: uuidList },
@@ -196,7 +196,7 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     return getCouponListPdf({
       coupons: translatedCoupons,
       terms: translatedTerms,
-      origin,
+      host,
       locale,
     })
   },

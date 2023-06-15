@@ -3,6 +3,7 @@
 const { parseISO, isAfter } = require('date-fns')
 const { ERROR_CODES } = require('../../../utils/const')
 const { getCouponListEmail } = require('../../../utils/email')
+const { getCouponListUrl } = require('../../../utils/dynamic-link')
 
 /**
  * promotion controller
@@ -15,6 +16,8 @@ module.exports = createCoreController(
   'api::promotion.promotion',
   ({ strapi }) => ({
     async requestCoupon(ctx) {
+      const config = strapi.config.get('server')
+
       const sanitizedQueryParams = await this.sanitizeQuery(ctx)
       ctx.request.query = sanitizedQueryParams
 
@@ -84,10 +87,14 @@ module.exports = createCoreController(
           getCouponListEmail({
             title: `${promotion.discountTo}% ${promotion.title}`,
             email,
+            link: getCouponListUrl({
+              host: config.web.host,
+              locale,
+              promotionId: promotion.id,
+              uuidList: couponUUIDList,
+            }),
             locale,
-            origin: ctx.request.header.origin,
-            promotionId: promotion.id,
-            couponUUIDList,
+            couponsAmount: couponUUIDList.length,
           })
         )
 
@@ -166,6 +173,8 @@ module.exports = createCoreController(
     },
 
     async verifyAuction(ctx) {
+      const config = strapi.config.get('server')
+
       try {
         const sanitizedQueryParams = await this.sanitizeQuery(ctx)
         ctx.request.query = sanitizedQueryParams
@@ -197,10 +206,14 @@ module.exports = createCoreController(
           getCouponListEmail({
             title: `${promotion.discountTo}% ${promotion.title}`,
             email: latestBid.bidder.email,
+            link: getCouponListUrl({
+              host: config.web.host,
+              locale,
+              promotionId: promotion.id,
+              uuidList: [coupon.uuid],
+            }),
             locale,
-            origin: ctx.request.header.origin,
-            promotionId: promotion.id,
-            couponUUIDList: [coupon.uuid],
+            couponsAmount: 1,
           })
         )
 

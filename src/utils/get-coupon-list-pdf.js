@@ -1,33 +1,20 @@
-const qs = require('qs')
 const QRCode = require('qrcode')
 const PDFDocument = require('pdfkit')
 
 const { t } = require('../i18n')
+const { getCouponListUrl } = require('./dynamic-link')
 
-const addCouponPageToDoc = async ({
-  doc,
-  origin,
-  locale,
-
-  coupon,
-  terms,
-}) => {
-  const query = qs.stringify(
-    {
-      filters: {
-        uuid: {
-          $in: coupon.uuid,
-        },
-      },
-    },
-    {
-      encodeValuesOnly: true,
-    }
-  )
-
+const addCouponPageToDoc = async ({ doc, host, locale, coupon, terms }) => {
   const title = coupon.promotion?.title ?? coupon.title
   const dateTimeUntil = coupon.promotion?.dateTimeUntil ?? coupon.dateTimeUntil
-  const qr = await QRCode.toDataURL(`${origin}/${locale}/coupons?${query}`)
+  const qr = await QRCode.toDataURL(
+    getCouponListUrl({
+      host,
+      locale,
+      promotionId: coupon.promotion.id,
+      uuidList: [coupon.uuid],
+    })
+  )
 
   doc
     .rect(doc.x - 10, doc.y - 10, doc.page.width - 30, doc.page.height - 50)
@@ -65,16 +52,16 @@ const addCouponPageToDoc = async ({
     })
 }
 
-const getCouponListPdf = async ({ coupons, terms, origin, locale }) => {
+const getCouponListPdf = async ({ coupons, terms, host, locale }) => {
   const doc = new PDFDocument({ size: 'A5', margin: 25 })
   doc.font('src/api/coupon/assets/NotoSans-Medium.ttf')
 
   const [firstCoupon, ...otherCoupons] = coupons
-  await addCouponPageToDoc({ doc, origin, locale, coupon: firstCoupon, terms })
+  await addCouponPageToDoc({ doc, host, locale, coupon: firstCoupon, terms })
 
   for (let coupon of otherCoupons) {
     doc.addPage()
-    await addCouponPageToDoc({ doc, origin, locale, coupon, terms })
+    await addCouponPageToDoc({ doc, host, locale, coupon, terms })
   }
 
   doc.end()

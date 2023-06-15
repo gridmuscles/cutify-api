@@ -112,6 +112,8 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
 
   async downloadPdf(ctx) {
     try {
+      const config = strapi.config.get('server')
+
       const sanitizedQueryParams = await this.sanitizeQuery(ctx)
       const {
         filters: {
@@ -125,7 +127,7 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         .generateCouponListPdf({
           uuidList,
           locale,
-          origin: ctx.request.header.origin,
+          host: config.web.host,
         })
 
       ctx.body = file
