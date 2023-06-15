@@ -77,6 +77,34 @@
           "sortable": true
         }
       },
+      "originalPhone": {
+        "edit": {
+          "label": "originalPhone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "originalPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "pin": {
+        "edit": {
+          "label": "pin",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "pin",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "organization": {
         "edit": {
           "label": "organization",
@@ -233,16 +261,16 @@
           "sortable": false
         }
       },
-      "privatePhone": {
+      "isChatAvailable": {
         "edit": {
-          "label": "privatePhone",
+          "label": "isChatAvailable",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "privatePhone",
+          "label": "isChatAvailable",
           "searchable": true,
           "sortable": true
         }
@@ -277,7 +305,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -292,7 +319,15 @@
         [
           {
             "name": "phone",
-            "size": 6
+            "size": 4
+          },
+          {
+            "name": "originalPhone",
+            "size": 4
+          },
+          {
+            "name": "pin",
+            "size": 4
           }
         ],
         [
@@ -335,14 +370,24 @@
         ],
         [
           {
+            "name": "workhours_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "workhours_ua",
             "size": 12
           }
         ],
         [
           {
-            "name": "workhours_ru",
-            "size": 12
+            "name": "isChatAvailable",
+            "size": 4
+          },
+          {
+            "name": "managers",
+            "size": 4
           }
         ],
         [
@@ -354,18 +399,9 @@
             "name": "longitude",
             "size": 4
           }
-        ],
-        [
-          {
-            "name": "managers",
-            "size": 6
-          },
-          {
-            "name": "privatePhone",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "createdAt", "updatedAt", "city"]
     }
   },
   "type": "object",

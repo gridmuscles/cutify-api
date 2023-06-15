@@ -110,6 +110,21 @@
           "sortable": true
         }
       },
+      "coupon": {
+        "edit": {
+          "label": "coupon",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "coupon",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -140,6 +155,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "privacy"],
       "edit": [
         [
           {
@@ -168,9 +184,14 @@
             "name": "about",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "coupon",
+            "size": 6
+          }
         ]
-      ],
-      "list": ["id", "createdAt", "updatedAt", "privacy"]
+      ]
     }
   },
   "type": "object",

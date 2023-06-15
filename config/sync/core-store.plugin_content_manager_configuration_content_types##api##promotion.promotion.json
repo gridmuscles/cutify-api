@@ -294,7 +294,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "couponsCount",
@@ -327,20 +327,6 @@
         },
         "list": {
           "label": "auction",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "isChatAvailable": {
-        "edit": {
-          "label": "isChatAvailable",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "isChatAvailable",
           "searchable": true,
           "sortable": true
         }
@@ -499,6 +485,20 @@
           "sortable": false
         }
       },
+      "confirmationCode": {
+        "edit": {
+          "label": "confirmationCode",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "confirmationCode",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "status": {
         "edit": {
           "label": "status",
@@ -547,7 +547,7 @@
       "edit": [
         [
           {
-            "name": "discountTo",
+            "name": "status",
             "size": 4
           },
           {
@@ -556,6 +556,22 @@
           },
           {
             "name": "order",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "discountTo",
+            "size": 4
+          },
+          {
+            "name": "dateTimeUntil",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "confirmationCode",
             "size": 4
           }
         ],
@@ -591,9 +607,7 @@
           {
             "name": "subtitle",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "subtitle_pl",
             "size": 6
@@ -601,11 +615,11 @@
         ],
         [
           {
-            "name": "subtitle_ua",
+            "name": "subtitle_ru",
             "size": 6
           },
           {
-            "name": "subtitle_ru",
+            "name": "subtitle_ua",
             "size": 6
           }
         ],
@@ -627,14 +641,8 @@
         ],
         [
           {
-            "name": "dateTimeUntil",
-            "size": 6
-          }
-        ],
-        [
-          {
             "name": "images",
-            "size": 6
+            "size": 12
           }
         ],
         [
@@ -663,15 +671,39 @@
         ],
         [
           {
+            "name": "description",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "description_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "viewsCount",
             "size": 4
           },
           {
-            "name": "couponsCount",
+            "name": "likesCount",
             "size": 4
           },
           {
-            "name": "likesCount",
+            "name": "couponsCount",
             "size": 4
           }
         ],
@@ -697,42 +729,8 @@
         ],
         [
           {
-            "name": "description",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "description_pl",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "description_ru",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "description_ua",
-            "size": 12
-          }
-        ],
-        [
-          {
             "name": "seo",
             "size": 12
-          }
-        ],
-        [
-          {
-            "name": "isChatAvailable",
-            "size": 4
-          },
-          {
-            "name": "status",
-            "size": 6
           }
         ]
       ]

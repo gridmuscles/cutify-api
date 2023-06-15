@@ -41,19 +41,35 @@ module.exports = {
       },
     },
     {
-      method: 'POST',
-      path: '/promotions/:id/chats',
-      handler: 'promotion.createPromotionChat',
+      method: 'GET',
+      path: '/promotions/:id/coupons',
+      handler: 'promotion.findCoupons',
       config: {
         middlewares: [{ name: 'global::locale' }],
       },
     },
     {
       method: 'GET',
-      path: '/promotions/:id/coupons',
-      handler: 'promotion.findCoupons',
+      path: '/promotions/manager',
+      handler: 'promotion.findManagerPromotions',
       config: {
-        middlewares: [{ name: 'global::locale' }],
+        middlewares: [
+          { name: 'global::locale' },
+          { name: 'global::i18n' },
+          { name: 'global::populate', config: { deep: 2 } },
+        ],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/promotions/:id/confirmation-code',
+      handler: 'promotion.getPromotionConfirmationCode',
+      config: {
+        middlewares: [
+          { name: 'global::locale' },
+          { name: 'global::i18n' },
+          { name: 'global::populate', config: { deep: 2 } },
+        ],
       },
     },
   ],

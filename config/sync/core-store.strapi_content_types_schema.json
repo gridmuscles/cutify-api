@@ -1863,12 +1863,6 @@
           "minLength": 3,
           "required": true
         },
-        "organizations": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::organization.organization",
-          "mappedBy": "managers"
-        },
         "phone": {
           "type": "string",
           "required": false,
@@ -1982,12 +1976,6 @@
             "type": "string",
             "minLength": 3,
             "required": true
-          },
-          "organizations": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::organization.organization",
-            "mappedBy": "managers"
           },
           "phone": {
             "type": "string",
@@ -2536,7 +2524,8 @@
       "info": {
         "singularName": "chat",
         "pluralName": "chats",
-        "displayName": "Chat"
+        "displayName": "Chat",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -2558,6 +2547,11 @@
           "relation": "oneToMany",
           "target": "api::message.message",
           "mappedBy": "chat"
+        },
+        "location": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::location.location"
         },
         "createdAt": {
           "type": "datetime"
@@ -2591,7 +2585,8 @@
         "info": {
           "singularName": "chat",
           "pluralName": "chats",
-          "displayName": "Chat"
+          "displayName": "Chat",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
@@ -2613,6 +2608,11 @@
             "relation": "oneToMany",
             "target": "api::message.message",
             "mappedBy": "chat"
+          },
+          "location": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::location.location"
           }
         },
         "kind": "collectionType"
@@ -2772,6 +2772,15 @@
         "description_ua": {
           "type": "richtext"
         },
+        "receipt": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::receipt.receipt",
+          "inversedBy": "coupons"
+        },
+        "dateTimeUntil": {
+          "type": "date"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2859,6 +2868,15 @@
           },
           "description_ua": {
             "type": "richtext"
+          },
+          "receipt": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::receipt.receipt",
+            "inversedBy": "coupons"
+          },
+          "dateTimeUntil": {
+            "type": "date"
           }
         },
         "kind": "collectionType"
@@ -2898,6 +2916,12 @@
           "type": "float"
         },
         "phone": {
+          "type": "text"
+        },
+        "originalPhone": {
+          "type": "text"
+        },
+        "pin": {
           "type": "text"
         },
         "organization": {
@@ -2942,9 +2966,9 @@
           "relation": "oneToMany",
           "target": "plugin::users-permissions.user"
         },
-        "privatePhone": {
-          "type": "string",
-          "private": true
+        "isChatAvailable": {
+          "type": "boolean",
+          "default": false
         },
         "createdAt": {
           "type": "datetime"
@@ -3000,6 +3024,12 @@
           "phone": {
             "type": "text"
           },
+          "originalPhone": {
+            "type": "text"
+          },
+          "pin": {
+            "type": "text"
+          },
           "organization": {
             "type": "relation",
             "relation": "manyToOne",
@@ -3042,9 +3072,9 @@
             "relation": "oneToMany",
             "target": "plugin::users-permissions.user"
           },
-          "privatePhone": {
-            "type": "string",
-            "private": true
+          "isChatAvailable": {
+            "type": "boolean",
+            "default": false
           }
         },
         "kind": "collectionType"
@@ -3199,12 +3229,6 @@
           "target": "api::promotion.promotion",
           "mappedBy": "organization"
         },
-        "managers": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "plugin::users-permissions.user",
-          "inversedBy": "organizations"
-        },
         "siteLink": {
           "type": "string"
         },
@@ -3298,12 +3322,6 @@
             "relation": "oneToMany",
             "target": "api::promotion.promotion",
             "mappedBy": "organization"
-          },
-          "managers": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "plugin::users-permissions.user",
-            "inversedBy": "organizations"
           },
           "siteLink": {
             "type": "string"
@@ -3452,11 +3470,6 @@
           "relation": "oneToOne",
           "target": "api::auction.auction"
         },
-        "isChatAvailable": {
-          "type": "boolean",
-          "default": false,
-          "required": true
-        },
         "size": {
           "type": "enumeration",
           "enum": ["x", "x2"],
@@ -3496,9 +3509,14 @@
         "description_ua": {
           "type": "richtext"
         },
+        "confirmationCode": {
+          "type": "string",
+          "private": true
+        },
         "status": {
           "type": "enumeration",
-          "enum": ["active", "finished"]
+          "enum": ["active", "finished"],
+          "default": "active"
         },
         "createdAt": {
           "type": "datetime"
@@ -3646,11 +3664,6 @@
             "relation": "oneToOne",
             "target": "api::auction.auction"
           },
-          "isChatAvailable": {
-            "type": "boolean",
-            "default": false,
-            "required": true
-          },
           "size": {
             "type": "enumeration",
             "enum": ["x", "x2"],
@@ -3690,9 +3703,14 @@
           "description_ua": {
             "type": "richtext"
           },
+          "confirmationCode": {
+            "type": "string",
+            "private": true
+          },
           "status": {
             "type": "enumeration",
-            "enum": ["active", "finished"]
+            "enum": ["active", "finished"],
+            "default": "active"
           }
         },
         "kind": "collectionType"
@@ -3703,6 +3721,102 @@
       "uid": "api::promotion.promotion",
       "apiName": "promotion",
       "globalId": "Promotion",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::receipt.receipt": {
+      "kind": "collectionType",
+      "collectionName": "receipts",
+      "info": {
+        "singularName": "receipt",
+        "pluralName": "receipts",
+        "displayName": "Receipt",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "photo": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": ["images"]
+        },
+        "text": {
+          "type": "text"
+        },
+        "coupons": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::coupon.coupon",
+          "mappedBy": "receipt"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "receipts",
+        "info": {
+          "singularName": "receipt",
+          "pluralName": "receipts",
+          "displayName": "Receipt",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "photo": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": ["images"]
+          },
+          "text": {
+            "type": "text"
+          },
+          "coupons": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::coupon.coupon",
+            "mappedBy": "receipt"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "receipt",
+      "connection": "default",
+      "uid": "api::receipt.receipt",
+      "apiName": "receipt",
+      "globalId": "Receipt",
       "actions": {},
       "lifecycles": {}
     },
@@ -3878,6 +3992,11 @@
           "relation": "oneToOne",
           "target": "api::article.article"
         },
+        "coupon": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3950,6 +4069,11 @@
             "target": "api::article.article"
           },
           "donate": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "coupon": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::article.article"

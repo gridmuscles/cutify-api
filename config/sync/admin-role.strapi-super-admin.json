@@ -325,7 +325,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::chat.chat",
       "properties": {
-        "fields": ["users", "promotion", "messages"]
+        "fields": ["users", "promotion", "messages", "location"]
       },
       "conditions": []
     },
@@ -339,7 +339,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::chat.chat",
       "properties": {
-        "fields": ["users", "promotion", "messages"]
+        "fields": ["users", "promotion", "messages", "location"]
       },
       "conditions": []
     },
@@ -347,7 +347,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::chat.chat",
       "properties": {
-        "fields": ["users", "promotion", "messages"]
+        "fields": ["users", "promotion", "messages", "location"]
       },
       "conditions": []
     },
@@ -398,7 +398,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -426,7 +428,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -448,7 +452,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "receipt",
+          "dateTimeUntil"
         ]
       },
       "conditions": []
@@ -462,6 +468,8 @@
           "latitude",
           "longitude",
           "phone",
+          "originalPhone",
+          "pin",
           "organization",
           "isRU",
           "isPL",
@@ -473,7 +481,7 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "privatePhone"
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -493,6 +501,8 @@
           "latitude",
           "longitude",
           "phone",
+          "originalPhone",
+          "pin",
           "organization",
           "isRU",
           "isPL",
@@ -504,7 +514,7 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "privatePhone"
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -518,6 +528,8 @@
           "latitude",
           "longitude",
           "phone",
+          "originalPhone",
+          "pin",
           "organization",
           "isRU",
           "isPL",
@@ -529,7 +541,7 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "privatePhone"
+          "isChatAvailable"
         ]
       },
       "conditions": []
@@ -577,7 +589,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -607,7 +618,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -631,7 +641,6 @@
           "description_ru",
           "categories",
           "promotions",
-          "managers",
           "siteLink",
           "telegramLink",
           "facebookLink",
@@ -669,7 +678,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -697,7 +705,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []
@@ -741,7 +751,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -769,7 +778,9 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode",
+          "status"
         ]
       },
       "conditions": []
@@ -801,7 +812,6 @@
           "couponsCount",
           "viewsCount",
           "auction",
-          "isChatAvailable",
           "size",
           "order",
           "seo.metaTitle",
@@ -829,8 +839,40 @@
           "description",
           "description_pl",
           "description_ru",
-          "description_ua"
+          "description_ua",
+          "confirmationCode",
+          "status"
         ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::receipt.receipt",
+      "properties": {
+        "fields": ["photo", "text", "coupons"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::receipt.receipt",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::receipt.receipt",
+      "properties": {
+        "fields": ["photo", "text", "coupons"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::receipt.receipt",
+      "properties": {
+        "fields": ["photo", "text", "coupons"]
       },
       "conditions": []
     },
@@ -880,7 +922,8 @@
           "howitworks",
           "contacts",
           "about",
-          "donate"
+          "donate",
+          "coupon"
         ]
       },
       "conditions": []
@@ -907,7 +950,8 @@
           "howitworks",
           "contacts",
           "about",
-          "donate"
+          "donate",
+          "coupon"
         ]
       },
       "conditions": []
@@ -922,7 +966,8 @@
           "howitworks",
           "contacts",
           "about",
-          "donate"
+          "donate",
+          "coupon"
         ]
       },
       "conditions": []
@@ -1128,7 +1173,6 @@
           "blocked",
           "role",
           "name",
-          "organizations",
           "phone"
         ]
       },
@@ -1155,7 +1199,6 @@
           "blocked",
           "role",
           "name",
-          "organizations",
           "phone"
         ]
       },
@@ -1176,7 +1219,6 @@
           "blocked",
           "role",
           "name",
-          "organizations",
           "phone"
         ]
       },
@@ -1220,6 +1262,12 @@
     },
     {
       "action": "plugin::i18n.locale.update",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::seo.read",
       "subject": null,
       "properties": {},
       "conditions": []

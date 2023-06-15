@@ -63,11 +63,9 @@ module.exports = createCoreService('api::chat.chat', () => ({
               },
             },
             {
-              promotion: {
-                organization: {
-                  managers: {
-                    id: ctx.state.user.id,
-                  },
+              location: {
+                managers: {
+                  id: ctx.state.user.id,
                 },
               },
             },
@@ -94,39 +92,32 @@ module.exports = createCoreService('api::chat.chat', () => ({
     }
   },
 
-  async ifChatOwner(ctx) {
-    try {
-      const { results: chats } = await strapi.service('api::chat.chat').find({
-        filters: {
-          id: ctx.params.id,
-          $or: [
-            {
-              users: {
-                id: ctx.state.user.id,
+  async ifChatOwner({ chatId, userId }) {
+    const chats = await strapi.entityService.findMany('api::chat.chat', {
+      filters: {
+        id: chatId,
+        $or: [
+          {
+            users: {
+              id: userId,
+            },
+          },
+          {
+            location: {
+              managers: {
+                id: userId,
               },
             },
-            {
-              promotion: {
-                organization: {
-                  managers: {
-                    id: ctx.state.user.id,
-                  },
-                },
-              },
-            },
-          ],
-        },
-      })
+          },
+        ],
+      },
+    })
 
-      return chats.length === 1
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
+    return chats.length === 1
   },
 
   async getUsersToNotificate({ messagesCreatedAtStart }) {
-    const { results: chats } = await strapi.service('api::chat.chat').find({
+    const chats = await strapi.entityService.findMany('api::chat.chat', {
       filters: {
         messages: {
           text: { $notNull: true },
@@ -134,17 +125,13 @@ module.exports = createCoreService('api::chat.chat', () => ({
         },
       },
       populate: {
-        promotion: {
+        location: {
           populate: {
-            organization: {
+            managers: {
+              fields: ['id', 'email', 'phone'],
               populate: {
-                managers: {
-                  fields: ['id', 'email', 'phone'],
-                  populate: {
-                    role: {
-                      fields: ['type'],
-                    },
-                  },
+                role: {
+                  fields: ['type'],
                 },
               },
             },
@@ -183,10 +170,7 @@ module.exports = createCoreService('api::chat.chat', () => ({
 
       const chatUsers = new Map()
 
-      for (let user of [
-        ...chat.promotion.organization.managers,
-        ...chat.users,
-      ]) {
+      for (let user of [...chat.location.managers, ...chat.users]) {
         chatUsers.set(user.id, user)
       }
 

@@ -112,11 +112,6 @@
       "relation": "oneToOne",
       "target": "api::auction.auction"
     },
-    "isChatAvailable": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "size": {
       "type": "enumeration",
       "enum": ["x", "x2"],
@@ -156,9 +151,14 @@
     "description_ua": {
       "type": "richtext"
     },
+    "confirmationCode": {
+      "type": "string",
+      "private": true
+    },
     "status": {
       "type": "enumeration",
-      "enum": ["active", "finished"]
+      "enum": ["active", "finished"],
+      "default": "active"
     }
   }
 }

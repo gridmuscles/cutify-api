@@ -134,21 +134,6 @@
           "sortable": false
         }
       },
-      "managers": {
-        "edit": {
-          "label": "managers",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "username"
-        },
-        "list": {
-          "label": "managers",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "siteLink": {
         "edit": {
           "label": "siteLink",
@@ -264,7 +249,7 @@
       }
     },
     "layouts": {
-      "list": ["id", "title", "promotions", "managers"],
+      "list": ["id", "title", "promotions"],
       "edit": [
         [
           {
@@ -343,12 +328,6 @@
           },
           {
             "name": "promotions",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "managers",
             "size": 6
           }
         ]

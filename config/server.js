@@ -28,4 +28,7 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  web: {
+    host: env('WEB_APP_HOST'),
+  },
 })

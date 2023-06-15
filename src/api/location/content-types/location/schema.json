@@ -26,6 +26,12 @@
     "phone": {
       "type": "text"
     },
+    "originalPhone": {
+      "type": "text"
+    },
+    "pin": {
+      "type": "text"
+    },
     "organization": {
       "type": "relation",
       "relation": "manyToOne",
@@ -68,9 +74,9 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
     },
-    "privatePhone": {
-      "type": "string",
-      "private": true
+    "isChatAvailable": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

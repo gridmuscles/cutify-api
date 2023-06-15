@@ -1,5 +1,3 @@
-const qs = require('qs')
-
 const TEMPLATE_DATA = {
   en: ({ title, couponsAmount }) => ({
     subject: `Your coupons (${couponsAmount} pcs.) for the promotion ${title} have been activated!`,
@@ -33,35 +31,16 @@ const TEMPLATE_DATA = {
   }),
 }
 
-const getCouponListEmail = ({
-  title,
-  email,
-  locale,
-  origin,
-  couponUUIDList,
-}) => {
-  const query = qs.stringify(
-    {
-      filters: {
-        uuid: {
-          $in: couponUUIDList,
-        },
-      },
-    },
-    {
-      encodeValuesOnly: true,
-    }
-  )
-
+const getCouponListEmail = ({ title, email, locale, couponsAmount, link }) => {
   return {
     to: email,
     templateId: 'd-c096941312084bdea8775e617e70e6b2',
     dynamicTemplateData: {
       ...TEMPLATE_DATA[locale ?? 'en']({
         title,
-        couponsAmount: couponUUIDList.length,
+        couponsAmount,
       }),
-      link: `${origin}/${locale ?? 'en'}/coupons?${query}`,
+      link,
     },
   }
 }
