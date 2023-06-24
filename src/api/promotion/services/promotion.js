@@ -60,4 +60,54 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
 
     return total
   },
+
+  async findRecommendations({ promotionId, populate }) {
+    const promotion = await strapi.entityService.findOne(
+      'api::promotion.promotion',
+      promotionId,
+      {
+        populate: { categories: true },
+      }
+    )
+
+    return strapi.entityService.findMany('api::promotion.promotion', {
+      filters: {
+        id: {
+          $not: promotionId,
+        },
+
+        categories: {
+          id: {
+            $in: promotion.categories.map(({ id }) => id),
+          },
+        },
+      },
+      populate,
+    })
+  },
+
+  async findSimilar({ promotionId, populate }) {
+    const promotion = await strapi.entityService.findOne(
+      'api::promotion.promotion',
+      promotionId,
+      {
+        populate: { category: true },
+      }
+    )
+
+    return strapi.entityService.findMany('api::promotion.promotion', {
+      filters: {
+        id: {
+          $not: promotionId,
+        },
+
+        categories: {
+          id: {
+            $in: promotion.categories.map(({ id }) => id),
+          },
+        },
+      },
+      populate,
+    })
+  },
 }))

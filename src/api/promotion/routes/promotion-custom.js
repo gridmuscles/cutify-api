@@ -72,5 +72,21 @@ module.exports = {
         ],
       },
     },
+    {
+      method: 'GET',
+      path: '/promotions/:id/recommendations',
+      handler: 'promotion.findRecommendations',
+      config: {
+        middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/promotions/:id/similar',
+      handler: 'promotion.findSimilar',
+      config: {
+        middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+      },
+    },
   ],
 }
