@@ -7,6 +7,9 @@ module.exports = {
       path: '/chats/:id/mark-as-read',
       handler: 'chat.markAsRead',
       config: {
+        policies: [
+          { name: 'global::captcha', config: { action: 'CHAT_MARK_AS_READ' } },
+        ],
         middlewares: [{ name: 'global::locale' }],
       },
     },
@@ -15,6 +18,9 @@ module.exports = {
       path: '/chats/:id/messages',
       handler: 'chat.createMessage',
       config: {
+        policies: [
+          { name: 'global::captcha', config: { action: 'CHAT_SEND_MESSAGE' } },
+        ],
         middlewares: [{ name: 'global::locale' }],
       },
     },

@@ -7,6 +7,9 @@ module.exports = {
       path: '/promotions/:id/request',
       handler: 'promotion.requestCoupon',
       config: {
+        policies: [
+          { name: 'global::captcha', config: { action: 'REQUEST_COUPON' } },
+        ],
         middlewares: [
           { name: 'global::locale' },
           { name: 'global::populate', config: { deep: 3 } },
@@ -17,6 +20,9 @@ module.exports = {
       method: 'POST',
       path: '/promotions/:id/like',
       handler: 'promotion.like',
+      policies: [
+        { name: 'global::captcha', config: { action: 'PROMOTION_LIKE' } },
+      ],
     },
     {
       method: 'POST',

@@ -15,5 +15,10 @@ module.exports = createCoreRouter('api::review.review', {
         { name: 'global::populate', config: { deep: 2 } },
       ],
     },
+    create: {
+      policies: [
+        { name: 'global::captcha', config: { action: 'REVIEW_CREATE' } },
+      ],
+    },
   },
 })

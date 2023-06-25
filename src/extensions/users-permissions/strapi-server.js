@@ -166,5 +166,41 @@ module.exports = (plugin) => {
     },
   })
 
+  const routes = plugin.routes['content-api'].routes
+
+  const registerRoute = routes.find(
+    ({ path }) => path === '/auth/local/register'
+  )
+  registerRoute.config = {
+    ...registerRoute.config,
+    policies: [{ name: 'global::captcha', config: { action: 'REGISTER' } }],
+  }
+
+  const loginRoute = routes.find(({ path }) => path === '/auth/local')
+  loginRoute.config = {
+    ...loginRoute.config,
+    policies: [{ name: 'global::captcha', config: { action: 'LOGIN' } }],
+  }
+
+  const forgotPasswordRoute = routes.find(
+    ({ path }) => path === '/auth/forgot-password'
+  )
+  forgotPasswordRoute.config = {
+    ...forgotPasswordRoute.config,
+    policies: [
+      { name: 'global::captcha', config: { action: 'FORGOT_PASSWORD' } },
+    ],
+  }
+
+  const resetPasswordRoute = routes.find(
+    ({ path }) => path === '/auth/reset-password'
+  )
+  resetPasswordRoute.config = {
+    ...resetPasswordRoute.config,
+    policies: [
+      { name: 'global::captcha', config: { action: 'RESET_PASSWORD' } },
+    ],
+  }
+
   return plugin
 }
