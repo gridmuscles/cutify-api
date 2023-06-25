@@ -27,10 +27,12 @@
       "type": "text"
     },
     "originalPhone": {
-      "type": "text"
+      "type": "text",
+      "private": true
     },
     "pin": {
-      "type": "text"
+      "type": "text",
+      "private": true
     },
     "organization": {
       "type": "relation",

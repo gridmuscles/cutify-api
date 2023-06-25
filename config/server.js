@@ -31,4 +31,7 @@ module.exports = ({ env }) => ({
   web: {
     host: env('WEB_APP_HOST'),
   },
+  phone: {
+    prefix: env('PUBLIC_PHONE_PREFIX'),
+  },
 })
