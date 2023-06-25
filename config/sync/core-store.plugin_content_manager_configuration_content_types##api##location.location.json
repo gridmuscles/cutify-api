@@ -275,6 +275,62 @@
           "sortable": true
         }
       },
+      "details": {
+        "edit": {
+          "label": "details",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "details_pl": {
+        "edit": {
+          "label": "details_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "details_ru": {
+        "edit": {
+          "label": "details_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "details_ua": {
+        "edit": {
+          "label": "details_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -305,6 +361,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -399,9 +456,32 @@
             "name": "longitude",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "details",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details_ua",
+            "size": 12
+          }
         ]
-      ],
-      "list": ["id", "createdAt", "updatedAt", "city"]
+      ]
     }
   },
   "type": "object",

@@ -77,6 +77,18 @@
     "isChatAvailable": {
       "type": "boolean",
       "default": false
+    },
+    "details": {
+      "type": "richtext"
+    },
+    "details_pl": {
+      "type": "richtext"
+    },
+    "details_ru": {
+      "type": "richtext"
+    },
+    "details_ua": {
+      "type": "richtext"
     }
   }
 }

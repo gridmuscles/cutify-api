@@ -219,7 +219,11 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "isChatAvailable"
+          "isChatAvailable",
+          "details",
+          "details_pl",
+          "details_ru",
+          "details_ua"
         ]
       },
       "conditions": []
@@ -246,7 +250,11 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "isChatAvailable"
+          "isChatAvailable",
+          "details",
+          "details_pl",
+          "details_ru",
+          "details_ua"
         ]
       },
       "conditions": []
@@ -273,7 +281,11 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "isChatAvailable"
+          "isChatAvailable",
+          "details",
+          "details_pl",
+          "details_ru",
+          "details_ua"
         ]
       },
       "conditions": []
