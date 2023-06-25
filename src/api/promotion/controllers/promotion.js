@@ -375,13 +375,14 @@ module.exports = createCoreController(
     },
 
     async findRecommendations(ctx) {
-      const { locale } = await this.sanitizeQuery(ctx)
+      const { locale, pagination } = await this.sanitizeQuery(ctx)
 
       const results = await await strapi
         .service('api::promotion.promotion')
         .findRecommendations({
           promotionId: ctx.params.id,
-          populate: getPromotionListPopulate({ locale }),
+          pagination: pagination ?? { page: 1, pageSize: 4 },
+          populate: getPromotionListPopulate({ locale, pagination }),
         })
 
       const sanitizedResult = await this.sanitizeOutput(results, ctx)
@@ -389,12 +390,13 @@ module.exports = createCoreController(
     },
 
     async findSimilar(ctx) {
-      const { locale } = await this.sanitizeQuery(ctx)
+      const { locale, pagination } = await this.sanitizeQuery(ctx)
 
       const results = await await strapi
         .service('api::promotion.promotion')
-        .findRecommendations({
+        .findSimilar({
           promotionId: ctx.params.id,
+          pagination: pagination ?? { page: 1, pageSize: 4 },
           populate: getPromotionListPopulate({ locale }),
         })
 
