@@ -6,7 +6,7 @@ const searchLocaleMap = {
 }
 
 const transformSearchQuery = (query) => {
-  const { search, locale, filters, ...rest } = query
+  const { search, locale, filters } = query
 
   const searchFilter = {
     $or: [
@@ -24,11 +24,7 @@ const transformSearchQuery = (query) => {
   }
 
   return {
-    filters: {
-      $and: [searchFilter, filters],
-    },
-    locale,
-    ...rest,
+    $and: [searchFilter, filters],
   }
 }
 

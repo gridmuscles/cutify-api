@@ -16,31 +16,28 @@ describe('Tranform search query', () => {
         },
       },
       result: {
-        locale: 'en',
-        filters: {
-          $and: [
-            {
-              $or: [
-                {
-                  title_pl: {
-                    $containsi: 'test',
-                  },
+        $and: [
+          {
+            $or: [
+              {
+                title_pl: {
+                  $containsi: 'test',
                 },
-                {
-                  title: {
-                    $containsi: 'test',
-                  },
-                },
-              ],
-            },
-            {
-              propA: {
-                $not: 1,
               },
-              propB: 2,
+              {
+                title: {
+                  $containsi: 'test',
+                },
+              },
+            ],
+          },
+          {
+            propA: {
+              $not: 1,
             },
-          ],
-        },
+            propB: 2,
+          },
+        ],
       },
     },
     {
@@ -55,31 +52,28 @@ describe('Tranform search query', () => {
         },
       },
       result: {
-        locale: 'pl',
-        filters: {
-          $and: [
-            {
-              $or: [
-                {
-                  title_pl: {
-                    $containsi: 'test',
-                  },
+        $and: [
+          {
+            $or: [
+              {
+                title_pl: {
+                  $containsi: 'test',
                 },
-                {
-                  title_pl: {
-                    $containsi: 'test',
-                  },
-                },
-              ],
-            },
-            {
-              propA: {
-                $not: 1,
               },
-              propB: 2,
+              {
+                title_pl: {
+                  $containsi: 'test',
+                },
+              },
+            ],
+          },
+          {
+            propA: {
+              $not: 1,
             },
-          ],
-        },
+            propB: 2,
+          },
+        ],
       },
     },
     {
@@ -94,31 +88,28 @@ describe('Tranform search query', () => {
         },
       },
       result: {
-        locale: 'ru',
-        filters: {
-          $and: [
-            {
-              $or: [
-                {
-                  title_pl: {
-                    $containsi: 'test',
-                  },
+        $and: [
+          {
+            $or: [
+              {
+                title_pl: {
+                  $containsi: 'test',
                 },
-                {
-                  title_ru: {
-                    $containsi: 'test',
-                  },
-                },
-              ],
-            },
-            {
-              propA: {
-                $not: 1,
               },
-              propB: 2,
+              {
+                title_ru: {
+                  $containsi: 'test',
+                },
+              },
+            ],
+          },
+          {
+            propA: {
+              $not: 1,
             },
-          ],
-        },
+            propB: 2,
+          },
+        ],
       },
     },
   ])('transformSearchQuery $locale', ({ locale, query, result }) => {

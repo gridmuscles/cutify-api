@@ -1,4 +1,4 @@
-const transformSearchQuery = require('../utils/transform-search-query')
+const { transformSearchQuery } = require('../utils/transform-search-query')
 
 module.exports = () => {
   return async (ctx, next) => {
