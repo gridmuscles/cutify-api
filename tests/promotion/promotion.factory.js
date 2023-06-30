@@ -41,6 +41,7 @@ const mockPromotionData = (data = {}) => {
     size: 'x',
     order: null,
     confirmationCode: `${slugSuffix}`,
+    locations: [],
     ...data,
   }
 }

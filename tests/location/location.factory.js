@@ -25,6 +25,7 @@ const mockLocationData = (data = {}) => {
     managers: [],
     messages: [],
     users: [],
+    promotions: [],
     ...data,
   }
 }

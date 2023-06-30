@@ -69,7 +69,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "phone",
@@ -331,6 +331,21 @@
           "sortable": false
         }
       },
+      "promotions": {
+        "edit": {
+          "label": "promotions",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "promotions",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -361,7 +376,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -480,8 +494,15 @@
             "name": "details_ua",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "promotions",
+            "size": 6
+          }
         ]
-      ]
+      ],
+      "list": ["id", "createdAt", "updatedAt", "city"]
     }
   },
   "type": "object",

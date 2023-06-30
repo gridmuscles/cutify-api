@@ -159,6 +159,12 @@
       "type": "enumeration",
       "enum": ["active", "finished"],
       "default": "active"
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location",
+      "inversedBy": "promotions"
     }
   }
 }

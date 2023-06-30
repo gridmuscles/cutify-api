@@ -513,6 +513,21 @@
           "sortable": true
         }
       },
+      "locations": {
+        "edit": {
+          "label": "locations",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "locations",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -543,7 +558,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "size", "order", "title_ru", "auction", "organization"],
       "edit": [
         [
           {
@@ -625,18 +639,22 @@
         ],
         [
           {
-            "name": "organization",
-            "size": 6
-          },
-          {
-            "name": "auction",
+            "name": "categories",
             "size": 6
           }
         ],
         [
           {
-            "name": "categories",
-            "size": 6
+            "name": "organization",
+            "size": 4
+          },
+          {
+            "name": "locations",
+            "size": 4
+          },
+          {
+            "name": "auction",
+            "size": 4
           }
         ],
         [
@@ -733,7 +751,8 @@
             "size": 12
           }
         ]
-      ]
+      ],
+      "list": ["id", "size", "order", "title_ru", "auction", "organization"]
     }
   },
   "type": "object",

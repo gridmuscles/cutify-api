@@ -437,15 +437,10 @@
           "details",
           "details_pl",
           "details_ru",
-          "details_ua"
+          "details_ua",
+          "promotions"
         ]
       },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::location.location",
-      "properties": {},
       "conditions": []
     },
     {
@@ -474,7 +469,8 @@
           "details",
           "details_pl",
           "details_ru",
-          "details_ua"
+          "details_ua",
+          "promotions"
         ]
       },
       "conditions": []
@@ -505,7 +501,8 @@
           "details",
           "details_pl",
           "details_ru",
-          "details_ua"
+          "details_ua",
+          "promotions"
         ]
       },
       "conditions": []
@@ -649,7 +646,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "locations"
         ]
       },
       "conditions": []
@@ -722,7 +720,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "locations"
         ]
       },
       "conditions": []
@@ -783,7 +782,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "locations"
         ]
       },
       "conditions": []

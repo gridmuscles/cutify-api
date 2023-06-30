@@ -91,6 +91,12 @@
     },
     "details_ua": {
       "type": "richtext"
+    },
+    "promotions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::promotion.promotion",
+      "inversedBy": "locations"
     }
   }
 }
