@@ -77,20 +77,6 @@
           "sortable": true
         }
       },
-      "originalPhone": {
-        "edit": {
-          "label": "originalPhone",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "originalPhone",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "pin": {
         "edit": {
           "label": "pin",
@@ -346,6 +332,20 @@
           "sortable": false
         }
       },
+      "forwardPhone": {
+        "edit": {
+          "label": "forwardPhone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "forwardPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -376,6 +376,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -390,10 +391,6 @@
         [
           {
             "name": "phone",
-            "size": 4
-          },
-          {
-            "name": "originalPhone",
             "size": 4
           },
           {
@@ -499,10 +496,13 @@
           {
             "name": "promotions",
             "size": 6
+          },
+          {
+            "name": "forwardPhone",
+            "size": 6
           }
         ]
-      ],
-      "list": ["id", "createdAt", "updatedAt", "city"]
+      ]
     }
   },
   "type": "object",

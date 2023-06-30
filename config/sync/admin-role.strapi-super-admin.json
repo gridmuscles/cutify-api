@@ -468,7 +468,6 @@
           "latitude",
           "longitude",
           "phone",
-          "originalPhone",
           "pin",
           "organization",
           "isRU",
@@ -486,7 +485,8 @@
           "details_pl",
           "details_ru",
           "details_ua",
-          "promotions"
+          "promotions",
+          "forwardPhone"
         ]
       },
       "conditions": []
@@ -506,7 +506,6 @@
           "latitude",
           "longitude",
           "phone",
-          "originalPhone",
           "pin",
           "organization",
           "isRU",
@@ -524,7 +523,8 @@
           "details_pl",
           "details_ru",
           "details_ua",
-          "promotions"
+          "promotions",
+          "forwardPhone"
         ]
       },
       "conditions": []
@@ -538,7 +538,6 @@
           "latitude",
           "longitude",
           "phone",
-          "originalPhone",
           "pin",
           "organization",
           "isRU",
@@ -556,7 +555,8 @@
           "details_pl",
           "details_ru",
           "details_ua",
-          "promotions"
+          "promotions",
+          "forwardPhone"
         ]
       },
       "conditions": []

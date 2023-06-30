@@ -24,15 +24,11 @@
       "type": "float"
     },
     "phone": {
-      "type": "text"
-    },
-    "originalPhone": {
       "type": "text",
       "private": true
     },
     "pin": {
-      "type": "text",
-      "private": true
+      "type": "text"
     },
     "organization": {
       "type": "relation",
@@ -97,6 +93,10 @@
       "relation": "manyToMany",
       "target": "api::promotion.promotion",
       "inversedBy": "locations"
+    },
+    "forwardPhone": {
+      "type": "string",
+      "default": "48699600900"
     }
   }
 }

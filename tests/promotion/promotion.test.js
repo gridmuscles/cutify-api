@@ -108,15 +108,15 @@ describe('Promotions', () => {
         expect(
           data.attributes.organization.data.attributes.locations.data[0]
             .attributes.phone
-        ).toBe(primaryLocation.phone)
+        ).toBeUndefined()
         expect(
           data.attributes.organization.data.attributes.locations.data[0]
             .attributes.pin
-        ).toBeUndefined()
+        ).toBe(primaryLocation.pin)
         expect(
           data.attributes.organization.data.attributes.locations.data[0]
-            .attributes.originalPhone
-        ).toBeUndefined()
+            .attributes.forwardPhone
+        ).toBe(primaryLocation.forwardPhone)
         expect(
           data.attributes.organization.data.attributes.promotions.data[0]
             .attributes.organization

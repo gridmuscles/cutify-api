@@ -2916,15 +2916,11 @@
           "type": "float"
         },
         "phone": {
-          "type": "text"
-        },
-        "originalPhone": {
           "type": "text",
           "private": true
         },
         "pin": {
-          "type": "text",
-          "private": true
+          "type": "text"
         },
         "organization": {
           "type": "relation",
@@ -2990,6 +2986,10 @@
           "target": "api::promotion.promotion",
           "inversedBy": "locations"
         },
+        "forwardPhone": {
+          "type": "string",
+          "default": "48699600900"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3042,15 +3042,11 @@
             "type": "float"
           },
           "phone": {
-            "type": "text"
-          },
-          "originalPhone": {
             "type": "text",
             "private": true
           },
           "pin": {
-            "type": "text",
-            "private": true
+            "type": "text"
           },
           "organization": {
             "type": "relation",
@@ -3115,6 +3111,10 @@
             "relation": "manyToMany",
             "target": "api::promotion.promotion",
             "inversedBy": "locations"
+          },
+          "forwardPhone": {
+            "type": "string",
+            "default": "48699600900"
           }
         },
         "kind": "collectionType"
@@ -3562,7 +3562,7 @@
           "type": "relation",
           "relation": "manyToMany",
           "target": "api::location.location",
-          "inversedBy": "promotions"
+          "mappedBy": "promotions"
         },
         "createdAt": {
           "type": "datetime"
@@ -3762,7 +3762,7 @@
             "type": "relation",
             "relation": "manyToMany",
             "target": "api::location.location",
-            "inversedBy": "promotions"
+            "mappedBy": "promotions"
           }
         },
         "kind": "collectionType"

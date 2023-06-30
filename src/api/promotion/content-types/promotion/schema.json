@@ -164,7 +164,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::location.location",
-      "inversedBy": "promotions"
+      "mappedBy": "promotions"
     }
   }
 }
