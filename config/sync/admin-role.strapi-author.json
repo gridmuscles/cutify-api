@@ -206,7 +206,6 @@
           "latitude",
           "longitude",
           "phone",
-          "originalPhone",
           "pin",
           "organization",
           "isRU",
@@ -219,7 +218,13 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "isChatAvailable"
+          "isChatAvailable",
+          "details",
+          "details_pl",
+          "details_ru",
+          "details_ua",
+          "promotions",
+          "forwardPhone"
         ]
       },
       "conditions": []
@@ -233,7 +238,6 @@
           "latitude",
           "longitude",
           "phone",
-          "originalPhone",
           "pin",
           "organization",
           "isRU",
@@ -246,7 +250,13 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "isChatAvailable"
+          "isChatAvailable",
+          "details",
+          "details_pl",
+          "details_ru",
+          "details_ua",
+          "promotions",
+          "forwardPhone"
         ]
       },
       "conditions": []
@@ -260,7 +270,6 @@
           "latitude",
           "longitude",
           "phone",
-          "originalPhone",
           "pin",
           "organization",
           "isRU",
@@ -273,7 +282,13 @@
           "workhours_ua",
           "workhours_ru",
           "managers",
-          "isChatAvailable"
+          "isChatAvailable",
+          "details",
+          "details_pl",
+          "details_ru",
+          "details_ua",
+          "promotions",
+          "forwardPhone"
         ]
       },
       "conditions": []
@@ -403,7 +418,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "locations"
         ]
       },
       "conditions": []
@@ -470,7 +486,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "locations"
         ]
       },
       "conditions": []
@@ -531,7 +548,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status"
+          "status",
+          "locations"
         ]
       },
       "conditions": []

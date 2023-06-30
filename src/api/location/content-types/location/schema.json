@@ -24,13 +24,11 @@
       "type": "float"
     },
     "phone": {
-      "type": "text"
-    },
-    "originalPhone": {
-      "type": "text"
+      "type": "string",
+      "private": true
     },
     "pin": {
-      "type": "text"
+      "type": "string"
     },
     "organization": {
       "type": "relation",
@@ -77,6 +75,28 @@
     "isChatAvailable": {
       "type": "boolean",
       "default": false
+    },
+    "details": {
+      "type": "richtext"
+    },
+    "details_pl": {
+      "type": "richtext"
+    },
+    "details_ru": {
+      "type": "richtext"
+    },
+    "details_ua": {
+      "type": "richtext"
+    },
+    "promotions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::promotion.promotion",
+      "inversedBy": "locations"
+    },
+    "forwardPhone": {
+      "type": "string",
+      "default": "48699600900"
     }
   }
 }

@@ -6,6 +6,9 @@ module.exports = {
       method: 'POST',
       path: '/auctions/:id/bids',
       handler: 'auction.createAuctionBid',
+      policies: [
+        { name: 'global::captcha', config: { action: 'AUCTION_DO_BID' } },
+      ],
     },
     {
       method: 'GET',

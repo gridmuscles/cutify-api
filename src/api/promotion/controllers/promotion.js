@@ -4,6 +4,7 @@ const { parseISO, isAfter } = require('date-fns')
 const { ERROR_CODES } = require('../../../utils/const')
 const { getCouponListEmail } = require('../../../utils/email')
 const { getCouponListUrl } = require('../../../utils/dynamic-link')
+const { getPromotionListPopulate } = require('../utils/populate')
 
 /**
  * promotion controller
@@ -371,6 +372,36 @@ module.exports = createCoreController(
         strapi.log.error(err)
         ctx.badRequest()
       }
+    },
+
+    async findRecommendations(ctx) {
+      const { locale, pagination } = await this.sanitizeQuery(ctx)
+
+      const results = await await strapi
+        .service('api::promotion.promotion')
+        .findRecommendations({
+          promotionId: ctx.params.id,
+          pagination: pagination ?? { page: 1, pageSize: 4 },
+          populate: getPromotionListPopulate({ locale, pagination }),
+        })
+
+      const sanitizedResult = await this.sanitizeOutput(results, ctx)
+      return this.transformResponse(sanitizedResult)
+    },
+
+    async findSimilar(ctx) {
+      const { locale, pagination } = await this.sanitizeQuery(ctx)
+
+      const results = await await strapi
+        .service('api::promotion.promotion')
+        .findSimilar({
+          promotionId: ctx.params.id,
+          pagination: pagination ?? { page: 1, pageSize: 4 },
+          populate: getPromotionListPopulate({ locale }),
+        })
+
+      const sanitizedResult = await this.sanitizeOutput(results, ctx)
+      return this.transformResponse(sanitizedResult)
     },
   })
 )

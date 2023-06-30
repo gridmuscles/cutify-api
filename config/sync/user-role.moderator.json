@@ -55,6 +55,12 @@
       "action": "api::promotion.promotion.findOne"
     },
     {
+      "action": "api::promotion.promotion.findRecommendations"
+    },
+    {
+      "action": "api::promotion.promotion.findSimilar"
+    },
+    {
       "action": "api::promotion.promotion.verifyAuction"
     },
     {

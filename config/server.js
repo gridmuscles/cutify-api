@@ -31,4 +31,13 @@ module.exports = ({ env }) => ({
   web: {
     host: env('WEB_APP_HOST'),
   },
+  phone: {
+    prefix: env('PUBLIC_PHONE_PREFIX'),
+  },
+  captcha: {
+    enabled: env.bool('CAPTCHA_IS_ENABLED', false),
+    id: env('CAPTCHA_PROJECT_ID'),
+    apiKey: env('CAPTCHA_API_KEY'),
+    key: env('CAPTCHA_KEY'),
+  },
 })

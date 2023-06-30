@@ -77,20 +77,6 @@
           "sortable": true
         }
       },
-      "originalPhone": {
-        "edit": {
-          "label": "originalPhone",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "originalPhone",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "pin": {
         "edit": {
           "label": "pin",
@@ -275,6 +261,91 @@
           "sortable": true
         }
       },
+      "details": {
+        "edit": {
+          "label": "details",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "details_pl": {
+        "edit": {
+          "label": "details_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "details_ru": {
+        "edit": {
+          "label": "details_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "details_ua": {
+        "edit": {
+          "label": "details_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "promotions": {
+        "edit": {
+          "label": "promotions",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "promotions",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "forwardPhone": {
+        "edit": {
+          "label": "forwardPhone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "forwardPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -308,25 +379,31 @@
       "edit": [
         [
           {
-            "name": "organization",
-            "size": 6
-          },
-          {
             "name": "city",
             "size": 6
           }
         ],
         [
           {
-            "name": "phone",
-            "size": 4
+            "name": "organization",
+            "size": 6
           },
           {
-            "name": "originalPhone",
+            "name": "promotions",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "forwardPhone",
             "size": 4
           },
           {
             "name": "pin",
+            "size": 4
+          },
+          {
+            "name": "phone",
             "size": 4
           }
         ],
@@ -398,6 +475,30 @@
           {
             "name": "longitude",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "details",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details_ua",
+            "size": 12
           }
         ]
       ],

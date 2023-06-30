@@ -43,11 +43,20 @@ module.exports = {
       method: 'POST',
       path: '/coupons/verify/code',
       handler: 'coupon.verifyWithCode',
+      policies: [
+        { name: 'global::captcha', config: { action: 'COUPON_VERIFY_CODE' } },
+      ],
     },
     {
       method: 'POST',
       path: '/coupons/verify/receipt',
       handler: 'coupon.verifyWithReceipt',
+      policies: [
+        {
+          name: 'global::captcha',
+          config: { action: 'COUPON_VERIFY_RECEIPT' },
+        },
+      ],
     },
   ],
 }

@@ -106,6 +106,18 @@ describe('Promotions', () => {
             .attributes.address
         ).toBe(primaryLocation.address)
         expect(
+          data.attributes.organization.data.attributes.locations.data[0]
+            .attributes.phone
+        ).toBeUndefined()
+        expect(
+          data.attributes.organization.data.attributes.locations.data[0]
+            .attributes.pin
+        ).toBe(primaryLocation.pin)
+        expect(
+          data.attributes.organization.data.attributes.locations.data[0]
+            .attributes.forwardPhone
+        ).toBe(primaryLocation.forwardPhone)
+        expect(
           data.attributes.organization.data.attributes.promotions.data[0]
             .attributes.organization
         ).toBeUndefined()
@@ -649,6 +661,78 @@ describe('Promotions', () => {
       .expect(200)
       .then(({ body: { data } }) => {
         expect(data.attributes.auction.data.attributes.status).toBe('verified')
+      })
+  })
+
+  it.each([
+    { type: 'public', code: 200 },
+    { type: 'authenticated', code: 200 },
+    { type: 'manager', code: 200 },
+    { type: 'moderator', code: 200 },
+  ])(
+    'should $type be able to get promotion recommendations',
+    async ({ type, code }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/promotions/${primaryPromotion.id}/recommendations`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
+
+  it('should guest be able to get the promotions recommendations', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/recommendations`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.length > 0).toBe(true)
+        expect(data.some((p) => p.id === primaryPromotion.id)).toBe(false)
+      })
+  })
+
+  it.each([
+    { type: 'public', code: 200 },
+    { type: 'authenticated', code: 200 },
+    { type: 'manager', code: 200 },
+    { type: 'moderator', code: 200 },
+  ])(
+    'should $type be able to get promotion similar',
+    async ({ type, code }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/promotions/${primaryPromotion.id}/similar`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req.expect('Content-Type', /json/).expect(code)
+    }
+  )
+
+  it('should guest be able to get the promotions similar', async () => {
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryPromotion.id}/similar`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.length > 0).toBe(true)
+        expect(data.some((p) => p.id === primaryPromotion.id)).toBe(false)
       })
   })
 })
