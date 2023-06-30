@@ -24,8 +24,7 @@
       "type": "float"
     },
     "phone": {
-      "type": "string",
-      "private": true
+      "type": "string"
     },
     "pin": {
       "type": "string"
