@@ -2916,11 +2916,11 @@
           "type": "float"
         },
         "phone": {
-          "type": "text",
+          "type": "string",
           "private": true
         },
         "pin": {
-          "type": "text"
+          "type": "string"
         },
         "organization": {
           "type": "relation",
@@ -3042,11 +3042,11 @@
             "type": "float"
           },
           "phone": {
-            "type": "text",
+            "type": "string",
             "private": true
           },
           "pin": {
-            "type": "text"
+            "type": "string"
           },
           "organization": {
             "type": "relation",
