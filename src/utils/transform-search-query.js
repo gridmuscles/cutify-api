@@ -24,7 +24,7 @@ const transformSearchQuery = (query) => {
   }
 
   return {
-    $and: [searchFilter, filters],
+    $and: [searchFilter, filters ?? {}],
   }
 }
 
