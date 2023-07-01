@@ -25,9 +25,6 @@
       "action": "api::chat.chat.createLocationPromotionChat"
     },
     {
-      "action": "api::chat.chat.createMessage"
-    },
-    {
       "action": "api::chat.chat.markAsRead"
     },
     {
@@ -50,6 +47,9 @@
     },
     {
       "action": "api::location.location.findOne"
+    },
+    {
+      "action": "api::message.message.createChatMessage"
     },
     {
       "action": "api::organization.organization.find"

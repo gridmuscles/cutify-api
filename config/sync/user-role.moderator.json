@@ -25,6 +25,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.markAsRead"
+    },
+    {
       "action": "api::city.city.find"
     },
     {
@@ -41,6 +44,9 @@
     },
     {
       "action": "api::location.location.findOne"
+    },
+    {
+      "action": "api::message.message.createChatMessage"
     },
     {
       "action": "api::organization.organization.find"

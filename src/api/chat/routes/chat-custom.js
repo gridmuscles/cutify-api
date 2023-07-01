@@ -15,17 +15,6 @@ module.exports = {
     },
     {
       method: 'POST',
-      path: '/chats/:id/messages',
-      handler: 'chat.createMessage',
-      config: {
-        policies: [
-          { name: 'global::captcha', config: { action: 'CHAT_SEND_MESSAGE' } },
-        ],
-        middlewares: [{ name: 'global::locale' }],
-      },
-    },
-    {
-      method: 'POST',
       path: '/chats/location/:locationId/promotion/:promotionId',
       handler: 'chat.createLocationPromotionChat',
       config: {
