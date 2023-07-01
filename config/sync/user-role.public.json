@@ -52,9 +52,6 @@
       "action": "api::organization.organization.findOne"
     },
     {
-      "action": "api::organization.organization.findReviews"
-    },
-    {
       "action": "api::promotion.promotion.find"
     },
     {
@@ -76,7 +73,7 @@
       "action": "api::promotion.promotion.requestCoupon"
     },
     {
-      "action": "api::review.review.create"
+      "action": "api::review.review.findOrganizationReviews"
     },
     {
       "action": "api::static-pages.static-pages.findOne"

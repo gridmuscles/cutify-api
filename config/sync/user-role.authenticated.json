@@ -58,9 +58,6 @@
       "action": "api::organization.organization.findOne"
     },
     {
-      "action": "api::organization.organization.findReviews"
-    },
-    {
       "action": "api::promotion.promotion.completeAuction"
     },
     {
@@ -86,6 +83,9 @@
     },
     {
       "action": "api::review.review.create"
+    },
+    {
+      "action": "api::review.review.findOrganizationReviews"
     },
     {
       "action": "api::static-pages.static-pages.findOne"
