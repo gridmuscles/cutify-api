@@ -13,6 +13,9 @@
       "action": "api::auction.auction.findOne"
     },
     {
+      "action": "api::auction.auction.verifyAuction"
+    },
+    {
       "action": "api::bid.bid.find"
     },
     {
@@ -68,9 +71,6 @@
     },
     {
       "action": "api::promotion.promotion.findSimilar"
-    },
-    {
-      "action": "api::promotion.promotion.verifyAuction"
     },
     {
       "action": "api::receipt.receipt.find"

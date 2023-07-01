@@ -136,7 +136,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -157,7 +158,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -172,7 +174,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []

@@ -24,24 +24,6 @@ module.exports = {
       ],
     },
     {
-      method: 'POST',
-      path: '/promotions/:id/auction/complete',
-      handler: 'promotion.completeAuction',
-      config: {
-        middlewares: [{ name: 'global::locale' }],
-        policies: [{ name: 'global::query', config: { allowedParams: [] } }],
-      },
-    },
-    {
-      method: 'POST',
-      path: '/promotions/:id/auction/verify',
-      handler: 'promotion.verifyAuction',
-      config: {
-        middlewares: [{ name: 'global::locale' }],
-        policies: [{ name: 'global::query', config: { allowedParams: [] } }],
-      },
-    },
-    {
       method: 'GET',
       path: '/promotions/manager',
       handler: 'promotion.findManagerPromotionList',
