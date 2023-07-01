@@ -10,10 +10,16 @@
       "action": "api::auction.auction.find"
     },
     {
-      "action": "api::auction.auction.findAuctionLatestBid"
+      "action": "api::auction.auction.findOne"
     },
     {
-      "action": "api::auction.auction.findOne"
+      "action": "api::bid.bid.find"
+    },
+    {
+      "action": "api::bid.bid.findAuctionLatestBid"
+    },
+    {
+      "action": "api::bid.bid.findOne"
     },
     {
       "action": "api::category.category.find"

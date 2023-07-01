@@ -7,16 +7,16 @@
       "action": "api::article.article.findOne"
     },
     {
-      "action": "api::auction.auction.createAuctionBid"
-    },
-    {
       "action": "api::auction.auction.find"
     },
     {
-      "action": "api::auction.auction.findAuctionLatestBid"
+      "action": "api::auction.auction.findOne"
     },
     {
-      "action": "api::auction.auction.findOne"
+      "action": "api::bid.bid.createAuctionBid"
+    },
+    {
+      "action": "api::bid.bid.findAuctionLatestBid"
     },
     {
       "action": "api::category.category.find"
