@@ -1,0 +1,13 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+        "Name": "815022972290.dkr.ecr.eu-central-1.amazonaws.com/dev/strapi:latest",
+        "Update": "true"
+    },
+    "Ports": [
+        {
+            "ContainerPort": "1337",
+            "HostPort": "8080"
+        }
+    ]
+}
