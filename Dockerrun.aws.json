@@ -1,5 +1,18 @@
 {
 	"AWSEBDockerrunVersion": "1",
+	"Authentication": {
+		"Command": "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 815022972290.dkr.ecr.eu-central-1amazonaws.com"
+	},
+	"Image": {
+		"Name": "815022972290.dkr.ecr.eu-central-1.amazonaws.com/dev/strapi:latest",
+		"Update": "true"
+	},
+	"Ports": [
+		{
+			"HostPort": 8080,
+			"ContainerPort": 1337
+		}
+	],
 	"containerDefinitions": [
 		{
 			"name": "strapi",
@@ -166,12 +179,6 @@
 					"value": {
 						"Ref": "WEB_APP_HOST"
 					}
-				}
-			],
-			"portMappings": [
-				{
-					"hostPort": 8080,
-					"containerPort": 1337
 				}
 			]
 		}
