@@ -160,6 +160,7 @@ module.exports = createCoreController(
 
       const { locale } = await this.sanitizeQuery(ctx)
       const { email, count } = ctx.request.body
+      const userId = ctx.state.user?.id ?? null
 
       try {
         if (!email || !count) {
@@ -211,6 +212,7 @@ module.exports = createCoreController(
           [...Array(count).keys()].map(() =>
             strapi.service('api::coupon.coupon').create({
               data: {
+                user: userId,
                 promotion: promotion.id,
                 email,
                 uuid: `${Math.floor(
@@ -220,7 +222,9 @@ module.exports = createCoreController(
               },
             })
           )
-        ).then((coupons) => coupons.map(({ uuid }) => uuid))
+        ).then((coupons) => {
+          return coupons.map(({ uuid }) => uuid)
+        })
 
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
@@ -246,15 +250,12 @@ module.exports = createCoreController(
 
     async like(ctx) {
       try {
-        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
-        ctx.request.query = sanitizedQueryParams
-
         const promotion = await strapi
           .service('api::promotion.promotion')
-          .findOne(ctx)
+          .findOne(ctx.params.id)
 
         if (!promotion) {
-          throw new Error()
+          return ctx.notFound()
         }
 
         const likesCount = promotion.likesCount ? promotion.likesCount + 1 : 1

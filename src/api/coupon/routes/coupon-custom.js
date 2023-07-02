@@ -37,7 +37,10 @@ module.exports = {
       config: {
         middlewares: [{ name: 'global::locale' }],
         policies: [
-          { name: 'global::query', config: { allowedParams: ['locale'] } },
+          {
+            name: 'global::query',
+            config: { allowedParams: ['locale', 'filters'] },
+          },
         ],
       },
     },
@@ -67,7 +70,10 @@ module.exports = {
           name: 'global::captcha',
           config: { action: 'COUPON_VERIFY_RECEIPT' },
         },
-        { name: 'global::query', config: { allowedParams: ['locale'] } },
+        {
+          name: 'global::query',
+          config: { allowedParams: ['locale'] },
+        },
       ],
     },
     {

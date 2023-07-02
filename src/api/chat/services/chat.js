@@ -75,20 +75,6 @@ module.exports = createCoreService('api::chat.chat', () => ({
         ...filters,
       },
       ...rest,
-      populate: {
-        promotion: true,
-        messages: {
-          sort: ['createdAt:asc'],
-          populate: {
-            user: {
-              fields: ['id', 'name'],
-            },
-          },
-        },
-        users: {
-          fields: ['id', 'name'],
-        },
-      },
     })
   },
 

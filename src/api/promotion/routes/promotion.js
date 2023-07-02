@@ -35,7 +35,10 @@ module.exports = createCoreRouter('api::promotion.promotion', {
     findOne: {
       middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
       policies: [
-        { name: 'global::query', config: { allowedParams: ['populate'] } },
+        {
+          name: 'global::query',
+          config: { allowedParams: ['populate', 'locale', 'views'] },
+        },
       ],
     },
   },

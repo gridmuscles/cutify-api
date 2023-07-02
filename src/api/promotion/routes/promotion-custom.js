@@ -59,7 +59,10 @@ module.exports = {
           { name: 'global::populate', config: { deep: 2 } },
         ],
         policies: [
-          { name: 'global::query', config: { allowedParams: ['locale'] } },
+          {
+            name: 'global::query',
+            config: { allowedParams: ['locale', 'locale'] },
+          },
         ],
       },
     },
@@ -70,7 +73,10 @@ module.exports = {
       config: {
         middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
         policies: [
-          { name: 'global::query', config: { allowedParams: ['populate'] } },
+          {
+            name: 'global::query',
+            config: { allowedParams: ['populate', 'locale'] },
+          },
         ],
       },
     },
@@ -81,7 +87,10 @@ module.exports = {
       config: {
         middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
         policies: [
-          { name: 'global::query', config: { allowedParams: ['populate'] } },
+          {
+            name: 'global::query',
+            config: { allowedParams: ['populate', 'locale'] },
+          },
         ],
       },
     },
@@ -94,7 +103,7 @@ module.exports = {
         policies: [
           {
             name: 'global::query',
-            config: { allowedParams: ['populate', 'views'] },
+            config: { allowedParams: ['populate', 'views', 'locale'] },
           },
         ],
       },
