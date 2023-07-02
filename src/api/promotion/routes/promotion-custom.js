@@ -9,7 +9,7 @@ module.exports = {
       config: {
         policies: [
           { name: 'global::captcha', config: { action: 'REQUEST_COUPON' } },
-          { name: 'global::query', config: { allowedParams: [] } },
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
         ],
         middlewares: [{ name: 'global::locale' }],
       },
@@ -20,7 +20,7 @@ module.exports = {
       handler: 'promotion.like',
       policies: [
         { name: 'global::captcha', config: { action: 'PROMOTION_LIKE' } },
-        { name: 'global::query', config: { allowedParams: [] } },
+        { name: 'global::query', config: { allowedParams: ['locale'] } },
       ],
     },
     {
@@ -58,7 +58,9 @@ module.exports = {
           { name: 'global::i18n' },
           { name: 'global::populate', config: { deep: 2 } },
         ],
-        policies: [{ name: 'global::query', config: { allowedParams: [] } }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
       },
     },
     {

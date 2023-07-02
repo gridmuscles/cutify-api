@@ -28,6 +28,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::chat.chat.findUserMeChats"
+    },
+    {
       "action": "api::chat.chat.markAsRead"
     },
     {
@@ -89,9 +92,6 @@
     },
     {
       "action": "plugin::users-permissions.auth.resetPassword"
-    },
-    {
-      "action": "plugin::users-permissions.user.findChats"
     },
     {
       "action": "plugin::users-permissions.user.me"

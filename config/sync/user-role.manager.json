@@ -22,6 +22,9 @@
       "action": "api::category.category.findOne"
     },
     {
+      "action": "api::chat.chat.findUserMeChats"
+    },
+    {
       "action": "api::chat.chat.markAsRead"
     },
     {
@@ -32,6 +35,9 @@
     },
     {
       "action": "api::coupon.coupon.findByPromotionAndUuidList"
+    },
+    {
+      "action": "api::coupon.coupon.getUserMeCoupons"
     },
     {
       "action": "api::coupon.coupon.verify"
@@ -77,9 +83,6 @@
     },
     {
       "action": "api::static-pages.static-pages.findOne"
-    },
-    {
-      "action": "plugin::users-permissions.user.findChats"
     },
     {
       "action": "plugin::users-permissions.user.me"

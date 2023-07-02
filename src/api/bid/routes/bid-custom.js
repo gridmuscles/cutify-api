@@ -8,7 +8,7 @@ module.exports = {
       handler: 'bid.createAuctionBid',
       policies: [
         { name: 'global::captcha', config: { action: 'AUCTION_DO_BID' } },
-        { name: 'global::query', config: { allowedParams: [] } },
+        { name: 'global::query', config: { allowedParams: ['locale'] } },
       ],
     },
     {
@@ -16,7 +16,9 @@ module.exports = {
       path: '/bids/auction/:auctionId/latest',
       handler: 'bid.findAuctionLatestBid',
       config: {
-        policies: [{ name: 'global::query', config: { allowedParams: [] } }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
       },
     },
   ],

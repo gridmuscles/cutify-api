@@ -3519,7 +3519,7 @@
           "type": "relation",
           "relation": "oneToOne",
           "target": "api::auction.auction",
-          "inversedBy": "promotion"
+          "mappedBy": "promotion"
         },
         "size": {
           "type": "enumeration",
@@ -3720,7 +3720,7 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::auction.auction",
-            "inversedBy": "promotion"
+            "mappedBy": "promotion"
           },
           "size": {
             "type": "enumeration",

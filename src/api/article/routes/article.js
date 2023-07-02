@@ -10,6 +10,9 @@ module.exports = createCoreRouter('api::article.article', {
   config: {
     findOne: {
       middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+      policies: [
+        { name: 'global::query', config: { allowedParams: ['locale'] } },
+      ],
     },
   },
 })

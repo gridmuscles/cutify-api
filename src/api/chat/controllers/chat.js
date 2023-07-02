@@ -128,4 +128,19 @@ module.exports = createCoreController('api::chat.chat', () => ({
       ctx.badRequest()
     }
   },
+
+  async findUserMeChats(ctx) {
+    try {
+      const sanitizedQuery = this.sanitizeQuery(ctx)
+
+      const { results, pagination } = await strapi
+        .service('api::chat.chat')
+        .findByUser({ userId: ctx.state.user.id, query: sanitizedQuery })
+
+      return this.transformResponse(results, { pagination })
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest()
+    }
+  },
 }))

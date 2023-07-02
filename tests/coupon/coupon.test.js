@@ -1,4 +1,6 @@
 const request = require('supertest')
+const qs = require('qs')
+
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 const fs = require('fs')
@@ -11,6 +13,15 @@ const { createUser } = require('../user/user.factory')
 const { createPromotion } = require('../promotion/promotion.factory')
 const { createCoupon, getCouponById } = require('../coupon/coupon.factory')
 const { createLocation } = require('../location/location.factory')
+
+const listCouponQuery = qs.stringify(
+  {
+    populate: ['promotion'],
+  },
+  {
+    encodeValuesOnly: true,
+  }
+)
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -95,7 +106,9 @@ describe('Coupons', () => {
 
   it('should guest be able to get any coupons by slug list from the same promotion', async () => {
     await request(strapi.server.httpServer)
-      .get(`/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`)
+      .get(
+        `/api/coupons/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&${listCouponQuery}`
+      )
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .expect('Content-Type', /json/)
@@ -117,7 +130,7 @@ describe('Coupons', () => {
   it('should guest be able to get any coupons by slug list from the same promotion', async () => {
     await request(strapi.server.httpServer)
       .get(
-        `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2`
+        `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&${listCouponQuery}`
       )
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
@@ -435,5 +448,32 @@ describe('Coupons', () => {
     const updatedCoupon = await getCouponById({ id: coupon1.id })
     expect(updatedCoupon.state).toBe('verified')
     expect(updatedCoupon.receipt).toBeDefined()
+  })
+
+  it('should authenticated user be able to get only own coupons', async () => {
+    const [user, userJwt] = await createUser({ type: 'authenticated' })
+
+    await createCoupon({
+      email: user.email,
+      user: user.id,
+      uuid: '10',
+      promotion: primaryPromotion.id,
+    })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/coupons/user/me?${listCouponQuery}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${userJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(1)
+        expect(data[0].attributes.uuid).toBe('10')
+        expect(data[0].attributes.user).toBeUndefined()
+        expect(data[0].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
+      })
   })
 })

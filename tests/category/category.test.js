@@ -1,9 +1,20 @@
 const request = require('supertest')
+const qs = require('qs')
+
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
 const { createCategory } = require('../category/category.factory')
 const { createUser } = require('../user/user.factory')
+
+const listCategoryQuery = qs.stringify(
+  {
+    populate: ['seo', 'seo.seoMeta'],
+  },
+  {
+    encodeValuesOnly: true,
+  }
+)
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -31,7 +42,7 @@ describe('Categories', () => {
       const [, jwt] = await createUser({ type })
 
       const req = request(strapi.server.httpServer)
-        .get(`/api/categories`)
+        .get(`/api/categories?${listCategoryQuery}`)
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
 

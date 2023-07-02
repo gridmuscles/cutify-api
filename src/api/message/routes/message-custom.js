@@ -9,6 +9,7 @@ module.exports = {
       config: {
         policies: [
           { name: 'global::captcha', config: { action: 'CHAT_SEND_MESSAGE' } },
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
         ],
         middlewares: [{ name: 'global::locale' }],
       },

@@ -8,7 +8,9 @@ module.exports = {
       handler: 'auction.completeAuction',
       config: {
         middlewares: [{ name: 'global::locale' }],
-        policies: [{ name: 'global::query', config: { allowedParams: [] } }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
       },
     },
     {
@@ -17,7 +19,9 @@ module.exports = {
       handler: 'auction.verifyAuction',
       config: {
         middlewares: [{ name: 'global::locale' }],
-        policies: [{ name: 'global::query', config: { allowedParams: [] } }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
       },
     },
   ],
