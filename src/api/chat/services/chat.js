@@ -52,44 +52,30 @@ module.exports = createCoreService('api::chat.chat', () => ({
     }
   },
 
-  async findByUser(ctx) {
-    try {
-      return strapi.service('api::chat.chat').find({
-        filters: {
-          $or: [
-            {
-              users: {
-                id: ctx.state.user.id,
-              },
+  async findByUser({ userId, query }) {
+    /* eslint-disable no-unused-vars */
+    const { locale, filters, ...rest } = query
+
+    return strapi.service('api::chat.chat').find({
+      filters: {
+        $or: [
+          {
+            users: {
+              id: userId,
             },
-            {
-              location: {
-                managers: {
-                  id: ctx.state.user.id,
-                },
-              },
-            },
-          ],
-        },
-        populate: {
-          promotion: true,
-          messages: {
-            sort: ['createdAt:asc'],
-            populate: {
-              user: {
-                fields: ['id', 'name'],
+          },
+          {
+            location: {
+              managers: {
+                id: userId,
               },
             },
           },
-          users: {
-            fields: ['id', 'name'],
-          },
-        },
-      })
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
+        ],
+        ...filters,
+      },
+      ...rest,
+    })
   },
 
   async ifChatOwner({ chatId, userId }) {

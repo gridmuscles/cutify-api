@@ -1,10 +1,11 @@
 'use strict'
 
 const { parseISO, isAfter } = require('date-fns')
-const { ERROR_CODES } = require('../../../utils/const')
+
 const { getCouponListEmail } = require('../../../utils/email')
 const { getCouponListUrl } = require('../../../utils/dynamic-link')
-const { getPromotionListPopulate } = require('../utils/populate')
+
+const { ERROR_CODES } = require('../../../utils/const')
 
 /**
  * promotion controller
@@ -12,18 +13,154 @@ const { getPromotionListPopulate } = require('../utils/populate')
 
 const { createCoreController } = require('@strapi/strapi').factories
 
-//TODO (Tests)
 module.exports = createCoreController(
   'api::promotion.promotion',
   ({ strapi }) => ({
+    async find(ctx) {
+      const { data, meta } = await super.find(ctx)
+
+      const coupons = await Promise.all(
+        data.map(async ({ id }) =>
+          strapi
+            .service('api::promotion.promotion')
+            .getPromotionCouponsCount({ promotionId: id })
+        )
+      )
+
+      return {
+        data: data.map(({ id, attributes }, i) => ({
+          id,
+          attributes: {
+            ...attributes,
+            couponsCount: coupons[i],
+          },
+        })),
+        meta,
+      }
+    },
+
+    async findOne(ctx) {
+      try {
+        const promotion = await super.findOne(ctx)
+
+        if (!promotion) {
+          return ctx.notFound({ code: ERROR_CODES.PROMOTION_NOT_FOUND })
+        }
+
+        promotion.data.attributes.couponsCount = await strapi
+          .service('api::promotion.promotion')
+          .getPromotionCouponsCount({
+            promotionId: promotion.data.id,
+          })
+
+        return promotion
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async findBySlug(ctx) {
+      try {
+        const { views, ...query } = await this.sanitizeQuery(ctx)
+
+        const promotion = await strapi
+          .service('api::promotion.promotion')
+          .findOneBySlug({ slug: ctx.params.slug, query })
+
+        if (!promotion) {
+          return ctx.notFound({ code: ERROR_CODES.PROMOTION_NOT_FOUND })
+        }
+
+        if (views) {
+          await strapi
+            .service('api::promotion.promotion')
+            .incrementPromotionViews({
+              promotionId: promotion.id,
+            })
+        }
+
+        promotion.couponsCount = await strapi
+          .service('api::promotion.promotion')
+          .getPromotionCouponsCount({
+            promotionId: promotion.id,
+          })
+
+        const sanitizedResult = await this.sanitizeOutput(promotion, ctx)
+        return this.transformResponse(sanitizedResult)
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async findManagerPromotionList(ctx) {
+      try {
+        // eslint-disable-next-line no-unused-vars
+        const { locale, ...query } = await this.sanitizeQuery(ctx)
+
+        const { results, pagination } = await strapi
+          .service('api::promotion.promotion')
+          .findByManager({
+            managerId: ctx.state.user.id,
+            query: {
+              pagination: { page: 1, pageSize: 4 },
+              ...query,
+            },
+          })
+
+        if (!results) {
+          throw new Error()
+        }
+
+        const sanitizedResults = await this.sanitizeOutput(results, ctx)
+        return this.transformResponse(sanitizedResults, { pagination })
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
+    async findRecommendations(ctx) {
+      const sanitizedQuery = await this.sanitizeQuery(ctx)
+
+      const { results, pagination } = await await strapi
+        .service('api::promotion.promotion')
+        .findRecommendations({
+          promotionId: ctx.params.id,
+          query: {
+            pagination: { page: 1, pageSize: 4 },
+            ...sanitizedQuery,
+          },
+        })
+
+      const sanitizedResults = await this.sanitizeOutput(results, ctx)
+      return this.transformResponse(sanitizedResults, { pagination })
+    },
+
+    async findSimilar(ctx) {
+      const sanitizedQuery = await this.sanitizeQuery(ctx)
+
+      const { results, pagination } = await await strapi
+        .service('api::promotion.promotion')
+        .findSimilar({
+          promotionId: ctx.params.id,
+          query: {
+            pagination: { page: 1, pageSize: 4 },
+            ...sanitizedQuery,
+          },
+        })
+
+      const sanitizedResults = await this.sanitizeOutput(results, ctx)
+      return this.transformResponse(sanitizedResults, { pagination })
+    },
+
     async requestCoupon(ctx) {
       const config = strapi.config.get('server')
 
-      const sanitizedQueryParams = await this.sanitizeQuery(ctx)
-      ctx.request.query = sanitizedQueryParams
-
-      const { locale } = sanitizedQueryParams
+      const { locale } = await this.sanitizeQuery(ctx)
       const { email, count } = ctx.request.body
+      const userId = ctx.state.user?.id ?? null
 
       try {
         if (!email || !count) {
@@ -32,7 +169,9 @@ module.exports = createCoreController(
 
         const promotion = await strapi
           .service('api::promotion.promotion')
-          .findOne(ctx)
+          .findOne(ctx.params.id, {
+            populate: ['auction'],
+          })
 
         const { dateTimeUntil, publishedAt, auction } = promotion
 
@@ -73,6 +212,7 @@ module.exports = createCoreController(
           [...Array(count).keys()].map(() =>
             strapi.service('api::coupon.coupon').create({
               data: {
+                user: userId,
                 promotion: promotion.id,
                 email,
                 uuid: `${Math.floor(
@@ -82,7 +222,9 @@ module.exports = createCoreController(
               },
             })
           )
-        ).then((coupons) => coupons.map(({ uuid }) => uuid))
+        ).then((coupons) => {
+          return coupons.map(({ uuid }) => uuid)
+        })
 
         await strapi.plugins['email'].services.email.send(
           getCouponListEmail({
@@ -108,15 +250,12 @@ module.exports = createCoreController(
 
     async like(ctx) {
       try {
-        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
-        ctx.request.query = sanitizedQueryParams
-
         const promotion = await strapi
           .service('api::promotion.promotion')
-          .findOne(ctx)
+          .findOne(ctx.params.id)
 
         if (!promotion) {
-          return
+          return ctx.notFound()
         }
 
         const likesCount = promotion.likesCount ? promotion.likesCount + 1 : 1
@@ -137,271 +276,28 @@ module.exports = createCoreController(
       }
     },
 
-    async findOne(ctx) {
-      try {
-        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
-        ctx.request.query = sanitizedQueryParams
-
-        let promotion
-        if (Number(ctx.params.id) != ctx.params.id) {
-          promotion = await strapi
-            .service('api::promotion.promotion')
-            .findOneBySlug(ctx)
-        } else {
-          promotion = await strapi
-            .service('api::promotion.promotion')
-            .findOne(ctx)
-        }
-        if (!promotion) {
-          throw new Error(ERROR_CODES.PROMOTION_NOT_FOUND)
-        }
-        const { views } = ctx.request.query
-        await strapi.service('api::promotion.promotion').update(promotion.id, {
-          data: {
-            viewsCount:
-              views === 'true'
-                ? promotion.viewsCount + 1
-                : promotion.viewsCount,
-          },
-        })
-
-        const sanitizedResult = await this.sanitizeOutput(promotion, ctx)
-        return this.transformResponse(sanitizedResult)
-      } catch (err) {
-        strapi.log.error(err)
-        ctx.badRequest()
-      }
-    },
-
-    async verifyAuction(ctx) {
-      const config = strapi.config.get('server')
-
-      try {
-        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
-        ctx.request.query = sanitizedQueryParams
-
-        const { locale } = ctx.request.query
-
-        const promotion = await strapi
-          .service('api::promotion.promotion')
-          .findOne(ctx)
-
-        const latestBid = await strapi
-          .service('api::auction.auction')
-          .findPopulatedAuctionLatestBid({ auctionId: promotion.auction.id })
-
-        await strapi.service('api::auction.auction').verifyAuction({
-          auctionId: promotion.auction.id,
-        })
-
-        const coupon = await strapi.service('api::coupon.coupon').create({
-          data: {
-            promotion: promotion.id,
-            email: latestBid.bidder.email,
-            user: latestBid.bidder.id,
-            state: 'active',
-          },
-        })
-
-        await strapi.plugins['email'].services.email.send(
-          getCouponListEmail({
-            title: `${promotion.discountTo}% ${promotion.title}`,
-            email: latestBid.bidder.email,
-            link: getCouponListUrl({
-              host: config.web.host,
-              locale,
-              promotionId: promotion.id,
-              uuidList: [coupon.uuid],
-            }),
-            locale,
-            couponsAmount: 1,
-          })
-        )
-
-        const { id } = coupon
-        return { id }
-      } catch (err) {
-        strapi.log.error(err)
-        ctx.badRequest()
-      }
-    },
-
-    async completeAuction(ctx) {
-      try {
-        const sanitizedQueryParams = await this.sanitizeQuery(ctx)
-        ctx.request.query = sanitizedQueryParams
-
-        const promotion = await strapi
-          .service('api::promotion.promotion')
-          .findOne(ctx)
-
-        await strapi.service('api::auction.auction').completeAuction({
-          auctionId: promotion.auction.id,
-        })
-
-        return true
-      } catch (err) {
-        strapi.log.error(err)
-        ctx.badRequest()
-      }
-    },
-
-    async findCoupons(ctx) {
-      try {
-        const {
-          transformResponse: transformCouponResponse,
-          sanitizeOutput: sanitizeCouponOutput,
-        } = await strapi.controller('api::coupon.coupon')
-
-        const locations = await strapi.entityService.findMany(
-          'api::location.location',
-          {
-            filters: {
-              managers: {
-                id: ctx.state.user.id,
-              },
-            },
-            populate: {
-              organization: {
-                populate: {
-                  promotions: true,
-                },
-              },
-            },
-          }
-        )
-
-        const organizationIds = locations.reduce((acc, location) => {
-          return [...acc, location.organization.id]
-        }, [])
-
-        const { results, pagination } = await strapi
-          .service('api::coupon.coupon')
-          .find({
-            filters: {
-              promotion: {
-                organization: {
-                  id: {
-                    $in: organizationIds,
-                  },
-                },
-              },
-            },
-          })
-
-        const sanitizedResults = await sanitizeCouponOutput(results, ctx)
-        return transformCouponResponse(sanitizedResults, { pagination })
-      } catch (err) {
-        strapi.log.error(err)
-        ctx.badRequest()
-      }
-    },
-
-    async findManagerPromotions(ctx) {
-      try {
-        const locations = await strapi.entityService.findMany(
-          'api::location.location',
-          {
-            filters: {
-              managers: {
-                id: ctx.state.user.id,
-              },
-            },
-            populate: {
-              organization: {
-                populate: {
-                  promotions: true,
-                },
-              },
-            },
-          }
-        )
-
-        if (!locations[0] || !locations[0].organization) {
-          throw new Error()
-        }
-
-        ctx.request.query.filters = {
-          ...ctx.request.query.filters,
-          organization: {
-            id: locations[0].organization.id,
-          },
-        }
-
-        return super.find(ctx)
-      } catch (err) {
-        strapi.log.error(err)
-        ctx.badRequest()
-      }
-    },
-
     async getPromotionConfirmationCode(ctx) {
       try {
-        const locations = await strapi.entityService.findMany(
-          'api::location.location',
-          {
-            filters: {
-              managers: {
-                id: ctx.state.user.id,
-              },
-            },
-            populate: {
-              organization: {
-                populate: {
-                  promotions: true,
-                },
-              },
-            },
-          }
-        )
+        const code = await strapi
+          .service('api::promotion.promotion')
+          .getPromotionConfirmationCode({
+            promotionId: ctx.params.id,
+            managerId: ctx.state.user.id,
+          })
 
-        const promotion = locations[0]?.organization.promotions.find(
-          (promotion) => promotion.id === Number(ctx.params.id)
-        )
-
-        if (!promotion) {
-          throw new Error()
+        if (!code) {
+          return ctx.badRequest()
         }
 
         return {
           data: {
-            confirmationCode: promotion.confirmationCode,
+            confirmationCode: code,
           },
         }
       } catch (err) {
         strapi.log.error(err)
         ctx.badRequest()
       }
-    },
-
-    async findRecommendations(ctx) {
-      const { locale, pagination } = await this.sanitizeQuery(ctx)
-
-      const results = await await strapi
-        .service('api::promotion.promotion')
-        .findRecommendations({
-          promotionId: ctx.params.id,
-          pagination: pagination ?? { page: 1, pageSize: 4 },
-          populate: getPromotionListPopulate({ locale, pagination }),
-        })
-
-      const sanitizedResult = await this.sanitizeOutput(results, ctx)
-      return this.transformResponse(sanitizedResult)
-    },
-
-    async findSimilar(ctx) {
-      const { locale, pagination } = await this.sanitizeQuery(ctx)
-
-      const results = await await strapi
-        .service('api::promotion.promotion')
-        .findSimilar({
-          promotionId: ctx.params.id,
-          pagination: pagination ?? { page: 1, pageSize: 4 },
-          populate: getPromotionListPopulate({ locale }),
-        })
-
-      const sanitizedResult = await this.sanitizeOutput(results, ctx)
-      return this.transformResponse(sanitizedResult)
     },
   })
 )

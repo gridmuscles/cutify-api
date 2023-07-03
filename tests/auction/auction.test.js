@@ -1,10 +1,24 @@
 const request = require('supertest')
+const qs = require('qs')
+
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
-const { createAuction, clearAuctions } = require('./auction.factory')
-const { createBid, clearBids } = require('../bid/bid.factory')
 const { createUser } = require('../user/user.factory')
+const { createAuction } = require('./auction.factory')
+const { createPromotion } = require('../promotion/promotion.factory')
+const { createCategory } = require('../category/category.factory')
+const { createOrganization } = require('../organization/organization.factory')
+const { createBid } = require('../bid/bid.factory')
+
+const singlePromotionQuery = qs.stringify(
+  {
+    populate: ['auction'],
+  },
+  {
+    encodeValuesOnly: true,
+  }
+)
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -19,20 +33,37 @@ afterAll(async () => {
 describe('Auction', () => {
   let authenticatedUser
   let authenticatedUserJwt
+  let managerUserJwt
 
+  let primaryCategory
+  let primaryOrganization
+  let primaryPromotion
   let primaryAuction
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const [user, jwt] = await createUser({ type: 'authenticated' })
     authenticatedUser = user
     authenticatedUserJwt = jwt
 
-    primaryAuction = await createAuction()
-  })
+    const [, jwt2] = await createUser({ type: 'manager' })
+    managerUserJwt = jwt2
 
-  afterEach(async () => {
-    await clearBids()
-    await clearAuctions()
+    primaryCategory = await createCategory()
+    primaryOrganization = await createOrganization({
+      categories: [primaryCategory.id],
+    })
+    primaryPromotion = await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+      seo: { keywords: 'a,b,c' },
+      title: 'Company tytuł EN',
+      title_pl: 'Tytuł firmy PL',
+      title_ru: 'Tytuł компании RU',
+      title_ua: 'Tytuł компанії UA',
+    })
+    primaryAuction = await createAuction({
+      promotion: primaryPromotion.id,
+    })
   })
 
   it.each([
@@ -63,180 +94,174 @@ describe('Auction', () => {
     }
   )
 
-  it.each([{ type: 'public' }, { type: 'authenticated' }])(
-    'should $type user is able to get a latest auction bid',
-    async ({ type }) => {
-      const latestBid = await createBid({
-        bidder: authenticatedUser.id,
-        auction: primaryAuction.id,
-        amount: 90,
-      })
-      const [, jwt] = await createUser({ type })
+  it.each([
+    { type: 'public', code: 401 },
+    { type: 'authenticated', code: 403 },
+    { type: 'manager', code: 403 },
+  ])('should not $type be able to verify auction', async ({ type, code }) => {
+    const [, jwt] = await createUser({ type })
 
-      const req = request(strapi.server.httpServer)
-        .get(`/api/auctions/${primaryAuction.id}/bids/latest`)
-        .set('accept', 'application/json')
-        .set('Content-Type', 'application/json')
-
-      if (jwt) {
-        req.set('Authorization', `Bearer ${jwt}`)
-      }
-
-      await req
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .then(({ body: { data } }) => {
-          expect(data.id).toBe(latestBid.id)
-          expect(data.attributes.auction).toBeUndefined()
-          expect(data.attributes.bidder).toBeUndefined()
-        })
-    }
-  )
-
-  it('should authenticated user be able to do a bid for asc auction', async () => {
-    const auction = await createAuction({
-      direction: 'asc',
-      startPrice: 100,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.amount).toBe(110)
-      })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.amount).toBe(120)
-      })
-  })
-
-  it('should authenticated user be able to do a bid for desc auction', async () => {
-    const auction = await createAuction({
-      direction: 'desc',
-      startPrice: 100,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.amount).toBe(90)
-        expect(data.attributes.auction).toBeUndefined()
-        expect(data.attributes.bidder).toBeUndefined()
-      })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.amount).toBe(80)
-      })
-  })
-
-  it('should not authenticated user be able to do a bid after auction is completed', async () => {
     const auction = await createAuction({
       status: 'completed',
     })
 
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should not authenticated user be able to do a bid if auction is verified', async () => {
-    const auction = await createAuction({
-      status: 'verified',
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should not authenticated user be able to do a bid after exceed the auction user bids limit', async () => {
-    const auction = await createAuction({
-      userAttemptLimit: 2,
-    })
-
-    const [, jwt] = await createUser({ type: 'authenticated' })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${jwt}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${jwt}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-
-    await request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${jwt}`)
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it.each([
-    { type: 'public', code: 403 },
-    { type: 'manager', code: 403 },
-    { type: 'moderator', code: 403 },
-  ])('should $type user is not able to do a bid', async ({ type, code }) => {
-    const [, jwt] = await createUser({ type })
-
-    const auction = await createAuction({
-      status: 'active',
+    await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+      auction: auction.id,
     })
 
     const req = request(strapi.server.httpServer)
-      .post(`/api/auctions/${auction.id}/bids`)
+      .post(`/api/auctions/${auction.id}/verify`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt}`)
 
     if (jwt) {
       req.set('Authorization', `Bearer ${jwt}`)
     }
 
-    req.expect('Content-Type', /json/).expect(code)
+    await req.expect('Content-Type', /json/).expect(code)
+  })
+
+  it('should moderator user be able to verify the auction', async () => {
+    const [, jwt] = await createUser({ type: 'moderator' })
+
+    const auction = await createAuction({
+      status: 'completed',
+    })
+
+    await createBid({
+      bidder: authenticatedUser.id,
+      auction: auction.id,
+      amount: 90,
+    })
+
+    const promotion = await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+      auction: auction.id,
+    })
+
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue({ id: 1 }))
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/verify`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${jwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(emailSendMock).toBeCalledTimes(1)
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${promotion.id}?${singlePromotionQuery}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.auction.data.attributes.status).toBe('verified')
+      })
+  })
+
+  it('should authenticated user be able to complete the auction', async () => {
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue({ id: 1 }))
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${primaryAuction.id}/complete`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(emailSendMock).toBeCalledTimes(0)
+
+    await request(strapi.server.httpServer)
+      .get(`/api/promotions/${primaryAuction.id}?${singlePromotionQuery}`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data.attributes.auction.data.attributes.status).toBe('completed')
+      })
+  })
+
+  it('should not authenticated user be able to complete the already completed auction', async () => {
+    const auction = await createAuction({
+      status: 'completed',
+    })
+
+    await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+      auction: auction.id,
+    })
+
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue({ id: 1 }))
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/complete`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+
+    expect(emailSendMock).toBeCalledTimes(0)
+  })
+
+  it('should not authenticated user be able to complete the verified auction', async () => {
+    const auction = await createAuction({
+      status: 'verified',
+    })
+
+    await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+      auction: auction.id,
+    })
+
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      .fn()
+      .mockReturnValue({ id: 1 }))
+
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${auction.id}/complete`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${authenticatedUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+
+    expect(emailSendMock).toBeCalledTimes(0)
+  })
+
+  it('should not public user be able to complete the auction and get coupon', async () => {
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${primaryAuction.id}/complete`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(403)
+  })
+
+  it('should not manager user be able to complete the auction and get coupon', async () => {
+    await request(strapi.server.httpServer)
+      .post(`/api/auctions/${primaryAuction.id}/complete`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${managerUserJwt}`)
+      .expect('Content-Type', /json/)
+      .expect(403)
   })
 })

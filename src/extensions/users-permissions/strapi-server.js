@@ -81,55 +81,6 @@ module.exports = (plugin) => {
     })
   }
 
-  plugin.controllers.user.findChats = async (ctx) => {
-    try {
-      const {
-        transformResponse: transformChatResponse,
-        sanitizeQuery: sanitizeChatQuery,
-      } = await strapi.controller('api::chat.chat')
-
-      const sanitizedQueryParams = await sanitizeChatQuery(ctx)
-      ctx.request.query = sanitizedQueryParams
-
-      const { results } = await strapi.service('api::chat.chat').findByUser(ctx)
-      return transformChatResponse(results)
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
-  }
-
-  plugin.controllers.user.findCoupons = async (ctx) => {
-    const {
-      transformResponse: transformCouponResponse,
-      sanitizeOutput: sanitizeCouponOutput,
-      sanitizeQuery: sanitizeCouponQuery,
-    } = await strapi.controller('api::coupon.coupon')
-
-    const sanitizedQueryParams = await sanitizeCouponQuery(ctx)
-    ctx.request.query = sanitizedQueryParams
-
-    try {
-      ctx.request.query.filters
-      ctx.request.query.filters = {
-        ...(ctx.request.query.filters ?? {}),
-        user: ctx.state?.user?.id,
-      }
-
-      const { results, pagination } = await strapi
-        .service('api::coupon.coupon')
-        .find({
-          ...ctx.request.query,
-        })
-
-      const sanitizedResults = await sanitizeCouponOutput(results, ctx)
-      return transformCouponResponse(sanitizedResults, { pagination })
-    } catch (err) {
-      strapi.log.error(err)
-      ctx.badRequest()
-    }
-  }
-
   plugin.controllers.user.me = async (ctx) => {
     if (!ctx.state.user) {
       return ctx.unauthorized()
@@ -142,29 +93,6 @@ module.exports = (plugin) => {
 
     ctx.body = sanitizeOutput(user)
   }
-
-  plugin.routes['content-api'].routes.push({
-    method: 'GET',
-    path: '/users/me/chats',
-    handler: 'user.findChats',
-    config: {
-      prefix: '',
-      middlewares: [{ name: 'global::locale' }],
-    },
-  })
-
-  plugin.routes['content-api'].routes.push({
-    method: 'GET',
-    path: '/users/me/coupons',
-    handler: 'user.findCoupons',
-    config: {
-      prefix: '',
-      middlewares: [
-        { name: 'global::locale' },
-        { name: 'global::populate', config: { deep: 3 } },
-      ],
-    },
-  })
 
   const routes = plugin.routes['content-api'].routes
 

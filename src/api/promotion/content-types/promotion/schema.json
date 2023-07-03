@@ -110,7 +110,8 @@
     "auction": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::auction.auction"
+      "target": "api::auction.auction",
+      "mappedBy": "promotion"
     },
     "size": {
       "type": "enumeration",

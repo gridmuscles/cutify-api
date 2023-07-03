@@ -9,11 +9,9 @@ module.exports = {
       config: {
         policies: [
           { name: 'global::captcha', config: { action: 'REQUEST_COUPON' } },
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
         ],
-        middlewares: [
-          { name: 'global::locale' },
-          { name: 'global::populate', config: { deep: 3 } },
-        ],
+        middlewares: [{ name: 'global::locale' }],
       },
     },
     {
@@ -22,47 +20,31 @@ module.exports = {
       handler: 'promotion.like',
       policies: [
         { name: 'global::captcha', config: { action: 'PROMOTION_LIKE' } },
+        { name: 'global::query', config: { allowedParams: ['locale'] } },
       ],
-    },
-    {
-      method: 'POST',
-      path: '/promotions/:id/auction/complete',
-      handler: 'promotion.completeAuction',
-      config: {
-        middlewares: [
-          { name: 'global::locale' },
-          { name: 'global::populate', config: { deep: 2 } },
-        ],
-      },
-    },
-    {
-      method: 'POST',
-      path: '/promotions/:id/auction/verify',
-      handler: 'promotion.verifyAuction',
-      config: {
-        middlewares: [
-          { name: 'global::locale' },
-          { name: 'global::populate', config: { deep: 2 } },
-        ],
-      },
-    },
-    {
-      method: 'GET',
-      path: '/promotions/:id/coupons',
-      handler: 'promotion.findCoupons',
-      config: {
-        middlewares: [{ name: 'global::locale' }],
-      },
     },
     {
       method: 'GET',
       path: '/promotions/manager',
-      handler: 'promotion.findManagerPromotions',
+      handler: 'promotion.findManagerPromotionList',
       config: {
-        middlewares: [
-          { name: 'global::locale' },
-          { name: 'global::i18n' },
-          { name: 'global::populate', config: { deep: 2 } },
+        middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+        policies: [
+          {
+            name: 'global::query',
+            config: {
+              allowedParams: [
+                'filters',
+                'sort',
+                'pagination',
+                'populate',
+                'locale',
+                'publicationState',
+                'fields',
+                'search',
+              ],
+            },
+          },
         ],
       },
     },
@@ -76,6 +58,12 @@ module.exports = {
           { name: 'global::i18n' },
           { name: 'global::populate', config: { deep: 2 } },
         ],
+        policies: [
+          {
+            name: 'global::query',
+            config: { allowedParams: ['locale', 'locale'] },
+          },
+        ],
       },
     },
     {
@@ -84,6 +72,12 @@ module.exports = {
       handler: 'promotion.findRecommendations',
       config: {
         middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+        policies: [
+          {
+            name: 'global::query',
+            config: { allowedParams: ['populate', 'locale'] },
+          },
+        ],
       },
     },
     {
@@ -92,6 +86,26 @@ module.exports = {
       handler: 'promotion.findSimilar',
       config: {
         middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+        policies: [
+          {
+            name: 'global::query',
+            config: { allowedParams: ['populate', 'locale'] },
+          },
+        ],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/promotions/slug/:slug',
+      handler: 'promotion.findBySlug',
+      config: {
+        middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+        policies: [
+          {
+            name: 'global::query',
+            config: { allowedParams: ['populate', 'views', 'locale'] },
+          },
+        ],
       },
     },
   ],

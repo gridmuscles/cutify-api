@@ -137,4 +137,27 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
       ctx.badRequest(err.message, err.details)
     }
   },
+
+  async getUserMeCoupons(ctx) {
+    /* eslint-disable no-unused-vars */
+    const { locale, filters, ...query } = await this.sanitizeQuery(ctx)
+
+    try {
+      const { results, pagination } = await strapi
+        .service('api::coupon.coupon')
+        .find({
+          filters: {
+            user: ctx.state?.user?.id,
+            ...filters,
+          },
+          ...query,
+        })
+
+      const sanitizedResults = await this.transformResponse(results, ctx)
+      return this.sanitizeOutput(sanitizedResults, { pagination })
+    } catch (err) {
+      strapi.log.error(err)
+      ctx.badRequest()
+    }
+  },
 }))

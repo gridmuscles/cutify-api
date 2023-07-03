@@ -7,47 +7,148 @@
 const { createCoreService } = require('@strapi/strapi').factories
 
 module.exports = createCoreService('api::promotion.promotion', () => ({
-  async find(ctx) {
-    const { results, pagination } = await super.find(ctx)
+  async findOneBySlug({ slug, query }) {
+    const { filters, ...rest } = query
 
-    const coupons = await Promise.all(
-      results.map(async ({ id }) =>
-        this.getPromotionCouponsCount({ promotionId: id })
-      )
+    const results = await strapi.entityService.findMany(
+      'api::promotion.promotion',
+      {
+        filters: {
+          slug,
+          ...filters,
+        },
+        ...rest,
+      }
     )
 
-    return {
-      results: results.map((promotion, i) => ({
-        ...promotion,
-        couponsCount: coupons[i],
-      })),
-      pagination,
+    return results[0] ?? null
+  },
+
+  async findRecommendations({ promotionId, query }) {
+    const promotion = await strapi.entityService.findOne(
+      'api::promotion.promotion',
+      promotionId,
+      {
+        populate: ['categories'],
+      }
+    )
+
+    const { filters, ...rest } = query
+
+    return super.find({
+      filters: {
+        id: {
+          $not: promotionId,
+        },
+        categories: {
+          id: {
+            $in: promotion.categories.map(({ id }) => id),
+          },
+        },
+        ...(filters ?? {}),
+      },
+      ...rest,
+    })
+  },
+
+  async findSimilar({ promotionId, query }) {
+    const promotion = await strapi.entityService.findOne(
+      'api::promotion.promotion',
+      promotionId,
+      {
+        populate: { categories: true },
+      }
+    )
+
+    const { filters, ...rest } = query
+
+    return super.find({
+      filters: {
+        id: {
+          $not: promotionId,
+        },
+        categories: {
+          id: {
+            $in: promotion.categories.map(({ id }) => id),
+          },
+        },
+        ...(filters ?? {}),
+      },
+      ...rest,
+    })
+  },
+
+  async findByManager({ managerId, query }) {
+    const locations = await strapi.entityService.findMany(
+      'api::location.location',
+      {
+        filters: {
+          managers: {
+            id: managerId,
+          },
+        },
+        populate: ['organization.promotions'],
+      }
+    )
+
+    if (!locations[0]?.organization) {
+      return { results: null }
     }
+
+    const { filters, ...rest } = query
+
+    return super.find({
+      filters: {
+        organization: {
+          id: locations[0].organization.id,
+        },
+        ...filters,
+      },
+      ...rest,
+    })
   },
 
-  async findOne(ctx) {
-    const { populate } = ctx.request.query
+  async getPromotionConfirmationCode({ promotionId, managerId }) {
+    const locations = await strapi.entityService.findMany(
+      'api::location.location',
+      {
+        filters: {
+          managers: {
+            id: managerId,
+          },
+        },
+        populate: {
+          organization: {
+            populate: {
+              promotions: true,
+            },
+          },
+        },
+      }
+    )
 
-    const { results } = await this.find({
-      filters: {
-        id: ctx.params.id,
-      },
-      populate,
-      publicationState: 'preview',
-    })
-    return results[0]
+    const promotion = locations[0]?.organization.promotions.find(
+      (promotion) => promotion.id === Number(promotionId)
+    )
+
+    return promotion?.confirmationCode
   },
 
-  async findOneBySlug(ctx) {
-    const { populate } = ctx.request.query
+  async incrementPromotionViews({ promotionId }) {
+    const promotion = await strapi.entityService.findOne(
+      'api::promotion.promotion',
+      promotionId
+    )
 
-    const { results } = await this.find({
-      filters: {
-        slug: ctx.params.id,
-      },
-      populate,
-    })
-    return results[0]
+    await strapi.entityService.update(
+      'api::promotion.promotion',
+      promotion.id,
+      {
+        data: {
+          viewsCount: promotion.viewsCount + 1,
+        },
+      }
+    )
   },
 
   async getPromotionCouponsCount({ promotionId }) {
@@ -59,57 +160,5 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
     })
 
     return total
-  },
-
-  async findRecommendations({ promotionId, populate, pagination }) {
-    const promotion = await strapi.entityService.findOne(
-      'api::promotion.promotion',
-      promotionId,
-      {
-        populate: { categories: true },
-      }
-    )
-
-    return strapi.entityService.findMany('api::promotion.promotion', {
-      filters: {
-        id: {
-          $not: promotionId,
-        },
-
-        categories: {
-          id: {
-            $in: promotion.categories.map(({ id }) => id),
-          },
-        },
-      },
-      populate,
-      ...pagination,
-    })
-  },
-
-  async findSimilar({ promotionId, populate, pagination }) {
-    const promotion = await strapi.entityService.findOne(
-      'api::promotion.promotion',
-      promotionId,
-      {
-        populate: { categories: true },
-      }
-    )
-
-    return strapi.entityService.findMany('api::promotion.promotion', {
-      filters: {
-        id: {
-          $not: promotionId,
-        },
-
-        categories: {
-          id: {
-            $in: promotion.categories.map(({ id }) => id),
-          },
-        },
-      },
-      populate,
-      ...pagination,
-    })
   },
 }))

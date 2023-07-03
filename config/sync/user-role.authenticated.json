@@ -7,16 +7,19 @@
       "action": "api::article.article.findOne"
     },
     {
-      "action": "api::auction.auction.createAuctionBid"
+      "action": "api::auction.auction.completeAuction"
     },
     {
       "action": "api::auction.auction.find"
     },
     {
-      "action": "api::auction.auction.findAuctionLatestBid"
+      "action": "api::auction.auction.findOne"
     },
     {
-      "action": "api::auction.auction.findOne"
+      "action": "api::bid.bid.createAuctionBid"
+    },
+    {
+      "action": "api::bid.bid.findAuctionLatestBid"
     },
     {
       "action": "api::category.category.find"
@@ -25,7 +28,7 @@
       "action": "api::chat.chat.createLocationPromotionChat"
     },
     {
-      "action": "api::chat.chat.createMessage"
+      "action": "api::chat.chat.findUserMeChats"
     },
     {
       "action": "api::chat.chat.markAsRead"
@@ -40,6 +43,9 @@
       "action": "api::coupon.coupon.findByPromotionAndUuidList"
     },
     {
+      "action": "api::coupon.coupon.getUserMeCoupons"
+    },
+    {
       "action": "api::coupon.coupon.verifyWithCode"
     },
     {
@@ -52,19 +58,19 @@
       "action": "api::location.location.findOne"
     },
     {
+      "action": "api::message.message.createChatMessage"
+    },
+    {
       "action": "api::organization.organization.find"
     },
     {
       "action": "api::organization.organization.findOne"
     },
     {
-      "action": "api::organization.organization.findReviews"
-    },
-    {
-      "action": "api::promotion.promotion.completeAuction"
-    },
-    {
       "action": "api::promotion.promotion.find"
+    },
+    {
+      "action": "api::promotion.promotion.findBySlug"
     },
     {
       "action": "api::promotion.promotion.findOne"
@@ -85,6 +91,9 @@
       "action": "api::review.review.create"
     },
     {
+      "action": "api::review.review.findOrganizationReviews"
+    },
+    {
       "action": "api::static-pages.static-pages.findOne"
     },
     {
@@ -95,12 +104,6 @@
     },
     {
       "action": "plugin::users-permissions.auth.resetPassword"
-    },
-    {
-      "action": "plugin::users-permissions.user.findChats"
-    },
-    {
-      "action": "plugin::users-permissions.user.findCoupons"
     },
     {
       "action": "plugin::users-permissions.user.me"

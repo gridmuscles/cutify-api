@@ -13,14 +13,32 @@ module.exports = createCoreRouter('api::promotion.promotion', {
         { name: 'global::locale' },
         { name: 'global::search' },
         { name: 'global::i18n' },
-        { name: 'global::populate', config: { deep: 3 } },
+      ],
+      policies: [
+        {
+          name: 'global::query',
+          config: {
+            allowedParams: [
+              'filters',
+              'sort',
+              'pagination',
+              'populate',
+              'locale',
+              'publicationState',
+              'fields',
+              'search',
+            ],
+          },
+        },
       ],
     },
     findOne: {
-      middlewares: [
-        { name: 'global::locale' },
-        { name: 'global::i18n' },
-        { name: 'global::populate', config: { deep: 3 } },
+      middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+      policies: [
+        {
+          name: 'global::query',
+          config: { allowedParams: ['populate', 'locale', 'views'] },
+        },
       ],
     },
   },

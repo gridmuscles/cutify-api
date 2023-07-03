@@ -163,7 +163,7 @@ describe('Chat', () => {
 
     it('should authenticated user be able to receive messages', (done) => {
       request(strapi.server.httpServer)
-        .post(`/api/chats/${primaryChat.id}/messages`)
+        .post(`/api/messages/chat/${primaryChat.id}`)
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${primaryUserJwt1}`)

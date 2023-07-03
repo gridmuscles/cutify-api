@@ -1,4 +1,6 @@
 const request = require('supertest')
+const qs = require('qs')
+
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
@@ -7,6 +9,15 @@ const { createOrganization } = require('../organization/organization.factory')
 const { createUser } = require('../user/user.factory')
 const { createReview } = require('../review/review.factory')
 const { createLocation } = require('../location/location.factory')
+
+const listOrganizationQuery = qs.stringify(
+  {
+    populate: ['locations'],
+  },
+  {
+    encodeValuesOnly: true,
+  }
+)
 
 jest.setTimeout(JEST_TIMEOUT)
 
@@ -48,7 +59,7 @@ describe('Organizations', () => {
       const [, jwt] = await createUser({ type })
 
       const req = request(strapi.server.httpServer)
-        .get(`/api/organizations`)
+        .get(`/api/organizations?${listOrganizationQuery}`)
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
 
