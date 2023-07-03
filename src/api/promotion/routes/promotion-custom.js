@@ -75,7 +75,16 @@ module.exports = {
         policies: [
           {
             name: 'global::query',
-            config: { allowedParams: ['populate', 'locale'] },
+            config: {
+              allowedParams: [
+                'filters',
+                'sort',
+                'pagination',
+                'populate',
+                'locale',
+                'fields',
+              ],
+            },
           },
         ],
       },
