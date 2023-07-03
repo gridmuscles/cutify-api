@@ -124,7 +124,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -160,7 +161,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []

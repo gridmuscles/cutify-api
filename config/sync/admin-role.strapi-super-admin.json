@@ -241,7 +241,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
@@ -283,7 +285,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
@@ -319,7 +323,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
