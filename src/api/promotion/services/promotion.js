@@ -91,7 +91,7 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
       }
     )
 
-    if (!locations[0] || !locations[0].organization) {
+    if (!locations[0]?.organization) {
       return { results: null }
     }
 
