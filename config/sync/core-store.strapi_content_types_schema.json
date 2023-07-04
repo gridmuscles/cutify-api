@@ -3025,6 +3025,9 @@
           "type": "string",
           "default": "48699600900"
         },
+        "publicPhone": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3149,6 +3152,9 @@
           "forwardPhone": {
             "type": "string",
             "default": "48699600900"
+          },
+          "publicPhone": {
+            "type": "string"
           }
         },
         "kind": "collectionType"

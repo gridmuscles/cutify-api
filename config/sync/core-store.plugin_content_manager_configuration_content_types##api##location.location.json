@@ -346,6 +346,20 @@
           "sortable": true
         }
       },
+      "publicPhone": {
+        "edit": {
+          "label": "publicPhone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "publicPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -376,6 +390,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -500,9 +515,14 @@
             "name": "details_ua",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "publicPhone",
+            "size": 6
+          }
         ]
-      ],
-      "list": ["id", "createdAt", "updatedAt", "city"]
+      ]
     }
   },
   "type": "object",

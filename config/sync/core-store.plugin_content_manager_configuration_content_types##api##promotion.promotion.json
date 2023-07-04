@@ -519,7 +519,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
+          "editable": false,
           "mainField": "id"
         },
         "list": {

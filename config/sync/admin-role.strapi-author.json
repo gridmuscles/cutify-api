@@ -227,7 +227,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -259,7 +260,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -291,7 +293,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
