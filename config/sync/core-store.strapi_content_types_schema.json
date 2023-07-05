@@ -3914,6 +3914,78 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::report.report": {
+      "kind": "collectionType",
+      "collectionName": "reports",
+      "info": {
+        "singularName": "report",
+        "pluralName": "reports",
+        "displayName": "Report",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "data": {
+          "type": "json"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "reports",
+        "info": {
+          "singularName": "report",
+          "pluralName": "reports",
+          "displayName": "Report",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "data": {
+            "type": "json"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "report",
+      "connection": "default",
+      "uid": "api::report.report",
+      "apiName": "report",
+      "globalId": "Report",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::review.review": {
       "kind": "collectionType",
       "collectionName": "reviews",

@@ -79,6 +79,9 @@
       "action": "api::promotion.promotion.getPromotionConfirmationCode"
     },
     {
+      "action": "api::report.report.create"
+    },
+    {
       "action": "api::review.review.findOrganizationReviews"
     },
     {
