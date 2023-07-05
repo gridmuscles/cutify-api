@@ -390,7 +390,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "city"],
       "edit": [
         [
           {
@@ -410,16 +409,22 @@
         ],
         [
           {
-            "name": "forwardPhone",
-            "size": 4
-          },
-          {
-            "name": "pin",
-            "size": 4
+            "name": "publicPhone",
+            "size": 6
           },
           {
             "name": "phone",
-            "size": 4
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "forwardPhone",
+            "size": 6
+          },
+          {
+            "name": "pin",
+            "size": 6
           }
         ],
         [
@@ -515,14 +520,9 @@
             "name": "details_ua",
             "size": 12
           }
-        ],
-        [
-          {
-            "name": "publicPhone",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "createdAt", "updatedAt", "city"]
     }
   },
   "type": "object",

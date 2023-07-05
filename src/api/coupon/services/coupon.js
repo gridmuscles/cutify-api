@@ -200,4 +200,28 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
       locale,
     })
   },
+
+  async createCouponBulk({ count, promotionId, email, userId }) {
+    const coupons = [...Array(count).keys()].map(() => ({
+      user: userId,
+      promotion: promotionId,
+      email,
+      uuid: `${Math.floor(100000000 + Math.random() * 900000000)}-${Math.floor(
+        200000000 + Math.random() * 800000000
+      )}`,
+      state: 'active',
+    }))
+
+    await strapi.db.transaction(async ({ rollback }) => {
+      const result = await strapi.db
+        .query('api::coupon.coupon')
+        .createMany({ data: coupons })
+
+      if (result.count !== count) {
+        await rollback()
+      }
+    })
+
+    return coupons.map(({ uuid }) => uuid)
+  },
 }))

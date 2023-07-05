@@ -63,6 +63,15 @@ const createPromotion = async (data = {}) => {
   })
 }
 
+const getPromotionById = async ({ id }) => {
+  return strapi.db.query('api::promotion.promotion').findOne({
+    where: {
+      id,
+    },
+  })
+}
+
 module.exports = {
   createPromotion,
+  getPromotionById,
 }

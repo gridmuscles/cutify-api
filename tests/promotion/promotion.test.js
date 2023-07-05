@@ -7,7 +7,10 @@ const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 const { createCategory } = require('../category/category.factory')
 const { createOrganization } = require('../organization/organization.factory')
 const { createUser } = require('../user/user.factory')
-const { createPromotion } = require('../promotion/promotion.factory')
+const {
+  createPromotion,
+  getPromotionById,
+} = require('../promotion/promotion.factory')
 const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
 const { createAuction } = require('../auction/auction.factory')
 const { createLocation } = require('../location/location.factory')
@@ -154,22 +157,27 @@ describe('Promotions', () => {
   })
 
   it('should guest be able to request up to 10 coupons', async () => {
+    const promotion = await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+    })
+
     const emailSendMock = (strapi.plugin('email').service('email').send = jest
       .fn()
       .mockReturnValue(true))
 
     await request(strapi.server.httpServer)
-      .post(`/api/promotions/${primaryPromotion.id}/request`)
+      .post(`/api/promotions/${promotion.id}/request`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .send({
         email: authenticatedUser.email,
-        count: 10,
+        count: 1,
       })
       .expect('Content-Type', /json/)
       .expect(200)
       .then(({ body: { data } }) => {
-        expect(data).toHaveLength(10)
+        expect(data).toHaveLength(1)
       })
 
     expect(emailSendMock).toBeCalledTimes(1)
@@ -179,8 +187,28 @@ describe('Promotions', () => {
       dynamicTemplateData: { link },
     } = emailSendMock.mock.calls[0][0]
     expect(to).toBe(authenticatedUser.email)
-    expect(link.split('[uuid][$in]')).toHaveLength(11)
+    expect(link.split('[uuid][$in]')).toHaveLength(2)
     expect(link.includes('[promotion][id]')).toBe(true)
+
+    const updatedPromotion1 = await getPromotionById({ id: promotion.id })
+    expect(updatedPromotion1.couponsCount).toBe(1)
+
+    await request(strapi.server.httpServer)
+      .post(`/api/promotions/${promotion.id}/request`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: authenticatedUser.email,
+        count: 9,
+      })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(9)
+      })
+
+    const updatedPromotion2 = await getPromotionById({ id: promotion.id })
+    expect(updatedPromotion2.couponsCount).toBe(10)
   })
 
   it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
@@ -288,10 +316,15 @@ describe('Promotions', () => {
   })
 
   it('should guest be able to request promotion and see coupons number', async () => {
-    await createCoupon({ promotion: primaryPromotion.id })
+    const promotion = await createPromotion({
+      categories: [primaryCategory.id],
+      organization: primaryOrganization.id,
+    })
+
+    await createCoupon({ promotion: promotion.id })
 
     await request(strapi.server.httpServer)
-      .get(`/api/promotions/slug/${primaryPromotion.slug}`)
+      .get(`/api/promotions/slug/${promotion.slug}`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
       .expect('Content-Type', /json/)

@@ -280,7 +280,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "likesCount",
@@ -308,7 +308,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "viewsCount",
@@ -659,6 +659,20 @@
         ],
         [
           {
+            "name": "viewsCount",
+            "size": 4
+          },
+          {
+            "name": "likesCount",
+            "size": 4
+          },
+          {
+            "name": "couponsCount",
+            "size": 4
+          }
+        ],
+        [
+          {
             "name": "images",
             "size": 12
           }
@@ -709,20 +723,6 @@
           {
             "name": "description_ua",
             "size": 12
-          }
-        ],
-        [
-          {
-            "name": "viewsCount",
-            "size": 4
-          },
-          {
-            "name": "likesCount",
-            "size": 4
-          },
-          {
-            "name": "couponsCount",
-            "size": 4
           }
         ],
         [

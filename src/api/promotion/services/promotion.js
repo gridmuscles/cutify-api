@@ -150,15 +150,4 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
       }
     )
   },
-
-  async getPromotionCouponsCount({ promotionId }) {
-    const {
-      pagination: { total },
-    } = await strapi.service('api::coupon.coupon').find({
-      fields: ['id'],
-      filters: { promotion: promotionId },
-    })
-
-    return total
-  },
 }))

@@ -220,7 +220,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "title", "title_pl", "title_ua"],
       "edit": [
         [
           {
@@ -247,6 +246,16 @@
         [
           {
             "name": "title_ru",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "children",
+            "size": 6
+          },
+          {
+            "name": "parent",
             "size": 6
           }
         ],
@@ -279,18 +288,9 @@
             "name": "description_ru",
             "size": 12
           }
-        ],
-        [
-          {
-            "name": "children",
-            "size": 6
-          },
-          {
-            "name": "parent",
-            "size": 6
-          }
         ]
-      ]
+      ],
+      "list": ["id", "title", "title_pl", "title_ua"]
     }
   },
   "type": "object",
