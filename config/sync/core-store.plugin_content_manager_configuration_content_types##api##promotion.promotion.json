@@ -499,20 +499,6 @@
           "sortable": true
         }
       },
-      "status": {
-        "edit": {
-          "label": "status",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "status",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "locations": {
         "edit": {
           "label": "locations",
@@ -558,12 +544,9 @@
       }
     },
     "layouts": {
+      "list": ["id", "size", "order", "title_ru", "auction", "organization"],
       "edit": [
         [
-          {
-            "name": "status",
-            "size": 4
-          },
           {
             "name": "size",
             "size": 4
@@ -751,8 +734,7 @@
             "size": 12
           }
         ]
-      ],
-      "list": ["id", "size", "order", "title_ru", "auction", "organization"]
+      ]
     }
   },
   "type": "object",

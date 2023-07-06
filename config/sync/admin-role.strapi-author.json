@@ -424,7 +424,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -492,7 +491,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -554,7 +552,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
