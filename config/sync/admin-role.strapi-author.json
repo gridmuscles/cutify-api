@@ -172,7 +172,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": ["title", "slug", "latitude", "longitude"]
       },
       "conditions": []
     },

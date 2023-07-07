@@ -2668,7 +2668,8 @@
       "info": {
         "singularName": "city",
         "pluralName": "cities",
-        "displayName": "City"
+        "displayName": "City",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -2684,6 +2685,12 @@
           "type": "uid",
           "targetField": "title",
           "required": true
+        },
+        "latitude": {
+          "type": "float"
+        },
+        "longitude": {
+          "type": "float"
         },
         "createdAt": {
           "type": "datetime"
@@ -2717,7 +2724,8 @@
         "info": {
           "singularName": "city",
           "pluralName": "cities",
-          "displayName": "City"
+          "displayName": "City",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
@@ -2733,6 +2741,12 @@
             "type": "uid",
             "targetField": "title",
             "required": true
+          },
+          "latitude": {
+            "type": "float"
+          },
+          "longitude": {
+            "type": "float"
           }
         },
         "kind": "collectionType"

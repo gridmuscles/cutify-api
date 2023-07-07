@@ -48,6 +48,34 @@
           "sortable": true
         }
       },
+      "latitude": {
+        "edit": {
+          "label": "latitude",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "latitude",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "longitude": {
+        "edit": {
+          "label": "longitude",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "longitude",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -88,6 +116,16 @@
           {
             "name": "slug",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "latitude",
+            "size": 4
+          },
+          {
+            "name": "longitude",
+            "size": 4
           }
         ]
       ]
