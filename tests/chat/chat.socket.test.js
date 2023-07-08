@@ -116,9 +116,9 @@ describe('Chat', () => {
             createLocation({
               isChatAvailable: true,
               managers: [primaryManager1.id],
-              organization,
+              organization: organization.id,
             }),
-            createPromotion({ organization }),
+            createPromotion({ organization: organization.id }),
           ])
         )
         .then(([location, promotion]) => {
