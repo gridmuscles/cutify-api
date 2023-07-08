@@ -29,6 +29,19 @@ const getCouponById = async ({ id }) => {
   })
 }
 
+const getCouponByUuid = async ({ uuid }) => {
+  return strapi.db.query('api::coupon.coupon').findOne({
+    where: {
+      uuid,
+    },
+    populate: {
+      receipt: true,
+      promotion: true,
+      user: true,
+    },
+  })
+}
+
 const clearCoupons = () => {
   return strapi.db.query('api::coupon.coupon').deleteMany()
 }
@@ -37,5 +50,6 @@ module.exports = {
   mockCouponData,
   createCoupon,
   getCouponById,
+  getCouponByUuid,
   clearCoupons,
 }

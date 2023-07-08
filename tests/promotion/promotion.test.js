@@ -11,7 +11,11 @@ const {
   createPromotion,
   getPromotionById,
 } = require('../promotion/promotion.factory')
-const { createCoupon, clearCoupons } = require('../coupon/coupon.factory')
+const {
+  createCoupon,
+  clearCoupons,
+  getCouponByUuid,
+} = require('../coupon/coupon.factory')
 const { createAuction } = require('../auction/auction.factory')
 const { createLocation } = require('../location/location.factory')
 
@@ -31,7 +35,7 @@ const singlePromotionQuery = qs.stringify(
       'categories',
       'images',
       'organization',
-      'organization.locations',
+      'locations',
       'seo',
       'seo.metaSocial',
     ],
@@ -132,22 +136,21 @@ describe('Promotions', () => {
         expect(
           data.attributes.organization.data.attributes.promotions
         ).toBeUndefined()
+        expect(data.attributes.locations.data[0].attributes.address).toBe(
+          primaryLocation.address
+        )
         expect(
-          data.attributes.organization.data.attributes.locations.data[0]
-            .attributes.address
-        ).toBe(primaryLocation.address)
-        // expect(
-        //   data.attributes.organization.data.attributes.locations.data[0]
-        //     .attributes.phone
-        // ).toBeUndefined()
-        expect(
-          data.attributes.organization.data.attributes.locations.data[0]
-            .attributes.pin
-        ).toBe(primaryLocation.pin)
-        expect(
-          data.attributes.organization.data.attributes.locations.data[0]
-            .attributes.forwardPhone
-        ).toBe(primaryLocation.forwardPhone)
+          data.attributes.locations.data[0].attributes.phone
+        ).toBeUndefined()
+        expect(data.attributes.locations.data[0].attributes.pin).toBe(
+          primaryLocation.pin
+        )
+        expect(data.attributes.locations.data[0].attributes.forwardPhone).toBe(
+          primaryLocation.forwardPhone
+        )
+        expect(data.attributes.locations.data[0].attributes.publicPhone).toBe(
+          primaryLocation.publicPhone
+        )
         expect(
           data.attributes.organization.data.attributes.promotions
         ).toBeUndefined()
@@ -166,7 +169,7 @@ describe('Promotions', () => {
       .fn()
       .mockReturnValue(true))
 
-    await request(strapi.server.httpServer)
+    const couponData = await request(strapi.server.httpServer)
       .post(`/api/promotions/${promotion.id}/request`)
       .set('accept', 'application/json')
       .set('Content-Type', 'application/json')
@@ -176,11 +179,12 @@ describe('Promotions', () => {
       })
       .expect('Content-Type', /json/)
       .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toHaveLength(1)
-      })
+      .then(({ body: { data } }) => data)
 
     expect(emailSendMock).toBeCalledTimes(1)
+
+    const coupon = await getCouponByUuid({ uuid: couponData[0] })
+    expect(coupon.promotion.id).toBe(promotion.id)
 
     const {
       to,
@@ -404,9 +408,7 @@ describe('Promotions', () => {
       .then(({ body: { data } }) => {
         expect(data.attributes.categories).toBeDefined()
         expect(data.attributes.organization).toBeDefined()
-        expect(
-          data.attributes.organization.data.attributes.locations
-        ).toBeDefined()
+        expect(data.attributes.locations).toBeDefined()
       })
   })
 

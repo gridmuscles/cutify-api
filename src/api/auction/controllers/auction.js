@@ -30,14 +30,14 @@ module.exports = createCoreController('api::auction.auction', () => ({
         auctionId: auction.id,
       })
 
-      const coupon = await strapi.service('api::coupon.coupon').create({
-        data: {
-          promotion: auction.promotion.id,
+      const couponUUIDList = await strapi
+        .service('api::coupon.coupon')
+        .createCouponBulk({
+          count: 1,
+          promotionId: auction.promotion.id,
           email: latestBid.bidder.email,
-          user: latestBid.bidder.id,
-          state: 'active',
-        },
-      })
+          userId: latestBid.bidder.id,
+        })
 
       await strapi.plugins['email'].services.email.send(
         getCouponListEmail({
@@ -47,15 +47,14 @@ module.exports = createCoreController('api::auction.auction', () => ({
             host: config.web.host,
             locale,
             promotionId: auction.promotion.id,
-            uuidList: [coupon.uuid],
+            uuidList: couponUUIDList,
           }),
           locale,
           couponsAmount: 1,
         })
       )
 
-      const { id } = coupon
-      return { id }
+      return true
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()

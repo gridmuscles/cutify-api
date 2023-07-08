@@ -212,15 +212,27 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
       state: 'active',
     }))
 
-    await strapi.db.transaction(async ({ rollback }) => {
-      const result = await strapi.db
-        .query('api::coupon.coupon')
-        .createMany({ data: coupons })
+    const { ids: couponIds } = await strapi.db
+      .query('api::coupon.coupon')
+      .createMany({ data: coupons })
 
-      if (result.count !== count) {
-        await rollback()
-      }
-    })
+    const couponsPromotionLinks = couponIds.map((couponId) => ({
+      coupon_id: couponId,
+      promotion_id: promotionId,
+    }))
+
+    const couponsUserLinks = couponIds.map((couponId) => ({
+      coupon_id: couponId,
+      user_id: userId,
+    }))
+
+    await strapi.db.connection
+      .insert(couponsPromotionLinks)
+      .into('coupons_promotion_links')
+
+    await strapi.db.connection
+      .insert(couponsUserLinks)
+      .into('coupons_user_links')
 
     return coupons.map(({ uuid }) => uuid)
   },
