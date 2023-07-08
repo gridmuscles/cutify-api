@@ -7,21 +7,11 @@ module.exports = {
       path: '/chats/:id/mark-as-read',
       handler: 'chat.markAsRead',
       config: {
+        middlewares: [{ name: 'global::locale' }],
         policies: [
           { name: 'global::captcha', config: { action: 'CHAT_MARK_AS_READ' } },
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
         ],
-        middlewares: [{ name: 'global::locale' }],
-      },
-    },
-    {
-      method: 'POST',
-      path: '/chats/:id/messages',
-      handler: 'chat.createMessage',
-      config: {
-        policies: [
-          { name: 'global::captcha', config: { action: 'CHAT_SEND_MESSAGE' } },
-        ],
-        middlewares: [{ name: 'global::locale' }],
       },
     },
     {
@@ -30,6 +20,25 @@ module.exports = {
       handler: 'chat.createLocationPromotionChat',
       config: {
         middlewares: [{ name: 'global::locale' }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/chats/user/me',
+      handler: 'chat.findUserMeChats',
+      config: {
+        middlewares: [{ name: 'global::locale' }],
+        policies: [
+          {
+            name: 'global::query',
+            config: {
+              allowedParams: ['locale', 'filters', 'pagination', 'sort'],
+            },
+          },
+        ],
       },
     },
   ],

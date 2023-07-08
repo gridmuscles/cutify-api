@@ -104,6 +104,21 @@
           "sortable": true
         }
       },
+      "promotion": {
+        "edit": {
+          "label": "promotion",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "promotion",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -134,6 +149,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "status", "step", "promotion"],
       "edit": [
         [
           {
@@ -164,9 +180,14 @@
             "name": "userAttemptLimit",
             "size": 4
           }
+        ],
+        [
+          {
+            "name": "promotion",
+            "size": 6
+          }
         ]
-      ],
-      "list": ["id", "status", "step"]
+      ]
     }
   },
   "type": "object",

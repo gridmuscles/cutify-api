@@ -1,98 +1,82 @@
 'use strict'
 
+const { getCouponListEmail } = require('../../../utils/email')
+const { getCouponListUrl } = require('../../../utils/dynamic-link')
+
 /**
  * auction controller
  */
 
-const utils = require('@strapi/utils')
-const { ERROR_CODES } = require('../../../utils/const')
-const { ValidationError } = utils.errors
 const { createCoreController } = require('@strapi/strapi').factories
 
-module.exports = createCoreController('api::auction.auction', ({ strapi }) => ({
-  async findAuctionLatestBid(ctx) {
+module.exports = createCoreController('api::auction.auction', () => ({
+  async verifyAuction(ctx) {
+    const config = strapi.config.get('server')
+
     try {
-      const { id: auctionId } = ctx.params
+      const { locale } = await this.sanitizeQuery(ctx)
+
+      const auction = await strapi
+        .service('api::auction.auction')
+        .findOne(ctx.params.auctionId, {
+          populate: ['promotion'],
+        })
 
       const latestBid = await strapi
         .service('api::auction.auction')
-        .findAuctionLatestBid({ auctionId })
+        .findPopulatedAuctionLatestBid({ auctionId: auction.id })
 
-      if (!latestBid) {
-        return { data: null }
-      }
+      await strapi.service('api::auction.auction').verifyAuction({
+        auctionId: auction.id,
+      })
 
-      const { id, ...attributes } = await this.sanitizeOutput(latestBid, ctx)
+      const couponUUIDList = await strapi
+        .service('api::coupon.coupon')
+        .createCouponBulk({
+          count: 1,
+          promotionId: auction.promotion.id,
+          email: latestBid.bidder.email,
+          userId: latestBid.bidder.id,
+        })
 
-      return {
-        data: {
-          id,
-          attributes,
-        },
-      }
+      await strapi.plugins['email'].services.email.send(
+        getCouponListEmail({
+          title: `${auction.promotion.discountTo}% ${auction.promotion.title}`,
+          email: latestBid.bidder.email,
+          link: getCouponListUrl({
+            host: config.web.host,
+            locale,
+            promotionId: auction.promotion.id,
+            uuidList: couponUUIDList,
+          }),
+          locale,
+          couponsAmount: 1,
+        })
+      )
+
+      return true
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()
     }
   },
 
-  async createAuctionBid(ctx) {
+  async completeAuction(ctx) {
     try {
       const auction = await strapi
         .service('api::auction.auction')
-        .findOne(ctx.params.id)
-
-      if (auction.status !== 'active') {
-        throw new Error()
-      }
-
-      const { id: bidderId } = ctx.state.user
-
-      const latestBid = await strapi
-        .service('api::auction.auction')
-        .findAuctionLatestBid({ auctionId: auction.id })
-
-      const { results: userBids } = await strapi.service('api::bid.bid').find({
-        fields: ['id'],
-        filters: { auction: auction.id, bidder: bidderId },
-      })
-
-      if (userBids.length >= auction.userAttemptLimit) {
-        throw new ValidationError('Bid limit is exceeded for current user', {
-          code: ERROR_CODES.USER_BID_LIMIT_EXCEEDED,
+        .findOne(ctx.params.auctionId, {
+          populate: ['promotion'],
         })
-      }
 
-      const { direction, step, startPrice } = auction
-
-      const amountToCompare = latestBid ? latestBid.amount : startPrice
-
-      if (direction === 'desc' && amountToCompare <= step) {
-        throw new Error()
-      }
-
-      const newBid = await strapi.service('api::bid.bid').create({
-        data: {
-          bidder: bidderId,
-          auction: auction.id,
-          amount:
-            direction === 'desc'
-              ? amountToCompare - step
-              : amountToCompare + step,
-        },
+      await strapi.service('api::auction.auction').completeAuction({
+        auctionId: auction.promotion.id,
       })
 
-      const { id, ...attributes } = await this.sanitizeOutput(newBid, ctx)
-
-      return {
-        data: {
-          id,
-          attributes,
-        },
-      }
+      return true
     } catch (err) {
       strapi.log.error(err)
-      ctx.badRequest(err.message, err.details)
+      ctx.badRequest()
     }
   },
 }))

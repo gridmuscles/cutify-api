@@ -2190,6 +2190,12 @@
           "default": "pln",
           "required": false
         },
+        "promotion": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::promotion.promotion",
+          "inversedBy": "auction"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2261,6 +2267,12 @@
             "enum": ["pln", "usd", "eur"],
             "default": "pln",
             "required": false
+          },
+          "promotion": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::promotion.promotion",
+            "inversedBy": "auction"
           }
         },
         "kind": "collectionType"
@@ -2424,6 +2436,18 @@
         "description_ru": {
           "type": "richtext"
         },
+        "children": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::category.category",
+          "mappedBy": "parent"
+        },
+        "parent": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::category.category",
+          "inversedBy": "children"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2505,6 +2529,18 @@
           },
           "description_ru": {
             "type": "richtext"
+          },
+          "children": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::category.category",
+            "mappedBy": "parent"
+          },
+          "parent": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::category.category",
+            "inversedBy": "children"
           }
         },
         "kind": "collectionType"
@@ -2632,7 +2668,8 @@
       "info": {
         "singularName": "city",
         "pluralName": "cities",
-        "displayName": "City"
+        "displayName": "City",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -2648,6 +2685,12 @@
           "type": "uid",
           "targetField": "title",
           "required": true
+        },
+        "latitude": {
+          "type": "float"
+        },
+        "longitude": {
+          "type": "float"
         },
         "createdAt": {
           "type": "datetime"
@@ -2681,7 +2724,8 @@
         "info": {
           "singularName": "city",
           "pluralName": "cities",
-          "displayName": "City"
+          "displayName": "City",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
@@ -2697,6 +2741,12 @@
             "type": "uid",
             "targetField": "title",
             "required": true
+          },
+          "latitude": {
+            "type": "float"
+          },
+          "longitude": {
+            "type": "float"
           }
         },
         "kind": "collectionType"
@@ -2916,10 +2966,12 @@
           "type": "float"
         },
         "phone": {
-          "type": "string"
+          "type": "string",
+          "private": true
         },
         "pin": {
-          "type": "string"
+          "type": "string",
+          "unique": true
         },
         "organization": {
           "type": "relation",
@@ -2989,6 +3041,9 @@
           "type": "string",
           "default": "48699600900"
         },
+        "publicPhone": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3041,10 +3096,12 @@
             "type": "float"
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "private": true
           },
           "pin": {
-            "type": "string"
+            "type": "string",
+            "unique": true
           },
           "organization": {
             "type": "relation",
@@ -3113,6 +3170,9 @@
           "forwardPhone": {
             "type": "string",
             "default": "48699600900"
+          },
+          "publicPhone": {
+            "type": "string"
           }
         },
         "kind": "collectionType"
@@ -3506,7 +3566,8 @@
         "auction": {
           "type": "relation",
           "relation": "oneToOne",
-          "target": "api::auction.auction"
+          "target": "api::auction.auction",
+          "mappedBy": "promotion"
         },
         "size": {
           "type": "enumeration",
@@ -3550,11 +3611,6 @@
         "confirmationCode": {
           "type": "string",
           "private": true
-        },
-        "status": {
-          "type": "enumeration",
-          "enum": ["active", "finished"],
-          "default": "active"
         },
         "locations": {
           "type": "relation",
@@ -3706,7 +3762,8 @@
           "auction": {
             "type": "relation",
             "relation": "oneToOne",
-            "target": "api::auction.auction"
+            "target": "api::auction.auction",
+            "mappedBy": "promotion"
           },
           "size": {
             "type": "enumeration",
@@ -3750,11 +3807,6 @@
           "confirmationCode": {
             "type": "string",
             "private": true
-          },
-          "status": {
-            "type": "enumeration",
-            "enum": ["active", "finished"],
-            "default": "active"
           },
           "locations": {
             "type": "relation",
@@ -3867,6 +3919,78 @@
       "uid": "api::receipt.receipt",
       "apiName": "receipt",
       "globalId": "Receipt",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::report.report": {
+      "kind": "collectionType",
+      "collectionName": "reports",
+      "info": {
+        "singularName": "report",
+        "pluralName": "reports",
+        "displayName": "Report",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "data": {
+          "type": "json"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "reports",
+        "info": {
+          "singularName": "report",
+          "pluralName": "reports",
+          "displayName": "Report",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "data": {
+            "type": "json"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "report",
+      "connection": "default",
+      "uid": "api::report.report",
+      "apiName": "report",
+      "globalId": "Report",
       "actions": {},
       "lifecycles": {}
     },

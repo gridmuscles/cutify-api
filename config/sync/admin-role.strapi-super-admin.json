@@ -136,7 +136,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -157,7 +158,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -172,7 +174,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -238,7 +241,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
@@ -280,7 +285,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
@@ -316,7 +323,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
@@ -355,7 +364,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": ["title", "slug", "latitude", "longitude"]
       },
       "conditions": []
     },
@@ -369,7 +378,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": ["title", "slug", "latitude", "longitude"]
       },
       "conditions": []
     },
@@ -377,7 +386,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": ["title", "slug", "latitude", "longitude"]
       },
       "conditions": []
     },
@@ -486,7 +495,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -524,7 +534,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -556,7 +567,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -722,7 +734,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -796,7 +807,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -858,7 +868,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -891,6 +900,36 @@
       "subject": "api::receipt.receipt",
       "properties": {
         "fields": ["photo", "text", "coupons"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::report.report",
+      "properties": {
+        "fields": ["data"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::report.report",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::report.report",
+      "properties": {
+        "fields": ["data"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::report.report",
+      "properties": {
+        "fields": ["data"]
       },
       "conditions": []
     },

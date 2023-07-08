@@ -24,10 +24,12 @@
       "type": "float"
     },
     "phone": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "pin": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "organization": {
       "type": "relation",
@@ -96,6 +98,9 @@
     "forwardPhone": {
       "type": "string",
       "default": "48699600900"
+    },
+    "publicPhone": {
+      "type": "string"
     }
   }
 }

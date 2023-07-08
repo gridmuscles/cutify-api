@@ -36,13 +36,19 @@ const mockPromotionData = (data = {}) => {
     publishedAt: '2023-01-01 23:59:59',
     auction: null,
     categories: [],
-    organization: null,
     isChatAvailable: false,
     size: 'x',
     order: null,
     confirmationCode: `${slugSuffix}`,
-    locations: [],
     ...data,
+    organization: {
+      disconnect: [],
+      connect: data.organization ? [{ id: data.organization }] : [],
+    },
+    locations: {
+      disconnect: [],
+      connect: data.locations ? data.locations.map((id) => ({ id })) : [],
+    },
   }
 }
 
@@ -63,6 +69,15 @@ const createPromotion = async (data = {}) => {
   })
 }
 
+const getPromotionById = async ({ id }) => {
+  return strapi.db.query('api::promotion.promotion').findOne({
+    where: {
+      id,
+    },
+  })
+}
+
 module.exports = {
   createPromotion,
+  getPromotionById,
 }

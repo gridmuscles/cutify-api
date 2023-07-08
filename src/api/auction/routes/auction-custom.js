@@ -4,18 +4,24 @@ module.exports = {
   routes: [
     {
       method: 'POST',
-      path: '/auctions/:id/bids',
-      handler: 'auction.createAuctionBid',
-      policies: [
-        { name: 'global::captcha', config: { action: 'AUCTION_DO_BID' } },
-      ],
+      path: '/auctions/:auctionId/complete',
+      handler: 'auction.completeAuction',
+      config: {
+        middlewares: [{ name: 'global::locale' }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
+      },
     },
     {
-      method: 'GET',
-      path: '/auctions/:id/bids/latest',
-      handler: 'auction.findAuctionLatestBid',
+      method: 'POST',
+      path: '/auctions/:auctionId/verify',
+      handler: 'auction.verifyAuction',
       config: {
-        middlewares: [{ name: 'global::populate', config: { deep: 1 } }],
+        middlewares: [{ name: 'global::locale' }],
+        policies: [
+          { name: 'global::query', config: { allowedParams: ['locale'] } },
+        ],
       },
     },
   ],

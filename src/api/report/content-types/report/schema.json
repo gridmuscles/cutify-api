@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports",
+  "info": {
+    "singularName": "report",
+    "pluralName": "reports",
+    "displayName": "Report",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "json"
+    }
+  }
+}

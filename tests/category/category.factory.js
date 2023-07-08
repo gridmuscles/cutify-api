@@ -13,6 +13,8 @@ const mockCategoryData = (data = {}) => {
     description_ru:
       'Ресторан, специализирующийся на настоящей итальянской пицце.',
     slug: `italian-pizza-restaurant-${slugSuffix}`,
+    children: [],
+    paretn: null,
     ...data,
   }
 }

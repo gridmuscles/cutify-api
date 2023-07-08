@@ -280,7 +280,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "likesCount",
@@ -308,7 +308,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "viewsCount",
@@ -499,20 +499,6 @@
           "sortable": true
         }
       },
-      "status": {
-        "edit": {
-          "label": "status",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "status",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "locations": {
         "edit": {
           "label": "locations",
@@ -560,10 +546,6 @@
     "layouts": {
       "edit": [
         [
-          {
-            "name": "status",
-            "size": 4
-          },
           {
             "name": "size",
             "size": 4
@@ -659,6 +641,20 @@
         ],
         [
           {
+            "name": "viewsCount",
+            "size": 4
+          },
+          {
+            "name": "likesCount",
+            "size": 4
+          },
+          {
+            "name": "couponsCount",
+            "size": 4
+          }
+        ],
+        [
+          {
             "name": "images",
             "size": 12
           }
@@ -709,20 +705,6 @@
           {
             "name": "description_ua",
             "size": 12
-          }
-        ],
-        [
-          {
-            "name": "viewsCount",
-            "size": 4
-          },
-          {
-            "name": "likesCount",
-            "size": 4
-          },
-          {
-            "name": "couponsCount",
-            "size": 4
           }
         ],
         [

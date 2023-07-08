@@ -124,7 +124,8 @@
           "status",
           "step",
           "userAttemptLimit",
-          "currency"
+          "currency",
+          "promotion"
         ]
       },
       "conditions": []
@@ -160,7 +161,9 @@
           "description",
           "description_pl",
           "description_ua",
-          "description_ru"
+          "description_ru",
+          "children",
+          "parent"
         ]
       },
       "conditions": []
@@ -169,7 +172,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::city.city",
       "properties": {
-        "fields": ["title", "slug"]
+        "fields": ["title", "slug", "latitude", "longitude"]
       },
       "conditions": []
     },
@@ -224,7 +227,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -256,7 +260,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -288,7 +293,8 @@
           "details_ru",
           "details_ua",
           "promotions",
-          "forwardPhone"
+          "forwardPhone",
+          "publicPhone"
         ]
       },
       "conditions": []
@@ -418,7 +424,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -486,7 +491,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },
@@ -548,7 +552,6 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "status",
           "locations"
         ]
       },

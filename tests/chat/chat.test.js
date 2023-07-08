@@ -3,7 +3,7 @@ const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
 const { createUser } = require('../user/user.factory')
-const { createChat, getChatById } = require('../chat/chat.factory')
+const { createChat, getChatById, clearChats } = require('../chat/chat.factory')
 const { createMessage } = require('../message/message.factory')
 const { createLocation } = require('../location/location.factory')
 const { createOrganization } = require('../organization/organization.factory')
@@ -46,6 +46,10 @@ describe('Chat', () => {
     primaryPromotion = await createPromotion({
       organization: primaryOrganization.id,
     })
+  })
+
+  beforeEach(async () => {
+    await clearChats()
   })
 
   it('should authenticated user be able to mark own chat as read', async () => {
@@ -118,136 +122,6 @@ describe('Chat', () => {
 
     const updatedChat = await getChatById(chat.id)
     expect(updatedChat.messages).toHaveLength(0)
-  })
-
-  it('should authenticated user be able to create a chat message', async () => {
-    const chat = await createChat({
-      users: [primaryUser1.id],
-      location: primaryLocation.id,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/chats/${chat.id}/messages`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryUserJwt1}`)
-      .send({
-        data: {
-          text: 'test text',
-        },
-      })
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.text).toBe('test text')
-        expect(data.attributes.user.data.id).toBe(primaryUser1.id)
-        expect(data.attributes.user.data.attributes.name).toBe(
-          primaryUser1.name
-        )
-        expect(data.attributes.chat.data.id).toBe(chat.id)
-      })
-  })
-
-  it('should not authenticated user be able to create a chat message if location chat is disabled', async () => {
-    const location = await createLocation({
-      isChatAvailable: false,
-      managers: [primaryManager1.id],
-    })
-
-    const chat = await createChat({
-      users: [primaryUser1.id],
-      location: location.id,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/chats/${chat.id}/messages`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryUserJwt1}`)
-      .send({
-        data: {
-          text: 'test text',
-        },
-      })
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should not authenticated user be able to create a chat message in the elses chat', async () => {
-    const chat = await createChat({
-      users: [],
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/chats/${chat.id}/messages`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryUserJwt1}`)
-      .send({
-        data: {
-          text: 'test text',
-        },
-      })
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should manager user be able to create a chat message in own location chat', async () => {
-    const location = await createLocation({
-      isChatAvailable: true,
-      managers: [primaryManager1.id],
-    })
-
-    const chat = await createChat({
-      users: [primaryUser1.id],
-      location: location.id,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/chats/${chat.id}/messages`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryManagerJwt1}`)
-      .send({
-        data: {
-          text: 'test text',
-        },
-      })
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data.attributes.text).toBe('test text')
-        expect(data.attributes.user.data.id).toBe(primaryManager1.id)
-        expect(data.attributes.user.data.attributes.name).toBe(
-          primaryManager1.name
-        )
-        expect(data.attributes.chat.data.id).toBe(chat.id)
-      })
-  })
-
-  it('should not manager user be able to create a chat message if elses location', async () => {
-    const location = await createLocation({
-      isChatAvailable: true,
-      managers: [],
-    })
-
-    const chat = await createChat({
-      users: [primaryUser1.id],
-      location: location.id,
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/chats/${chat.id}/messages`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', `Bearer ${primaryManagerJwt1}`)
-      .send({
-        data: {
-          text: 'test text',
-        },
-      })
-      .expect('Content-Type', /json/)
-      .expect(400)
   })
 
   it('should authenticated user be able to create a chat for location and promotion', async () => {
@@ -344,5 +218,77 @@ describe('Chat', () => {
       .set('Authorization', `Bearer ${primaryUserJwt1}`)
       .expect('Content-Type', /json/)
       .expect(400)
+  })
+
+  it('should authenticated user be able to get own chats', async () => {
+    await createChat({
+      users: [primaryUser1.id],
+      location: primaryLocation.id,
+    })
+
+    const chat = await createChat({
+      users: [primaryUser1.id],
+      location: primaryLocation.id,
+    })
+
+    await createMessage({
+      user: primaryUser1.id,
+      chat: chat.id,
+      text: 'text text',
+    })
+
+    await request(strapi.server.httpServer)
+      .get(`/api/chats/user/me`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryUserJwt1}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(2)
+        expect(data[1].attributes.users.data[0].attributes).toEqual({
+          name: primaryUser1.name,
+        })
+        expect(data[1].attributes.messages.data[0].attributes.text).toBe(
+          'text text'
+        )
+        expect(
+          data[1].attributes.messages.data[0].attributes.user.data.attributes
+        ).toEqual({ name: primaryUser1.name })
+      })
+  })
+
+  it('should manager user be able to get chats for the promoitons from own organization', async () => {
+    const chat = await createChat({
+      users: [],
+      location: primaryLocation.id,
+    })
+
+    await createChat({
+      users: [],
+      location: primaryLocation.id,
+    })
+
+    await createMessage({
+      user: primaryManager1.id,
+      chat: chat.id,
+      text: 'text text',
+    })
+    await request(strapi.server.httpServer)
+      .get(`/api/chats/user/me`)
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${primaryManagerJwt1}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(2)
+        expect(data[0].attributes.messages.data[0].attributes.text).toBe(
+          'text text'
+        )
+        expect(
+          data[0].attributes.messages.data[0].attributes.user.data.attributes
+        ).toEqual({ name: primaryManager1.name })
+      })
   })
 })

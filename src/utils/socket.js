@@ -29,7 +29,25 @@ const init = async ({ strapi }) => {
     strapi.io.socketMap.set(socket.user, socket)
     const { results: userChats } = await strapi
       .service('api::chat.chat')
-      .findByUser({ state: { user: { id: socket.user } } })
+      .findByUser({
+        userId: socket.user,
+        query: {
+          populate: {
+            promotion: true,
+            messages: {
+              sort: ['createdAt:asc'],
+              populate: {
+                user: {
+                  fields: ['id', 'name'],
+                },
+              },
+            },
+            users: {
+              fields: ['id', 'name'],
+            },
+          },
+        },
+      })
     socket.join(userChats.map((chat) => `chat:${chat.id}`))
     socket.on('disconnect', () => {
       console.log(`user id:${socket.user} disconnected`)

@@ -9,6 +9,7 @@ const mockLocationData = (data = {}) => {
     forwardPhone: '123123',
     phone: '11111111',
     pin: '2222',
+    publicPhone: '123123',
     isRU: true,
     isPL: true,
     isUA: true,
