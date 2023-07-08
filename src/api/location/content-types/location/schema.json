@@ -28,7 +28,8 @@
       "private": true
     },
     "pin": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "organization": {
       "type": "relation",
