@@ -97,7 +97,7 @@
     },
     "forwardPhone": {
       "type": "string",
-      "default": "48699600900"
+      "default": "+48699600900"
     },
     "publicPhone": {
       "type": "string"
