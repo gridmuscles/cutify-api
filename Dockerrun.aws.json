@@ -1,10 +1,10 @@
 {
 	"AWSEBDockerrunVersion": "1",
 	"Authentication": {
-		"Command": "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 815022972290.dkr.ecr.eu-central-1amazonaws.com"
+		"Command": "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin ${ECR_PATH}"
 	},
 	"Image": {
-		"Name": "815022972290.dkr.ecr.eu-central-1.amazonaws.com/dev/strapi:latest",
+		"Name": "${ECR_PATH}${IMAGE_NAME}:${IMAGE_TAG}",
 		"Update": "true"
 	},
 	"Ports": [
@@ -16,7 +16,7 @@
 	"containerDefinitions": [
 		{
 			"name": "strapi",
-			"image": "815022972290.dkr.ecr.eu-central-1.amazonaws.com/dev/strapi:latest",
+			"image": "${ECR_PATH}${IMAGE_NAME}:${IMAGE_TAG}",
 			"environment": [
 				{
 					"name": "ADMIN_JWT_SECRET",
