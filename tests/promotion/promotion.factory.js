@@ -32,6 +32,7 @@ const mockPromotionData = (data = {}) => {
     description_ua: 'Понеділки Піци description',
     description_ru: 'Понедельник Пиццы description',
     discountTo: 50,
+    titleDiscount: '-50%',
     dateTimeUntil: '2100-04-30 23:59:59',
     publishedAt: '2023-01-01 23:59:59',
     auction: null,

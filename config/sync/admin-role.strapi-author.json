@@ -424,7 +424,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "locations"
+          "locations",
+          "titleDiscount"
         ]
       },
       "conditions": []
@@ -491,7 +492,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "locations"
+          "locations",
+          "titleDiscount"
         ]
       },
       "conditions": []
@@ -552,7 +554,8 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "locations"
+          "locations",
+          "titleDiscount"
         ]
       },
       "conditions": []

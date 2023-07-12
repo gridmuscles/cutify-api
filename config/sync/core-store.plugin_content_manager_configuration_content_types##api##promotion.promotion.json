@@ -514,6 +514,20 @@
           "sortable": false
         }
       },
+      "titleDiscount": {
+        "edit": {
+          "label": "titleDiscount",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "titleDiscount",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -557,15 +571,13 @@
         ],
         [
           {
-            "name": "discountTo",
+            "name": "titleDiscount",
             "size": 4
           },
           {
             "name": "dateTimeUntil",
             "size": 4
-          }
-        ],
-        [
+          },
           {
             "name": "confirmationCode",
             "size": 4

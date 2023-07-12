@@ -161,6 +161,9 @@
       "relation": "manyToMany",
       "target": "api::location.location",
       "mappedBy": "promotions"
+    },
+    "titleDiscount": {
+      "type": "string"
     }
   }
 }
