@@ -485,6 +485,62 @@
           "sortable": false
         }
       },
+      "couponDescription": {
+        "edit": {
+          "label": "couponDescription",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponDescription",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "couponDescription_pl": {
+        "edit": {
+          "label": "couponDescription_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponDescription_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "couponDescription_ru": {
+        "edit": {
+          "label": "couponDescription_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponDescription_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "couponDescription_ua": {
+        "edit": {
+          "label": "couponDescription_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponDescription_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "confirmationCode": {
         "edit": {
           "label": "confirmationCode",
@@ -614,7 +670,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "size", "order", "title_ru", "auction", "organization"],
       "edit": [
         [
           {
@@ -778,6 +833,54 @@
         ],
         [
           {
+            "name": "prices",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "prices_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "prices_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "prices_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "couponDescription",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "couponDescription_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "couponDescription_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "couponDescription_ua",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "indexTitle",
             "size": 6
           },
@@ -801,32 +904,9 @@
             "name": "seo",
             "size": 12
           }
-        ],
-        [
-          {
-            "name": "prices",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "prices_pl",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "prices_ru",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "prices_ua",
-            "size": 12
-          }
         ]
-      ]
+      ],
+      "list": ["id", "size", "order", "title_ru", "auction", "organization"]
     }
   },
   "type": "object",

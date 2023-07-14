@@ -156,6 +156,7 @@ describe('Promotions', () => {
         ).toBeUndefined()
         expect(data.attributes.seo.keywords).toBe('a,b,c')
         expect(data.attributes.seo.metaSocial).toBeDefined()
+        expect(data.attributes.couponDescription).toBeUndefined()
       })
   })
 

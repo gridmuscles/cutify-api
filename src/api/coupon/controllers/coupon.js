@@ -20,6 +20,9 @@ const parseBody = (ctx) => {
 module.exports = createCoreController('api::coupon.coupon', () => ({
   async findByPromotionAndUuidList(ctx) {
     try {
+      /* eslint-disable no-unused-vars */
+      const { locale, ...query } = await this.sanitizeQuery(ctx)
+
       if (!ctx.request.query.filters?.uuid?.$in) {
         throw new Error()
       }
@@ -30,21 +33,43 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         }
       }
 
-      const result = await super.find(ctx)
-      const promotionId = result.data[0]?.attributes.promotion.data?.id
+      const { results, pagination } = await strapi
+        .service('api::coupon.coupon')
+        .find({ ...query })
+
+      const promotionId = results[0]?.promotion?.id
 
       if (
         !ctx.params.promotionId &&
-        result.data.some((c) => c.attributes.promotion.data.id !== promotionId)
+        results.some((c) => c.promotion.id !== promotionId)
       ) {
         throw new Error()
       }
 
-      if (result.data.length !== ctx.request.query.filters.uuid.$in.length) {
+      if (results.length !== ctx.request.query.filters.uuid.$in.length) {
         throw new Error()
       }
 
-      return result
+      const transformedResults = await this.transformResponse(results, ctx)
+
+      const output = await this.sanitizeOutput(transformedResults, {
+        pagination,
+      })
+
+      const couponDescriptionFields = Object.fromEntries(
+        Object.entries(results[0].promotion).filter(([key]) =>
+          key.startsWith('couponDescription')
+        )
+      )
+
+      for (let coupon of output.data) {
+        coupon.attributes.promotion.data.attrributes = {
+          ...coupon.attributes.promotion.data.attrributes,
+          ...couponDescriptionFields,
+        }
+      }
+
+      return output
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest(err.message, err.details)
