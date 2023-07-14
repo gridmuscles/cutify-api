@@ -124,6 +124,9 @@ describe('Coupons', () => {
         expect(data[1].attributes.promotion.data.attributes.title).toBe(
           primaryPromotion.title
         )
+        expect(
+          data[1].attributes.promotion.data.attributes.couponDescription
+        ).toBe(primaryPromotion.couponDescription)
       })
   })
 

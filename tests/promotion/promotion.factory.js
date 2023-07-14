@@ -27,6 +27,10 @@ const mockPromotionData = (data = {}) => {
       'Дійсно лише в понеділок. Не поєднується з іншими пропозиціями або знижками. Діє лише при прийомі їжі на місці.',
     terms_ru:
       'Действительно только по понедельникам. Не сочетается с другими предложениями или скидками. Действует только для гостей, которые употребляют пищу на месте.',
+    prices: null,
+    prices_pl: null,
+    prices_ua: null,
+    prices_ru: null,
     description: 'Pizza Mondays description',
     description_pl: 'Poniedziałki Pizzy description',
     description_ua: 'Понеділки Піци description',
@@ -50,6 +54,10 @@ const mockPromotionData = (data = {}) => {
       disconnect: [],
       connect: data.locations ? data.locations.map((id) => ({ id })) : [],
     },
+    couponDescription: 'secret description',
+    couponDescription_pl: 'secret description',
+    couponDescription_ru: 'secret description',
+    couponDescription_ua: 'secret description',
   }
 }
 

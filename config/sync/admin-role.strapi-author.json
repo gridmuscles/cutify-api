@@ -423,9 +423,17 @@
           "description_pl",
           "description_ru",
           "description_ua",
+          "couponDescription",
+          "couponDescription_pl",
+          "couponDescription_ru",
+          "couponDescription_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
@@ -491,9 +499,17 @@
           "description_pl",
           "description_ru",
           "description_ua",
+          "couponDescription",
+          "couponDescription_pl",
+          "couponDescription_ru",
+          "couponDescription_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
@@ -553,9 +569,17 @@
           "description_pl",
           "description_ru",
           "description_ua",
+          "couponDescription",
+          "couponDescription_pl",
+          "couponDescription_ru",
+          "couponDescription_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
