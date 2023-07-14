@@ -38,7 +38,6 @@ const mockPromotionData = (data = {}) => {
     auction: null,
     categories: [],
     isChatAvailable: false,
-    promoCode: null,
     size: 'x',
     order: null,
     confirmationCode: `${slugSuffix}`,

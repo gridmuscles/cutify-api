@@ -93,7 +93,6 @@ describe('Promotions', () => {
       title_pl: 'Tytuł firmy PL',
       title_ru: 'Tytuł компании RU',
       title_ua: 'Tytuł компанії UA',
-      promoCode: 'promo-code',
     })
     await createPromotion({
       categories: [category2.id],
