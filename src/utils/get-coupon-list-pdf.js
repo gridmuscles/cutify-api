@@ -7,6 +7,8 @@ const { getCouponListUrl } = require('./dynamic-link')
 const addCouponPageToDoc = async ({ doc, host, locale, coupon, terms }) => {
   const title = coupon.promotion?.title ?? coupon.title
   const dateTimeUntil = coupon.promotion?.dateTimeUntil ?? coupon.dateTimeUntil
+  const description =
+    coupon.description ?? coupon.promotion?.description ?? null
   const qr = await QRCode.toDataURL(
     getCouponListUrl({
       host,
@@ -41,6 +43,16 @@ const addCouponPageToDoc = async ({ doc, host, locale, coupon, terms }) => {
       align: 'right',
     })
     .moveDown()
+
+  if (description) {
+    doc
+      .moveUp()
+      .fontSize(12)
+      .text(description, {
+        align: 'right',
+      })
+      .moveDown()
+  }
 
   doc.y = afterImagePosition
 

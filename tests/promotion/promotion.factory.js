@@ -38,6 +38,7 @@ const mockPromotionData = (data = {}) => {
     auction: null,
     categories: [],
     isChatAvailable: false,
+    promoCode: null,
     size: 'x',
     order: null,
     confirmationCode: `${slugSuffix}`,
@@ -50,6 +51,10 @@ const mockPromotionData = (data = {}) => {
       disconnect: [],
       connect: data.locations ? data.locations.map((id) => ({ id })) : [],
     },
+    couponDescription: 'secret description',
+    couponDescription_pl: 'secret description',
+    couponDescription_ru: 'secret description',
+    couponDescription_ua: 'secret description',
   }
 }
 

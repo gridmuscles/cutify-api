@@ -93,6 +93,7 @@ describe('Promotions', () => {
       title_pl: 'Tytuł firmy PL',
       title_ru: 'Tytuł компании RU',
       title_ua: 'Tytuł компанії UA',
+      promoCode: 'promo-code',
     })
     await createPromotion({
       categories: [category2.id],
@@ -156,6 +157,7 @@ describe('Promotions', () => {
         ).toBeUndefined()
         expect(data.attributes.seo.keywords).toBe('a,b,c')
         expect(data.attributes.seo.metaSocial).toBeDefined()
+        expect(data.attributes.couponDescription).toBeUndefined()
       })
   })
 
