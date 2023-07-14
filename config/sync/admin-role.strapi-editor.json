@@ -658,7 +658,12 @@
           "description_ru",
           "description_ua",
           "confirmationCode",
-          "locations"
+          "locations",
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
@@ -732,7 +737,11 @@
           "description_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
@@ -794,7 +803,11 @@
           "description_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []

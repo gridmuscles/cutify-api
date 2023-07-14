@@ -528,6 +528,62 @@
           "sortable": true
         }
       },
+      "prices": {
+        "edit": {
+          "label": "prices",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "prices",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "prices_pl": {
+        "edit": {
+          "label": "prices_pl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "prices_pl",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "prices_ru": {
+        "edit": {
+          "label": "prices_ru",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "prices_ru",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "prices_ua": {
+        "edit": {
+          "label": "prices_ua",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "prices_ua",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -558,6 +614,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "size", "order", "title_ru", "auction", "organization"],
       "edit": [
         [
           {
@@ -744,9 +801,32 @@
             "name": "seo",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "prices",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "prices_pl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "prices_ru",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "prices_ua",
+            "size": 12
+          }
         ]
-      ],
-      "list": ["id", "size", "order", "title_ru", "auction", "organization"]
+      ]
     }
   },
   "type": "object",

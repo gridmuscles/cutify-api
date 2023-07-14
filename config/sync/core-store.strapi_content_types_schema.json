@@ -3621,6 +3621,18 @@
         "titleDiscount": {
           "type": "string"
         },
+        "prices": {
+          "type": "richtext"
+        },
+        "prices_pl": {
+          "type": "richtext"
+        },
+        "prices_ru": {
+          "type": "richtext"
+        },
+        "prices_ua": {
+          "type": "richtext"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3819,6 +3831,18 @@
           },
           "titleDiscount": {
             "type": "string"
+          },
+          "prices": {
+            "type": "richtext"
+          },
+          "prices_pl": {
+            "type": "richtext"
+          },
+          "prices_ru": {
+            "type": "richtext"
+          },
+          "prices_ua": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
