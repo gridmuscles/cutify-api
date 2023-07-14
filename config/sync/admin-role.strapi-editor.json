@@ -663,7 +663,11 @@
           "couponDescription_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
@@ -741,7 +745,11 @@
           "couponDescription_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []
@@ -807,7 +815,11 @@
           "couponDescription_ua",
           "confirmationCode",
           "locations",
-          "titleDiscount"
+          "titleDiscount",
+          "prices",
+          "prices_pl",
+          "prices_ru",
+          "prices_ua"
         ]
       },
       "conditions": []

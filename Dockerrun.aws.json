@@ -1,186 +1,186 @@
 {
-	"AWSEBDockerrunVersion": "1",
-	"Authentication": {
-		"Command": "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin ${option_settings.ECR_PATH}"
-	},
-	"Image": {
-		"Name": "${option_settings.ECR_PATH}${option_settings.IMAGE_NAME}:${option_settings.IMAGE_TAG}",
-		"Update": "true"
-	},
-	"Ports": [
-		{
-			"HostPort": 8080,
-			"ContainerPort": 1337
-		}
-	],
-	"containerDefinitions": [
-		{
-			"name": "strapi",
-			"image": "${option_settings.ECR_PATH}${option_settings.IMAGE_NAME}:${option_settings.IMAGE_TAG}",
-			"environment": [
-				{
-					"name": "ADMIN_JWT_SECRET",
-					"value": {
-						"Ref": "ADMIN_JWT_SECRET"
-					}
-				},
-				{
-					"name": "API_TOKEN_SALT",
-					"value": {
-						"Ref": "API_TOKEN_SALT"
-					}
-				},
-				{
-					"name": "APP_KEYS",
-					"value": {
-						"Ref": "APP_KEYS"
-					}
-				},
-				{
-					"name": "CLOUDINARY_KEY",
-					"value": {
-						"Ref": "CLOUDINARY_KEY"
-					}
-				},
-				{
-					"name": "CLOUDINARY_NAME",
-					"value": {
-						"Ref": "CLOUDINARY_NAME"
-					}
-				},
-				{
-					"name": "CLOUDINARY_SECRET",
-					"value": {
-						"Ref": "CLOUDINARY_SECRET"
-					}
-				},
-				{
-					"name": "DATABASE_CLIENT",
-					"value": {
-						"Ref": "DATABASE_CLIENT"
-					}
-				},
-				{
-					"name": "DATABASE_HOST",
-					"value": {
-						"Ref": "DATABASE_HOST"
-					}
-				},
-				{
-					"name": "DATABASE_NAME",
-					"value": {
-						"Ref": "DATABASE_NAME"
-					}
-				},
-				{
-					"name": "DATABASE_PASSWORD",
-					"value": {
-						"Ref": "DATABASE_PASSWORD"
-					}
-				},
-				{
-					"name": "DATABASE_PORT",
-					"value": {
-						"Ref": "DATABASE_PORT"
-					}
-				},
-				{
-					"name": "DATABASE_URL",
-					"value": {
-						"Ref": "DATABASE_URL"
-					}
-				},
-				{
-					"name": "DATABASE_USERNAME",
-					"value": {
-						"Ref": "DATABASE_USERNAME"
-					}
-				},
-				{
-					"name": "EMAIL_APP_TITLE",
-					"value": {
-						"Ref": "EMAIL_APP_TITLE"
-					}
-				},
-				{
-					"name": "EMAIL_FROM",
-					"value": {
-						"Ref": "EMAIL_FROM"
-					}
-				},
-				{
-					"name": "EMAIL_REPLY_TO",
-					"value": {
-						"Ref": "EMAIL_REPLY_TO"
-					}
-				},
-				{
-					"name": "ENABLE_CRON_TASKS",
-					"value": {
-						"Ref": "ENABLE_CRON_TASKS"
-					}
-				},
-				{
-					"name": "ENABLE_SMS",
-					"value": {
-						"Ref": "ENABLE_SMS"
-					}
-				},
-				{
-					"name": "ENCRYPTION_SECRET_KEY",
-					"value": {
-						"Ref": "ENCRYPTION_SECRET_KEY"
-					}
-				},
-				{
-					"name": "JWT_SECRET",
-					"value": {
-						"Ref": "JWT_SECRET"
-					}
-				},
-				{
-					"name": "PORT",
-					"value": {
-						"Ref": "PORT"
-					}
-				},
-				{
-					"name": "RESET_PASSWORD_URL",
-					"value": {
-						"Ref": "RESET_PASSWORD_URL"
-					}
-				},
-				{
-					"name": "SENDGRID_API_KEY",
-					"value": {
-						"Ref": "SENDGRID_API_KEY"
-					}
-				},
-				{
-					"name": "TWILIO_ACCOUNT_SID",
-					"value": {
-						"Ref": "TWILIO_ACCOUNT_SID"
-					}
-				},
-				{
-					"name": "TWILIO_AUTH_TOKEN",
-					"value": {
-						"Ref": "TWILIO_AUTH_TOKEN"
-					}
-				},
-				{
-					"name": "TWILIO_PHONE_NUMBER",
-					"value": {
-						"Ref": "TWILIO_PHONE_NUMBER"
-					}
-				},
-				{
-					"name": "WEB_APP_HOST",
-					"value": {
-						"Ref": "WEB_APP_HOST"
-					}
-				}
-			]
-		}
-	]
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Command": "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 815022972290.dkr.ecr.eu-central-1amazonaws.com"
+  },
+  "Image": {
+    "Name": "815022972290.dkr.ecr.eu-central-1.amazonaws.com/dev/strapi:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "HostPort": 8080,
+      "ContainerPort": 1337
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "strapi",
+      "image": "815022972290.dkr.ecr.eu-central-1.amazonaws.com/dev/strapi:latest",
+      "environment": [
+        {
+          "name": "ADMIN_JWT_SECRET",
+          "value": {
+            "Ref": "ADMIN_JWT_SECRET"
+          }
+        },
+        {
+          "name": "API_TOKEN_SALT",
+          "value": {
+            "Ref": "API_TOKEN_SALT"
+          }
+        },
+        {
+          "name": "APP_KEYS",
+          "value": {
+            "Ref": "APP_KEYS"
+          }
+        },
+        {
+          "name": "CLOUDINARY_KEY",
+          "value": {
+            "Ref": "CLOUDINARY_KEY"
+          }
+        },
+        {
+          "name": "CLOUDINARY_NAME",
+          "value": {
+            "Ref": "CLOUDINARY_NAME"
+          }
+        },
+        {
+          "name": "CLOUDINARY_SECRET",
+          "value": {
+            "Ref": "CLOUDINARY_SECRET"
+          }
+        },
+        {
+          "name": "DATABASE_CLIENT",
+          "value": {
+            "Ref": "DATABASE_CLIENT"
+          }
+        },
+        {
+          "name": "DATABASE_HOST",
+          "value": {
+            "Ref": "DATABASE_HOST"
+          }
+        },
+        {
+          "name": "DATABASE_NAME",
+          "value": {
+            "Ref": "DATABASE_NAME"
+          }
+        },
+        {
+          "name": "DATABASE_PASSWORD",
+          "value": {
+            "Ref": "DATABASE_PASSWORD"
+          }
+        },
+        {
+          "name": "DATABASE_PORT",
+          "value": {
+            "Ref": "DATABASE_PORT"
+          }
+        },
+        {
+          "name": "DATABASE_URL",
+          "value": {
+            "Ref": "DATABASE_URL"
+          }
+        },
+        {
+          "name": "DATABASE_USERNAME",
+          "value": {
+            "Ref": "DATABASE_USERNAME"
+          }
+        },
+        {
+          "name": "EMAIL_APP_TITLE",
+          "value": {
+            "Ref": "EMAIL_APP_TITLE"
+          }
+        },
+        {
+          "name": "EMAIL_FROM",
+          "value": {
+            "Ref": "EMAIL_FROM"
+          }
+        },
+        {
+          "name": "EMAIL_REPLY_TO",
+          "value": {
+            "Ref": "EMAIL_REPLY_TO"
+          }
+        },
+        {
+          "name": "ENABLE_CRON_TASKS",
+          "value": {
+            "Ref": "ENABLE_CRON_TASKS"
+          }
+        },
+        {
+          "name": "ENABLE_SMS",
+          "value": {
+            "Ref": "ENABLE_SMS"
+          }
+        },
+        {
+          "name": "ENCRYPTION_SECRET_KEY",
+          "value": {
+            "Ref": "ENCRYPTION_SECRET_KEY"
+          }
+        },
+        {
+          "name": "JWT_SECRET",
+          "value": {
+            "Ref": "JWT_SECRET"
+          }
+        },
+        {
+          "name": "PORT",
+          "value": {
+            "Ref": "PORT"
+          }
+        },
+        {
+          "name": "RESET_PASSWORD_URL",
+          "value": {
+            "Ref": "RESET_PASSWORD_URL"
+          }
+        },
+        {
+          "name": "SENDGRID_API_KEY",
+          "value": {
+            "Ref": "SENDGRID_API_KEY"
+          }
+        },
+        {
+          "name": "TWILIO_ACCOUNT_SID",
+          "value": {
+            "Ref": "TWILIO_ACCOUNT_SID"
+          }
+        },
+        {
+          "name": "TWILIO_AUTH_TOKEN",
+          "value": {
+            "Ref": "TWILIO_AUTH_TOKEN"
+          }
+        },
+        {
+          "name": "TWILIO_PHONE_NUMBER",
+          "value": {
+            "Ref": "TWILIO_PHONE_NUMBER"
+          }
+        },
+        {
+          "name": "WEB_APP_HOST",
+          "value": {
+            "Ref": "WEB_APP_HOST"
+          }
+        }
+      ]
+    }
+  ]
 }
