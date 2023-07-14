@@ -3608,6 +3608,22 @@
         "description_ua": {
           "type": "richtext"
         },
+        "couponDescription": {
+          "type": "richtext",
+          "private": true
+        },
+        "couponDescription_pl": {
+          "type": "richtext",
+          "private": true
+        },
+        "couponDescription_ru": {
+          "type": "richtext",
+          "private": true
+        },
+        "couponDescription_ua": {
+          "type": "richtext",
+          "private": true
+        },
         "confirmationCode": {
           "type": "string",
           "private": true
@@ -3806,6 +3822,22 @@
           },
           "description_ua": {
             "type": "richtext"
+          },
+          "couponDescription": {
+            "type": "richtext",
+            "private": true
+          },
+          "couponDescription_pl": {
+            "type": "richtext",
+            "private": true
+          },
+          "couponDescription_ru": {
+            "type": "richtext",
+            "private": true
+          },
+          "couponDescription_ua": {
+            "type": "richtext",
+            "private": true
           },
           "confirmationCode": {
             "type": "string",

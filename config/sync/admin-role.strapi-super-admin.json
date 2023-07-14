@@ -733,6 +733,10 @@
           "description_pl",
           "description_ru",
           "description_ua",
+          "couponDescription",
+          "couponDescription_pl",
+          "couponDescription_ru",
+          "couponDescription_ua",
           "confirmationCode",
           "locations",
           "titleDiscount"
@@ -807,6 +811,10 @@
           "description_pl",
           "description_ru",
           "description_ua",
+          "couponDescription",
+          "couponDescription_pl",
+          "couponDescription_ru",
+          "couponDescription_ua",
           "confirmationCode",
           "locations",
           "titleDiscount"
@@ -869,6 +877,10 @@
           "description_pl",
           "description_ru",
           "description_ua",
+          "couponDescription",
+          "couponDescription_pl",
+          "couponDescription_ru",
+          "couponDescription_ua",
           "confirmationCode",
           "locations",
           "titleDiscount"
