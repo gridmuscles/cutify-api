@@ -8,8 +8,8 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "commit": "cz",
-    "release": "standard-version --no-verify",
+    "commit": "git-cz",
+    "release": "standard-version",
     "lint": "eslint",
     "lint:fix": "yarn lint -- --fix",
     "lint:ci": "yarn lint -- config/*.js src/**/*.js tests/**/*.js",
@@ -25,6 +25,7 @@
     "@commitlint/cz-commitlint": "^17.5.0",
     "better-sqlite3": "8.0.1",
     "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
@@ -64,5 +65,10 @@
   "engines": {
     "node": "16.x.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
