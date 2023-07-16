@@ -36,6 +36,7 @@
     "lint-staged": "^13.2.1",
     "prettier-eslint": "^15.0.1",
     "socket.io-client": "^4.6.1",
+    "standard-version": "^9.5.0",
     "supertest": "^6.3.3"
   },
   "dependencies": {
