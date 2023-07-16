@@ -117,5 +117,21 @@ module.exports = {
         ],
       },
     },
+    {
+      method: 'GET',
+      path: '/promotions/categories/top',
+      handler: 'promotion.findCategoriesTop',
+      config: {
+        middlewares: [{ name: 'global::locale' }, { name: 'global::i18n' }],
+        policies: [
+          {
+            name: 'global::query',
+            config: {
+              allowedParams: ['pagination', 'sort', 'populate', 'locale'],
+            },
+          },
+        ],
+      },
+    },
   ],
 }

@@ -73,6 +73,9 @@
       "action": "api::promotion.promotion.findBySlug"
     },
     {
+      "action": "api::promotion.promotion.findCategoriesTop"
+    },
+    {
       "action": "api::promotion.promotion.findOne"
     },
     {

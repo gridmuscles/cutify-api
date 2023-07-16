@@ -32,6 +32,11 @@ const createCategory = async (data = {}) => {
   })
 }
 
+const clearCategories = () => {
+  return strapi.db.query('api::category.category').deleteMany()
+}
+
 module.exports = {
   createCategory,
+  clearCategories,
 }
