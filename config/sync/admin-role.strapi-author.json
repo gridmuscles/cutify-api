@@ -5,6 +5,30 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::article-category.article-category",
+      "properties": {
+        "fields": ["title", "title_pl", "title_ua", "title_ru"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::article-category.article-category",
+      "properties": {
+        "fields": ["title", "title_pl", "title_ua", "title_ru"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::article-category.article-category",
+      "properties": {
+        "fields": ["title", "title_pl", "title_ua", "title_ru"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::article.article",
       "properties": {
         "fields": [

@@ -4,6 +4,15 @@
   "type": "moderator",
   "permissions": [
     {
+      "action": "api::article-category.article-category.find"
+    },
+    {
+      "action": "api::article-category.article-category.findOne"
+    },
+    {
+      "action": "api::article.article.find"
+    },
+    {
       "action": "api::article.article.findOne"
     },
     {

@@ -23,10 +23,10 @@ describe('Articles', () => {
   })
 
   it.each([
-    { type: 'public', code: 403 },
-    { type: 'authenticated', code: 403 },
-    { type: 'manager', code: 403 },
-    { type: 'moderator', code: 403 },
+    { type: 'public', code: 200 },
+    { type: 'authenticated', code: 200 },
+    { type: 'manager', code: 200 },
+    { type: 'moderator', code: 200 },
   ])(
     'should not $type user be able to get all articles',
     async ({ type, code }) => {

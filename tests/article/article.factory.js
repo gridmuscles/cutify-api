@@ -10,6 +10,7 @@ const mockArticleData = (data = {}) => {
     description_ru: 'Понедельник Пиццы',
     isPage: false,
     publishedAt: '2023-01-01 23:59:59',
+    categories: [],
     ...data,
   }
 }
