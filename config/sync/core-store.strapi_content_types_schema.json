@@ -2562,6 +2562,10 @@
           "target": "api::category.category",
           "inversedBy": "children"
         },
+        "order": {
+          "type": "integer",
+          "unique": false
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2655,6 +2659,10 @@
             "relation": "manyToOne",
             "target": "api::category.category",
             "inversedBy": "children"
+          },
+          "order": {
+            "type": "integer",
+            "unique": false
           }
         },
         "kind": "collectionType"

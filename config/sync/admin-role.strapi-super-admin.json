@@ -276,7 +276,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []
@@ -320,7 +321,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []
@@ -358,7 +360,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []

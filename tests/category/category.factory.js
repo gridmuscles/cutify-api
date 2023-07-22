@@ -15,6 +15,7 @@ const mockCategoryData = (data = {}) => {
     slug: `italian-pizza-restaurant-${slugSuffix}`,
     children: [],
     paretn: null,
+    order: null,
     ...data,
   }
 }

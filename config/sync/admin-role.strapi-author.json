@@ -59,7 +59,8 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "categories"
         ]
       },
       "conditions": []
@@ -96,7 +97,8 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "categories"
         ]
       },
       "conditions": []
@@ -133,7 +135,8 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "categories"
         ]
       },
       "conditions": []
@@ -187,7 +190,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []
