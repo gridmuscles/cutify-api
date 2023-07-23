@@ -66,7 +66,12 @@
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
           "seo.metaDescription_ua",
-          "categories"
+          "categories",
+          "preview",
+          "annotation",
+          "annotation_pl",
+          "annotation_ru",
+          "annotation_ua"
         ]
       },
       "conditions": []
@@ -110,7 +115,12 @@
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
           "seo.metaDescription_ua",
-          "categories"
+          "categories",
+          "preview",
+          "annotation",
+          "annotation_pl",
+          "annotation_ru",
+          "annotation_ua"
         ]
       },
       "conditions": []
@@ -148,7 +158,12 @@
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
           "seo.metaDescription_ua",
-          "categories"
+          "categories",
+          "preview",
+          "annotation",
+          "annotation_pl",
+          "annotation_ru",
+          "annotation_ua"
         ]
       },
       "conditions": []

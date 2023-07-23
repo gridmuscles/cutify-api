@@ -2051,6 +2051,23 @@
           "relation": "oneToMany",
           "target": "api::article-category.article-category"
         },
+        "preview": {
+          "allowedTypes": ["images"],
+          "type": "media",
+          "multiple": false
+        },
+        "annotation": {
+          "type": "richtext"
+        },
+        "annotation_pl": {
+          "type": "richtext"
+        },
+        "annotation_ru": {
+          "type": "richtext"
+        },
+        "annotation_ua": {
+          "type": "richtext"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2141,6 +2158,23 @@
             "type": "relation",
             "relation": "oneToMany",
             "target": "api::article-category.article-category"
+          },
+          "preview": {
+            "allowedTypes": ["images"],
+            "type": "media",
+            "multiple": false
+          },
+          "annotation": {
+            "type": "richtext"
+          },
+          "annotation_pl": {
+            "type": "richtext"
+          },
+          "annotation_ru": {
+            "type": "richtext"
+          },
+          "annotation_ua": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
