@@ -65,6 +65,10 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "children"
+    },
+    "order": {
+      "type": "integer",
+      "unique": false
     }
   }
 }

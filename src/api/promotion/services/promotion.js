@@ -1,5 +1,7 @@
 'use strict'
 
+const { snakeCase } = require('lodash')
+
 /**
  * promotion service
  */
@@ -48,6 +50,43 @@ module.exports = createCoreService('api::promotion.promotion', () => ({
         ...(filters ?? {}),
       },
       ...rest,
+    })
+  },
+
+  async findCategoriesTop({ pagination, sortBy, populate }) {
+    const knex = strapi.db.connection
+    const sortParam = snakeCase(sortBy)
+
+    const result = await knex('promotions AS p')
+      .select('p.id')
+      .join(
+        function () {
+          this.select(
+            'pcl.category_id',
+            knex.raw(`MAX(p.${sortParam}) AS ${sortParam}`)
+          )
+            .from('promotions_categories_links AS pcl')
+            .join('promotions AS p', 'pcl.promotion_id', 'p.id')
+            .groupBy('pcl.category_id')
+            .as('pmax')
+        },
+        `p.${sortParam}`,
+        `pmax.${sortParam}`
+      )
+      .join('promotions_categories_links AS pcl', function () {
+        this.on('p.id', 'pcl.promotion_id').andOn(
+          `p.${sortParam}`,
+          `pmax.${sortParam}`
+        )
+      })
+      .distinct()
+
+    return strapi.service('api::promotion.promotion').find({
+      filters: {
+        id: { $in: result.map(({ id }) => id) },
+      },
+      populate,
+      pagination,
     })
   },
 

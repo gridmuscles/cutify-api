@@ -19,16 +19,17 @@ describe('Articles', () => {
   let article1
 
   beforeAll(async () => {
-    article1 = await createArticle({ text: 'text' })
+    article1 = await createArticle({ text: 'text', slug: 'slug-1' })
+    await createArticle({ text: 'text', isPage: true })
   })
 
   it.each([
-    { type: 'public', code: 403 },
-    { type: 'authenticated', code: 403 },
-    { type: 'manager', code: 403 },
-    { type: 'moderator', code: 403 },
+    { type: 'public', code: 200 },
+    { type: 'authenticated', code: 200 },
+    { type: 'manager', code: 200 },
+    { type: 'moderator', code: 200 },
   ])(
-    'should not $type user be able to get all articles',
+    'should $type user be able to get all articles, but only not pages',
     async ({ type, code }) => {
       const [, jwt] = await createUser({ type })
 
@@ -41,7 +42,13 @@ describe('Articles', () => {
         req.set('Authorization', `Bearer ${jwt}`)
       }
 
-      await req.expect('Content-Type', /json/).expect(code)
+      await req
+        .expect('Content-Type', /json/)
+        .expect(code)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(1)
+          expect(data[0].id).toBe(article1.id)
+        })
     }
   )
 
@@ -69,4 +76,32 @@ describe('Articles', () => {
         expect(data.attributes.text).toBe('text')
       })
   })
+
+  it.each([
+    { type: 'public' },
+    { type: 'authenticated' },
+    { type: 'manager' },
+    { type: 'moderator' },
+  ])(
+    'should $type user be able to get one article by slug',
+    async ({ type }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/articles/slug/${article1.slug}`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data.attributes.text).toBe('text')
+        })
+    }
+  )
 })

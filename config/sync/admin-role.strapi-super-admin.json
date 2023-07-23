@@ -5,6 +5,36 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::article-category.article-category",
+      "properties": {
+        "fields": ["title", "title_pl", "title_ua", "title_ru"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::article-category.article-category",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::article-category.article-category",
+      "properties": {
+        "fields": ["title", "title_pl", "title_ua", "title_ru"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::article-category.article-category",
+      "properties": {
+        "fields": ["title", "title_pl", "title_ua", "title_ru"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::article.article",
       "properties": {
         "fields": [
@@ -35,7 +65,13 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "categories",
+          "preview",
+          "annotation",
+          "annotation_pl",
+          "annotation_ru",
+          "annotation_ua"
         ]
       },
       "conditions": []
@@ -84,7 +120,13 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "categories",
+          "preview",
+          "annotation",
+          "annotation_pl",
+          "annotation_ru",
+          "annotation_ua"
         ]
       },
       "conditions": []
@@ -121,7 +163,13 @@
           "seo.metaTitle_ua",
           "seo.metaDescription_ru",
           "seo.metaDescription_pl",
-          "seo.metaDescription_ua"
+          "seo.metaDescription_ua",
+          "categories",
+          "preview",
+          "annotation",
+          "annotation_pl",
+          "annotation_ru",
+          "annotation_ua"
         ]
       },
       "conditions": []
@@ -243,7 +291,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []
@@ -287,7 +336,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []
@@ -325,7 +375,8 @@
           "description_ua",
           "description_ru",
           "children",
-          "parent"
+          "parent",
+          "order"
         ]
       },
       "conditions": []

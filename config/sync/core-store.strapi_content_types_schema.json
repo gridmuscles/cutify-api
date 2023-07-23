@@ -2046,6 +2046,28 @@
           "repeatable": false,
           "component": "shared.seo"
         },
+        "categories": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::article-category.article-category"
+        },
+        "preview": {
+          "allowedTypes": ["images"],
+          "type": "media",
+          "multiple": false
+        },
+        "annotation": {
+          "type": "richtext"
+        },
+        "annotation_pl": {
+          "type": "richtext"
+        },
+        "annotation_ru": {
+          "type": "richtext"
+        },
+        "annotation_ua": {
+          "type": "richtext"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2131,6 +2153,28 @@
             "type": "component",
             "repeatable": false,
             "component": "shared.seo"
+          },
+          "categories": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::article-category.article-category"
+          },
+          "preview": {
+            "allowedTypes": ["images"],
+            "type": "media",
+            "multiple": false
+          },
+          "annotation": {
+            "type": "richtext"
+          },
+          "annotation_pl": {
+            "type": "richtext"
+          },
+          "annotation_ru": {
+            "type": "richtext"
+          },
+          "annotation_ua": {
+            "type": "richtext"
           }
         },
         "kind": "collectionType"
@@ -2141,6 +2185,110 @@
       "uid": "api::article.article",
       "apiName": "article",
       "globalId": "Article",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::article-category.article-category": {
+      "kind": "collectionType",
+      "collectionName": "article_categories",
+      "info": {
+        "singularName": "article-category",
+        "pluralName": "article-categories",
+        "displayName": "ArticleCategory"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "pluginOptions": {},
+          "type": "string",
+          "required": true
+        },
+        "title_pl": {
+          "pluginOptions": {},
+          "type": "string",
+          "required": true
+        },
+        "title_ua": {
+          "pluginOptions": {},
+          "type": "string",
+          "required": true
+        },
+        "title_ru": {
+          "pluginOptions": {},
+          "type": "string",
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "article_categories",
+        "info": {
+          "singularName": "article-category",
+          "pluralName": "article-categories",
+          "displayName": "ArticleCategory"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "pluginOptions": {},
+            "type": "string",
+            "required": true
+          },
+          "title_pl": {
+            "pluginOptions": {},
+            "type": "string",
+            "required": true
+          },
+          "title_ua": {
+            "pluginOptions": {},
+            "type": "string",
+            "required": true
+          },
+          "title_ru": {
+            "pluginOptions": {},
+            "type": "string",
+            "required": true
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "article-category",
+      "connection": "default",
+      "uid": "api::article-category.article-category",
+      "apiName": "article-category",
+      "globalId": "ArticleCategory",
       "actions": {},
       "lifecycles": {}
     },
@@ -2448,6 +2596,10 @@
           "target": "api::category.category",
           "inversedBy": "children"
         },
+        "order": {
+          "type": "integer",
+          "unique": false
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2541,6 +2693,10 @@
             "relation": "manyToOne",
             "target": "api::category.category",
             "inversedBy": "children"
+          },
+          "order": {
+            "type": "integer",
+            "unique": false
           }
         },
         "kind": "collectionType"

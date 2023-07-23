@@ -15,6 +15,7 @@ const mockCategoryData = (data = {}) => {
     slug: `italian-pizza-restaurant-${slugSuffix}`,
     children: [],
     paretn: null,
+    order: null,
     ...data,
   }
 }
@@ -32,6 +33,11 @@ const createCategory = async (data = {}) => {
   })
 }
 
+const clearCategories = () => {
+  return strapi.db.query('api::category.category').deleteMany()
+}
+
 module.exports = {
   createCategory,
+  clearCategories,
 }

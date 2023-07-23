@@ -105,6 +105,35 @@ module.exports = createCoreController(
       return this.transformResponse(sanitizedResults, { pagination })
     },
 
+    async findCategoriesTop(ctx) {
+      try {
+        // eslint-disable-next-line no-unused-vars
+        const { locale, pagination, sort, populate } = await this.sanitizeQuery(
+          ctx
+        )
+
+        if (sort && sort.length > 1) {
+          throw new Error()
+        }
+
+        const { results, pagination: resultsPagination } = await await strapi
+          .service('api::promotion.promotion')
+          .findCategoriesTop({
+            sortBy: sort[0],
+            pagination,
+            populate,
+          })
+
+        const sanitizedResults = await this.sanitizeOutput(results, ctx)
+        return this.transformResponse(sanitizedResults, {
+          pagination: resultsPagination,
+        })
+      } catch (err) {
+        strapi.log.error(err)
+        ctx.badRequest()
+      }
+    },
+
     async requestCoupon(ctx) {
       const config = strapi.config.get('server')
 

@@ -86,7 +86,12 @@ const getPromotionById = async ({ id }) => {
   })
 }
 
+const clearPromotions = () => {
+  return strapi.db.query('api::promotion.promotion').deleteMany()
+}
+
 module.exports = {
   createPromotion,
   getPromotionById,
+  clearPromotions,
 }

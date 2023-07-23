@@ -4,12 +4,16 @@ const qs = require('qs')
 const { JEST_TIMEOUT } = require('./../helpers')
 const { setupStrapi, stopStrapi } = require('./../helpers/strapi')
 
-const { createCategory } = require('../category/category.factory')
+const {
+  createCategory,
+  clearCategories,
+} = require('../category/category.factory')
 const { createOrganization } = require('../organization/organization.factory')
 const { createUser } = require('../user/user.factory')
 const {
   createPromotion,
   getPromotionById,
+  clearPromotions,
 } = require('../promotion/promotion.factory')
 const {
   createCoupon,
@@ -160,113 +164,12 @@ describe('Promotions', () => {
       })
   })
 
-  it('should guest be able to request up to 10 coupons', async () => {
-    const promotion = await createPromotion({
-      categories: [primaryCategory.id],
-      organization: primaryOrganization.id,
-    })
+  describe('Promotions', () => {})
+  describe('Promotions', () => {})
+  describe('Promotions', () => {})
+  describe('Promotions', () => {})
 
-    const emailSendMock = (strapi.plugin('email').service('email').send = jest
-      .fn()
-      .mockReturnValue(true))
-
-    const couponData = await request(strapi.server.httpServer)
-      .post(`/api/promotions/${promotion.id}/request`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .send({
-        email: authenticatedUser.email,
-        count: 1,
-      })
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => data)
-
-    expect(emailSendMock).toBeCalledTimes(1)
-
-    const coupon = await getCouponByUuid({ uuid: couponData[0] })
-    expect(coupon.promotion.id).toBe(promotion.id)
-
-    const {
-      to,
-      dynamicTemplateData: { link },
-    } = emailSendMock.mock.calls[0][0]
-    expect(to).toBe(authenticatedUser.email)
-    expect(link.split('[uuid][$in]')).toHaveLength(2)
-    expect(link.includes('[promotion][id]')).toBe(true)
-
-    const updatedPromotion1 = await getPromotionById({ id: promotion.id })
-    expect(updatedPromotion1.couponsCount).toBe(1)
-
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${promotion.id}/request`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .send({
-        email: authenticatedUser.email,
-        count: 9,
-      })
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(({ body: { data } }) => {
-        expect(data).toHaveLength(9)
-      })
-
-    const updatedPromotion2 = await getPromotionById({ id: promotion.id })
-    expect(updatedPromotion2.couponsCount).toBe(10)
-  })
-
-  it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
-    const emailSendMock = (strapi.plugin('email').service('email').send = jest
-      .fn()
-      .mockReturnValue(true))
-
-    await createCoupon({
-      promotion: primaryPromotion.id,
-      email: 'user1@gmail.com',
-    })
-
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${primaryPromotion.id}/request`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .send({
-        email: 'USER1@gmail.com',
-        count: 10,
-      })
-      .expect('Content-Type', /json/)
-      .expect(400)
-
-    expect(emailSendMock).toBeCalledTimes(0)
-  })
-
-  it('should be an error if coupon requested for a draft promotion', async () => {
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${draftPromotion.id}/request`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .send({
-        email: 'user1@gmail.com',
-        count: 10,
-      })
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should be an error if coupon requested for an auction promotion', async () => {
-    await request(strapi.server.httpServer)
-      .post(`/api/promotions/${auctionPromotion.id}/request`)
-      .set('accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .send({
-        email: 'user1@gmail.com',
-        count: 1,
-      })
-      .expect('Content-Type', /json/)
-      .expect(400)
-  })
-
-  it('should guest be able to request promotion by slug with updated views number', async () => {
+  it('should guest be able to get promotion by slug with updated views number', async () => {
     const slug = 'promotion-1-slug'
     await createPromotion({
       categories: [primaryCategory.id],
@@ -293,7 +196,7 @@ describe('Promotions', () => {
       })
   })
 
-  it('should guest be able to request promotion by slug with the original views number', async () => {
+  it('should guest be able to get promotion by slug with the original views number', async () => {
     const slug = 'promotion-2-slug'
     await createPromotion({
       categories: [primaryCategory.id],
@@ -320,7 +223,7 @@ describe('Promotions', () => {
       })
   })
 
-  it('should guest be able to request promotion and see coupons number', async () => {
+  it('should guest be able to get promotion and see coupons number', async () => {
     const promotion = await createPromotion({
       categories: [primaryCategory.id],
       organization: primaryOrganization.id,
@@ -340,7 +243,7 @@ describe('Promotions', () => {
       })
   })
 
-  it('should guest be able to request promotion list and see coupons number of each promotion', async () => {
+  it('should guest be able to get promotion list and see coupons number of each promotion', async () => {
     const promotion = await createPromotion({
       categories: [primaryCategory.id],
       organization: primaryOrganization.id,
@@ -581,5 +484,221 @@ describe('Promotions', () => {
         expect(data.some((p) => p.id === primaryPromotion.id)).toBe(false)
         expect(data[0].attributes.organization.data).toBeDefined()
       })
+  })
+
+  describe('Request coupon', () => {
+    it('should guest be able to request up to 10 coupons', async () => {
+      const promotion = await createPromotion({
+        categories: [primaryCategory.id],
+        organization: primaryOrganization.id,
+      })
+
+      const emailSendMock = (strapi.plugin('email').service('email').send = jest
+        .fn()
+        .mockReturnValue(true))
+
+      const couponData = await request(strapi.server.httpServer)
+        .post(`/api/promotions/${promotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          email: authenticatedUser.email,
+          count: 1,
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => data)
+
+      expect(emailSendMock).toBeCalledTimes(1)
+
+      const coupon = await getCouponByUuid({ uuid: couponData[0] })
+      expect(coupon.promotion.id).toBe(promotion.id)
+
+      const {
+        to,
+        dynamicTemplateData: { link },
+      } = emailSendMock.mock.calls[0][0]
+      expect(to).toBe(authenticatedUser.email)
+      expect(link.split('[uuid][$in]')).toHaveLength(2)
+      expect(link.includes('[promotion][id]')).toBe(true)
+
+      const updatedPromotion1 = await getPromotionById({ id: promotion.id })
+      expect(updatedPromotion1.couponsCount).toBe(1)
+
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${promotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          email: authenticatedUser.email,
+          count: 9,
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(9)
+        })
+
+      const updatedPromotion2 = await getPromotionById({ id: promotion.id })
+      expect(updatedPromotion2.couponsCount).toBe(10)
+    })
+
+    it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
+      const emailSendMock = (strapi.plugin('email').service('email').send = jest
+        .fn()
+        .mockReturnValue(true))
+
+      await createCoupon({
+        promotion: primaryPromotion.id,
+        email: 'user1@gmail.com',
+      })
+
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${primaryPromotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          email: 'USER1@gmail.com',
+          count: 10,
+        })
+        .expect('Content-Type', /json/)
+        .expect(400)
+
+      expect(emailSendMock).toBeCalledTimes(0)
+    })
+
+    it('should be an error if coupon requested for a draft promotion', async () => {
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${draftPromotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          email: 'user1@gmail.com',
+          count: 10,
+        })
+        .expect('Content-Type', /json/)
+        .expect(400)
+    })
+
+    it('should be an error if coupon requested for an auction promotion', async () => {
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${auctionPromotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          email: 'user1@gmail.com',
+          count: 1,
+        })
+        .expect('Content-Type', /json/)
+        .expect(400)
+    })
+  })
+
+  describe('Top protmotion category', () => {
+    let category1
+    let category2
+    let category3
+
+    let promotion1
+    let promotion3
+    let promotion4
+    let promotion5
+    let promotion6
+
+    beforeAll(async () => {
+      await clearCategories()
+      await clearPromotions()
+
+      category1 = await createCategory()
+      category2 = await createCategory()
+      category3 = await createCategory()
+
+      promotion1 = await createPromotion({
+        categories: [category1.id],
+        publishedAt: '2023-01-01 23:00:00',
+        couponsCount: 100,
+      })
+      await createPromotion({
+        categories: [category1.id],
+        publishedAt: '2023-01-01 23:10:00',
+        couponsCount: 50,
+      })
+      promotion3 = await createPromotion({
+        categories: [category1.id],
+        publishedAt: '2023-01-01 23:20:00',
+        couponsCount: 25,
+      })
+      promotion4 = await createPromotion({
+        categories: [category2.id],
+        publishedAt: '2023-01-01 23:05:00',
+        couponsCount: 80,
+      })
+      promotion5 = await createPromotion({
+        categories: [category2.id],
+        publishedAt: '2023-01-01 23:15:00',
+        couponsCount: 60,
+      })
+      promotion6 = await createPromotion({
+        categories: [category3.id],
+        publishedAt: '2023-01-01 23:25:00',
+        couponsCount: 40,
+      })
+    })
+
+    it('should guest be able to get promotions top by publishDate across categories', async () => {
+      const query = qs.stringify(
+        {
+          populate: ['auction', 'categories', 'images', 'organization'],
+          pagination: {
+            pageSize: 5,
+            page: 1,
+          },
+          sort: ['publishedAt'],
+        },
+        {
+          encodeValuesOnly: true,
+        }
+      )
+
+      await request(strapi.server.httpServer)
+        .get(`/api/promotions/categories/top?${query}`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(3)
+          expect(data[0].id).toBe(promotion3.id)
+          expect(data[1].id).toBe(promotion5.id)
+          expect(data[2].id).toBe(promotion6.id)
+        })
+    })
+
+    it('should guest be able to get promotions top by couponsCount across categories', async () => {
+      const query = qs.stringify(
+        {
+          pagination: {
+            pageSize: 2,
+            page: 1,
+          },
+          sort: ['couponsCount'],
+        },
+        {
+          encodeValuesOnly: true,
+        }
+      )
+
+      await request(strapi.server.httpServer)
+        .get(`/api/promotions/categories/top?${query}`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(2)
+          expect(data[0].id).toBe(promotion1.id)
+          expect(data[1].id).toBe(promotion4.id)
+        })
+    })
   })
 })

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_categories",
+  "info": {
+    "singularName": "article-category",
+    "pluralName": "article-categories",
+    "displayName": "ArticleCategory"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "title_pl": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "title_ua": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "title_ru": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    }
+  }
+}

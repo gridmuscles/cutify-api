@@ -4,6 +4,18 @@
   "type": "manager",
   "permissions": [
     {
+      "action": "api::article-category.article-category.find"
+    },
+    {
+      "action": "api::article-category.article-category.findOne"
+    },
+    {
+      "action": "api::article.article.find"
+    },
+    {
+      "action": "api::article.article.findBySlug"
+    },
+    {
       "action": "api::article.article.findOne"
     },
     {
@@ -62,6 +74,9 @@
     },
     {
       "action": "api::promotion.promotion.findBySlug"
+    },
+    {
+      "action": "api::promotion.promotion.findCategoriesTop"
     },
     {
       "action": "api::promotion.promotion.findManagerPromotionList"
