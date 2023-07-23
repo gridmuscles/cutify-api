@@ -20,6 +20,7 @@ module.exports = createCoreRouter('api::category.category', {
               'pagination',
               'filters',
               'populate',
+              'sort',
             ],
           },
         },
