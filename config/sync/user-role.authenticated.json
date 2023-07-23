@@ -13,6 +13,9 @@
       "action": "api::article.article.find"
     },
     {
+      "action": "api::article.article.findBySlug"
+    },
+    {
       "action": "api::article.article.findOne"
     },
     {

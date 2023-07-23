@@ -19,7 +19,7 @@ describe('Articles', () => {
   let article1
 
   beforeAll(async () => {
-    article1 = await createArticle({ text: 'text' })
+    article1 = await createArticle({ text: 'text', slug: 'slug-1' })
     await createArticle({ text: 'text', isPage: true })
   })
 
@@ -76,4 +76,32 @@ describe('Articles', () => {
         expect(data.attributes.text).toBe('text')
       })
   })
+
+  it.each([
+    { type: 'public' },
+    { type: 'authenticated' },
+    { type: 'manager' },
+    { type: 'moderator' },
+  ])(
+    'should $type user be able to get one article by slug',
+    async ({ type }) => {
+      const [, jwt] = await createUser({ type })
+
+      const req = request(strapi.server.httpServer)
+        .get(`/api/articles/slug/${article1.slug}`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+
+      if (jwt) {
+        req.set('Authorization', `Bearer ${jwt}`)
+      }
+
+      await req
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(({ body: { data } }) => {
+          expect(data.attributes.text).toBe('text')
+        })
+    }
+  )
 })
