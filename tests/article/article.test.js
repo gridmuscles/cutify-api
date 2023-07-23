@@ -20,6 +20,7 @@ describe('Articles', () => {
 
   beforeAll(async () => {
     article1 = await createArticle({ text: 'text' })
+    await createArticle({ text: 'text', isPage: true })
   })
 
   it.each([
@@ -28,7 +29,7 @@ describe('Articles', () => {
     { type: 'manager', code: 200 },
     { type: 'moderator', code: 200 },
   ])(
-    'should not $type user be able to get all articles',
+    'should $type user be able to get all articles, but only not pages',
     async ({ type, code }) => {
       const [, jwt] = await createUser({ type })
 
@@ -41,7 +42,13 @@ describe('Articles', () => {
         req.set('Authorization', `Bearer ${jwt}`)
       }
 
-      await req.expect('Content-Type', /json/).expect(code)
+      await req
+        .expect('Content-Type', /json/)
+        .expect(code)
+        .then(({ body: { data } }) => {
+          expect(data).toHaveLength(1)
+          expect(data[0].id).toBe(article1.id)
+        })
     }
   )
 
