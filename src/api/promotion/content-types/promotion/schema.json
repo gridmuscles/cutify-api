@@ -197,7 +197,8 @@
       "type": "integer"
     },
     "couponUserLimit": {
-      "type": "integer"
+      "type": "integer",
+      "default": 10
     }
   }
 }

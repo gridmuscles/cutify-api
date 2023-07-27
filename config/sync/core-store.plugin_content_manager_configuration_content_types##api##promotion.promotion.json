@@ -640,6 +640,34 @@
           "sortable": false
         }
       },
+      "couponTotalLimit": {
+        "edit": {
+          "label": "couponTotalLimit",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponTotalLimit",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "couponUserLimit": {
+        "edit": {
+          "label": "couponUserLimit",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "couponUserLimit",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -751,11 +779,21 @@
         ],
         [
           {
-            "name": "organization",
+            "name": "couponTotalLimit",
             "size": 4
           },
           {
+            "name": "couponUserLimit",
+            "size": 4
+          }
+        ],
+        [
+          {
             "name": "locations",
+            "size": 4
+          },
+          {
+            "name": "organization",
             "size": 4
           },
           {

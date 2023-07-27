@@ -228,6 +228,7 @@
           "user",
           "uuid",
           "email",
+          "phone",
           "state",
           "title",
           "title_pl",
@@ -476,7 +477,9 @@
           "prices",
           "prices_pl",
           "prices_ru",
-          "prices_ua"
+          "prices_ua",
+          "couponTotalLimit",
+          "couponUserLimit"
         ]
       },
       "conditions": []
@@ -552,7 +555,9 @@
           "prices",
           "prices_pl",
           "prices_ru",
-          "prices_ua"
+          "prices_ua",
+          "couponTotalLimit",
+          "couponUserLimit"
         ]
       },
       "conditions": []
@@ -622,7 +627,9 @@
           "prices",
           "prices_pl",
           "prices_ru",
-          "prices_ua"
+          "prices_ua",
+          "couponTotalLimit",
+          "couponUserLimit"
         ]
       },
       "conditions": []

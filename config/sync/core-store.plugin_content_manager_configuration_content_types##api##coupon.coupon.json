@@ -78,6 +78,20 @@
           "sortable": true
         }
       },
+      "phone": {
+        "edit": {
+          "label": "phone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "phone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "state": {
         "edit": {
           "label": "state",
@@ -263,7 +277,6 @@
       }
     },
     "layouts": {
-      "list": ["id", "email", "promotion", "receipt"],
       "edit": [
         [
           {
@@ -272,6 +285,10 @@
           },
           {
             "name": "state",
+            "size": 4
+          },
+          {
+            "name": "dateTimeUntil",
             "size": 4
           }
         ],
@@ -287,12 +304,16 @@
         ],
         [
           {
-            "name": "email",
-            "size": 6
+            "name": "user",
+            "size": 4
           },
           {
-            "name": "user",
-            "size": 6
+            "name": "email",
+            "size": 4
+          },
+          {
+            "name": "phone",
+            "size": 4
           }
         ],
         [
@@ -342,14 +363,9 @@
             "name": "description_ua",
             "size": 12
           }
-        ],
-        [
-          {
-            "name": "dateTimeUntil",
-            "size": 4
-          }
         ]
-      ]
+      ],
+      "list": ["id", "email", "promotion", "receipt"]
     }
   },
   "type": "object",
