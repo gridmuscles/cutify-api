@@ -45,6 +45,16 @@ const getCouponListEmail = ({ title, email, locale, couponsAmount, link }) => {
   }
 }
 
+const getCouponListSMSText = ({ title, locale, couponsAmount, link }) => {
+  const { subject } = TEMPLATE_DATA[locale ?? 'en']({
+    title,
+    couponsAmount,
+  })
+
+  return `${subject} \n ${link}`
+}
+
 module.exports = {
   getCouponListEmail,
+  getCouponListSMSText,
 }

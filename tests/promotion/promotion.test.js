@@ -493,7 +493,7 @@ describe('Promotions', () => {
         organization: primaryOrganization.id,
       })
 
-      const emailSendMock = (strapi.plugin('email').service('email').send = jest
+      const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
         .fn()
         .mockReturnValue(true))
 
@@ -502,25 +502,22 @@ describe('Promotions', () => {
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send({
-          email: authenticatedUser.email,
+          phone: authenticatedUser.phone,
           count: 1,
         })
         .expect('Content-Type', /json/)
         .expect(200)
         .then(({ body: { data } }) => data)
 
-      expect(emailSendMock).toBeCalledTimes(1)
+      expect(smsSendMock).toBeCalledTimes(1)
 
       const coupon = await getCouponByUuid({ uuid: couponData[0] })
       expect(coupon.promotion.id).toBe(promotion.id)
 
-      const {
-        to,
-        dynamicTemplateData: { link },
-      } = emailSendMock.mock.calls[0][0]
-      expect(to).toBe(authenticatedUser.email)
-      expect(link.split('[uuid][$in]')).toHaveLength(2)
-      expect(link.includes('[promotion][id]')).toBe(true)
+      const { phoneNumbers, body } = smsSendMock.mock.calls[0][0]
+      expect(phoneNumbers).toContain(authenticatedUser.phone)
+      expect(body.split('[uuid][$in]')).toHaveLength(2)
+      expect(body.includes('[promotion][id]')).toBe(true)
 
       const updatedPromotion1 = await getPromotionById({ id: promotion.id })
       expect(updatedPromotion1.couponsCount).toBe(1)
@@ -530,7 +527,7 @@ describe('Promotions', () => {
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send({
-          email: authenticatedUser.email,
+          phone: authenticatedUser.phone,
           count: 9,
         })
         .expect('Content-Type', /json/)
@@ -543,14 +540,40 @@ describe('Promotions', () => {
       expect(updatedPromotion2.couponsCount).toBe(10)
     })
 
-    it('should be an error if user exceed the total user limit of coupons even with the different case of email', async () => {
-      const emailSendMock = (strapi.plugin('email').service('email').send = jest
+    it('should user be able request any amount of coupons if no any limit of coupons for promotion', async () => {
+      const promotion = await createPromotion({
+        categories: [primaryCategory.id],
+        organization: primaryOrganization.id,
+        couponTotalLimit: null,
+        couponUserLimit: null,
+      })
+
+      const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+        .fn()
+        .mockReturnValue(true))
+
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${promotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          phone: '12312313',
+          count: 101,
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(smsSendMock).toBeCalledTimes(1)
+    })
+
+    it('should be an error if user exceed the user limit of coupons for promotion', async () => {
+      const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
         .fn()
         .mockReturnValue(true))
 
       await createCoupon({
         promotion: primaryPromotion.id,
-        email: 'user1@gmail.com',
+        phone: '12312313',
       })
 
       await request(strapi.server.httpServer)
@@ -558,13 +581,37 @@ describe('Promotions', () => {
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send({
-          email: 'USER1@gmail.com',
+          phone: '12312313',
           count: 10,
         })
         .expect('Content-Type', /json/)
         .expect(400)
 
-      expect(emailSendMock).toBeCalledTimes(0)
+      expect(smsSendMock).toBeCalledTimes(0)
+    })
+
+    it('should be an error if user exceed the total limit of coupons for promotion', async () => {
+      const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+        .fn()
+        .mockReturnValue(true))
+
+      await createCoupon({
+        promotion: primaryPromotion.id,
+        phone: '12312313',
+      })
+
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${primaryPromotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .send({
+          phone: '12312313',
+          count: 101,
+        })
+        .expect('Content-Type', /json/)
+        .expect(400)
+
+      expect(smsSendMock).toBeCalledTimes(0)
     })
 
     it('should be an error if coupon requested for a draft promotion', async () => {
@@ -573,7 +620,7 @@ describe('Promotions', () => {
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send({
-          email: 'user1@gmail.com',
+          phone: '12312313',
           count: 10,
         })
         .expect('Content-Type', /json/)
@@ -586,7 +633,7 @@ describe('Promotions', () => {
         .set('accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send({
-          email: 'user1@gmail.com',
+          phone: '12312313',
           count: 1,
         })
         .expect('Content-Type', /json/)

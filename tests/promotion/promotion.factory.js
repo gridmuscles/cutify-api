@@ -45,6 +45,12 @@ const mockPromotionData = (data = {}) => {
     size: 'x',
     order: null,
     confirmationCode: `${slugSuffix}`,
+    couponDescription: 'secret description',
+    couponDescription_pl: 'secret description',
+    couponDescription_ru: 'secret description',
+    couponDescription_ua: 'secret description',
+    couponTotalLimit: 100,
+    couponUserLimit: 10,
     ...data,
     organization: {
       disconnect: [],
@@ -54,10 +60,6 @@ const mockPromotionData = (data = {}) => {
       disconnect: [],
       connect: data.locations ? data.locations.map((id) => ({ id })) : [],
     },
-    couponDescription: 'secret description',
-    couponDescription_pl: 'secret description',
-    couponDescription_ru: 'secret description',
-    couponDescription_ua: 'secret description',
   }
 }
 

@@ -2,7 +2,7 @@
 
 const { parseISO, isAfter } = require('date-fns')
 
-const { getCouponListEmail } = require('../../../utils/email')
+const { getCouponListSMSText } = require('../../../utils/coupons')
 const { getCouponListUrl } = require('../../../utils/dynamic-link')
 
 const { ERROR_CODES } = require('../../../utils/const')
@@ -138,11 +138,11 @@ module.exports = createCoreController(
       const config = strapi.config.get('server')
 
       const { locale } = await this.sanitizeQuery(ctx)
-      const { email, count } = ctx.request.body
+      const { email, phone, count } = ctx.request.body
       const userId = ctx.state.user?.id ?? null
 
       try {
-        if (!email || !count) {
+        if (!phone || !count) {
           throw new Error(ERROR_CODES.REQUIRED_FIELDS_MISSING)
         }
 
@@ -174,27 +174,43 @@ module.exports = createCoreController(
           throw new Error(ERROR_CODES.PROMOTION_IS_FINISHED)
         }
 
+        if (
+          promotion.couponTotalLimit !== null &&
+          promotion.couponsCount + count > promotion.couponTotalLimit
+        ) {
+          throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_SINGLE_USER)
+        }
+
         const { results: userCoupons } = await strapi
           .service('api::coupon.coupon')
           .find({
             filters: {
-              email: email.toLowerCase(),
+              phone: phone.toLowerCase(),
               promotion: promotion.id,
             },
           })
 
-        if (userCoupons.length + count > 10) {
+        if (
+          promotion.couponUserLimit !== null &&
+          userCoupons.length + count > promotion.couponUserLimit
+        ) {
           throw new Error(ERROR_CODES.TOO_MANY_COUPONS_FOR_SINGLE_USER)
         }
 
         const couponUUIDList = await strapi
           .service('api::coupon.coupon')
-          .createCouponBulk({ count, promotionId: promotion.id, email, userId })
-
-        await strapi.plugins['email'].services.email.send(
-          getCouponListEmail({
-            title: `${promotion.discountTo}% ${promotion.title}`,
+          .createCouponBulk({
+            count,
+            promotionId: promotion.id,
             email,
+            phone,
+            userId,
+          })
+
+        await strapi.services['api::sms.sms'].sendSMS({
+          phoneNumbers: [phone],
+          body: getCouponListSMSText({
+            title: `${promotion.discountTo}% ${promotion.title}`,
             link: getCouponListUrl({
               host: config.web.host,
               locale,
@@ -203,8 +219,8 @@ module.exports = createCoreController(
             }),
             locale,
             couponsAmount: couponUUIDList.length,
-          })
-        )
+          }),
+        })
 
         return { data: couponUUIDList }
       } catch (err) {
