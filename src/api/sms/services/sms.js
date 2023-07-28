@@ -29,6 +29,7 @@ module.exports = {
           return axios.post(
             `https://api.smsapi.pl/sms.do`,
             {
+              from: 'Cappybara',
               to: phoneNumber,
               message: body,
               encoding: 'utf-8',

@@ -239,7 +239,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []

@@ -2989,6 +2989,9 @@
         "dateTimeUntil": {
           "type": "date"
         },
+        "locale": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -3087,6 +3090,9 @@
           },
           "dateTimeUntil": {
             "type": "date"
+          },
+          "locale": {
+            "type": "string"
           }
         },
         "kind": "collectionType"

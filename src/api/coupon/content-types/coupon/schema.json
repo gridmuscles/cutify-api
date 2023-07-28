@@ -70,6 +70,9 @@
     },
     "dateTimeUntil": {
       "type": "date"
+    },
+    "locale": {
+      "type": "string"
     }
   }
 }

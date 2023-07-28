@@ -461,7 +461,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []
@@ -492,7 +493,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []
@@ -517,7 +519,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []

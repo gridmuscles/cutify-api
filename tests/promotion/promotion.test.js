@@ -514,10 +514,8 @@ describe('Promotions', () => {
       const coupon = await getCouponByUuid({ uuid: couponData[0] })
       expect(coupon.promotion.id).toBe(promotion.id)
 
-      const { phoneNumbers, body } = smsSendMock.mock.calls[0][0]
+      const { phoneNumbers } = smsSendMock.mock.calls[0][0]
       expect(phoneNumbers).toContain(authenticatedUser.phone)
-      expect(body.split('[uuid][$in]')).toHaveLength(2)
-      expect(body.includes('[promotion][id]')).toBe(true)
 
       const updatedPromotion1 = await getPromotionById({ id: promotion.id })
       expect(updatedPromotion1.couponsCount).toBe(1)

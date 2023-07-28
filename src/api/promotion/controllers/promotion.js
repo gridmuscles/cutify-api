@@ -205,18 +205,29 @@ module.exports = createCoreController(
             email,
             phone,
             userId,
+            locale,
           })
+
+        const link = await strapi.services[
+          'api::shortener.shortener'
+        ].getShortUrl({
+          url: getCouponListUrl({
+            host: config.web.host,
+            locale,
+            promotionId: promotion.id,
+            uuidList: couponUUIDList,
+          }),
+        })
+
+        if (!link) {
+          throw new Error()
+        }
 
         await strapi.services['api::sms.sms'].sendSMS({
           phoneNumbers: [phone],
           body: getCouponListSMSText({
             title: `${promotion.discountTo}% ${promotion.title}`,
-            link: getCouponListUrl({
-              host: config.web.host,
-              locale,
-              promotionId: promotion.id,
-              uuidList: couponUUIDList,
-            }),
+            link,
             locale,
             couponsAmount: couponUUIDList.length,
           }),

@@ -36,4 +36,12 @@ module.exports = ({ env }) => ({
     apiKey: env('CAPTCHA_API_KEY'),
     key: env('CAPTCHA_KEY'),
   },
+  shortener: {
+    config: {
+      provider: 'tinyurl.com',
+      providerOptions: {
+        authToken: env('SHORTENER_AUTH_TOKEN'),
+      },
+    },
+  },
 })
