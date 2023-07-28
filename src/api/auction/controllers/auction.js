@@ -1,6 +1,6 @@
 'use strict'
 
-const { getCouponListEmail } = require('../../../utils/email')
+const { getCouponListEmail } = require('../../../utils/coupons')
 const { getCouponListUrl } = require('../../../utils/dynamic-link')
 
 /**

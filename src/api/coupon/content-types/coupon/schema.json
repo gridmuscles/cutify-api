@@ -27,8 +27,10 @@
       "type": "uid"
     },
     "email": {
-      "type": "email",
-      "required": true
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
     },
     "state": {
       "type": "enumeration",
@@ -68,6 +70,9 @@
     },
     "dateTimeUntil": {
       "type": "date"
+    },
+    "locale": {
+      "type": "string"
     }
   }
 }

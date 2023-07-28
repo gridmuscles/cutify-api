@@ -450,6 +450,7 @@
           "user",
           "uuid",
           "email",
+          "phone",
           "state",
           "title",
           "title_pl",
@@ -460,7 +461,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []
@@ -480,6 +482,7 @@
           "user",
           "uuid",
           "email",
+          "phone",
           "state",
           "title",
           "title_pl",
@@ -490,7 +493,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []
@@ -504,6 +508,7 @@
           "user",
           "uuid",
           "email",
+          "phone",
           "state",
           "title",
           "title_pl",
@@ -514,7 +519,8 @@
           "description_ru",
           "description_ua",
           "receipt",
-          "dateTimeUntil"
+          "dateTimeUntil",
+          "locale"
         ]
       },
       "conditions": []
@@ -794,7 +800,9 @@
           "prices",
           "prices_pl",
           "prices_ru",
-          "prices_ua"
+          "prices_ua",
+          "couponTotalLimit",
+          "couponUserLimit"
         ]
       },
       "conditions": []
@@ -876,7 +884,9 @@
           "prices",
           "prices_pl",
           "prices_ru",
-          "prices_ua"
+          "prices_ua",
+          "couponTotalLimit",
+          "couponUserLimit"
         ]
       },
       "conditions": []
@@ -946,7 +956,9 @@
           "prices",
           "prices_pl",
           "prices_ru",
-          "prices_ua"
+          "prices_ua",
+          "couponTotalLimit",
+          "couponUserLimit"
         ]
       },
       "conditions": []
@@ -985,7 +997,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::report.report",
       "properties": {
-        "fields": ["data"]
+        "fields": ["data", "locale"]
       },
       "conditions": []
     },
@@ -999,7 +1011,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::report.report",
       "properties": {
-        "fields": ["data"]
+        "fields": ["data", "locale"]
       },
       "conditions": []
     },
@@ -1007,7 +1019,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::report.report",
       "properties": {
-        "fields": ["data"]
+        "fields": ["data", "locale"]
       },
       "conditions": []
     },

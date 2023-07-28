@@ -192,6 +192,13 @@
     },
     "prices_ua": {
       "type": "richtext"
+    },
+    "couponTotalLimit": {
+      "type": "integer"
+    },
+    "couponUserLimit": {
+      "type": "integer",
+      "default": 10
     }
   }
 }

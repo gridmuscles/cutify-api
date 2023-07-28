@@ -18,13 +18,9 @@ module.exports = ({ env }) => ({
   sms: {
     enabled: env.bool('ENABLE_SMS', false),
     config: {
-      provider: 'twilio',
+      provider: 'smsapi.pl',
       providerOptions: {
-        accountSid: env('TWILIO_ACCOUNT_SID'),
-        authToken: env('TWILIO_AUTH_TOKEN'),
-      },
-      settings: {
-        senderPhoneNumber: env('TWILIO_PHONE_NUMBER'),
+        authToken: env('SMS_AUTH_TOKEN'),
       },
     },
   },
@@ -39,5 +35,13 @@ module.exports = ({ env }) => ({
     id: env('CAPTCHA_PROJECT_ID'),
     apiKey: env('CAPTCHA_API_KEY'),
     key: env('CAPTCHA_KEY'),
+  },
+  shortener: {
+    config: {
+      provider: 'tinyurl.com',
+      providerOptions: {
+        authToken: env('SHORTENER_AUTH_TOKEN'),
+      },
+    },
   },
 })

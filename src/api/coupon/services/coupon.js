@@ -201,15 +201,17 @@ module.exports = createCoreService('api::coupon.coupon', () => ({
     })
   },
 
-  async createCouponBulk({ count, promotionId, email, userId }) {
+  async createCouponBulk({ count, promotionId, email, phone, userId, locale }) {
     const coupons = [...Array(count).keys()].map(() => ({
       user: userId,
       promotion: promotionId,
       email,
+      phone,
       uuid: `${Math.floor(100000000 + Math.random() * 900000000)}-${Math.floor(
         200000000 + Math.random() * 800000000
       )}`,
       state: 'active',
+      locale,
     }))
 
     const { ids: couponIds } = await strapi.db

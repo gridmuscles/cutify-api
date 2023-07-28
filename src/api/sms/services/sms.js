@@ -1,5 +1,7 @@
 'use strict'
 
+const axios = require('axios')
+
 /**
  * sms service
  */
@@ -9,32 +11,41 @@ module.exports = {
     try {
       const {
         enabled,
-        config: { providerOptions, settings },
+        config: { providerOptions },
       } = strapi.config.get('server.sms')
 
       if (!enabled) {
         throw new Error('SMS service is disabled')
       }
 
-      const accountSid = providerOptions.accountSid
       const authToken = providerOptions.authToken
-      const senderPhoneNumber = settings.senderPhoneNumber
 
-      const client = require('twilio')(accountSid, authToken)
-
-      if (!accountSid || !authToken || !senderPhoneNumber) {
+      if (!authToken) {
         throw new Error('No required data for the sms service')
       }
 
-      await Promise.all(
+      const [{ data }] = await Promise.all(
         phoneNumbers.map((phoneNumber) => {
-          return client.messages.create({
-            body,
-            from: senderPhoneNumber,
-            to: phoneNumber,
-          })
+          return axios.post(
+            `https://api.smsapi.pl/sms.do`,
+            {
+              from: 'Cappybara',
+              to: phoneNumber,
+              message: body,
+              encoding: 'utf-8',
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            }
+          )
         })
       )
+
+      if (!data.startsWith('OK:')) {
+        throw new Error()
+      }
 
       strapi.log.info(
         `

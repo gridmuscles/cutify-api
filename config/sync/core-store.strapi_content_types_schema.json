@@ -2945,8 +2945,10 @@
           "type": "uid"
         },
         "email": {
-          "type": "email",
-          "required": true
+          "type": "email"
+        },
+        "phone": {
+          "type": "string"
         },
         "state": {
           "type": "enumeration",
@@ -2986,6 +2988,9 @@
         },
         "dateTimeUntil": {
           "type": "date"
+        },
+        "locale": {
+          "type": "string"
         },
         "createdAt": {
           "type": "datetime"
@@ -3042,8 +3047,10 @@
             "type": "uid"
           },
           "email": {
-            "type": "email",
-            "required": true
+            "type": "email"
+          },
+          "phone": {
+            "type": "string"
           },
           "state": {
             "type": "enumeration",
@@ -3083,6 +3090,9 @@
           },
           "dateTimeUntil": {
             "type": "date"
+          },
+          "locale": {
+            "type": "string"
           }
         },
         "kind": "collectionType"
@@ -3805,6 +3815,13 @@
         "prices_ua": {
           "type": "richtext"
         },
+        "couponTotalLimit": {
+          "type": "integer"
+        },
+        "couponUserLimit": {
+          "type": "integer",
+          "default": 10
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -4031,6 +4048,13 @@
           },
           "prices_ua": {
             "type": "richtext"
+          },
+          "couponTotalLimit": {
+            "type": "integer"
+          },
+          "couponUserLimit": {
+            "type": "integer",
+            "default": 10
           }
         },
         "kind": "collectionType"
@@ -4157,6 +4181,9 @@
         "data": {
           "type": "json"
         },
+        "locale": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -4199,6 +4226,9 @@
         "attributes": {
           "data": {
             "type": "json"
+          },
+          "locale": {
+            "type": "string"
           }
         },
         "kind": "collectionType"
