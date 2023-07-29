@@ -25,7 +25,7 @@ module.exports = createCoreController('api::report.report', () => ({
       }
 
       await strapi.plugins['email'].services.email.send({
-        to: 'support@cappybara.com',
+        to: 'kosmokry@gmail.com',
         subject: 'You have new report!',
         html: `You have new report!`,
       })
