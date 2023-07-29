@@ -113,9 +113,10 @@ module.exports = createCoreController('api::chat.chat', () => ({
         .emit('receiveChatSuccess', transformedChat)
 
       try {
-        await strapi.services['api::sms.sms'].sendSMS({
-          phoneNumbers: location.managers.map(({ phone }) => phone),
-          body: 'Cappybara.com - There is a new chat created, please take a look!',
+        await strapi.plugins['email'].services.email.send({
+          to: location.managers.map(({ email }) => email),
+          subject: 'You have new chat!',
+          html: 'Cappybara.com - There is a new chat created, please take a look!',
         })
       } catch (err) {
         strapi.log.error('SMS notification about the new chat was not sent')
