@@ -12,11 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "data": {
-      "type": "json"
-    },
-    "locale": {
-      "type": "string"
+    "coupons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::coupon.coupon"
     }
   }
 }

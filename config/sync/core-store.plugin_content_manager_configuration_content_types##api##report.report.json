@@ -20,32 +20,19 @@
           "sortable": true
         }
       },
-      "data": {
+      "coupons": {
         "edit": {
-          "label": "data",
+          "label": "coupons",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "phone"
         },
         "list": {
-          "label": "data",
+          "label": "coupons",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "locale": {
-        "edit": {
-          "label": "locale",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "locale",
-          "searchable": true,
-          "sortable": true
         }
       },
       "createdAt": {
@@ -78,17 +65,11 @@
       }
     },
     "layouts": {
-      "list": ["id", "createdAt", "updatedAt", "locale"],
+      "list": ["id", "createdAt", "updatedAt", "coupons"],
       "edit": [
         [
           {
-            "name": "data",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "locale",
+            "name": "coupons",
             "size": 6
           }
         ]

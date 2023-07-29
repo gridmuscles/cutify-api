@@ -997,7 +997,7 @@
       "action": "plugin::content-manager.explorer.create",
       "subject": "api::report.report",
       "properties": {
-        "fields": ["data", "locale"]
+        "fields": ["coupons"]
       },
       "conditions": []
     },
@@ -1011,7 +1011,7 @@
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::report.report",
       "properties": {
-        "fields": ["data", "locale"]
+        "fields": ["coupons"]
       },
       "conditions": []
     },
@@ -1019,7 +1019,7 @@
       "action": "plugin::content-manager.explorer.update",
       "subject": "api::report.report",
       "properties": {
-        "fields": ["data", "locale"]
+        "fields": ["coupons"]
       },
       "conditions": []
     },
