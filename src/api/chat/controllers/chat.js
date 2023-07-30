@@ -6,6 +6,13 @@
 
 const { createCoreController } = require('@strapi/strapi').factories
 
+const GREETINGS = {
+  en: 'Hi! How can I help you?',
+  pl: 'Witaj! W czym mogę Ci pomóc?',
+  ru: 'Здравствуйте! Чем я могу вам помочь?',
+  ua: 'Привіт! Чим я можу вам допомогти?',
+}
+
 module.exports = createCoreController('api::chat.chat', () => ({
   async markAsRead(ctx) {
     try {
@@ -41,6 +48,7 @@ module.exports = createCoreController('api::chat.chat', () => ({
   async createLocationPromotionChat(ctx) {
     try {
       const { locationId, promotionId } = ctx.params
+      const { locale } = ctx.request.query
 
       const promotion = await strapi.entityService.findOne(
         'api::promotion.promotion',
@@ -81,11 +89,19 @@ module.exports = createCoreController('api::chat.chat', () => ({
         throw new Error()
       }
 
+      const message = await strapi
+        .service('api::message.message')
+        .createChatMessage({
+          userId: location.managers[0].id,
+          text: GREETINGS[locale],
+        })
+
       const newChat = await strapi.service('api::chat.chat').create({
         data: {
           location: location.id,
           promotion: promotion.id,
           users: [ctx.state.user.id],
+          messages: [message.id],
         },
         populate: {
           location: true,
