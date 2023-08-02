@@ -125,9 +125,9 @@ describe('Chat', () => {
   })
 
   it('should authenticated user be able to create a chat for location and promotion', async () => {
-    const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+    const emailSendMock = (strapi.plugin('email').service('email').send = jest
       .fn()
-      .mockReturnValue([]))
+      .mockReturnValue(true))
 
     await request(strapi.server.httpServer)
       .post(
@@ -147,10 +147,10 @@ describe('Chat', () => {
         )
       })
 
-    expect(smsSendMock).toBeCalledTimes(1)
+    expect(emailSendMock).toBeCalledTimes(1)
 
-    const { phoneNumbers } = smsSendMock.mock.calls[0][0]
-    expect(phoneNumbers).toContain(primaryManager1.phone)
+    const { to } = emailSendMock.mock.calls[0][0]
+    expect(to).toContain(primaryManager1.email)
   })
 
   it('should not authenticated user be able to create a chat for location with disabled chat option', async () => {
