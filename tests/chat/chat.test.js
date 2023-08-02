@@ -139,7 +139,7 @@ describe('Chat', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(({ body: { data } }) => {
-        expect(data.attributes.messages.data).toHaveLength(0)
+        expect(data.attributes.messages.data).toHaveLength(1)
         expect(data.attributes.users.data).toHaveLength(1)
         expect(data.attributes.location.data.id).toBe(primaryLocation.id)
         expect(data.attributes.users.data[0].attributes.name).toBe(
