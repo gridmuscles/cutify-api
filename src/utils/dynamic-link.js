@@ -4,9 +4,7 @@ const getCouponListUrl = ({ host, locale, promotionId, uuidList }) => {
   const query = qs.stringify(
     {
       filters: {
-        promotion: {
-          id: promotionId,
-        },
+        ...(promotionId ? { promotion: { id: promotionId } } : {}),
         uuid: {
           $in: uuidList,
         },

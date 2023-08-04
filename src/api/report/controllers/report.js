@@ -33,7 +33,7 @@ module.exports = createCoreController('api::report.report', () => ({
           url: getCouponListUrl({
             host: config.web.host,
             locale,
-            promotionId: results[0].promotion.id,
+            promotionId: results[0].promotion?.id,
             uuidList: ctx.request.body.data.coupons,
           }),
         })
