@@ -1,7 +1,7 @@
 {
   "name": "cutify-api",
   "private": true,
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "A Strapi application",
   "scripts": {
     "dev": "strapi develop",

@@ -62,6 +62,7 @@ afterAll(async () => {
 
 describe('Promotions', () => {
   let authenticatedUser
+  let authenticatedJwt
   let managerUserJwt
 
   let primaryCategory
@@ -73,8 +74,9 @@ describe('Promotions', () => {
   let auctionPromotion
 
   beforeAll(async () => {
-    const [user] = await createUser({ type: 'authenticated' })
+    const [user, userJwt] = await createUser({ type: 'authenticated' })
     authenticatedUser = user
+    authenticatedJwt = userJwt
 
     const [manager, jwt2] = await createUser({ type: 'manager' })
     managerUserJwt = jwt2
@@ -556,6 +558,32 @@ describe('Promotions', () => {
         .set('Content-Type', 'application/json')
         .send({
           phone: '12312313',
+          count: 101,
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(smsSendMock).toBeCalledTimes(1)
+    })
+
+    it('should user be able request any amount of coupons if no any limit of coupons for promotion', async () => {
+      const promotion = await createPromotion({
+        categories: [primaryCategory.id],
+        organization: primaryOrganization.id,
+        couponTotalLimit: null,
+        couponUserLimit: null,
+      })
+
+      const smsSendMock = (strapi.services['api::sms.sms'].sendSMS = jest
+        .fn()
+        .mockReturnValue(true))
+
+      await request(strapi.server.httpServer)
+        .post(`/api/promotions/${promotion.id}/request`)
+        .set('accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${authenticatedJwt}`)
+        .send({
           count: 101,
         })
         .expect('Content-Type', /json/)

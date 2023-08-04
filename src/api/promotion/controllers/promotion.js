@@ -139,10 +139,10 @@ module.exports = createCoreController(
 
       const { locale } = await this.sanitizeQuery(ctx)
       const { email, phone, count } = ctx.request.body
-      const userId = ctx.state.user?.id ?? null
+      const user = ctx.state.user
 
       try {
-        if (!phone || !count) {
+        if (!count || (!user && !phone)) {
           throw new Error(ERROR_CODES.REQUIRED_FIELDS_MISSING)
         }
 
@@ -185,7 +185,11 @@ module.exports = createCoreController(
           .service('api::coupon.coupon')
           .find({
             filters: {
-              phone: phone.toLowerCase(),
+              $or: [
+                { ...(phone ? { phone: phone?.toLowerCase() } : {}) },
+                { ...(email ? { email: email?.toLowerCase() } : {}) },
+                { ...(user ? { user: user?.id } : {}) },
+              ],
               promotion: promotion.id,
             },
           })
@@ -202,9 +206,9 @@ module.exports = createCoreController(
           .createCouponBulk({
             count,
             promotionId: promotion.id,
-            email,
-            phone,
-            userId,
+            email: user ? user.email : email,
+            phone: user ? user.phone : phone,
+            userId: user?.id,
             locale,
           })
 
