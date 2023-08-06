@@ -125,6 +125,21 @@
           "sortable": true
         }
       },
+      "main": {
+        "edit": {
+          "label": "main",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "main",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -188,6 +203,10 @@
         [
           {
             "name": "coupon",
+            "size": 6
+          },
+          {
+            "name": "main",
             "size": 6
           }
         ]

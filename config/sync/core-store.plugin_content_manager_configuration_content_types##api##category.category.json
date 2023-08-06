@@ -204,6 +204,48 @@
           "sortable": true
         }
       },
+      "backgroundColor": {
+        "edit": {
+          "label": "backgroundColor",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "backgroundColor",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "textColor": {
+        "edit": {
+          "label": "textColor",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "textColor",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "image": {
+        "edit": {
+          "label": "image",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "image",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -308,6 +350,20 @@
           {
             "name": "order",
             "size": 4
+          },
+          {
+            "name": "backgroundColor",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "textColor",
+            "size": 6
+          },
+          {
+            "name": "image",
+            "size": 6
           }
         ]
       ]

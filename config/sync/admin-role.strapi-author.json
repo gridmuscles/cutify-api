@@ -650,6 +650,38 @@
       "conditions": []
     },
     {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "howitworks",
+          "contacts",
+          "about",
+          "donate",
+          "coupon"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "howitworks",
+          "contacts",
+          "about",
+          "donate",
+          "coupon"
+        ]
+      },
+      "conditions": []
+    },
+    {
       "action": "plugin::upload.assets.copy-link",
       "subject": null,
       "properties": {},
