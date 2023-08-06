@@ -16,6 +16,9 @@ const mockCategoryData = (data = {}) => {
     children: [],
     paretn: null,
     order: null,
+    backgroundColor: '',
+    textColor: '',
+    image: null,
     ...data,
   }
 }
