@@ -179,6 +179,12 @@
           "value": {
             "Ref": "WEB_APP_HOST"
           }
+        },
+        {
+          "name": "SMS_AUTH_TOKEN",
+          "value": {
+            "Ref": "SMS_AUTH_TOKEN"
+          }
         }
       ]
     }
