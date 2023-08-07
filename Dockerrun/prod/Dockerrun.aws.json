@@ -185,6 +185,12 @@
           "value": {
             "Ref": "SMS_AUTH_TOKEN"
           }
+        },
+        {
+          "name": "SHORTENER_AUTH_TOKEN",
+          "value": {
+            "Ref": "SHORTENER_AUTH_TOKEN"
+          }
         }
       ]
     }
