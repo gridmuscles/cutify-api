@@ -10,7 +10,7 @@
       "required": true,
       "type": "string",
       "maxLength": 120,
-      "default": "{{organization}} - discount coupons {{discount}}% off | Cappybara"
+      "default": "{{organization}} - discount coupons {{discount}} off | Cappybara"
     },
     "metaDescription": {
       "type": "text",
@@ -49,17 +49,17 @@
     },
     "metaTitle_ru": {
       "type": "string",
-      "default": "{{organization}} - купоны на скидку {{discount}}% | Сappybara",
+      "default": "{{organization}} - купоны на скидку {{discount}} | Сappybara",
       "maxLength": 120
     },
     "metaTitle_pl": {
       "type": "string",
       "maxLength": 120,
-      "default": "{{organization}} - kupony rabatowe {{discount}}% | Cappybara"
+      "default": "{{organization}} - kupony rabatowe {{discount}} | Cappybara"
     },
     "metaTitle_ua": {
       "type": "string",
-      "default": "{{organization}} - купони на знижку {{discount}}% | Cappybara",
+      "default": "{{organization}} - купони на знижку {{discount}} | Cappybara",
       "maxLength": 120
     },
     "metaDescription_ru": {
