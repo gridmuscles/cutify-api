@@ -16,7 +16,7 @@ const { createLocation } = require('../location/location.factory')
 
 const listCouponQuery = qs.stringify(
   {
-    populate: ['promotion'],
+    populate: ['promotion', 'user'],
   },
   {
     encodeValuesOnly: true,
@@ -130,7 +130,7 @@ describe('Coupons', () => {
       })
   })
 
-  it('should guest be able to get any coupons by slug list from the same promotion', async () => {
+  it('should guest be able to get any coupons by slug list and promotion id from the same promotion', async () => {
     await request(strapi.server.httpServer)
       .get(
         `/api/coupons/promotion/${primaryPromotion.id}/uuid?filters[uuid][$in][0]=1&filters[uuid][$in][1]=2&${listCouponQuery}`
@@ -148,6 +148,37 @@ describe('Coupons', () => {
         )
         expect(data[1].attributes.uuid).toBe('2')
         expect(data[1].attributes.promotion.data.attributes.title).toBe(
+          primaryPromotion.title
+        )
+      })
+  })
+
+  it('should guest be able to get any coupons by slug list from the same promotion even if promotion is draft', async () => {
+    const promotion = await createPromotion({
+      categories: [category.id],
+      organization: primaryOrganization.id,
+      publishedAt: null,
+    })
+
+    const coupon = await createCoupon({
+      promotion: promotion.id,
+      email: primaryUser.email,
+      user: primaryUser.id,
+    })
+
+    await request(strapi.server.httpServer)
+      .get(
+        `/api/coupons/promotion/${promotion.id}/uuid?filters[uuid][$in][0]=${coupon.uuid}&${listCouponQuery}`
+      )
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: { data } }) => {
+        expect(data).toHaveLength(1)
+        expect(data[0].attributes.uuid).toBe(coupon.uuid)
+        expect(data[0].attributes.user).toBeUndefined()
+        expect(data[0].attributes.promotion.data.attributes.title).toBe(
           primaryPromotion.title
         )
       })

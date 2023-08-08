@@ -33,16 +33,19 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         }
       }
 
-      const { results, pagination } = await strapi
-        .service('api::coupon.coupon')
-        .find({ ...query })
+      const results = await strapi.entityService.findMany(
+        'api::coupon.coupon',
+        {
+          ...query,
+        }
+      )
 
-      const promotionId = results[0]?.promotion?.id
+      const promotion = results[0]?.promotion ?? null
+      const promotionId = ctx.params.promotionId
+        ? Number(ctx.params.promotionId)
+        : promotion?.id ?? null
 
-      if (
-        !ctx.params.promotionId &&
-        results.some((c) => c.promotion.id !== promotionId)
-      ) {
+      if (results.some((c) => c.promotion?.id !== promotionId)) {
         throw new Error()
       }
 
@@ -50,26 +53,21 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
         throw new Error()
       }
 
-      const transformedResults = await this.transformResponse(results, ctx)
+      const couponDescriptionFields = promotion
+        ? Object.fromEntries(
+            Object.entries(promotion).filter(([key]) =>
+              key.startsWith('couponDescription')
+            )
+          )
+        : {}
 
-      const output = await this.sanitizeOutput(transformedResults, {
-        pagination,
-      })
+      const sanitizedOutput = await this.sanitizeOutput(results, ctx)
 
-      const couponDescriptionFields = Object.fromEntries(
-        Object.entries(results[0].promotion).filter(([key]) =>
-          key.startsWith('couponDescription')
-        )
-      )
-
-      for (let coupon of output.data) {
-        coupon.attributes.promotion.data.attrributes = {
-          ...coupon.attributes.promotion.data.attrributes,
-          ...couponDescriptionFields,
-        }
+      for (let coupon of sanitizedOutput) {
+        coupon.promotion = { ...coupon.promotion, ...couponDescriptionFields }
       }
 
-      return output
+      return this.transformResponse(sanitizedOutput)
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest(err.message, err.details)
@@ -178,8 +176,8 @@ module.exports = createCoreController('api::coupon.coupon', () => ({
           ...query,
         })
 
-      const sanitizedResults = await this.transformResponse(results, ctx)
-      return this.sanitizeOutput(sanitizedResults, { pagination })
+      const sanitizedOutput = await this.sanitizeOutput(results, ctx)
+      return this.transformResponse(sanitizedOutput, { pagination })
     } catch (err) {
       strapi.log.error(err)
       ctx.badRequest()
