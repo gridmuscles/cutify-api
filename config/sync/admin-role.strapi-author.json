@@ -206,7 +206,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
