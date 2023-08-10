@@ -258,7 +258,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
@@ -303,7 +306,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
@@ -342,7 +348,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
@@ -920,6 +929,38 @@
       "subject": "api::review.review",
       "properties": {
         "fields": ["message", "user", "organization", "rating", "reply", "name"]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "howitworks",
+          "contacts",
+          "about",
+          "donate",
+          "coupon"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::static-pages.static-pages",
+      "properties": {
+        "fields": [
+          "privacy",
+          "help",
+          "howitworks",
+          "contacts",
+          "about",
+          "donate",
+          "coupon"
+        ]
       },
       "conditions": []
     },

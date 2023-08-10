@@ -259,6 +259,16 @@
           "private": true
         }
       },
+      "config": {
+        "attributes": {
+          "resetPasswordToken": {
+            "hidden": true
+          },
+          "registrationToken": {
+            "hidden": true
+          }
+        }
+      },
       "kind": "collectionType",
       "__schema__": {
         "collectionName": "admin_users",
@@ -2600,6 +2610,17 @@
           "type": "integer",
           "unique": false
         },
+        "backgroundColor": {
+          "type": "string"
+        },
+        "textColor": {
+          "type": "string"
+        },
+        "image": {
+          "allowedTypes": ["images"],
+          "type": "media",
+          "multiple": false
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2697,6 +2718,17 @@
           "order": {
             "type": "integer",
             "unique": false
+          },
+          "backgroundColor": {
+            "type": "string"
+          },
+          "textColor": {
+            "type": "string"
+          },
+          "image": {
+            "allowedTypes": ["images"],
+            "type": "media",
+            "multiple": false
           }
         },
         "kind": "collectionType"
@@ -4417,6 +4449,11 @@
           "relation": "oneToOne",
           "target": "api::article.article"
         },
+        "main": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::article.article"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -4494,6 +4531,11 @@
             "target": "api::article.article"
           },
           "coupon": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::article.article"
+          },
+          "main": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::article.article"

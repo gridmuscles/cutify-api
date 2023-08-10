@@ -292,7 +292,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
@@ -337,7 +340,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
@@ -376,7 +382,10 @@
           "description_ru",
           "children",
           "parent",
-          "order"
+          "order",
+          "backgroundColor",
+          "textColor",
+          "image"
         ]
       },
       "conditions": []
@@ -1070,7 +1079,8 @@
           "contacts",
           "about",
           "donate",
-          "coupon"
+          "coupon",
+          "main"
         ]
       },
       "conditions": []
@@ -1098,7 +1108,8 @@
           "contacts",
           "about",
           "donate",
-          "coupon"
+          "coupon",
+          "main"
         ]
       },
       "conditions": []
@@ -1114,7 +1125,8 @@
           "contacts",
           "about",
           "donate",
-          "coupon"
+          "coupon",
+          "main"
         ]
       },
       "conditions": []

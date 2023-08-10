@@ -6,6 +6,7 @@ const mockStaticPagesData = (data = {}) => {
     support: null,
     contacts: null,
     howitworks: null,
+    main: null,
     publishedAt: '2023-01-01 23:59:59',
     ...data,
   }
